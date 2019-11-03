@@ -48,10 +48,10 @@
 
                 <li class="nav-item">
                     <center>
-                        <button class="btn btn-outline-light" type="button">
+                        <a href="LojaVirtual.aspx"><button class="btn btn-outline-light" type="button">
                             LOJA VIRTUAL &nbsp
                             <i class="fas fa-shopping-basket fa-sm"></i>
-                        </button>
+                        </button></a>
                     </center>
                 </li>
                 
@@ -320,6 +320,7 @@
 
     <!-- JavaScript -->
     <script src="../../Assets/Vendor/jquery-easing/jquery.easing.min.js"></script>
+    <script src="../../Assets/Custom/Js/main.js"></script>
 
     <!-- Scripts customizados do template -->
     <script src="../../Assets/Custom/Js/sb-admin-2.min.js"></script>

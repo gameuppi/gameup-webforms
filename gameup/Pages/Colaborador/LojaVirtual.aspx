@@ -36,7 +36,7 @@
 
         <!-- Card de item -  -->
         <div class="col-12 col-md-3">
-            <div class="card-custom border-left-info">
+            <div class="card-custom border-left-success shadow">
                 <div class="card-custom-image">
                     <img src="../../Assets/Imagens/piscina.jpg">
                     <span class="card-custom-title font-weight-bold">Descanso merecido
@@ -58,7 +58,7 @@
 
         <!-- Card de item -  -->
         <div class="col-12 col-md-3">
-            <div class="card-custom border-left-warning">
+            <div class="card-custom border-left-success shadow">
                 <div class="card-custom-image">
                     <img src="../../Assets/Imagens/jantar.jpg">
                     <span class="card-custom-title font-weight-bold">Bon appétit!
@@ -80,7 +80,7 @@
 
         <!-- Card de item -  -->
         <div class="col-12 col-md-3">
-            <div class="card-custom border-left-success">
+            <div class="card-custom border-left-success shadow">
                 <div class="card-custom-image">
                     <img src="../../Assets/Imagens/tempo.jpg">
                     <span class="card-custom-title font-weight-bold">O tempo voa
@@ -102,7 +102,7 @@
 
         <!-- Card de item -  -->
         <div class="col-12 col-md-3">
-            <div class="card-custom card">
+            <div class="card-custom border-left-success shadow">
                 <div class="card-custom-image">
                     <img src="../../Assets/Imagens/piscina.jpg">
                     <span class="card-custom-title font-weight-bold">Descanso merecido
