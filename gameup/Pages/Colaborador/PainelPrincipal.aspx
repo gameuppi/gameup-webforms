@@ -281,6 +281,25 @@
         </div>
     </div>
 
-        <!-- /.container-fluid -->
+    <!-- Pie Chart -->
+    <div class="col-xl-3 col-lg-4 ">
+        <div class="card shadow mb-4">
+            <!-- Card Header - Dropdown -->
+            <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                <i class="fas fa-circle fa-lg" style="font-size: 2rem !important"></i>
+                <i class="fas fa-question-circle fa-lg fa-fw text-gray-400"></i>
+            </div>
+            <!-- Card Body -->
+            <div class="card-body">
+                <img src="http://www.myiconfinder.com/uploads/iconsets/256-256-41a967d24b6b709005d9523c2096ef01-award.png" class="mx-auto d-block mb-4" style="width: 60%" />
+                <h4 class="font-weight-bold">Dedicação</h4>
+                <hr class="sidebar-divider d-none d-md-block">
+                <p>Logue no sistema por 5 dias seguidos</p>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- /.container-fluid -->
 </asp:Content>
 

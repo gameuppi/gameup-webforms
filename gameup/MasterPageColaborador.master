@@ -16,6 +16,7 @@
 
     <!-- Estilos customizados do template -->
     <link href="Assets/Custom/Css/sb-admin-2.min.css" rel="stylesheet">
+    <link href="Assets/Custom/Css/main.css" rel="stylesheet">
 
     <asp:ContentPlaceHolder ID="head" runat="server">
     </asp:ContentPlaceHolder>
@@ -47,14 +48,13 @@
 
                 <li class="nav-item">
                     <center>
-                        <button class="btn btn-outline-light" type="button">
+                        <a href="LojaVirtual.aspx"><button class="btn btn-outline-light" type="button">
                             LOJA VIRTUAL &nbsp
                             <i class="fas fa-shopping-basket fa-sm"></i>
-                        </button>
+                        </button></a>
                     </center>
                 </li>
                 
-
                 <!-- Nav Item - Tables -->
                 <li class="nav-item">
                     <a class="nav-link" href="tables.html">
@@ -77,6 +77,13 @@
                     </a>
                 </li>
 
+                <li class="nav-item">
+                    <a class="nav-link" href="tables.html">
+                        <i class="fas fa-fw fa-chart-line"></i>
+                        <span>Desempenho</span>
+                    </a>
+                </li>
+
                  <li class="nav-item">
                     <a class="nav-link" href="tables.html">
                         <i class="fas fa-fw fa-flag-checkered"></i>
@@ -91,11 +98,9 @@
                     </a>
                 </li>
 
-                <!-- Sidebar Toggler (Sidebar) -->
-                <div class="text-center d-none d-md-inline">
-                    <button class="rounded-circle border-0" id="sidebarToggle"></button>
-                </div>
-
+                <!-- Divider -->
+                <hr class="sidebar-divider d-none d-md-block">
+                
             </ul>
             <!-- End of Sidebar -->
 
@@ -109,7 +114,7 @@
                     <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
 
                         <!-- Sidebar Toggle (Topbar) -->
-                        <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
+                        <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3" type="button">
                             <i class="fa fa-bars"></i>
                         </button>
 
@@ -276,15 +281,6 @@
                         </asp:ContentPlaceHolder>
                     </div>
 
-                    <!-- Footer -->
-                    <footer class="sticky-footer bg-white">
-                        <div class="container my-auto">
-                            <div class="copyright text-center my-auto">
-                                <span>Copyright &copy; Your Website 2019</span>
-                            </div>
-                        </div>
-                    </footer>
-                    <!-- End of Footer -->
 
                 </div>
                 <!-- End of Content Wrapper -->
@@ -324,6 +320,7 @@
 
     <!-- JavaScript -->
     <script src="../../Assets/Vendor/jquery-easing/jquery.easing.min.js"></script>
+    <script src="../../Assets/Custom/Js/main.js"></script>
 
     <!-- Scripts customizados do template -->
     <script src="../../Assets/Custom/Js/sb-admin-2.min.js"></script>
