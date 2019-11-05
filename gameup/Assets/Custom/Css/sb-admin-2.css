@@ -10073,7 +10073,7 @@ a:focus {
 }
 
 .sidebar {
-  width: 6.5rem;
+  width: 150rem;
   min-height: 100vh;
 }
 
@@ -10086,14 +10086,13 @@ a:focus {
 }
 
 .sidebar .nav-item .nav-link {
-  text-align: center;
-  padding: 0.75rem 1rem;
-  width: 6.5rem;
+  text-align: left;
+  padding: 0.90rem 1rem;
 }
 
 .sidebar .nav-item .nav-link span {
   font-size: 0.65rem;
-  display: block;
+  display: inline;
 }
 
 .sidebar .nav-item.active .nav-link {

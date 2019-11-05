@@ -92,3 +92,21 @@
     right: 24px;
     bottom: -20px;
 }
+
+.icon-change {
+    transition: ease-in-out 0.1s;
+}
+
+    .icon-change:hover {
+        color: #ccc !important;
+        color: #1cc88a !important;
+        transform: scale(1.2);
+    }
+
+.icon-change-white {
+    transition: ease-in-out 0.1s;
+}
+
+.icon-change-white:hover {
+    transform: scale(1.2);
+}
