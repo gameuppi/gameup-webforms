@@ -92,3 +92,13 @@
     right: 24px;
     bottom: -20px;
 }
+
+
+.card-zoom {
+    transition: ease-in-out .1s;
+}
+
+    .card-zoom:hover {
+        transform: scale(1.02);
+        z-index: 1000;
+    }

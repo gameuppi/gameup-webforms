@@ -9,13 +9,13 @@
     </div>
     <div class="row">
         <div class="col-md-12">
-            
-              <div class="card mb-4 py-1 border-bottom-primary">
+
+            <div class="card mb-4 py-1 border-bottom-primary">
                 <div class="card-body py-1">
-                  As conquistas define seus pontos fortes como funcionário, conquiste-as e mostre que é capaz
+                    As conquistas define seus pontos fortes como funcionário, conquiste-as e mostre que é capaz
 
                 </div>
-              </div>
+            </div>
         </div>
     </div>
 
@@ -41,7 +41,7 @@
                         <hr />
                         <!-- Conquistas  -->
                         <!-- Conquistas  1 -->
-                        <div class="card mb-4 py-2 border-left-primary">
+                        <div class="card mb-4 py-2 border-left-warning">
                             <div class=" row  card-body py-2 col-12">
                                 <i class="text-center fas fa-globe-africa fa-lg col-3 " style="font-size: 2rem !important"></i>
                                 <h6 class="font-weight-bold col-9 ">Dedicação</h6>
@@ -62,7 +62,7 @@
                             </div>
                         </div>
                         <!-- Conquistas 4 -->
-                        <div class="card mb-4 py-2 border-left-primary">
+                        <div class="card mb-4 py-2 border-left-warning">
                             <div class=" row  card-body py-2 col-12">
                                 <i class="text-center fas fa-globe-africa fa-lg col-3 " style="font-size: 2rem !important"></i>
                                 <h6 class="font-weight-bold col-9 ">Competitividade</h6>
@@ -92,13 +92,13 @@
 
             <div class="row">
                 <!--Card 1 -->
-                <div class="container col-mb-4 col-md-4">
+                <div class="card-zoom container col-mb-4 col-md-4" >
                     <div class="row ">
                         <div class="card shadow ">
                             <!--Card Cabeça -->
                             <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                                <i class="fas fa-circle fa-lg" style="font-size: 2rem !important"></i>
-                                <i class="fas fa-question-circle fas fa-lg fa-fw text-gray-400"></i>
+                                <i class="fas fa-circle fa-lg text-success" style="font-size: 2rem !important"></i>
+                                <a href="#" data-toggle="modal" data-target="#exampleModalCenter"><i class="fas fa-question-circle fa-lg fa-fw text-gray-400"></i></a>
                             </div>
                             <!--Card Corpo -->
                             <div class="card-body text-center">
@@ -111,13 +111,13 @@
                     </div>
                 </div>
                 <!--Card 2 -->
-                <div class="container col-mb-4 col-md-4">
+                <div class="card-zoom container col-mb-4 col-md-4" >
                     <div class="row ">
                         <div class="card shadow ">
                             <!--Card Cabeça -->
                             <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                                <i class="fas fa-circle fa-lg" style="font-size: 2rem !important"></i>
-                                <i class="fas fa-question-circle fa-lg fa-fw text-gray-400"></i>
+                                <i class="fas fa-circle fa-lg" style="font-size: 2rem !important; color: #ffd800"></i>
+                                <a href="#" data-toggle="modal" data-target="#exampleModalCenter"><i class="fas fa-question-circle fa-lg fa-fw text-gray-400"></i></a>
                             </div>
                             <!--Card Corpo -->
                             <div class="card-body text-center">
@@ -130,13 +130,13 @@
                     </div>
                 </div>
                 <!--Card 3 -->
-                <div class="container col-mb-4 col-md-4">
+                <div class="card-zoom container col-mb-4 col-md-4">
                     <div class="row ">
                         <div class="card shadow ">
                             <!--Card Cabeça -->
                             <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                                <i class="fas fa-circle fa-lg" style="font-size: 2rem !important"></i>
-                                <i class="fas fa-question-circle fa-lg fa-fw text-gray-400"></i>
+                                <i class="fas fa-circle fa-lg" style="font-size: 2rem !important; color: #ff006e"></i>
+                                <a href="#" data-toggle="modal" data-target="#exampleModalCenter"><i class="fas fa-question-circle fa-lg fa-fw text-gray-400"></i></a>
                             </div>
                             <!--Card Corpo -->
                             <div class="card-body text-center">
@@ -151,13 +151,13 @@
                 </div>
 
                 <!--Card 4 -->
-                <div class="container col-mb-4 col-md-4">
+                <div class="card-zoom container col-mb-4 col-md-4">
                     <div class="row ">
                         <div class="card shadow ">
                             <!--Card Cabeça -->
                             <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                                <i class="fas fa-circle fa-lg" style="font-size: 2rem !important"></i>
-                                <i class="fas fa-question-circle fa-lg fa-fw text-gray-400"></i>
+                                <i class="fas fa-circle fa-lg text-success" style="font-size: 2rem !important; color: #4cff00"></i>
+                                <a href="#" data-toggle="modal" data-target="#exampleModalCenter"><i class="fas fa-question-circle fa-lg fa-fw text-gray-400"></i></a>
                             </div>
                             <!--Card Corpo -->
                             <div class="card-body text-center">
@@ -170,13 +170,13 @@
                     </div>
                 </div>
                 <!--Card 5 -->
-                <div class="container col-mb-4 col-md-4">
+                <div class="card-zoom container col-mb-4 col-md-4">
                     <div class="row ">
                         <div class="card shadow ">
                             <!--Card Cabeça -->
                             <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                                <i class="fas fa-circle fa-lg" style="font-size: 2rem !important"></i>
-                                <i class="fas fa-question-circle fa-lg fa-fw text-gray-400"></i>
+                                <i class="fas fa-circle fa-lg" style="font-size: 2rem !important; color: #ffd800"></i>
+                                <a href="#" data-toggle="modal" data-target="#exampleModalCenter"><i class="fas fa-question-circle fa-lg fa-fw text-gray-400"></i></a>
                             </div>
                             <!--Card Corpo -->
                             <div class="card-body text-center">
@@ -189,13 +189,13 @@
                     </div>
                 </div>
                 <!--Card 6 -->
-                <div class="container col-mb-4 col-md-4">
+                <div class="card-zoom container col-mb-4 col-md-4">
                     <div class="row ">
                         <div class="card shadow ">
                             <!--Card Cabeça -->
                             <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                                <i class="fas fa-circle fa-lg" style="font-size: 2rem !important"></i>
-                                <i class="fas fa-question-circle fa-lg fa-fw text-gray-400"></i>
+                                <i class="fas fa-circle fa-lg" style="font-size: 2rem !important; color: #ff006e"></i>
+                                <a href="#" data-toggle="modal" data-target="#exampleModalCenter"><i class="fas fa-question-circle fa-lg fa-fw text-gray-400"></i></a>
                             </div>
                             <!--Card Corpo -->
                             <div class="card-body text-center">
@@ -203,6 +203,32 @@
                                 <h4 class="font-weight-bold">Persuasão</h4>
                                 <hr class="sidebar-divider d-none d-md-block" />
                                 <p>Logue no sitema por 5 dias seguidos</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Modal -->
+                <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered" role="document">
+                        <div class="modal-content p-4">
+                            <div class="modal-header ">
+                                <i href="#" class=" text-dark border border-left-0  btn-icon-split btn-lg ">
+                                    <span class="icon text-white-50">
+                                        <i class="fas fa-info text-dark"></i>
+                                    </span>
+                                    <span class="text">Mais informações</span>
+                                </i>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+
+                                <div class="form-group text-center">
+                                    <label for="exampleFormControlInput1">A qualidade de dedicação é um fator essencial para qualquer funcionário</label>
+                                    <label for="exampleFormControlInput1">Logue no sistema por 5 dias seguidos e conseguirá o nível 1 em dedicação, não se esqueça e se dedique cada vez mais para se destacar</label>
+                                </div>
                             </div>
                         </div>
                     </div>
