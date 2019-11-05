@@ -64,14 +64,14 @@
                 </li>
 
                  <li class="nav-item">
-                    <a class="nav-link" href="tables.html">
+                    <a class="nav-link" href="../../Pages/Colaborador/Missoes.aspx">
                         <i class="fas fa-fw fa-check"></i>
                         <span>Missões</span>
                     </a>
                 </li>
 
                  <li class="nav-item">
-                    <a class="nav-link" href="tables.html">
+                    <a class="nav-link" href="../../Pages/Colaborador/Conquistas.aspx">
                         <i class="fas fa-fw fa-medal"></i>
                         <span>Conquistas</span>
                     </a>

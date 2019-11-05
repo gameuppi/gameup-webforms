@@ -16,23 +16,23 @@
         </div>
     </nav>
     <!-- Missoes a fazer -->
-    <div class="tab-content card shadow " id="nav-tabContent">
+    <div class="tab-content card shadow border-top-0" id="nav-tabContent">
         <div class="tab-pane fade show active p-4" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
            
             <div class="row mt-3">
                 <div class="col-12 col-md-4 mb-4">
-                    <div class="card border-left-success shadow h-100 py-2">
+                    <div class="card border-left-info shadow h-100 py-2">
                         <div class="card-body">
                             <div class="row no-gutters align-items-center">
                                 <div class="col mr-2">
-                                    <div class="text-sm font-weight-bold text-success text-uppercase mb-1">Entregar relatório técnico</div>
+                                    <div class="text-sm font-weight-bold text-info text-uppercase mb-1">Entregar relatório técnico</div>
                                     <div class="h6 mb-0 text-gray-800">Você precisa terminar o relatório técnico para entrega-lo a diretoria.</div>
                                     <div class="mt-4">
-                                        <i class="fas fa-calendar-check fa-2x text-success"></i>
+                                        <i class="fas fa-calendar-check fa-2x text-info"></i>
                                         &nbsp; 12/06/2019
                                     <br />
                                         <br />
-                                        <button type="button" class="btn btn-success btn-block" data-toggle="modal" data-target="#exampleModalCenter">Detalhes</button>
+                                        <button type="button" class="btn btn-info btn-block" data-toggle="modal" data-target="#exampleModalCenter">Detalhes</button>
                                     </div>
                                 </div>
                                 <div class="col-auto">
@@ -44,18 +44,18 @@
                 </div>
 
                 <div class="col-12 col-md-4 mb-4">
-                    <div class="card border-left-success shadow h-100 py-2">
+                    <div class="card border-left-info shadow h-100 py-2">
                         <div class="card-body">
                             <div class="row no-gutters align-items-center">
                                 <div class="col mr-2">
-                                    <div class="text-sm font-weight-bold text-success text-uppercase mb-1">Entregar relatório técnico</div>
+                                    <div class="text-sm font-weight-bold text-info text-uppercase mb-1">Entregar relatório técnico</div>
                                     <div class="h6 mb-0 text-gray-800">Você precisa terminar o relatório técnico para entrega-lo a diretoria.</div>
                                     <div class="mt-4">
-                                        <i class="fas fa-calendar-check fa-2x text-success"></i>
+                                        <i class="fas fa-calendar-check fa-2x text-info"></i>
                                         &nbsp; 12/06/2019
                                     <br />
                                         <br />
-                                        <button type="button" class="btn btn-success btn-block" data-toggle="modal" data-target="#exampleModalCenter">Detalhes</button>
+                                        <button type="button" class="btn btn-info btn-block" data-toggle="modal" data-target="#exampleModalCenter">Detalhes</button>
                                     </div>
                                 </div>
                                 <div class="col-auto">
@@ -67,18 +67,18 @@
                 </div>
 
                 <div class="col-12 col-md-4 mb-4">
-                    <div class="card border-left-success shadow h-100 py-2">
+                    <div class="card border-left-info shadow h-100 py-2">
                         <div class="card-body">
                             <div class="row no-gutters align-items-center">
                                 <div class="col mr-2">
-                                    <div class="text-sm font-weight-bold text-success text-uppercase mb-1">Entregar relatório técnico</div>
+                                    <div class="text-sm font-weight-bold text-info text-uppercase mb-1">Entregar relatório técnico</div>
                                     <div class="h6 mb-0 text-gray-800">Você precisa terminar o relatório técnico para entrega-lo a diretoria.</div>
                                     <div class="mt-4">
-                                        <i class="fas fa-calendar-check fa-2x text-success"></i>
+                                        <i class="fas fa-calendar-check fa-2x text-info"></i>
                                         &nbsp; 12/06/2019
                                     <br />
                                         <br />
-                                        <button type="button" class="btn btn-success btn-block" data-toggle="modal" data-target="#exampleModalCenter">Detalhes</button>
+                                        <button type="button" class="btn btn-info btn-block" data-toggle="modal" data-target="#exampleModalCenter">Detalhes</button>
                                     </div>
                                 </div>
                                 <div class="col-auto">
@@ -90,18 +90,18 @@
                 </div>
 
                 <div class="col-12 col-md-4 mb-4">
-                    <div class="card border-left-success shadow h-100 py-2">
+                    <div class="card border-left-info shadow h-100 py-2">
                         <div class="card-body">
                             <div class="row no-gutters align-items-center">
                                 <div class="col mr-2">
-                                    <div class="text-sm font-weight-bold text-success text-uppercase mb-1">Entregar relatório técnico</div>
+                                    <div class="text-sm font-weight-bold text-info text-uppercase mb-1">Entregar relatório técnico</div>
                                     <div class="h6 mb-0 text-gray-800">Você precisa terminar o relatório técnico para entrega-lo a diretoria.</div>
                                     <div class="mt-4">
-                                        <i class="fas fa-calendar-check fa-2x text-success"></i>
+                                        <i class="fas fa-calendar-check fa-2x text-info"></i>
                                         &nbsp; 12/06/2019
                                     <br />
                                         <br />
-                                        <button type="button" class="btn btn-success btn-block" data-toggle="modal" data-target="#exampleModalCenter">Detalhes</button>
+                                        <button type="button" class="btn btn-info btn-block" data-toggle="modal" data-target="#exampleModalCenter">Detalhes</button>
                                     </div>
                                 </div>
                                 <div class="col-auto">
@@ -113,18 +113,18 @@
                 </div>
 
                 <div class="col-12 col-md-4 mb-4">
-                    <div class="card border-left-success shadow h-100 py-2">
+                    <div class="card border-left-info shadow h-100 py-2">
                         <div class="card-body">
                             <div class="row no-gutters align-items-center">
                                 <div class="col mr-2">
-                                    <div class="text-sm font-weight-bold text-success text-uppercase mb-1">Entregar relatório técnico</div>
+                                    <div class="text-sm font-weight-bold text-info text-uppercase mb-1">Entregar relatório técnico</div>
                                     <div class="h6 mb-0 text-gray-800">Você precisa terminar o relatório técnico para entrega-lo a diretoria.</div>
                                     <div class="mt-4">
-                                        <i class="fas fa-calendar-check fa-2x text-success"></i>
+                                        <i class="fas fa-calendar-check fa-2x text-info"></i>
                                         &nbsp; 12/06/2019
                                     <br />
                                         <br />
-                                        <button type="button" class="btn btn-success btn-block" data-toggle="modal" data-target="#exampleModalCenter">Detalhes</button>
+                                        <button type="button" class="btn btn-info btn-block" data-toggle="modal" data-target="#exampleModalCenter">Detalhes</button>
                                     </div>
                                 </div>
                                 <div class="col-auto">
