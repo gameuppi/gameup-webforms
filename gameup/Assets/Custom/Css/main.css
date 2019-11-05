@@ -110,3 +110,12 @@
 .icon-change-white:hover {
     transform: scale(1.2);
 }
+
+.card-zoom {
+    transition: ease-in-out .1s;
+}
+
+    .card-zoom:hover {
+        transform: scale(1.02);
+        z-index: 1000;
+    }
