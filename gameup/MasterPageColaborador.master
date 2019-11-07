@@ -29,7 +29,7 @@
 
                 <!-- Sidebar - Brand -->
                 <div class="usuario-info">
-                    <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
+                    <a class="sidebar-brand d-flex align-items-center justify-content-center" href="../../Pages/Colaborador/MeuPerfil.aspx">
                         <div class="sidebar-brand-icon">
                             <i class="fas fa-user-circle"></i>
                         </div>
@@ -54,6 +54,9 @@
                         </button></a>
                     </center>
                 </li>
+                <br />
+                 <!-- Divider -->
+                <hr class="sidebar-divider d-none d-md-block">
                 
                 <!-- Nav Item - Tables -->
                 <li class="nav-item">
