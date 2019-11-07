@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MasterPageRepresentante.master" AutoEventWireup="true" CodeFile="GerenciarMissoes.aspx.cs" Inherits="Pages_Representante_GerenciarMissoes" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MasterPageGerente.master" AutoEventWireup="true" CodeFile="GerenciarMissoes.aspx.cs" Inherits="Pages_Gerente_GerenciarMissoes" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
 </asp:Content>
@@ -548,6 +548,5 @@
             </div>
         </div>
     </div>
-
 </asp:Content>
 

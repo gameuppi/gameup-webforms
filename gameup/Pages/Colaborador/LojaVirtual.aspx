@@ -17,15 +17,15 @@
                 <div class="card-body">
                     <div class="row">
                         <div class="col-12 col-md-7">
-                           <!-- <img src="../../Assets/Imagens/abertp.png" class="img-fluid" /> -->
+                           <!--<img src="../../Assets/Imagens/store.png" class="img-fluid" />-->
                         </div>
                         <div class="col-12 col-md-5">
-                            <h3 class="text-dark">Conclua missões, ganhe moedas e adquira benefícios...</h3>
+                            <h4 class="text-dark">Conclua missões, ganhe moedas e adquira benefícios...</h4>
                             <hr />
                             <h5>Cada missão concluída e validada irá te proporcionar moedas que poderão ser utilizadas para
                                 adquirir benefícios e produtos na loja virtual.
                             </h5>
-                            <button type="button" class="btn btn-info text-uppercase p-4 mt-5 btn-block">
+                            <button type="button" class="btn btn-info p-4 mt-5 btn-block">
                                 Veja o regulamento
                             </button>
                         </div>
@@ -36,7 +36,7 @@
 
         <!-- Card de item -  -->
         <div class="col-12 col-md-3">
-            <div class="card-custom border-left-success shadow">
+            <div class="card-custom border-left-success shadow h-100">
                 <div class="card-custom-image">
                     <img src="../../Assets/Imagens/piscina.jpg">
                     <span class="card-custom-title font-weight-bold">Descanso merecido
@@ -58,7 +58,7 @@
 
         <!-- Card de item -  -->
         <div class="col-12 col-md-3">
-            <div class="card-custom border-left-success shadow">
+            <div class="card-custom border-left-success shadow h-100">
                 <div class="card-custom-image">
                     <img src="../../Assets/Imagens/jantar.jpg">
                     <span class="card-custom-title font-weight-bold">Bon appétit!
@@ -80,7 +80,7 @@
 
         <!-- Card de item -  -->
         <div class="col-12 col-md-3">
-            <div class="card-custom border-left-success shadow">
+            <div class="card-custom border-left-success shadow h-100">
                 <div class="card-custom-image">
                     <img src="../../Assets/Imagens/tempo.jpg">
                     <span class="card-custom-title font-weight-bold">O tempo voa
@@ -102,7 +102,7 @@
 
         <!-- Card de item -  -->
         <div class="col-12 col-md-3">
-            <div class="card-custom border-left-success shadow">
+            <div class="card-custom border-left-success shadow h-100">
                 <div class="card-custom-image">
                     <img src="../../Assets/Imagens/piscina.jpg">
                     <span class="card-custom-title font-weight-bold">Descanso merecido

@@ -24,12 +24,12 @@
                             <h5>em estoque</h5>
                         </div>
                         <div class="col-12 col-md-4">
-                            <h3>16 itens ativos</h3>
-                            <h3>9 disponíveis</h3>
+                            <h4>16 itens ativos</h4>
+                            <h4>9 disponíveis</h4>
                         </div>
                         <div class="col-12 col-md-4">
-                            <h3>9450 moedas gastas</h3>
-                            <h3>34 itens vendidos</h3>
+                            <h4>9450 moedas gastas</h4>
+                            <h4>34 itens vendidos</h4>
                         </div>
                     </div>
                 </div>

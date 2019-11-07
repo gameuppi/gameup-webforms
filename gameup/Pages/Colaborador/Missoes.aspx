@@ -8,6 +8,16 @@
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
         <h1 class="h3 mb-0 text-gray-800">Missões</h1>
     </div>
+    <div class="row">
+        <div class="col-md-12">
+
+            <div class="card mb-4 py-1 border-bottom-info">
+                <div class="card-body py-1">
+                    Complete suas missões e ganhe pontos, experiência e moedas. Se esforce e vá mais longe!
+                </div>
+            </div>
+        </div>
+    </div>
 
     <nav>
         <div class="nav nav-tabs" id="nav-tab" role="tablist">
@@ -18,7 +28,19 @@
     <!-- Missoes a fazer -->
     <div class="tab-content card shadow border-top-0" id="nav-tabContent">
         <div class="tab-pane fade show active p-4" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
-           
+            <div class="row">
+
+                <div class="col-12 col-md-4">
+                    <div class="input-group">
+                        <input type="text" class="form-control bg-light border-0 small" placeholder="Procure suas missões" aria-label="Search" aria-describedby="basic-addon2">
+                        <div class="input-group-append">
+                            <button class="btn btn-info" type="button">
+                                <i class="fas fa-search fa-sm"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
             <div class="row mt-3">
                 <div class="col-12 col-md-4 mb-4">
                     <div class="card border-left-info shadow h-100 py-2">
@@ -141,7 +163,17 @@
         </div>
         <div class="tab-pane fade p-4" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
             <div class="row">
-                <div class="col-12 col-md-6 text-right">
+                 <div class="col-12 col-md-4 mb-3">
+                    <div class="input-group">
+                        <input type="text" class="form-control bg-light border-0 small" placeholder="Procure suas concluídas ou aguardando validação" aria-label="Search" aria-describedby="basic-addon2">
+                        <div class="input-group-append">
+                            <button class="btn btn-info" type="button">
+                                <i class="fas fa-search fa-sm"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 col-md-8 text-right">
                     <button type="button" class="btn btn-dark">Todas</button>
                     <button type="button" class="btn btn-success">Aceitas</button>
                     <button type="button" class="btn btn-warning">Pendentes</button>
