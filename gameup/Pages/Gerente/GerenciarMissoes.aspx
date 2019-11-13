@@ -9,10 +9,10 @@
     </div>
     <nav>
         <div class="nav nav-tabs text-center" id="nav-tab" role="tablist">
-            <a class="nav-item nav-link active" id="nav-cadastro-tab" data-toggle="tab" href="#nav-cadastro" role="tab" aria-controls="nav-cadastro" aria-selected="true">Cadastro</a>
-            <a class="nav-item nav-link" id="nav-visualizacao-tab" data-toggle="tab" href="#nav-visualizacao" role="tab" aria-controls="nav-visualizacao" aria-selected="false">Visualização</a>
-            <a class="nav-item nav-link" id="nav-construcao-tab" data-toggle="tab" href="#nav-construcao" role="tab" aria-controls="nav-construcao" aria-selected="false">Em construção</a>
-            <a class="nav-item nav-link" id="nav-validacao-tab" data-toggle="tab" href="#nav-validacao" role="tab" aria-controls="nav-validacao" aria-selected="false">Validação</a>
+            <asp:LinkButton runat="server" class="nav-item nav-link active" id="navCadastroTab" data-toggle="tab" href="#nav-cadastro" role="tab" aria-controls="nav-cadastro" aria-selected="true">Cadastrar</asp:LinkButton>
+            <asp:LinkButton runat="server" class="nav-item nav-link" id="navVisualizacaoTab" data-toggle="tab" href="#nav-visualizacao" role="tab" aria-controls="nav-visualizacao" aria-selected="false">Visualizar</asp:LinkButton>
+            <asp:LinkButton runat="server" class="nav-item nav-link" id="navConstrucaoTab" data-toggle="tab" href="#nav-construcao" role="tab" aria-controls="nav-construcao" aria-selected="false">Em construção</asp:LinkButton>
+            <asp:LinkButton runat="server" class="nav-item nav-link" id="navValidacaoTab" data-toggle="tab" href="#nav-validacao" role="tab" aria-controls="nav-validacao" aria-selected="false">Aguardando validação</asp:LinkButton>
         </div>
     </nav>
     <!-- Missoes a fazer -->
@@ -24,16 +24,19 @@
                         <div class="col-7">
                             <div class="form-check form-check-inline btn btn-info">
                                 <i class="fas fa-user"></i>&nbsp;
-                        <label class="form-check-label" for="inlineRadio1">Individual</label>
+                                <asp:RadioButton runat="server" ID="rdbTipoIndividual" GroupName="tipo" Text="Individual" />
                             </div>
                             <div class="form-check form-check-inline btn btn-info">
                                 <i class="fas fa-users"></i>&nbsp;                        
-                        <label class="form-check-label" for="inlineRadio2">Grupo</label>
+                                <asp:RadioButton runat="server" ID="rdbTipoGrupo" GroupName="tipo" Text="Grupo" />
                             </div>
                             <div class="form-check form-check-inline btn btn-info">
                                 <i class="fas fa-users-cog"></i>&nbsp;                                                
-                        <label class="form-check-label" for="inlineRadio2">Setor</label>
+                                <asp:RadioButton runat="server" ID="rdbTipoSetor" GroupName="tipo" Text="Setor" />
                             </div>
+                        </div>
+                        <div class="col-5">
+                            <!-- <asp:Literal runat="server" ID="ltrInfo"></asp:Literal> -->
                         </div>
                     </div>
                 </div>
@@ -62,26 +65,26 @@
                         <div class="col-12">
                             <div class="form-row">
                                 <div class="form-group col-md-6">
-                                    <label for="inputEmail4">Nome</label>
-                                    <input type="text" class="form-control" id="inputEmail4" placeholder="Nome da missão">
+                                    <label for="txtNome">Nome</label>
+                                    <asp:TextBox type="text" CssClass="form-control" ID="txtNome" runat="server" placeholder="Nome da missão" />
                                 </div>
                                 <div class="form-group col-12 col-md-6">
                                     <label for="inputPassword4">Participantes</label>
-                                    <input type="text" class="form-control" id="inputPassword4" placeholder="Participantes">
+                                    <asp:TextBox type="text" CssClass="form-control" ID="txtParticipantes" runat="server" placeholder="Participantes" />
                                 </div>
                             </div>
                             <div class="form-row">
                                 <div class="form-group col-12 col-md-6">
                                     <label for="inputEmail4">Início</label>
-                                    <input type="date" class="form-control" id="inputEmail4" placeholder="Data de início">
+                                    <asp:TextBox type="date" CssClass="form-control" ID="dtInicio" runat="server" placeholder="Data de início" />
                                 </div>
                                 <div class="form-group col-12 col-md-6">
                                     <label for="inputPassword4">Fim</label>
-                                    <input type="date" class="form-control" id="inputPassword4" placeholder="Data final">
+                                    <asp:TextBox type="date" CssClass="form-control" ID="dtFim" runat="server" placeholder="Data de fim" />
                                 </div>
                                 <div class="form-group col-12">
                                     <label for="inputPassword4">Descrição</label>
-                                    <textarea class="form-control" placeholder="Descrição da missão"></textarea>
+                                    <asp:TextBox multiline="true" class="form-control" placeholder="Descrição da missão" ID="txtDescricao" runat="server" />
                                 </div>
                             </div>
 
@@ -100,7 +103,7 @@
                                     <i class="fas fa-coins fa-2x text-success"></i>
                                 </div>
                                 <div class="col-12 col-md-6">
-                                    <input type="number" class="form-control" />
+                                    <asp:TextBox type="number" CssClass="form-control" ID="txtQtdMoedas" runat="server" />
                                 </div>
                             </div>
                         </div>
@@ -111,7 +114,7 @@
                                     <i class="fas fa-star fa-2x text-warning"></i>
                                 </div>
                                 <div class="col-12 col-md-6">
-                                    <input type="number" class="form-control" />
+                                    <asp:TextBox type="number" CssClass="form-control" ID="txtQtdExp" runat="server" />
                                 </div>
                             </div>
                         </div>
@@ -122,7 +125,7 @@
                                     <i class="fas fa-meteor fa-2x text-danger"></i>
                                 </div>
                                 <div class="col-12 col-md-6">
-                                    <input type="number" class="form-control" />
+                                    <asp:TextBox type="number" CssClass="form-control" ID="txtQtdPontos" runat="server" />
                                 </div>
                             </div>
                         </div>
@@ -130,7 +133,7 @@
 
                     <div class="row mt-5">
                         <div class="col-12">
-                            <button type="button" class="btn btn-success">Cadastrar</button>
+                            <asp:Button runat="server" ID="cadastrarMissao" OnClick="cadastrarMissao_Click" CssClass="btn btn-success" Text="Cadastrar" />
                         </div>
                     </div>
 
@@ -158,126 +161,13 @@
                 </div>
             </div>
             <div class="row mt-4">
+                <asp:Literal runat="server" ID="ltrCardsMissoes">
 
-                <div class="col-12 col-md-4 mb-4">
-                    <div class="card border-left-success shadow h-100 py-2">
-                        <div class="card-body">
-                            <div class="row no-gutters align-items-center">
-                                <div class="col mr-2">
-                                    <div class="text-sm font-weight-bold text-success text-uppercase mb-1">Entregar relatório técnico</div>
-                                    <div class="h6 mb-0 text-gray-800">Você precisa terminar o relatório técnico para entrega-lo a diretoria.</div>
-                                    <div class="mt-4">
-                                        <i class="fas fa-user fa-2x text-success"></i>
-                                        &nbsp; João Ricardo
-                                    <br />
-                                        <br />
-                                        <button type="button" class="btn btn-success btn-block" data-toggle="modal" data-target="#exampleModalCenter">Detalhes</button>
-                                    </div>
-                                </div>
-                                <div class="col-auto">
-                                    <a href="#"><i class="fas fa-check fa-2x text-success"></i></a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-12 col-md-4 mb-4">
-                    <div class="card border-left-warning shadow h-100 py-2">
-                        <div class="card-body">
-                            <div class="row no-gutters align-items-center">
-                                <div class="col mr-2">
-                                    <div class="text-sm font-weight-bold text-warning text-uppercase mb-1">Entregar relatório técnico</div>
-                                    <div class="h6 mb-0 text-gray-800">Você precisa terminar o relatório técnico para entrega-lo a diretoria.</div>
-                                    <div class="mt-4">
-                                        <i class="fas fa-users fa-2x text-warning"></i>
-                                        &nbsp; Financeiro 3/9
-                                    <br />
-                                        <br />
-                                        <button type="button" class="btn btn-warning btn-block" data-toggle="modal" data-target="#exampleModalCenter">Detalhes</button>
-                                    </div>
-                                </div>
-                                <div class="col-auto">
-                                    <a href="#"><i class="fas fa-clock fa-2x text-warning"></i></a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-12 col-md-4 mb-4">
-                    <div class="card border-left-success shadow h-100 py-2">
-                        <div class="card-body">
-                            <div class="row no-gutters align-items-center">
-                                <div class="col mr-2">
-                                    <div class="text-sm font-weight-bold text-success text-uppercase mb-1">Entregar relatório técnico</div>
-                                    <div class="h6 mb-0 text-gray-800">Você precisa terminar o relatório técnico para entrega-lo a diretoria.</div>
-                                    <div class="mt-4">
-                                        <i class="fas fa-user fa-2x text-success"></i>
-                                        &nbsp; João Ricardo
-                                    <br />
-                                        <br />
-                                        <button type="button" class="btn btn-success btn-block" data-toggle="modal" data-target="#exampleModalCenter">Detalhes</button>
-                                    </div>
-                                </div>
-                                <div class="col-auto">
-                                    <a href="#"><i class="fas fa-check fa-2x text-success"></i></a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-
-                <div class="col-12 col-md-4 mb-4">
-                    <div class="card border-left-success shadow h-100 py-2">
-                        <div class="card-body">
-                            <div class="row no-gutters align-items-center">
-                                <div class="col mr-2">
-                                    <div class="text-sm font-weight-bold text-success text-uppercase mb-1">Entregar relatório técnico</div>
-                                    <div class="h6 mb-0 text-gray-800">Você precisa terminar o relatório técnico para entrega-lo a diretoria.</div>
-                                    <div class="mt-4">
-                                        <i class="fas fa-user fa-2x text-success"></i>
-                                        &nbsp; João Ricardo
-                                    <br />
-                                        <br />
-                                        <button type="button" class="btn btn-success btn-block" data-toggle="modal" data-target="#exampleModalCenter">Detalhes</button>
-                                    </div>
-                                </div>
-                                <div class="col-auto">
-                                    <a href="#"><i class="fas fa-check fa-2x text-success"></i></a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-
-                <div class="col-12 col-md-4 mb-4">
-                    <div class="card border-left-success shadow h-100 py-2">
-                        <div class="card-body">
-                            <div class="row no-gutters align-items-center">
-                                <div class="col mr-2">
-                                    <div class="text-sm font-weight-bold text-success text-uppercase mb-1">Entregar relatório técnico</div>
-                                    <div class="h6 mb-0 text-gray-800">Você precisa terminar o relatório técnico para entrega-lo a diretoria.</div>
-                                    <div class="mt-4">
-                                        <i class="fas fa-user fa-2x text-success"></i>
-                                        &nbsp; João Ricardo
-                                    <br />
-                                        <br />
-                                        <button type="button" class="btn btn-success btn-block" data-toggle="modal" data-target="#exampleModalCenter">Detalhes</button>
-                                    </div>
-                                </div>
-                                <div class="col-auto">
-                                    <a href="#"><i class="fas fa-check fa-2x text-success"></i></a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
+                </asp:Literal>
             </div>
         </div>
+
+        <!-- PAINEL DE MISSOES EM CONSTRUCAO -->
         <div class="tab-pane fade p-4 mb-4" id="nav-construcao" role="tabpanel" aria-labelledby="nav-construcao-tab">
             <div class="row">
 
@@ -293,28 +183,9 @@
                 </div>
             </div>
             <div class="row mt-4">
-                <div class="col-12 col-md-4 mb-4">
-                    <div class="card border-left-danger shadow h-100 py-2">
-                        <div class="card-body">
-                            <div class="row no-gutters align-items-center">
-                                <div class="col mr-2">
-                                    <div class="text-sm font-weight-bold text-danger text-uppercase mb-1">Entregar relatório técnico</div>
-                                    <div class="h6 mb-0 text-gray-800">Você precisa terminar o relatório técnico para entrega-lo a diretoria.</div>
-                                    <div class="mt-4">
-                                        <i class="fas fa-users fa-2x text-danger"></i>
-                                        &nbsp; 
-                                    <br />
-                                        <br />
-                                        <button type="button" class="btn btn-danger btn-block" data-toggle="modal" data-target="#exampleModalCenter">Continuar criação</button>
-                                    </div>
-                                </div>
-                                <div class="col-auto">
-                                    <a href="#"><i class="fas fa-wrench fa-2x text-danger"></i></a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                <asp:Literal runat="server" ID="ltrMissoesEmConstrucao">
+
+                </asp:Literal>
             </div>
         </div>
         <div class="tab-pane fade p-4" id="nav-validacao" role="tabpanel" aria-labelledby="nav-validacao-tab">
@@ -343,7 +214,8 @@
                                     <div class="mt-4">
                                         <i class="fas fa-user fa-2x text-info"></i>
                                         &nbsp; João Ricardo
-                                    <br />
+                                   
+                                        <br />
                                         <br />
                                         <button type="button" class="btn btn-info btn-block" data-toggle="modal" data-target="#exampleModalCenter">Detalhes</button>
                                     </div>
@@ -366,7 +238,8 @@
                                     <div class="mt-4">
                                         <i class="fas fa-users fa-2x text-info"></i>
                                         &nbsp; Financeiro 9/9
-                                    <br />
+                                   
+                                        <br />
                                         <br />
                                         <button type="button" class="btn btn-info btn-block" data-toggle="modal" data-target="#exampleModalCenter">Detalhes</button>
                                     </div>
@@ -389,31 +262,8 @@
                                     <div class="mt-4">
                                         <i class="fas fa-users fa-2x text-info"></i>
                                         &nbsp; Financeiro 9/9
-                                    <br />
+                                   
                                         <br />
-                                        <button type="button" class="btn btn-info btn-block" data-toggle="modal" data-target="#exampleModalCenter">Detalhes</button>
-                                    </div>
-                                </div>
-                                <div class="col-auto">
-                                    <a href="#"><i class="fas fa-check fa-2x text-gray-500 icon-change"></i></a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
-
-                <div class="col-12 col-md-4 mb-4">
-                    <div class="card border-left-info shadow h-100 py-2">
-                        <div class="card-body">
-                            <div class="row no-gutters align-items-center">
-                                <div class="col mr-2">
-                                    <div class="text-sm font-weight-bold text-info text-uppercase mb-1">Entregar relatório técnico</div>
-                                    <div class="h6 mb-0 text-gray-800">Você precisa terminar o relatório técnico para entrega-lo a diretoria.</div>
-                                    <div class="mt-4">
-                                        <i class="fas fa-users fa-2x text-info"></i>
-                                        &nbsp; Financeiro 9/9
-                                    <br />
                                         <br />
                                         <button type="button" class="btn btn-info btn-block" data-toggle="modal" data-target="#exampleModalCenter">Detalhes</button>
                                     </div>
@@ -437,7 +287,8 @@
                                     <div class="mt-4">
                                         <i class="fas fa-users fa-2x text-info"></i>
                                         &nbsp; Financeiro 9/9
-                                    <br />
+                                   
+                                        <br />
                                         <br />
                                         <button type="button" class="btn btn-info btn-block" data-toggle="modal" data-target="#exampleModalCenter">Detalhes</button>
                                     </div>
@@ -461,7 +312,8 @@
                                     <div class="mt-4">
                                         <i class="fas fa-users fa-2x text-info"></i>
                                         &nbsp; Financeiro 9/9
-                                    <br />
+                                   
+                                        <br />
                                         <br />
                                         <button type="button" class="btn btn-info btn-block" data-toggle="modal" data-target="#exampleModalCenter">Detalhes</button>
                                     </div>
@@ -485,7 +337,33 @@
                                     <div class="mt-4">
                                         <i class="fas fa-users fa-2x text-info"></i>
                                         &nbsp; Financeiro 9/9
-                                    <br />
+                                   
+                                        <br />
+                                        <br />
+                                        <button type="button" class="btn btn-info btn-block" data-toggle="modal" data-target="#exampleModalCenter">Detalhes</button>
+                                    </div>
+                                </div>
+                                <div class="col-auto">
+                                    <a href="#"><i class="fas fa-check fa-2x text-gray-500 icon-change"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="col-12 col-md-4 mb-4">
+                    <div class="card border-left-info shadow h-100 py-2">
+                        <div class="card-body">
+                            <div class="row no-gutters align-items-center">
+                                <div class="col mr-2">
+                                    <div class="text-sm font-weight-bold text-info text-uppercase mb-1">Entregar relatório técnico</div>
+                                    <div class="h6 mb-0 text-gray-800">Você precisa terminar o relatório técnico para entrega-lo a diretoria.</div>
+                                    <div class="mt-4">
+                                        <i class="fas fa-users fa-2x text-info"></i>
+                                        &nbsp; Financeiro 9/9
+                                   
+                                        <br />
                                         <br />
                                         <button type="button" class="btn btn-info btn-block" data-toggle="modal" data-target="#exampleModalCenter">Detalhes</button>
                                     </div>
