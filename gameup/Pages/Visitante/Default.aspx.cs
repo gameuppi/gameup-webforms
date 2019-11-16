@@ -16,7 +16,12 @@ public partial class Pages_Visitante_Default : System.Web.UI.Page
     {
         if (txtSenha.Text.Equals( txtConfirmarSenha.Text ))
         {
-            UsuarioDB.CadastroSenha(txtSenha.Text);
+            Usuario usu = new Usuario();
+
+            usu.Usu_senha = UsuarioDB.Cryptografia(txtSenha.Text);
+            usu.Usu_email = txtEmail.Text;
+
+            UsuarioDB.CadastroSenha(usu);
         }
         else
         {

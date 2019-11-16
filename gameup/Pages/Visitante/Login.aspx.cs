@@ -25,9 +25,6 @@ public partial class Pages_Visitante_Login : System.Web.UI.Page
             case -2:
                 ltlMsg.Text = "<ul><li>Email Inválido</li></ul>";
                 break;
-            case -3:
-                ltlMsg.Text = "<ul><li>Ocorreu um Erro! Tente Novamente</li></ul>";
-                break;
         }
     }
 }

@@ -15,16 +15,20 @@
                 <div class="text-center">
                     <h3>Cadastre a Senha</h3>
                 </div>
-                <div class="col-md-6">
-                    <label>Senha:</label>
-                    <asp:TextBox runat="server" ID="txtSenha" CssClass="form-control"></asp:TextBox>
-                </div>
-                <div class="col-md-6">
-                    <label>Confirmar Senha:</label>
-                    <asp:TextBox runat="server" ID="txtConfirmarSenha" CssClass="form-control"></asp:TextBox>
+                <div class="col-md-12">
+                    <label>E-mail:</label>
+                    <asp:TextBox runat="server" ID="txtEmail" type="email" CssClass="form-control"></asp:TextBox>
                 </div>
                 <div class="col-md-12">
-                    <asp:Button runat="server" ID="btnSalvar" Text="Salvar" CssClass="btn btn-block btn-primary" OnClick="Salvar_Click"/>
+                    <label>Senha:</label>
+                    <asp:TextBox runat="server" ID="txtSenha" type="password" CssClass="form-control"></asp:TextBox>
+                </div>
+                <div class="col-md-12">
+                    <label>Confirmar Senha:</label>
+                    <asp:TextBox runat="server" ID="txtConfirmarSenha" type="password" CssClass="form-control"></asp:TextBox><br /><hr />
+                </div>
+                <div class="col-md-12">
+                    <asp:Button runat="server" ID="btnSalvar" Text="Salvar" CssClass="btn btn-block btn-primary" OnClick="Salvar_Click"/><br />
                 </div>
             </div>
         </div>

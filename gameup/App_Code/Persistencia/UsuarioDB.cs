@@ -12,6 +12,8 @@ using System.Security.Cryptography;
 /// </summary>
 public class UsuarioDB
 {
+    private static int ok;
+    
     public static string Cryptografia(string pwd)
     {
         UnicodeEncoding UE = new UnicodeEncoding();
@@ -29,8 +31,6 @@ public class UsuarioDB
 
     public static int Login( string email, string pwd)
     {
-        int ok;
-
         try
         {
             DataSet ds = new DataSet();
@@ -39,8 +39,9 @@ public class UsuarioDB
             IDataAdapter dataAdapter;
             objConexao = Mapped.Connection();
 
-            string query = "select usu_email, usu_senha from usuario";
+            string query = "select usu_email, usu_senha from usuario where usu_email = ?usu_email";
             objCommand = Mapped.Command(query, objConexao);
+            objCommand.Parameters.Add(Mapped.Parameter("?usu_email", email));
             dataAdapter = Mapped.Adapter(objCommand);
             dataAdapter.Fill(ds);
 
@@ -55,10 +56,6 @@ public class UsuarioDB
                     ok = -1;
                 }
             }
-            else
-            {
-                ok = -2;
-            }
             objConexao.Close();
             objConexao.Dispose();
             objCommand.Dispose();
@@ -66,13 +63,13 @@ public class UsuarioDB
         catch (Exception)
         {
 
-            ok = -3;
+            ok = -2;
         }
 
         return ok;
     }
 
-    public static int CadastroSenha( string pwd )
+    public static int CadastroSenha( Usuario usu )
     {
         int ok;
 
@@ -81,20 +78,14 @@ public class UsuarioDB
             DataSet ds = new DataSet();
             IDbConnection objConexao;
             IDbCommand objCommand;
-            IDataAdapter dataAdapter;
             objConexao = Mapped.Connection();
 
-            string query = "select usu_id from usuario";
+            string query = "update usuario SET usu_senha = ?usu_senha WHERE usu_email = ?usu_email";
+
             objCommand = Mapped.Command(query, objConexao);
-            dataAdapter = Mapped.Adapter(objCommand);
-            dataAdapter.Fill(ds);
 
-            string query2 = "update usuario SET usu_senha = ?pwd WHERE usu_id = ?usu_id";
-
-            objCommand = Mapped.Command(query2, objConexao);
-
-            objCommand.Parameters.Add(Mapped.Parameter("?pwd", Cryptografia(pwd)));
-            objCommand.Parameters.Add(Mapped.Parameter("?usu_id", Convert.ToInt32(ds.Tables[0].Rows[0]["usu_id"].ToString())));
+            objCommand.Parameters.Add(Mapped.Parameter("?usu_senha", usu.Usu_senha));
+            objCommand.Parameters.Add(Mapped.Parameter("?usu_email", usu.Usu_email));
 
             objCommand.ExecuteNonQuery();
 
@@ -111,4 +102,5 @@ public class UsuarioDB
 
         return ok;
     }
+    
 }
