@@ -23,7 +23,6 @@ public class MissaoBD
             string query = "";
             query += "INSERT ";
             query += "	INTO TBL_MISSAO ( ";
-            query += "		MIS_ID, ";
             query += "		MIS_NOME, ";
             query += "		MIS_DESCRICAO, ";
             query += "		MIS_DT_CRIACAO, ";
@@ -36,7 +35,6 @@ public class MissaoBD
             query += "		MIS_STATUS ";
             query += "	) ";
             query += "VALUES ( ";
-            query += "		?MIS_ID, ";
             query += "		?MIS_NOME, ";
             query += "		?MIS_DESCRICAO, ";
             query += "		?MIS_DT_CRIACAO, ";
@@ -50,7 +48,6 @@ public class MissaoBD
             query += "	); ";
 
             objComando = Mapped.Command(query, objConexao);
-            objComando.Parameters.Add(Mapped.Parameter("?mis_id", missao.Id));
             objComando.Parameters.Add(Mapped.Parameter("?mis_nome", missao.Nome.ToUpper()));
             objComando.Parameters.Add(Mapped.Parameter("?mis_descricao", missao.Descricao));
             objComando.Parameters.Add(Mapped.Parameter("?mis_dt_criacao", missao.DtCriacao));
@@ -76,7 +73,7 @@ public class MissaoBD
         return ok;
     }
 
-    /*public static DataSet procurarMissaoPoId(int mis_id)
+    public static DataSet procurarMissaoPoId(int mis_id)
     {
         DataSet ds = new DataSet();
         IDbConnection objConexao;
@@ -100,7 +97,7 @@ public class MissaoBD
 
         return ds;
 
-    } */
+    }
 
     public static DataSet procurarMissao()
     {
@@ -127,7 +124,7 @@ public class MissaoBD
 
     }
 
-    /*public static DataSet procurarMissaoUsuario()
+    public static DataSet procurarMissaoUsuarioPorId(int id)
     {
         DataSet ds = new DataSet();
         IDbConnection objConexao;
@@ -136,14 +133,46 @@ public class MissaoBD
 
         objConexao = Mapped.Connection();
         string query = "";
-        query += " SELECT ";
-        query += "     MIS.MIS_NOME, ";
-        query += "     MIS.MIS_DESCRICAO, ";
-        query += "     MUS.MUS_DT_ATRIBUICAO, ";
-        query += "     MUS.MUS_DT_CONCLUSAO ";
-        query += " FROM ";
-        query += "     TBL_MISSAO_USUARIO MUS ";
-        query += "     JOIN TBL_MISSAO MIS ON MUS.MIS_ID = MIS.MIS_ID; ";
+        query += " 	SELECT ";
+        query += " 	    MIS_ID, ";
+        query += " 	    MUS_DT_ATRIBUICAO, ";
+        query += " 	    MUS_DT_CONCLUSAO ";
+        query += " 	FROM ";
+        query += " 	    TBL_MISSAO_USUARIO ";
+        query += " 	WHERE ";
+        query += " 		USU_ID = ?USU_ID; ";
+
+        objCommand = Mapped.Command(query, objConexao);
+        objCommand.Parameters.Add(Mapped.Parameter("?usu_id", id));
+
+        dataAdapter = Mapped.Adapter(objCommand);
+
+        dataAdapter.Fill(ds);
+
+        objConexao.Close();
+        objConexao.Dispose();
+        objCommand.Dispose();
+
+        return ds;
+
+    }
+
+    public static DataSet procurarTodasMissaoUsuario()
+    {
+        DataSet ds = new DataSet();
+        IDbConnection objConexao;
+        IDbCommand objCommand;
+        IDataAdapter dataAdapter;
+
+        objConexao = Mapped.Connection();
+        string query = "";
+        query += " 	SELECT ";
+        query += " 	    MIS_ID, ";
+        query += " 	    MUS_DT_ATRIBUICAO, ";
+        query += " 	    MUS_DT_CONCLUSAO, ";
+        query += " 	    MUS_STATUS ";
+        query += " 	FROM ";
+        query += " 	    TBL_MISSAO_USUARIO ";
 
         objCommand = Mapped.Command(query, objConexao);
 
@@ -157,5 +186,5 @@ public class MissaoBD
 
         return ds;
 
-    }*/
+    }
 }

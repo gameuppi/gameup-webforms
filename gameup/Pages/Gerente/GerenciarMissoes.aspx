@@ -9,10 +9,10 @@
     </div>
     <nav>
         <div class="nav nav-tabs text-center" id="nav-tab" role="tablist">
-            <asp:LinkButton runat="server" class="nav-item nav-link active" id="navCadastroTab" data-toggle="tab" href="#nav-cadastro" role="tab" aria-controls="nav-cadastro" aria-selected="true">Cadastrar</asp:LinkButton>
-            <asp:LinkButton runat="server" class="nav-item nav-link" id="navVisualizacaoTab" data-toggle="tab" href="#nav-visualizacao" role="tab" aria-controls="nav-visualizacao" aria-selected="false">Visualizar</asp:LinkButton>
-            <asp:LinkButton runat="server" class="nav-item nav-link" id="navConstrucaoTab" data-toggle="tab" href="#nav-construcao" role="tab" aria-controls="nav-construcao" aria-selected="false">Em construção</asp:LinkButton>
-            <asp:LinkButton runat="server" class="nav-item nav-link" id="navValidacaoTab" data-toggle="tab" href="#nav-validacao" role="tab" aria-controls="nav-validacao" aria-selected="false">Aguardando validação</asp:LinkButton>
+            <asp:LinkButton runat="server" class="nav-item nav-link active" ID="navCadastroTab" data-toggle="tab" href="#nav-cadastro" role="tab" aria-controls="nav-cadastro" aria-selected="true">Cadastrar</asp:LinkButton>
+            <asp:LinkButton runat="server" class="nav-item nav-link" ID="navVisualizacaoTab" data-toggle="tab" href="#nav-visualizacao" role="tab" aria-controls="nav-visualizacao" aria-selected="false">Visualizar</asp:LinkButton>
+            <asp:LinkButton runat="server" class="nav-item nav-link" ID="navConstrucaoTab" data-toggle="tab" href="#nav-construcao" role="tab" aria-controls="nav-construcao" aria-selected="false">Em construção</asp:LinkButton>
+            <asp:LinkButton runat="server" class="nav-item nav-link" ID="navValidacaoTab" data-toggle="tab" href="#nav-validacao" role="tab" aria-controls="nav-validacao" aria-selected="false">Aguardando validação</asp:LinkButton>
         </div>
     </nav>
     <!-- Missoes a fazer -->
@@ -45,10 +45,6 @@
             <div class="row mt-5">
                 <div class="col-12 col-md-3">
                     <div class="row">
-                        <div class="col-12 text-center mb-5">
-                            <i class="fas fa-user-circle fa-10x"></i>
-                            <br />
-                        </div>
                         <div class="col-12 mt-4">
                             <img src="../../Assets/Imagens/astronauta3.png" class="img-fluid float-right" />
                         </div>
@@ -147,6 +143,7 @@
 
         </div>
 
+        <!-- Visualizar missoes -->
         <div class="tab-pane fade p-4" id="nav-visualizacao" role="tabpanel" aria-labelledby="nav-visualizacao-tab">
             <div class="row">
                 <div class="col-12 col-md-4">
@@ -161,7 +158,7 @@
                 </div>
             </div>
             <div class="row mt-4">
-                <asp:Literal runat="server" ID="ltrCardsMissoes">
+                <asp:Literal runat="server" ID="ltrVisualizarMissoes">
 
                 </asp:Literal>
             </div>
@@ -383,7 +380,7 @@
 
 
     <!-- Modal -->
-    <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal fade" id="modalDetalhesMissao" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content p-4">
                 <div class="modal-header">
@@ -393,38 +390,78 @@
                     </button>
                 </div>
                 <div class="modal-body">
+                    <asp:Literal runat="server" ID="Literal1"></asp:Literal>
+
                     <div class="row">
                         <div class="col-12">
                             <h6>Recompensas</h6>
                             <div class="row mt-4">
                                 <div class="col-4 text-center text-success">
                                     <i class="fas fa-coins fa-2x"></i>
-                                    <p class="mt-3">50</p>
+                                    <p class="mt-3">
+                                        <asp:Literal runat="server" ID="ltrDetalhesMoedas">
+                                        </asp:Literal>
+                                    </p>
                                 </div>
                                 <div class="col-4 text-center text-warning">
                                     <i class="fas fa-star fa-2x"></i>
-                                    <p class="mt-3">3</p>
+                                    <p class="mt-3">
+                                        <asp:Literal runat="server" ID="ltrDetalhesEstrelas">
+                                        </asp:Literal>
+                                    </p>
                                 </div>
                                 <div class="col-4 text-center text-danger">
                                     <i class="fas fa-meteor fa-2x"></i>
-                                    <p class="mt-3">35</p>
+                                    <p class="mt-3">
+                                        <asp:Literal runat="server" ID="ltrDetalhesMeteoros">
+                                        </asp:Literal>
+                                    </p>
                                 </div>
                             </div>
                         </div>
                     </div>
                     <div class="row mt-4">
-                        <p>Lorem Ipsum é simplesmente uma simulação de texto da indústria tipográfica e de impressos, e vem sendo utilizado desde o século XVI, quando um impressor desconhecido pegou uma bandeja de tipos e os embaralhou para fazer um livro de modelos de tipos. Lorem Ipsum sobreviveu não só a cinco séculos.</p>
+                        <p>
+                            <asp:Literal runat="server" ID="ltrDetalhesDescricao">
+                            </asp:Literal>
+                        </p>
                     </div>
 
                     <div class="row mt-4">
                         <h6>
                             <i class="fas fa-calendar-check"></i>
                             &nbsp;
-                                Concluído em: 12/06/2019</h6>
+                                Concluído em:
+                            <asp:Literal runat="server" ID="ltrDataConclusao"></asp:Literal></h6>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+
+
+    <!-- Modal cadastra missao -->
+    <div class="modal fade" id="modalCadastraMissao">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+
+                <div class="modal-header">
+                    <h4 class="modal-title">
+                        <asp:Literal runat="server" ID="ltrTituloModal"></asp:Literal>
+                    </h4>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+
+                <div class="modal-body">
+                    <asp:Literal runat="server" ID="msgModalCadastraMissao"></asp:Literal>
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Fechar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
 </asp:Content>
 

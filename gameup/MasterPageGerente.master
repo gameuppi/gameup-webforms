@@ -4,7 +4,7 @@
 
 <html>
 <head runat="server">
-     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>GameUP - Plataforma de Gamificação Empresarial</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -339,25 +339,30 @@
                 </div>
             </div>
         </div>
+
+        <!-- Bootstrap -->
+        <script src="../../Assets/Vendor/jquery/jquery.min.js"></script>
+        <script src="../../Assets/Vendor/bootstrap/js/bootstrap.min.js"></script>
+
+        <!-- JavaScript -->
+        <script src="../../Assets/Vendor/jquery-easing/jquery.easing.min.js"></script>
+        <script src="../../Assets/Custom/Js/main.js"></script>
+
+        <!-- Scripts customizados do template -->
+        <script src="../../Assets/Custom/Js/sb-admin-2.min.js"></script>
+
+        <!-- Plugins da página e gráficos -->
+        <script src="../../Assets/Vendor/chart.js/Chart.min.js"></script>
+
+        <!-- Scripts do plugin de gráficos -->
+        <script src="../../Assets/Custom/Js/demo/chart-area-demo.js"></script>
+        <script src="../../Assets/Custom/Js/demo/chart-pie-demo.js"></script>
+        <script src="../../Assets/Custom/Js/demo/chart-pie-demo.js"></script>
+
+        <asp:ScriptManager runat="server"></asp:ScriptManager>
     </form>
 
-  <!-- Bootstrap -->
-    <script src="../../Assets/Vendor/jquery/jquery.min.js"></script>
-    <script src="../../Assets/Vendor/bootstrap/js/bootstrap.min.js"></script>
 
-    <!-- JavaScript -->
-    <script src="../../Assets/Vendor/jquery-easing/jquery.easing.min.js"></script>
-    <script src="../../Assets/Custom/Js/main.js"></script>
 
-    <!-- Scripts customizados do template -->
-    <script src="../../Assets/Custom/Js/sb-admin-2.min.js"></script>
-
-    <!-- Plugins da página e gráficos -->
-    <script src="../../Assets/Vendor/chart.js/Chart.min.js"></script>
-
-    <!-- Scripts do plugin de gráficos -->
-    <script src="../../Assets/Custom/Js/demo/chart-area-demo.js"></script>
-    <script src="../../Assets/Custom/Js/demo/chart-pie-demo.js"></script>
-    <script src="../../Assets/Custom/Js/demo/chart-pie-demo.js"></script>
 </body>
 </html>
