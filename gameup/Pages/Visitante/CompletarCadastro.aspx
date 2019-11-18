@@ -40,7 +40,7 @@
                                         </div>
                                     </div>
                                     <div class="col-md-12 col-sm-12 form-group">
-                                        <asp:TextBox ID="txtDataNascimento" runat="server" type="date" CssClass="form-control"></asp:TextBox>
+                                        <asp:TextBox ID="txtDataNascimento" runat="server" type="date" CssClass="form-control" required="required"></asp:TextBox>
                                     </div>
                                     <div class="form-group row">
                                         <div class="col-md-5 col-sm-12 ml-4">
@@ -52,7 +52,7 @@
                                     </div>
                                     <div class="col-md-12">
                                         <asp:CheckBox ID="checkConcordo" runat="server" required="required"/>
-                                        <label> Li e concordo com os termos de uso</label>
+                                        <label> Li e concordo com os <a href="#">termos de uso</a></label>
                                     </div>
                                     <div class="col-md-12">
                                         <asp:CheckBox ID="checkNovidades" runat="server" />

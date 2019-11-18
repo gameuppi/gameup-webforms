@@ -29,7 +29,7 @@ public class UsuarioDB
 
     }
 
-    public static int Login( string email, string pwd)
+    public static int Login( Usuario usu)
     {
         try
         {
@@ -41,13 +41,13 @@ public class UsuarioDB
 
             string query = "select usu_email, usu_senha from usuario where usu_email = ?usu_email";
             objCommand = Mapped.Command(query, objConexao);
-            objCommand.Parameters.Add(Mapped.Parameter("?usu_email", email));
+            objCommand.Parameters.Add(Mapped.Parameter("?usu_email", usu.Usu_email));
             dataAdapter = Mapped.Adapter(objCommand);
             dataAdapter.Fill(ds);
 
-            if ( ds.Tables[0].Rows[0]["usu_email"].ToString().Equals(email))
+            if ( ds.Tables[0].Rows[0]["usu_email"].ToString().Equals(usu.Usu_email))
             {
-                if (ds.Tables[0].Rows[0]["usu_senha"].ToString().Equals(Cryptografia(pwd)))
+                if (ds.Tables[0].Rows[0]["usu_senha"].ToString().Equals(Cryptografia(usu.Usu_senha)))
                 {
                     ok = 1;
                 }
@@ -69,7 +69,7 @@ public class UsuarioDB
         return ok;
     }
 
-    public static int CadastroSenha( Usuario usu )
+    public static int CompletarCadastro( Usuario usu )
     {
         int ok;
 
@@ -80,11 +80,13 @@ public class UsuarioDB
             IDbCommand objCommand;
             objConexao = Mapped.Connection();
 
-            string query = "update usuario SET usu_senha = ?usu_senha WHERE usu_email = ?usu_email";
+            string query = "update usuario SET usu_senha = ?usu_senha, usu_datanascimento = ?usu_datanascimento " +
+                           "WHERE usu_email = ?usu_email";
 
             objCommand = Mapped.Command(query, objConexao);
 
             objCommand.Parameters.Add(Mapped.Parameter("?usu_senha", usu.Usu_senha));
+            objCommand.Parameters.Add(Mapped.Parameter("?usu_datanascimento", usu.Usu_dataNascimento));
             objCommand.Parameters.Add(Mapped.Parameter("?usu_email", usu.Usu_email));
 
             objCommand.ExecuteNonQuery();
