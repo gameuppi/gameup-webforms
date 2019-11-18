@@ -51,7 +51,7 @@
                                         </div>
                                     </div>
                                     <div class="col-md-12">
-                                        <asp:CheckBox ID="checkConcordo" runat="server" required="required"/>
+                                        <asp:CheckBox ID="checkConcordo" runat="server"/>
                                         <label> Li e concordo com os <a href="#">termos de uso</a></label>
                                     </div>
                                     <div class="col-md-12">
@@ -60,6 +60,9 @@
                                     </div>
                                     <div class="col-md-12">
                                         <asp:Button ID="btnSalvar" runat="server" Text="Salvar e acessar a plataforma" CssClass="btn btn-block btn-info" OnClick="btnSalvar_Click" />
+                                    </div>
+                                    <div class="col-md-12">
+                                        <asp:Literal ID="ltlMsg" runat="server"></asp:Literal>
                                     </div>
                                 </div>
                             </div>
