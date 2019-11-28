@@ -17,7 +17,7 @@
                 <div class="card-body">
                     <div class="row">
                         <div class="col-12 col-md-7">
-                           <!--<img src="../../Assets/Imagens/store.png" class="img-fluid" />-->
+                            <!--<img src="../../Assets/Imagens/store.png" class="img-fluid" />-->
                         </div>
                         <div class="col-12 col-md-5">
                             <h4 class="text-dark">Conclua missões, ganhe moedas e adquira benefícios...</h4>
@@ -35,29 +35,12 @@
         </div>
 
         <!-- Card de item -  -->
-        <div class="col-12 col-md-3">
-            <div class="card-custom border-left-success shadow h-100">
-                <div class="card-custom-image">
-                    <img src="../../Assets/Imagens/piscina.jpg">
-                    <span class="card-custom-title font-weight-bold">Descanso merecido
-                        <br />
-                        <small>3 disponíveis</small>
-                    </span>
-                    <a class="btn-floating btn-large halfway-fab btn-success">
-                        <center>
-                            <i class="fas fa-shopping-cart text-white"></i>
-                        </center>
-                    </a>
-                </div>
-                <div class="card-custom-content">
-
-                    <p>Consiga uma folga em um dia de sua escolha</p>
-                </div>
-            </div>
+        <div class="col-12 col-md-12">
+            <asp:Panel ID="painel1" runat="server"></asp:Panel>
         </div>
 
         <!-- Card de item -  -->
-        <div class="col-12 col-md-3">
+        <%--<div class="col-12 col-md-3">
             <div class="card-custom border-left-success shadow h-100">
                 <div class="card-custom-image">
                     <img src="../../Assets/Imagens/jantar.jpg">
@@ -120,7 +103,7 @@
                     <p>Consiga uma folga em um dia de sua escolha</p>
                 </div>
             </div>
-        </div>
+        </div>--%>
 
         <!-- /.container-fluid -->
 </asp:Content>
