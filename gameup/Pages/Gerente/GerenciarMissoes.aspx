@@ -184,6 +184,8 @@
             </div>
             <asp:Panel runat="server" ID="pnlMissoesEmConstrucao" CssClass="row mt-4"></asp:Panel>
         </div>
+
+        <!-- PAINEL DE MISSOES AGUARDANDO VALIDACAO -->
         <div class="tab-pane fade p-4" id="nav-validacao" role="tabpanel" aria-labelledby="nav-validacao-tab">
             <div class="row">
 
@@ -198,183 +200,8 @@
                     </div>
                 </div>
             </div>
-            <div class="row mt-4">
-
-                <div class="col-12 col-md-4 mb-4">
-                    <div class="card border-left-info shadow h-100 py-2">
-                        <div class="card-body">
-                            <div class="row no-gutters align-items-center">
-                                <div class="col mr-2">
-                                    <div class="text-sm font-weight-bold text-info text-uppercase mb-1">Entregar relatório técnico</div>
-                                    <div class="h6 mb-0 text-gray-800">Você precisa terminar o relatório técnico para entrega-lo a diretoria.</div>
-                                    <div class="mt-4">
-                                        <i class="fas fa-user fa-2x text-info"></i>
-                                        &nbsp; João Ricardo
-                                   
-                                        <br />
-                                        <br />
-                                        <button type="button" class="btn btn-info btn-block" data-toggle="modal" data-target="#exampleModalCenter">Detalhes</button>
-                                    </div>
-                                </div>
-                                <div class="col-auto">
-                                    <a href="#"><i class="fas fa-check fa-2x text-gray-500 icon-change"></i></a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-12 col-md-4 mb-4">
-                    <div class="card border-left-info shadow h-100 py-2">
-                        <div class="card-body">
-                            <div class="row no-gutters align-items-center">
-                                <div class="col mr-2">
-                                    <div class="text-sm font-weight-bold text-info text-uppercase mb-1">Entregar relatório técnico</div>
-                                    <div class="h6 mb-0 text-gray-800">Você precisa terminar o relatório técnico para entrega-lo a diretoria.</div>
-                                    <div class="mt-4">
-                                        <i class="fas fa-users fa-2x text-info"></i>
-                                        &nbsp; Financeiro 9/9
-                                   
-                                        <br />
-                                        <br />
-                                        <button type="button" class="btn btn-info btn-block" data-toggle="modal" data-target="#exampleModalCenter">Detalhes</button>
-                                    </div>
-                                </div>
-                                <div class="col-auto">
-                                    <a href="#"><i class="fas fa-check fa-2x text-gray-500 icon-change"></i></a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-12 col-md-4 mb-4">
-                    <div class="card border-left-info shadow h-100 py-2">
-                        <div class="card-body">
-                            <div class="row no-gutters align-items-center">
-                                <div class="col mr-2">
-                                    <div class="text-sm font-weight-bold text-info text-uppercase mb-1">Entregar relatório técnico</div>
-                                    <div class="h6 mb-0 text-gray-800">Você precisa terminar o relatório técnico para entrega-lo a diretoria.</div>
-                                    <div class="mt-4">
-                                        <i class="fas fa-users fa-2x text-info"></i>
-                                        &nbsp; Financeiro 9/9
-                                   
-                                        <br />
-                                        <br />
-                                        <button type="button" class="btn btn-info btn-block" data-toggle="modal" data-target="#exampleModalCenter">Detalhes</button>
-                                    </div>
-                                </div>
-                                <div class="col-auto">
-                                    <a href="#"><i class="fas fa-check fa-2x text-gray-500 icon-change"></i></a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
-
-                <div class="col-12 col-md-4 mb-4">
-                    <div class="card border-left-info shadow h-100 py-2">
-                        <div class="card-body">
-                            <div class="row no-gutters align-items-center">
-                                <div class="col mr-2">
-                                    <div class="text-sm font-weight-bold text-info text-uppercase mb-1">Entregar relatório técnico</div>
-                                    <div class="h6 mb-0 text-gray-800">Você precisa terminar o relatório técnico para entrega-lo a diretoria.</div>
-                                    <div class="mt-4">
-                                        <i class="fas fa-users fa-2x text-info"></i>
-                                        &nbsp; Financeiro 9/9
-                                   
-                                        <br />
-                                        <br />
-                                        <button type="button" class="btn btn-info btn-block" data-toggle="modal" data-target="#exampleModalCenter">Detalhes</button>
-                                    </div>
-                                </div>
-                                <div class="col-auto">
-                                    <a href="#"><i class="fas fa-check fa-2x text-gray-500 icon-change"></i></a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
-
-                <div class="col-12 col-md-4 mb-4">
-                    <div class="card border-left-info shadow h-100 py-2">
-                        <div class="card-body">
-                            <div class="row no-gutters align-items-center">
-                                <div class="col mr-2">
-                                    <div class="text-sm font-weight-bold text-info text-uppercase mb-1">Entregar relatório técnico</div>
-                                    <div class="h6 mb-0 text-gray-800">Você precisa terminar o relatório técnico para entrega-lo a diretoria.</div>
-                                    <div class="mt-4">
-                                        <i class="fas fa-users fa-2x text-info"></i>
-                                        &nbsp; Financeiro 9/9
-                                   
-                                        <br />
-                                        <br />
-                                        <button type="button" class="btn btn-info btn-block" data-toggle="modal" data-target="#exampleModalCenter">Detalhes</button>
-                                    </div>
-                                </div>
-                                <div class="col-auto">
-                                    <a href="#"><i class="fas fa-check fa-2x text-gray-500 icon-change"></i></a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
-
-                <div class="col-12 col-md-4 mb-4">
-                    <div class="card border-left-info shadow h-100 py-2">
-                        <div class="card-body">
-                            <div class="row no-gutters align-items-center">
-                                <div class="col mr-2">
-                                    <div class="text-sm font-weight-bold text-info text-uppercase mb-1">Entregar relatório técnico</div>
-                                    <div class="h6 mb-0 text-gray-800">Você precisa terminar o relatório técnico para entrega-lo a diretoria.</div>
-                                    <div class="mt-4">
-                                        <i class="fas fa-users fa-2x text-info"></i>
-                                        &nbsp; Financeiro 9/9
-                                   
-                                        <br />
-                                        <br />
-                                        <button type="button" class="btn btn-info btn-block" data-toggle="modal" data-target="#exampleModalCenter">Detalhes</button>
-                                    </div>
-                                </div>
-                                <div class="col-auto">
-                                    <a href="#"><i class="fas fa-check fa-2x text-gray-500 icon-change"></i></a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
-
-                <div class="col-12 col-md-4 mb-4">
-                    <div class="card border-left-info shadow h-100 py-2">
-                        <div class="card-body">
-                            <div class="row no-gutters align-items-center">
-                                <div class="col mr-2">
-                                    <div class="text-sm font-weight-bold text-info text-uppercase mb-1">Entregar relatório técnico</div>
-                                    <div class="h6 mb-0 text-gray-800">Você precisa terminar o relatório técnico para entrega-lo a diretoria.</div>
-                                    <div class="mt-4">
-                                        <i class="fas fa-users fa-2x text-info"></i>
-                                        &nbsp; Financeiro 9/9
-                                   
-                                        <br />
-                                        <br />
-                                        <button type="button" class="btn btn-info btn-block" data-toggle="modal" data-target="#exampleModalCenter">Detalhes</button>
-                                    </div>
-                                </div>
-                                <div class="col-auto">
-                                    <a href="#"><i class="fas fa-check fa-2x text-gray-500 icon-change"></i></a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
-            </div>
+            <asp:Panel runat="server" ID="pnlMissaoAgValidacao" CssClass="row mt-4"></asp:Panel>
         </div>
-    </div>
 
 
 
@@ -456,7 +283,7 @@
                 </div>
 
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-danger" data-dismiss="modal">Fechar</button>
+                    <button type="button" class="btn btn-success" data-dismiss="modal">Pronto</button>
                 </div>
             </div>
         </div>

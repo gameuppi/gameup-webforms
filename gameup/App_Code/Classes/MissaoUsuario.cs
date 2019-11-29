@@ -11,6 +11,7 @@ public class MissaoUsuario
     private int id;
     private DateTime dtAtribuicao;
     private DateTime dtConclusao;
+    private DateTime dtValidacao;
     private StatusMissaoEnum status;
     private Missao missao;
     private Usuario usuario;
@@ -90,6 +91,19 @@ public class MissaoUsuario
         set
         {
             usuario = value;
+        }
+    }
+
+    public DateTime DtValidacao
+    {
+        get
+        {
+            return dtValidacao;
+        }
+
+        set
+        {
+            dtValidacao = value;
         }
     }
 }

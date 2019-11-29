@@ -15,7 +15,6 @@ public partial class Pages_Gerente_GerenciarMissoes : System.Web.UI.Page
             limparTudo();
             carregarListaParticipantes();
         }
-
         carregarMissoes();
     }
 
@@ -127,7 +126,7 @@ public partial class Pages_Gerente_GerenciarMissoes : System.Web.UI.Page
             carregarMissoes();
 
             // Preenche modal
-            msgModalCadastraMissao.Text = "<h4 class='text-success'> Sua missão foi atualizada com sucesso!</h4>";
+            msgModalCadastraMissao.Text = "<h5 class='text-success'> Sua missão foi atualizada com sucesso!</h5>";
             ltrTituloModal.Text = "Ótimo!";
             // Abre modal de sucesso
             Page.ClientScript.RegisterStartupScript(this.GetType(), "script", "<script>$('#modalCadastraMissao').modal('show');</script>");
@@ -157,7 +156,7 @@ public partial class Pages_Gerente_GerenciarMissoes : System.Web.UI.Page
                 switch (MissaoBD.InsertMissao(missao))
                 {
                     case true:
-                        msgModalCadastraMissao.Text = "<h4 class='text-success'> Sua nova missão foi cadastrada com sucesso!</h4>";
+                        msgModalCadastraMissao.Text = "<h5 class='text-success'> Sua nova missão foi cadastrada com sucesso!</h5>";
                         ltrTituloModal.Text = "Ótimo!";
                         // Abre modal de sucesso
                         Page.ClientScript.RegisterStartupScript(this.GetType(), "script", "<script>$('#modalCadastraMissao').modal('show');</script>");
@@ -166,7 +165,7 @@ public partial class Pages_Gerente_GerenciarMissoes : System.Web.UI.Page
 
                         break;
                     case false:
-                        msgModalCadastraMissao.Text = "<h4 class='text-warning'> Sua nova missão não pode ser cadastrada. Algum erro aconteceu.</h4>";
+                        msgModalCadastraMissao.Text = "<h5 class='text-warning'> Sua nova missão não pode ser cadastrada. Algum erro aconteceu.</h5>";
                         ltrTituloModal.Text = "Poxa vida!";
                         Page.ClientScript.RegisterStartupScript(this.GetType(), "script", "<script>$('#modalCadastraMissao').modal('show');</script>");
                         break;
@@ -296,6 +295,26 @@ public partial class Pages_Gerente_GerenciarMissoes : System.Web.UI.Page
         return tipo;
     }
 
+    public TipoMissaoEnum tipoSelecionado(Missao missao)
+    {
+        string tipo = "";
+
+        if (missao.Tipo.Equals(TipoMissaoEnum.INDIVIDUAL))
+        {
+            tipo = TipoMissaoEnum.INDIVIDUAL.ToString();
+        }
+        else if (missao.Tipo.Equals(TipoMissaoEnum.GRUPO))
+        {
+            tipo = TipoMissaoEnum.GRUPO.ToString();
+        }
+        else
+        {
+            tipo = TipoMissaoEnum.SETOR.ToString();
+        }
+
+        return tipo;
+    }
+
     public StatusMissaoEnum statusSelecionado(string statusSelecionado)
     {
 
@@ -316,6 +335,14 @@ public partial class Pages_Gerente_GerenciarMissoes : System.Web.UI.Page
         else if (StatusMissaoEnum.INCOMPLETA.ToString().Equals(statusSelecionado))
         {
             status = StatusMissaoEnum.INCOMPLETA;
+        }
+        else if (StatusMissaoEnum.AG_VALIDACAO.ToString().Equals(statusSelecionado))
+        {
+            status = StatusMissaoEnum.AG_VALIDACAO;
+        }
+        else if (StatusMissaoEnum.VALIDADA.ToString().Equals(statusSelecionado))
+        {
+            status = StatusMissaoEnum.VALIDADA;
         }
 
         return status;
@@ -413,6 +440,7 @@ public partial class Pages_Gerente_GerenciarMissoes : System.Web.UI.Page
 
             // Gambiarra
             string testeDtConclusao = mus["mus_dt_conclusao"].ToString();
+            string testeDtStatus = mus["mus_status"].ToString();
 
             if (!testeDtConclusao.Equals(""))
             {
@@ -424,6 +452,16 @@ public partial class Pages_Gerente_GerenciarMissoes : System.Web.UI.Page
         }
 
         return listaDeMissoesUsuario;
+    }
+
+    public MissaoUsuario criarObjMissaoUsuario(DataSet missao)
+    {
+        MissaoUsuario missaoUsuario = new MissaoUsuario();
+        missaoUsuario.Id = Convert.ToInt32(missao.Tables[0].Rows[0]["mus_id"]);
+        missaoUsuario.DtValidacao = DateTime.Now;
+        missaoUsuario.Usuario = procurarUsuarioPorId(Convert.ToInt32(missao.Tables[0].Rows[0]["usu_id"]));
+
+        return missaoUsuario;
     }
 
     public Missao criarObjMissao(DataSet missaoDs)
@@ -485,6 +523,10 @@ public partial class Pages_Gerente_GerenciarMissoes : System.Web.UI.Page
 
     public void carregarMissoes()
     {
+        pnlMissaoAgValidacao.Controls.Clear();
+        pnlMissoesEmConstrucao.Controls.Clear();
+        pnlMissoesVisualizar.Controls.Clear();
+
         List<Missao> listaDeMissoes = criarListaObjMissao(MissaoBD.procurarMissao());
         List<MissaoUsuario> listaDeMissoesUsuario = criarListaObjMissaoUsuario(MissaoBD.procurarTodasMissaoUsuario()); // usuario chumbado
 
@@ -580,6 +622,20 @@ public partial class Pages_Gerente_GerenciarMissoes : System.Web.UI.Page
         txtQtdPontos.Text = missao.QtdPontos.ToString();
         idMissao.Text = mis_id.ToString();
 
+        TipoMissaoEnum tipoMissao = tipoSelecionado(missao);
+        if (tipoMissao.Equals(TipoMissaoEnum.INDIVIDUAL))
+        {
+            rdbTipoIndividual.Checked = true;
+        }
+        else if (tipoMissao.Equals(TipoMissaoEnum.GRUPO))
+        {
+            rdbTipoGrupo.Checked = true;
+        }
+        else if (tipoMissao.Equals(TipoMissaoEnum.SETOR))
+        {
+            rdbTipoSetor.Checked = true;
+        }
+
         navCadastroTab.CssClass = "nav-item nav-link active";
     }
 
@@ -669,7 +725,7 @@ public partial class Pages_Gerente_GerenciarMissoes : System.Web.UI.Page
                 resp += "                     <div class='h6 mb-0 text-gray-800'> " + missao.Missao.Descricao + "</div> ";
                 resp += "                     <div class='mt-4'> ";
                 resp += "                         <i class='fas fa-user fa-2x text-warning'></i> ";
-                resp += "                         &nbsp; João Ricardo ";
+                resp += $"                         &nbsp; {missao.Usuario.Nome} ";
                 resp += "                         <br /> ";
                 resp += "                         <br /> ";
 
@@ -713,7 +769,7 @@ public partial class Pages_Gerente_GerenciarMissoes : System.Web.UI.Page
                 resp += "                     <div class='h6 mb-0 text-gray-800'> " + missao.Missao.Descricao + "</div> ";
                 resp += "                     <div class='mt-4'> ";
                 resp += "                         <i class='fas fa-user fa-2x text-warning'></i> ";
-                resp += "                         &nbsp; João Ricardo ";
+                resp += $"                         &nbsp; {missao.Usuario.Nome} ";
                 resp += "                         <br /> ";
                 resp += "                         <br /> ";
 
@@ -744,6 +800,109 @@ public partial class Pages_Gerente_GerenciarMissoes : System.Web.UI.Page
                 pnlMissoesVisualizar.Controls.Add(rodape);
 
             }
+            else if (missao.Status.Equals(StatusMissaoEnum.AG_VALIDACAO))
+            {
+                Literal topo = new Literal();
+                Literal meio = new Literal();
+                Literal rodape = new Literal();
+                resp = "";
+
+                resp += " <div class='col-12 col-md-4 mb-4'> ";
+                resp += "     <div class='card border-left-info shadow h-100 py-2'> ";
+                resp += "         <div class='card-body'> ";
+                resp += "             <div class='row no-gutters align-items-center'> ";
+                resp += "                 <div class='col mr-2'> ";
+                resp += "                     <div class='text-sm font-weight-bold text-info text-uppercase mb-1'> " + missao.Missao.Nome + "</div> ";
+                resp += "                     <div class='h6 mb-0 text-gray-800'> " + missao.Missao.Descricao + "</div> ";
+                resp += "                     <div class='mt-4'> ";
+                resp += "                         <i class='fas fa-user fa-2x text-info'></i> ";
+                resp += $"                         &nbsp; {missao.Usuario.Nome} ";
+                resp += "                         <br /> ";
+                resp += "                         <br /> ";
+
+                topo.Text = resp;
+                resp = "";
+
+                LinkButton btnVerDetalhes = new LinkButton();
+                btnVerDetalhes.Text = "Detalhes";
+                btnVerDetalhes.Click += (sender, e) => { this.verDetalhesMissao(sender, e, missao.Missao.Id); };
+                btnVerDetalhes.ID = (missao.Id + 20).ToString();
+                btnVerDetalhes.CssClass = "btn btn-block btn-info";
+
+                resp += "                     </div> ";
+                resp += "                 </div> ";
+                resp += "                 <div class='col-auto'> ";
+
+                meio.Text = resp;
+                resp = "";
+
+                LinkButton btnValidar = new LinkButton();
+                btnValidar.Click += (sender, e) => { this.validarMissao(sender, e, missao.Id); };
+                btnValidar.ID = (missao.Id + 50).ToString();
+                btnValidar.Text = "<i class='fas fa-check fa-2x text-gray-500 icon-change'></i>";
+
+
+                //resp += "                     <a href='#'><i class='fas fa-check fa-2x text-gray-500 icon-change'></i></a> ";
+                resp += "                 </div> ";
+                resp += "             </div> ";
+                resp += "         </div> ";
+                resp += "     </div> ";
+                resp += " </div> ";
+
+                rodape.Text = resp;
+
+                pnlMissaoAgValidacao.Controls.Add(topo);
+                pnlMissaoAgValidacao.Controls.Add(btnVerDetalhes);
+                pnlMissaoAgValidacao.Controls.Add(meio);
+                pnlMissaoAgValidacao.Controls.Add(btnValidar);
+                pnlMissaoAgValidacao.Controls.Add(rodape);
+
+            }
+            else if (missao.Status.Equals(StatusMissaoEnum.VALIDADA))
+            {
+                Literal topo = new Literal();
+                Literal meio = new Literal();
+                Literal rodape = new Literal();
+                resp = "";
+
+                resp += " <div class='col-12 col-md-4 mb-4'> ";
+                resp += "     <div class='card border-left-success shadow h-100 py-2'> ";
+                resp += "         <div class='card-body'> ";
+                resp += "             <div class='row no-gutters align-items-center'> ";
+                resp += "                 <div class='col mr-2'> ";
+                resp += "                     <div class='text-sm font-weight-bold text-success text-uppercase mb-1'> " + missao.Missao.Nome + "</div> ";
+                resp += "                     <div class='h6 mb-0 text-gray-800'> " + missao.Missao.Descricao + "</div> ";
+                resp += "                     <div class='mt-4'> ";
+                resp += "                         <i class='fas fa-user fa-2x text-success'></i> ";
+                resp += $"                         &nbsp; {missao.Usuario.Nome} ";
+                resp += "                         <br /> ";
+                resp += "                         <br /> ";
+
+                topo.Text = resp;
+                resp = "";
+
+                LinkButton btnContinuarCadastro = new LinkButton();
+                btnContinuarCadastro.Text = "Detalhes";
+                btnContinuarCadastro.Click += (sender, e) => { this.verDetalhesMissao(sender, e, missao.Id); };
+                btnContinuarCadastro.ID = missao.Id.ToString();
+                btnContinuarCadastro.CssClass = "btn btn-block btn-success";
+
+                resp += "                     </div> ";
+                resp += "                 </div> ";
+                resp += "                 <div class='col-auto'> ";
+                resp += "                     <a href='#'><i class='fas fa-check fa-2x text-success'></i></a> ";
+                resp += "                 </div> ";
+                resp += "             </div> ";
+                resp += "         </div> ";
+                resp += "     </div> ";
+                resp += " </div> ";
+
+                rodape.Text = resp;
+
+                pnlMissoesVisualizar.Controls.Add(topo);
+                pnlMissoesVisualizar.Controls.Add(btnContinuarCadastro);
+                pnlMissoesVisualizar.Controls.Add(rodape);
+            }
         }
 
         if (resp.Equals(""))
@@ -753,6 +912,27 @@ public partial class Pages_Gerente_GerenciarMissoes : System.Web.UI.Page
 
         //ltrVisualizarMissoes.Text = resp;
 
+    }
+
+    void validarMissao(object sender, EventArgs e, int mus_id)
+    {
+        try
+        {
+            MissaoUsuario missaoUsuario = new MissaoUsuario();
+            missaoUsuario = criarObjMissaoUsuario(MissaoUsuarioBD.procurarMissaoUsuarioPorId(mus_id));
+
+            missaoUsuario.Status = StatusMissaoEnum.VALIDADA;
+
+            MissaoUsuarioBD.validarMissao(missaoUsuario);
+        }
+        catch (Exception ex)
+        {
+            Console.Write(ex);
+        }
+        finally
+        {
+            carregarMissoes();
+        }
     }
 
     protected void btnContinuarCriacao_Click(object sender, EventArgs e)

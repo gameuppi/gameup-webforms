@@ -59,4 +59,78 @@ public class MissaoUsuarioBD
         return ok;
     }
 
+    public static bool validarMissao(MissaoUsuario missaoUsuario)
+    {
+        bool ok = true;
+
+        try
+        {
+            IDbConnection objConexao;
+            IDbCommand objComando;
+
+            objConexao = Mapped.Connection();
+
+            string query = "";
+            query += " UPDATE ";
+            query += " 	TBL_MISSAO_USUARIO ";
+            query += " SET ";
+            query += " 	MUS_STATUS = ?mus_status, ";
+            query += " 	DT_VALIDACAO = ?dt_validacao ";
+            query += " WHERE  ";
+            query += " 	MUS_ID = ?mus_id; ";
+
+            objComando = Mapped.Command(query, objConexao);
+            objComando.Parameters.Add(Mapped.Parameter("?mus_status", missaoUsuario.Status.ToString()));
+            objComando.Parameters.Add(Mapped.Parameter("?mus_id", missaoUsuario.Id));
+            objComando.Parameters.Add(Mapped.Parameter("?dt_validacao", missaoUsuario.DtValidacao));
+            
+            objComando.ExecuteNonQuery();
+
+            objConexao.Dispose();
+            objComando.Dispose();
+        }
+        catch (Exception e)
+        {
+            Console.Write(e);
+            ok = false;
+        }
+
+        return ok;
+    }
+
+    public static DataSet procurarMissaoUsuarioPorId(int mus_id)
+    {
+
+        DataSet ds = new DataSet();
+        IDbConnection objConexao;
+        IDbCommand objCommand;
+        IDataAdapter dataAdapter;
+
+        objConexao = Mapped.Connection();
+        string query = "";
+        query += " SELECT  ";
+        query += " 	MUS_ID, ";
+        query += " 	USU_ID, ";
+        query += " 	MIS_ID ";
+        query += " FROM ";
+        query += " 	TBL_MISSAO_USUARIO ";
+        query += " WHERE  ";
+        query += " 	MUS_ID = ?mus_id; ";
+
+        objCommand = Mapped.Command(query, objConexao);
+
+        objCommand.Parameters.Add(Mapped.Parameter("?mus_id", mus_id));
+
+        dataAdapter = Mapped.Adapter(objCommand);
+
+        dataAdapter.Fill(ds);
+
+        objConexao.Close();
+        objConexao.Dispose();
+        objCommand.Dispose();
+
+        return ds;
+
+    }
+
 }
