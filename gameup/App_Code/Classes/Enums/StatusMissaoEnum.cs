@@ -11,5 +11,6 @@ public enum StatusMissaoEnum
     COMPLETA = 1,
     INCOMPLETA = 2,
     CONCLUIDA = 3,
-    EM_ANDAMENTO = 4
+    EM_ANDAMENTO = 4,
+    AG_VALIDACAO = 5
 }

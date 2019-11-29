@@ -21,6 +21,7 @@
             <div class="row">
                 <div class="col-12">
                     <div class="row">
+                        <asp:Label runat="server" ID="idMissao" CssClass="d-none"></asp:Label>
                         <div class="col-7">
                             <div class="form-check form-check-inline btn btn-info">
                                 <i class="fas fa-user"></i>&nbsp;
@@ -64,9 +65,14 @@
                                     <label for="txtNome">Nome</label>
                                     <asp:TextBox type="text" CssClass="form-control" ID="txtNome" runat="server" placeholder="Nome da missão" />
                                 </div>
-                                <div class="form-group col-12 col-md-6">
-                                    <label for="inputPassword4">Participantes</label>
-                                    <asp:TextBox type="text" CssClass="form-control" ID="txtParticipantes" runat="server" placeholder="Participantes" />
+                                <div class="col-12 col-md-6">
+                                    <label for="txtNome">Nome</label>
+                                    <div class="input-group">
+                                        <input type="text" class="form-control bg-light border-0 small" readonly placeholder="Procure por colaboradores ou setores" aria-label="Search" aria-describedby="basic-addon2">
+                                        <div class="input-group-append">
+                                            <asp:Button runat="server" ID="btnCarregarParticipantes" OnClick="btnCarregarParticipantes_Click" CssClass="btn btn-info" Text="Procurar" />
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                             <div class="form-row">
@@ -157,11 +163,8 @@
                     </div>
                 </div>
             </div>
-            <div class="row mt-4">
-                <asp:Literal runat="server" ID="ltrVisualizarMissoes">
-
-                </asp:Literal>
-            </div>
+            <asp:Panel runat="server" ID="pnlMissoesVisualizar" CssClass="row mt-4">
+            </asp:Panel>
         </div>
 
         <!-- PAINEL DE MISSOES EM CONSTRUCAO -->
@@ -179,11 +182,7 @@
                     </div>
                 </div>
             </div>
-            <div class="row mt-4">
-                <asp:Literal runat="server" ID="ltrMissoesEmConstrucao">
-
-                </asp:Literal>
-            </div>
+            <asp:Panel runat="server" ID="pnlMissoesEmConstrucao" CssClass="row mt-4"></asp:Panel>
         </div>
         <div class="tab-pane fade p-4" id="nav-validacao" role="tabpanel" aria-labelledby="nav-validacao-tab">
             <div class="row">
@@ -463,5 +462,36 @@
         </div>
     </div>
 
+    <!-- Modal participantes -->
+    <div class="modal fade" id="modalParticipantes">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+
+                <div class="modal-header">
+                    <h4 class="modal-title">
+                        <asp:Literal runat="server" ID="lblTituloParticipantes"></asp:Literal>
+                    </h4>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+
+                <div class="modal-body">
+                    <asp:ListBox runat="server" ID="ltbParticipantes" CssClass="form-control"></asp:ListBox>
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-success" data-dismiss="modal">Pronto</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--
+    <script>
+        window.addEventListener('keydown', function (e) {
+            var code = e.which || e.keyCode;
+            if (code == 116) e.preventDefault();
+            else return true;
+            // fazer algo aqui para quando a tecla F5 for premida
+        });
+    </script>  -->
 </asp:Content>
 

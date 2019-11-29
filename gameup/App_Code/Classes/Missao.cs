@@ -19,6 +19,7 @@ public class Missao
     private int qtdMoedas;
     private string tipo;
     private string status;
+    private List<Usuario> participantes;
 
     public int Id
     {
@@ -163,4 +164,16 @@ public class Missao
         }
     }
 
+    public List<Usuario> Participantes
+    {
+        get
+        {
+            return participantes;
+        }
+
+        set
+        {
+            participantes = value;
+        }
+    }
 }

@@ -36,20 +36,32 @@
                                                         <tr>
                                                             <td class="text-center">
                                                                 <i class="fas fa-circle fa-4x " style=" color: #808080"></i>
-                                                                <div class="mt-1 font-weight-bold">Yago Chedid</div>
-                                                                <div class="mt-1">1300 Pontos</div>
+                                                                <div class="mt-1 font-weight-bold">
+                                                                    <asp:Label runat="server" ID="lbl2Posicao"></asp:Label>
+                                                                </div>
+                                                                <div class="mt-1">
+                                                                    <asp:Label runat="server" ID="lblPontos2Posicao"></asp:Label>
+                                                                </div>
                                                                 <div class="mt-1" id="podium1"></div>
                                                             </td>
                                                             <td class="text-center">
                                                                 <i class="fas fa-circle fa-4x " style=" color: #808080"></i>
-                                                                <div class="mt-1 mt-1 font-weight-bold">Marcos Vinicios</div>
-                                                                <div class="mt-1">1290 Pontos</div>
+                                                                <div class="mt-1 mt-1 font-weight-bold">
+                                                                    <asp:Label runat="server" ID="lbl1Posicao"></asp:Label>
+                                                                </div>
+                                                                <div class="mt-1">
+                                                                    <asp:Label runat="server" ID="lblPontos1Posicao"></asp:Label>
+                                                                </div>
                                                                 <div class="mt-1" id="podium0"></div>
                                                             </td>
                                                             <td class="text-center">
                                                                 <i class="fas fa-circle fa-4x " style=" color: #808080"></i>
-                                                                <div class="mt-1 mt-1 font-weight-bold">Lucas Pedroso</div>
-                                                                <div class="mt-1">1100 Pontos</div>
+                                                                <div class="mt-1 mt-1 font-weight-bold">
+                                                                    <asp:Label runat="server" ID="lbl3Posicao"></asp:Label>
+                                                                </div>
+                                                                <div class="mt-1">
+                                                                    <asp:Label runat="server" ID="lblPontos3Posicao"></asp:Label>
+                                                                </div>
                                                                 <div class="mt-1" id="podium2"></div>
                                                             </td>
                                                         </tr>
@@ -83,67 +95,19 @@
                     </div>
                     <!--Card Corpo -->
                     <div class="card-body text-center">
-                        <table class="table">
-                            <thead class="thead-dark">
-                                <tr>
-                                    <th>Posição</th>
-                                    <th>Nome</th>
-                                    <th>Pontos</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>1</td>
-                                    <td>Marcos Vinicios</td>
-                                    <td>1300</td>
-                                </tr>
-                                <tr>
-                                    <td>2</td>
-                                    <td>Edmar Izais</td>
-                                    <td>1290</td>
-                                </tr>
-                                <tr>
-                                    <td>3</td>
-                                    <td>Lucas Pedroso</td>
-                                    <td>1100</td>
-                                </tr>
-                                <tr>
-                                    <td>4</td>
-                                    <td>Nickolas Ricardo</td>
-                                    <td>1000</td>
-                                </tr>
-                                <tr>
-                                    <td>5</td>
-                                    <td>Matheus Cauderaro</td>
-                                    <td>999</td>
-                                </tr>
-                                <tr>
-                                    <td>6</td>
-                                    <td>Gabriel Oliveira</td>
-                                    <td>700</td>
-                                </tr>
-                                <tr>
-                                    <td>7</td>
-                                    <td>Marcio Pedroso</td>
-                                    <td>600</td>
-                                </tr>
-                                <tr>
-                                    <td>8</td>
-                                    <td>Paulo Ricardo</td>
-                                    <td>550</td>
-                                </tr>
-                                <tr>
-                                    <td>9</td>
-                                    <td>Murilo Cauderaro</td>
-                                    <td>500</td>
-                                </tr>
-                                <tr>
-                                    <td>10</td>
-                                    <td>Gabriel solza</td>
-                                    <td>400</td>
-                                </tr>
-                            </tbody>
-                        </table>
+                        <asp:Table runat="server" ID="tblPlacarGeral" class="table">
+                            <asp:TableHeaderRow runat="server" CssClass="thead-dark">
+                                <asp:TableHeaderCell>
+                                    Posição
+                                </asp:TableHeaderCell>
+                                <asp:TableHeaderCell>
+                                    Nome
+                                </asp:TableHeaderCell>
+                                <asp:TableHeaderCell>
+                                    Pontos
+                                </asp:TableHeaderCell>
+                            </asp:TableHeaderRow>
+                        </asp:Table>
                     </div>
                 </div>
             </div>

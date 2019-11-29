@@ -9,6 +9,8 @@ using System.Web;
 public class Usuario
 {
     private int id;
+    private string nome;
+    private int qtdPontos;
 
     public int Id
     {
@@ -20,6 +22,32 @@ public class Usuario
         set
         {
             id = value;
+        }
+    }
+
+    public string Nome
+    {
+        get
+        {
+            return nome;
+        }
+
+        set
+        {
+            nome = value;
+        }
+    }
+
+    public int QtdPontos
+    {
+        get
+        {
+            return qtdPontos;
+        }
+
+        set
+        {
+            qtdPontos = value;
         }
     }
 }
