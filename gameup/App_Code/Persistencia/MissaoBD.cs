@@ -162,7 +162,7 @@ public class MissaoBD
         IDataAdapter dataAdapter;
 
         objConexao = Mapped.Connection();
-        string query = "SELECT * FROM TBL_MISSAO";
+        string query = "SELECT * FROM missao";
 
         objCommand = Mapped.Command(query, objConexao);
         

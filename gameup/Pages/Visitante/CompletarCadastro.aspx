@@ -31,41 +31,39 @@
                             </div>
                             <div class="col-lg-7">
                                 <div class="p-5">
-                                    <div class="text-left">
+                                    <div class="text-left ml-3">
                                         <h1 class="h4 text-gray-900 mb-4 font-weight-bold">Completar Cadastro</h1>
                                     </div>
-                                    <div class="form-group row">
-                                        <div class="col-sm-6 mb-3 mb-sm-0">
-                                            <input type="text" class="form-control form-control-user" id="exampleFirstName" placeholder="Nome">
-                                        </div>
-                                        <div class="col-sm-6">
-                                            <input type="text" class="form-control form-control-user" id="exampleLastName" placeholder="Sobrenome">
+                                    <div class="form-group">
+                                        <div class="col-sm-12 mb-3 mb-sm-0 col-md-12">
+                                            <asp:TextBox ID="txtEmail" runat="server" type="email" placeholder="Digite seu E-mail" CssClass="form-control"></asp:TextBox>
                                         </div>
                                     </div>
-                                    <div class="form-group">
-                                        <input type="email" class="form-control form-control-user" id="exampleInputEmail" placeholder="Nome de usuário">
-                                    </div>
-                                    <div class="form-group">
-                                        <input type="date" class="form-control form-control-user" id="exampleInputEmail" placeholder="Data de nascimento">
+                                    <div class="col-md-12 col-sm-12 form-group">
+                                        <asp:TextBox ID="txtDataNascimento" runat="server" type="date" CssClass="form-control" required="required"></asp:TextBox>
                                     </div>
                                     <div class="form-group row">
-                                        <div class="col-sm-6 mb-3 mb-sm-0">
-                                            <input type="password" class="form-control form-control-user" id="exampleInputPassword" placeholder="Senha">
+                                        <div class="col-md-5 col-sm-12 ml-4">
+                                            <asp:TextBox ID="txtSenha" runat="server" placeholder="Digite sua Senha" type="password" CssClass="form-control"></asp:TextBox>
                                         </div>
-                                        <div class="col-sm-6">
-                                            <input type="password" class="form-control form-control-user" id="exampleRepeatPassword" placeholder="Confirmar Senha">
+                                        <div class="col-md-6 col-sm-12">
+                                            <asp:TextBox ID="txtConfirmarSenha" runat="server" placeholder="Digite sua Senha Novamente" type="password" CssClass="form-control"></asp:TextBox>
                                         </div>
                                     </div>
-                                    <div class="custom-control custom-checkbox my-1 mr-sm-2">
-                                        <input type="checkbox" class="custom-control-input" id="customControlInline">
-                                        <label class="custom-control-label" for="customControlInline">Li e concordo com os termos de uso</label>
+                                    <div class="col-md-12">
+                                        <asp:CheckBox ID="checkConcordo" runat="server"/>
+                                        <label> Li e concordo com os <a href="#">termos de uso</a></label>
                                     </div>
-                                    <div class="custom-control custom-checkbox my-1 mr-sm-2">
-                                        <input type="checkbox" class="custom-control-input" id="customControlInline2">
-                                        <label class="custom-control-label">Desejo receber novidades por e-mail</label>
+                                    <div class="col-md-12">
+                                        <asp:CheckBox ID="checkNovidades" runat="server" />
+                                        <label>Desejo receber novidades por e-mail</label>
                                     </div>
-                                    <a href="#" class="btn btn-info mt-4 btn-user btn-block">Salvar e acessar a plataforma
-                                    </a>
+                                    <div class="col-md-12">
+                                        <asp:Button ID="btnSalvar" runat="server" Text="Salvar e acessar a plataforma" CssClass="btn btn-block btn-info" OnClick="btnSalvar_Click" />
+                                    </div>
+                                    <div class="col-md-12">
+                                        <asp:Literal ID="ltlMsg" runat="server"></asp:Literal>
+                                    </div>
                                 </div>
                             </div>
                         </div>
