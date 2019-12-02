@@ -36,7 +36,7 @@
 
         <!-- Card de item -  -->
         <div class="col-12 col-md-12">
-            <asp:Panel ID="painel1" runat="server"></asp:Panel>
+            <asp:Panel ID="painel1" runat="server" CssClass="row"></asp:Panel>
         </div>
 
         <!-- Card de item -  -->
