@@ -8,14 +8,40 @@ using System.Web.UI.WebControls;
 
 public partial class Pages_Gerente_GerenciarMissoes : System.Web.UI.Page
 {
+    private static Usuario usuarioLogado;
+
     protected void Page_Load(object sender, EventArgs e)
     {
+
+        validarSessao();
+
         if (!IsPostBack)
         {
             limparTudo();
             carregarListaParticipantes();
         }
         carregarMissoes();
+        
+    }
+
+    void validarSessao()
+    {
+
+        if (Session["USUARIO"] == null)
+        {
+
+            Response.Redirect("../Visitante/Login.aspx");
+
+        } else
+        {
+            usuarioLogado = (Usuario)Session["USUARIO"];
+
+            if (usuarioLogado.Tus_id != 2) // Gerente
+            {
+                Response.Redirect("../Visitante/Login.aspx");
+            }
+
+        }
     }
 
     public void limparTudo()
@@ -36,11 +62,7 @@ public partial class Pages_Gerente_GerenciarMissoes : System.Web.UI.Page
 
         if (rdbTipoSetor.Checked)
         {
-            //DataSet listaDeUsuarios = SetorBD.procurarUsuariosSetor(1);
-            DataSet usuarioGerente = SetorBD.procurarGerenteSetor(1);
-            int idGerente = 0;
-
-            idGerente = Convert.ToInt32(usuarioGerente.Tables[0].Rows[0]["usu_id"].ToString());
+            int idGerente = usuarioLogado.Usu_id;
 
             listaDeParticipantes.Add(idGerente);
 
@@ -151,6 +173,7 @@ public partial class Pages_Gerente_GerenciarMissoes : System.Web.UI.Page
                 }
 
                 List<int> listaDeParticipantes = criarListaDeParticipantes();
+                missao.UsuarioCriador = usuarioLogado;
 
                 // Insere a missao no banco de dados
                 switch (MissaoBD.InsertMissao(missao))
@@ -198,7 +221,7 @@ public partial class Pages_Gerente_GerenciarMissoes : System.Web.UI.Page
 
         if (rdbTipoIndividual.Checked)
         {
-            DataSet listaDeUsuarios = MissaoBD.procurarUsuariosEmpresa(1);
+            DataSet listaDeUsuarios = MissaoBD.procurarUsuariosEmpresa(usuarioLogado.Emp_id, usuarioLogado.Usu_id);
 
             // Carrega informacoes no modal 
             lblTituloParticipantes.Text = "<h4> Colaboradores </h4>";
@@ -214,7 +237,7 @@ public partial class Pages_Gerente_GerenciarMissoes : System.Web.UI.Page
         else if (rdbTipoSetor.Checked)
         {
 
-            DataSet listaDeSetores = MissaoBD.procurarSetoresEmpresa(1);
+            DataSet listaDeSetores = MissaoBD.procurarSetoresEmpresaGerente(usuarioLogado.Set_id);
 
             // Carrega informacoes no modal 
             lblTituloParticipantes.Text = "<h4> Setores </h4>";
@@ -230,7 +253,7 @@ public partial class Pages_Gerente_GerenciarMissoes : System.Web.UI.Page
         else if (rdbTipoGrupo.Checked)
         {
             ltbParticipantes.SelectionMode = ListSelectionMode.Multiple;
-            DataSet listaDeUsuarios = MissaoBD.procurarUsuariosEmpresa(1);
+            DataSet listaDeUsuarios = MissaoBD.procurarUsuariosEmpresa(usuarioLogado.Emp_id, usuarioLogado.Usu_id);
 
             // Carrega informacoes no modal 
             lblTituloParticipantes.Text = "<h4> Colaboradores </h4>";
@@ -246,7 +269,7 @@ public partial class Pages_Gerente_GerenciarMissoes : System.Web.UI.Page
 
     public void registrarMissaoUsuario(List<int> listaDeParticipantes, Missao missao)
     {
-        DataSet ultimoId = MissaoBD.procurarIdMissao();
+        DataSet ultimoId = MissaoBD.procurarIdMissao(usuarioLogado.Usu_id);
         int maiorId = 0;
 
         foreach (DataRow id in ultimoId.Tables[0].Rows)
@@ -270,7 +293,7 @@ public partial class Pages_Gerente_GerenciarMissoes : System.Web.UI.Page
         foreach (int i in listaDeParticipantes)
         {
             missaoUsuario.Usuario = new Usuario();
-            missaoUsuario.Usuario.Id = i;
+            missaoUsuario.Usuario.Usu_id = i;
             MissaoUsuarioBD.InsertMissaoUsuario(missaoUsuario);
         }
     }
@@ -297,19 +320,19 @@ public partial class Pages_Gerente_GerenciarMissoes : System.Web.UI.Page
 
     public TipoMissaoEnum tipoSelecionado(Missao missao)
     {
-        string tipo = "";
+        TipoMissaoEnum tipo = new TipoMissaoEnum();
 
         if (missao.Tipo.Equals(TipoMissaoEnum.INDIVIDUAL))
         {
-            tipo = TipoMissaoEnum.INDIVIDUAL.ToString();
+            tipo = TipoMissaoEnum.INDIVIDUAL;
         }
         else if (missao.Tipo.Equals(TipoMissaoEnum.GRUPO))
         {
-            tipo = TipoMissaoEnum.GRUPO.ToString();
+            tipo = TipoMissaoEnum.GRUPO;
         }
         else
         {
-            tipo = TipoMissaoEnum.SETOR.ToString();
+            tipo = TipoMissaoEnum.SETOR;
         }
 
         return tipo;
@@ -458,8 +481,10 @@ public partial class Pages_Gerente_GerenciarMissoes : System.Web.UI.Page
     {
         MissaoUsuario missaoUsuario = new MissaoUsuario();
         missaoUsuario.Id = Convert.ToInt32(missao.Tables[0].Rows[0]["mus_id"]);
-        missaoUsuario.DtValidacao = DateTime.Now;
         missaoUsuario.Usuario = procurarUsuarioPorId(Convert.ToInt32(missao.Tables[0].Rows[0]["usu_id"]));
+        missaoUsuario.Missao = procurarMissaoPorId(Convert.ToInt32(missao.Tables[0].Rows[0]["mis_id"]));
+        missaoUsuario.DtConclusao = Convert.ToDateTime(missao.Tables[0].Rows[0]["mus_dt_conclusao"]);
+
 
         return missaoUsuario;
     }
@@ -483,6 +508,8 @@ public partial class Pages_Gerente_GerenciarMissoes : System.Web.UI.Page
                 missao.DtInicio = Convert.ToDateTime(mis["mis_dt_inicio"]);
                 missao.DtFinal = Convert.ToDateTime(mis["mis_dt_final"]);
                 missao.Status = mis["mis_status"].ToString();
+                missao.UsuarioCriador = new Usuario();
+                missao.UsuarioCriador.Usu_id = Convert.ToInt32(mis["usu_criador_id"].ToString());
             }
         }
         catch (Exception e)
@@ -501,8 +528,8 @@ public partial class Pages_Gerente_GerenciarMissoes : System.Web.UI.Page
         {
             foreach (DataRow mis in usuarioDs.Tables[0].Rows)
             {
-                usuario.Id = Convert.ToInt32(mis["usu_id"]);
-                usuario.Nome = mis["usu_nome"].ToString();
+                usuario.Usu_id = Convert.ToInt32(mis["usu_id"]);
+                usuario.Usu_nome = mis["usu_nome"].ToString();
             }
         }
         catch (Exception e)
@@ -521,14 +548,22 @@ public partial class Pages_Gerente_GerenciarMissoes : System.Web.UI.Page
         return missao;
     }
 
+    public MissaoUsuario procurarDetalhesMissaoPorId(int idMissao)
+    {
+        DataSet missaoDs = MissaoBD.procurarDetalhesMissaoPoId(idMissao);
+        MissaoUsuario missaoUsuario = criarObjMissaoUsuario(missaoDs);
+
+        return missaoUsuario;
+    }
+
     public void carregarMissoes()
     {
         pnlMissaoAgValidacao.Controls.Clear();
         pnlMissoesEmConstrucao.Controls.Clear();
         pnlMissoesVisualizar.Controls.Clear();
 
-        List<Missao> listaDeMissoes = criarListaObjMissao(MissaoBD.procurarMissao());
-        List<MissaoUsuario> listaDeMissoesUsuario = criarListaObjMissaoUsuario(MissaoBD.procurarTodasMissaoUsuario()); // usuario chumbado
+        List<Missao> listaDeMissoes = criarListaObjMissao(MissaoBD.procurarMissao(usuarioLogado.Emp_id));
+        List<MissaoUsuario> listaDeMissoesUsuario = criarListaObjMissaoUsuario(MissaoBD.procurarTodasMissaoUsuario(usuarioLogado.Emp_id));
 
         carregarMissoesIncompletas(listaDeMissoes);
         carregarTodasAsMissoesUsuario(listaDeMissoesUsuario);
@@ -639,18 +674,28 @@ public partial class Pages_Gerente_GerenciarMissoes : System.Web.UI.Page
         navCadastroTab.CssClass = "nav-item nav-link active";
     }
 
-    void verDetalhesMissao(object sender, EventArgs e, int mis_id)
+    void verDetalhesMissao(object sender, EventArgs e, int mus_id)
     {
-        Missao missao = procurarMissaoPorId(mis_id);
+        MissaoUsuario missao = procurarDetalhesMissaoPorId(mus_id);
 
-        ltrDetalhesMoedas.Text = missao.QtdMoedas.ToString();
-        ltrDetalhesEstrelas.Text = missao.QtdExp.ToString();
-        ltrDetalhesMeteoros.Text = missao.QtdPontos.ToString();
+        ltrDetalhesMoedas.Text = missao.Missao.QtdMoedas.ToString();
+        ltrDetalhesEstrelas.Text = missao.Missao.QtdExp.ToString();
+        ltrDetalhesMeteoros.Text = missao.Missao.QtdPontos.ToString();
+        ltrDetalhesDescricao.Text = missao.Missao.Descricao;
 
-        ltrDetalhesDescricao.Text = missao.Descricao;
+        if (missao.DtConclusao != Convert.ToDateTime("01/01/0001")) {
+            ltrDataConclusao.Text = missao.DtConclusao.ToString();
+        } else
+        {
+            ltrDataConclusao.Text = " Ainda não foi concluída";
+        }
+
+
         //ltrDataConclusao.Text = missao.dt;
 
-        navCadastroTab.CssClass = "nav-item nav-link active";
+        
+
+        Page.ClientScript.RegisterStartupScript(this.GetType(), "script", "<script>$('#modalDetalhesMissao').modal('show');</script>");
     }
 
     public void carregarTodasAsMissoes(List<Missao> listaDeMissoes)
@@ -700,13 +745,13 @@ public partial class Pages_Gerente_GerenciarMissoes : System.Web.UI.Page
 
         foreach (MissaoUsuario missao in listaMissoesUsuario)
         {
-            DataSet idUsuario = UsuarioBD.procurarUsuarioPorId(missao.Usuario.Id);
+            DataSet idUsuario = UsuarioBD.procurarUsuarioPorId(missao.Usuario.Usu_id);
             Usuario usuario = new Usuario();
 
             foreach (DataRow id in idUsuario.Tables[0].Rows)
             {
-                usuario.Id = Convert.ToInt32(id["usu_id"].ToString());
-                usuario.Nome = id["usu_nome"].ToString();
+                usuario.Usu_id = Convert.ToInt32(id["usu_id"].ToString());
+                usuario.Usu_nome = id["usu_nome"].ToString();
             }
 
             if (missao.Status.Equals(StatusMissaoEnum.CONCLUIDA))
@@ -725,7 +770,7 @@ public partial class Pages_Gerente_GerenciarMissoes : System.Web.UI.Page
                 resp += "                     <div class='h6 mb-0 text-gray-800'> " + missao.Missao.Descricao + "</div> ";
                 resp += "                     <div class='mt-4'> ";
                 resp += "                         <i class='fas fa-user fa-2x text-warning'></i> ";
-                resp += $"                         &nbsp; {missao.Usuario.Nome} ";
+                resp += $"                         &nbsp; {missao.Usuario.Usu_nome} ";
                 resp += "                         <br /> ";
                 resp += "                         <br /> ";
 
@@ -769,7 +814,7 @@ public partial class Pages_Gerente_GerenciarMissoes : System.Web.UI.Page
                 resp += "                     <div class='h6 mb-0 text-gray-800'> " + missao.Missao.Descricao + "</div> ";
                 resp += "                     <div class='mt-4'> ";
                 resp += "                         <i class='fas fa-user fa-2x text-warning'></i> ";
-                resp += $"                         &nbsp; {missao.Usuario.Nome} ";
+                resp += $"                         &nbsp; {missao.Usuario.Usu_nome} ";
                 resp += "                         <br /> ";
                 resp += "                         <br /> ";
 
@@ -816,7 +861,7 @@ public partial class Pages_Gerente_GerenciarMissoes : System.Web.UI.Page
                 resp += "                     <div class='h6 mb-0 text-gray-800'> " + missao.Missao.Descricao + "</div> ";
                 resp += "                     <div class='mt-4'> ";
                 resp += "                         <i class='fas fa-user fa-2x text-info'></i> ";
-                resp += $"                         &nbsp; {missao.Usuario.Nome} ";
+                resp += $"                         &nbsp; {missao.Usuario.Usu_nome} ";
                 resp += "                         <br /> ";
                 resp += "                         <br /> ";
 
@@ -857,6 +902,11 @@ public partial class Pages_Gerente_GerenciarMissoes : System.Web.UI.Page
                 pnlMissaoAgValidacao.Controls.Add(btnValidar);
                 pnlMissaoAgValidacao.Controls.Add(rodape);
 
+                if (resp.Equals(""))
+                {
+                    resp = "<div class='col-12 col-md-4 mb-4'> <h5>Não há missões para visualizar...</h5> </div>";
+                }
+
             }
             else if (missao.Status.Equals(StatusMissaoEnum.VALIDADA))
             {
@@ -874,7 +924,7 @@ public partial class Pages_Gerente_GerenciarMissoes : System.Web.UI.Page
                 resp += "                     <div class='h6 mb-0 text-gray-800'> " + missao.Missao.Descricao + "</div> ";
                 resp += "                     <div class='mt-4'> ";
                 resp += "                         <i class='fas fa-user fa-2x text-success'></i> ";
-                resp += $"                         &nbsp; {missao.Usuario.Nome} ";
+                resp += $"                         &nbsp; {missao.Usuario.Usu_nome} ";
                 resp += "                         <br /> ";
                 resp += "                         <br /> ";
 

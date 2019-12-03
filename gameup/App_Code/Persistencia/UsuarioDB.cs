@@ -39,7 +39,7 @@ public class UsuarioDB
             IDataAdapter dataAdapter;
             objConexao = Mapped.Connection();
 
-            string query = "select usu_email, usu_senha from usuario where usu_email = ?usu_email";
+            string query = "select usu_email, usu_senha, tus_id from usuario where usu_email = ?usu_email";
             objCommand = Mapped.Command(query, objConexao);
             objCommand.Parameters.Add(Mapped.Parameter("?usu_email", usu.Usu_email));
             dataAdapter = Mapped.Adapter(objCommand);
@@ -80,13 +80,12 @@ public class UsuarioDB
             IDbCommand objCommand;
             objConexao = Mapped.Connection();
 
-            string query = "update usuario SET usu_senha = ?usu_senha, usu_datanascimento = ?usu_datanascimento " +
-                           "WHERE usu_email = ?usu_email";
+            string query = "update usuario SET usu_senha = ?usu_senha WHERE usu_email = ?usu_email";
 
             objCommand = Mapped.Command(query, objConexao);
 
             objCommand.Parameters.Add(Mapped.Parameter("?usu_senha", usu.Usu_senha));
-            objCommand.Parameters.Add(Mapped.Parameter("?usu_datanascimento", usu.Usu_dataNascimento));
+            //objCommand.Parameters.Add(Mapped.Parameter("?usu_datanascimento", usu.Usu_dataNascimento));
             objCommand.Parameters.Add(Mapped.Parameter("?usu_email", usu.Usu_email));
 
             objCommand.ExecuteNonQuery();

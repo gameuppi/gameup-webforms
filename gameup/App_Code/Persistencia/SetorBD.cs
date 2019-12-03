@@ -51,10 +51,10 @@ public class SetorBD
         query += " 	SELECT ";
         query += " 	    USU_ID ";
         query += " 	FROM ";
-        query += " 	    TBL_USUARIO ";
+        query += " 	    USUARIO ";
         query += " 	WHERE ";
-        query += " 	    ID_SETOR = ?SET_ID ";
-        query += " 	    AND ID_GERENTE = '1' ";
+        query += " 	    SET_ID = ?SET_ID ";
+        query += " 	    AND TUS_ID = '2' "; // TRUE
 
         objCommand = Mapped.Command(query, objConexao);
         objCommand.Parameters.Add(Mapped.Parameter("?SET_ID", set_id));

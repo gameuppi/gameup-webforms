@@ -23,8 +23,8 @@ public partial class Pages_Colaborador_PlacarLideres : System.Web.UI.Page
         foreach (DataRow usu in listaDeUsuariosDs.Tables[0].Rows)
         {
             usuario = new Usuario();
-            usuario.Nome = usu["usu_nome"].ToString();
-            usuario.QtdPontos = Convert.ToInt32(usu["usu_qtd_pontos"].ToString());
+            usuario.Usu_nome = usu["usu_nome"].ToString();
+            usuario.Usu_qtdPontos = Convert.ToInt32(usu["usu_qtd_pontos"].ToString());
             listaDeUsuarios.Add(usuario);
         }
 
@@ -35,16 +35,16 @@ public partial class Pages_Colaborador_PlacarLideres : System.Web.UI.Page
             // Preenche top 3
             if (pos == 1)
             {
-                lbl1Posicao.Text = usu.Nome;
-                lblPontos1Posicao.Text = usu.QtdPontos.ToString();
+                lbl1Posicao.Text = usu.Usu_nome;
+                lblPontos1Posicao.Text = usu.Usu_qtdPontos.ToString();
             } else if (pos == 2)
             {
-                lbl2Posicao.Text = usu.Nome;
-                lblPontos2Posicao.Text = usu.QtdPontos.ToString();
+                lbl2Posicao.Text = usu.Usu_nome;
+                lblPontos2Posicao.Text = usu.Usu_qtdPontos.ToString();
             } else if (pos == 3)
             {
-                lbl3Posicao.Text = usu.Nome;
-                lblPontos3Posicao.Text = usu.QtdPontos.ToString();
+                lbl3Posicao.Text = usu.Usu_nome;
+                lblPontos3Posicao.Text = usu.Usu_qtdPontos.ToString();
             }
 
             // Preenche placar geral
@@ -54,8 +54,8 @@ public partial class Pages_Colaborador_PlacarLideres : System.Web.UI.Page
             tr = new TableRow();
 
             tcPosicao.Text = pos.ToString();
-            tcNome.Text = usu.Nome;
-            tcPontos.Text = usu.QtdPontos.ToString();
+            tcNome.Text = usu.Usu_nome;
+            tcPontos.Text = usu.Usu_qtdPontos.ToString();
             tr.Controls.Add(tcPosicao);
             tr.Controls.Add(tcNome);
             tr.Controls.Add(tcPontos);

@@ -17,7 +17,7 @@ public class UsuarioBD
         IDataAdapter dataAdapter;
 
         objConexao = Mapped.Connection();
-        string query = "SELECT * from tbl_usuario WHERE usu_id = ?usu_id";
+        string query = "SELECT * from usuario WHERE usu_id = ?usu_id";
 
         objCommand = Mapped.Command(query, objConexao);
 
@@ -34,4 +34,32 @@ public class UsuarioBD
         return ds;
 
     }
+
+    public static DataSet procurarUsuarioPorEmail(string usu_email)
+    {
+        DataSet ds = new DataSet();
+        IDbConnection objConexao;
+        IDbCommand objCommand;
+        IDataAdapter dataAdapter;
+
+        objConexao = Mapped.Connection();
+        string query = "SELECT * from usuario WHERE usu_email = ?usu_email";
+
+        objCommand = Mapped.Command(query, objConexao);
+
+        objCommand.Parameters.Add(Mapped.Parameter("?usu_email", usu_email));
+
+        dataAdapter = Mapped.Adapter(objCommand);
+
+        dataAdapter.Fill(ds);
+
+        objConexao.Close();
+        objConexao.Dispose();
+        objCommand.Dispose();
+
+        return ds;
+
+    }
+
+
 }

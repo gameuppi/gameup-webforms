@@ -23,7 +23,7 @@ public class MissaoUsuarioBD
 
             string query = "";
             query += "INSERT ";
-            query += "	INTO TBL_MISSAO_USUARIO ( ";
+            query += "	INTO MISSAO_USUARIO ( ";
             query += "		MUS_DT_ATRIBUICAO, ";
             query += "		MUS_DT_CONCLUSAO, ";
             query += "		MUS_STATUS, ";
@@ -43,7 +43,7 @@ public class MissaoUsuarioBD
             objComando.Parameters.Add(Mapped.Parameter("?mus_dt_conclusao", missaoUsuario.DtConclusao));
             objComando.Parameters.Add(Mapped.Parameter("?mus_status", missaoUsuario.Status.ToString()));
             objComando.Parameters.Add(Mapped.Parameter("?mis_id", missaoUsuario.Missao.Id));
-            objComando.Parameters.Add(Mapped.Parameter("?usu_id", missaoUsuario.Usuario.Id));
+            objComando.Parameters.Add(Mapped.Parameter("?usu_id", missaoUsuario.Usuario.Usu_id));
 
             objComando.ExecuteNonQuery();
 
@@ -72,10 +72,10 @@ public class MissaoUsuarioBD
 
             string query = "";
             query += " UPDATE ";
-            query += " 	TBL_MISSAO_USUARIO ";
+            query += " 	MISSAO_USUARIO ";
             query += " SET ";
             query += " 	MUS_STATUS = ?mus_status, ";
-            query += " 	DT_VALIDACAO = ?dt_validacao ";
+            query += " 	MUS_DT_VALIDACAO = ?dt_validacao ";
             query += " WHERE  ";
             query += " 	MUS_ID = ?mus_id; ";
 
@@ -111,9 +111,10 @@ public class MissaoUsuarioBD
         query += " SELECT  ";
         query += " 	MUS_ID, ";
         query += " 	USU_ID, ";
-        query += " 	MIS_ID ";
+        query += " 	MIS_ID, ";
+        query += " 	MUS_DT_CONCLUSAO ";
         query += " FROM ";
-        query += " 	TBL_MISSAO_USUARIO ";
+        query += " 	MISSAO_USUARIO ";
         query += " WHERE  ";
         query += " 	MUS_ID = ?mus_id; ";
 
