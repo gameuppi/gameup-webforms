@@ -564,10 +564,10 @@ public partial class Pages_Gerente_GerenciarMissoes : System.Web.UI.Page
         pnlMissoesEmConstrucao.Controls.Clear();
         pnlMissoesVisualizar.Controls.Clear();
 
-        //List<Missao> listaDeMissoes = criarListaObjMissao(MissaoBD.procurarMissao(usuarioLogado.Emp_id));
+        List<Missao> listaDeMissoes = criarListaObjMissao(MissaoBD.procurarMissao(usuarioLogado.Emp_id));
         List<MissaoUsuario> listaDeMissoesUsuario = criarListaObjMissaoUsuario(MissaoBD.procurarTodasMissaoUsuarioGerente(usuarioLogado.Usu_id));
 
-        //carregarMissoesIncompletas(listaDeMissoes);
+        carregarMissoesIncompletas(listaDeMissoes);
         carregarTodasAsMissoesUsuario(listaDeMissoesUsuario);
     }
 
@@ -577,6 +577,7 @@ public partial class Pages_Gerente_GerenciarMissoes : System.Web.UI.Page
     {
         string resp = "";
         pnlMissoesEmConstrucao.Controls.Clear();
+        int cont = 0;
 
         foreach (Missao missao in listaDeMissoes)
         {
@@ -634,15 +635,20 @@ public partial class Pages_Gerente_GerenciarMissoes : System.Web.UI.Page
                 pnlMissoesEmConstrucao.Controls.Add(topo);
                 pnlMissoesEmConstrucao.Controls.Add(btnContinuarCadastro);
                 pnlMissoesEmConstrucao.Controls.Add(rodape);
+                cont++;
             }
         }
 
-        if (resp.Equals(""))
+
+        if (cont <= 0 )
         {
-            resp = "<div class='col-12 col-md-4 mb-4'> <h5>Não há missões em construção...</h5> </div>";
+            Literal literal = new Literal();
+            literal.Text = "<div class='col-12 col-md-4 mb-4'> <h6>Não há missões em construção...</h6> </div>";
+            pnlMissoesEmConstrucao.Controls.Add(literal);
+
         }
 
-        //ltrMissoesEmConstrucao.Text = resp;
+
     }
 
 

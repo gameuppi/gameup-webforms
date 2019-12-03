@@ -24,7 +24,7 @@ public partial class Pages_Colaborador_PlacarLideres : System.Web.UI.Page
         {
             usuario = new Usuario();
             usuario.Usu_nome = usu["usu_nome"].ToString();
-            usuario.Usu_qtdPontos = Convert.ToInt32(usu["usu_qtd_pontos"].ToString());
+            usuario.Usu_qtdPontos = Convert.ToInt32(usu["usu_qtdpontos"].ToString());
             listaDeUsuarios.Add(usuario);
         }
 

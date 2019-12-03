@@ -17,7 +17,7 @@ public class PlacarLideresBD
         IDataAdapter dataAdapter;
 
         objConexao = Mapped.Connection();
-        string query = "SELECT * from tbl_usuario WHERE usu_empresa = ?emp_id order by usu_qtd_pontos desc limit 10";
+        string query = "SELECT * from usuario WHERE emp_id = ?emp_id order by usu_qtdpontos desc limit 10";
 
         objCommand = Mapped.Command(query, objConexao);
 
