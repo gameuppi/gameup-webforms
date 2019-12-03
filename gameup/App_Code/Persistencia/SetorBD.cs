@@ -19,11 +19,11 @@ public class SetorBD
         objConexao = Mapped.Connection();
         string query = "";
         query += " 	SELECT ";
-        query += " 	    USU_ID ";
+        query += " 	    * ";
         query += " 	FROM ";
-        query += " 	    TBL_USUARIO ";
+        query += " 	    USUARIO ";
         query += " 	WHERE ";
-        query += " 	    ID_SETOR = ?SET_ID; ";
+        query += " 	    SET_ID = ?SET_ID; ";
 
         objCommand = Mapped.Command(query, objConexao);
         objCommand.Parameters.Add(Mapped.Parameter("?SET_ID", set_id));

@@ -324,8 +324,7 @@
                 </div>
             </div>
         </div>
-    </form>
-
+        
     <!-- Bootstrap -->
     <script src="../../Assets/Vendor/jquery/jquery.min.js"></script>
     <script src="../../Assets/Vendor/bootstrap/js/bootstrap.min.js"></script>
@@ -344,5 +343,8 @@
     <script src="../../Assets/Custom/Js/demo/chart-area-demo.js"></script>
     <script src="../../Assets/Custom/Js/demo/chart-pie-demo.js"></script>
     <script src="../../Assets/Custom/Js/demo/chart-pie-demo.js"></script>
+        <asp:ScriptManager runat="server"></asp:ScriptManager>
+    </form>
+
 </body>
 </html>

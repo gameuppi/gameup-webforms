@@ -61,5 +61,34 @@ public class UsuarioBD
 
     }
 
+    public static void atribuirRecompensaUsuario(Usuario usuario)
+    {
+        try
+        {
+            DataSet ds = new DataSet();
+            IDbConnection objConexao;
+            IDbCommand objCommand;
+            objConexao = Mapped.Connection();
 
+            string query = "update usuario SET usu_qtdXp = ?usu_qtdXp, usu_qtdPontos = ?usu_qtdPontos, usu_qtdMoeda = ?usu_qtdMoeda WHERE usu_id = ?usu_id";
+
+            objCommand = Mapped.Command(query, objConexao);
+
+            objCommand.Parameters.Add(Mapped.Parameter("?usu_id", usuario.Usu_id));
+            objCommand.Parameters.Add(Mapped.Parameter("?usu_qtdXp", usuario.Usu_qtdXp));
+            objCommand.Parameters.Add(Mapped.Parameter("?usu_qtdPontos", usuario.Usu_qtdPontos));
+            objCommand.Parameters.Add(Mapped.Parameter("?usu_qtdMoeda", usuario.Usu_qtdMoeda));
+
+            objCommand.ExecuteNonQuery();
+
+            objConexao.Close();
+            objConexao.Dispose();
+            objCommand.Dispose();
+        }
+        catch (Exception ex)
+        {
+            Console.Write(ex.StackTrace);
+        }
+
+    }
 }

@@ -485,7 +485,6 @@ public partial class Pages_Gerente_GerenciarMissoes : System.Web.UI.Page
         missaoUsuario.Missao = procurarMissaoPorId(Convert.ToInt32(missao.Tables[0].Rows[0]["mis_id"]));
         missaoUsuario.DtConclusao = Convert.ToDateTime(missao.Tables[0].Rows[0]["mus_dt_conclusao"]);
 
-
         return missaoUsuario;
     }
 
@@ -530,6 +529,9 @@ public partial class Pages_Gerente_GerenciarMissoes : System.Web.UI.Page
             {
                 usuario.Usu_id = Convert.ToInt32(mis["usu_id"]);
                 usuario.Usu_nome = mis["usu_nome"].ToString();
+                usuario.Usu_qtdMoeda = Convert.ToInt32(mis["usu_qtdmoeda"]);
+                usuario.Usu_qtdXp = Convert.ToInt32(mis["usu_qtdxp"]);
+                usuario.Usu_qtdPontos = Convert.ToInt32(mis["usu_qtdpontos"]);
             }
         }
         catch (Exception e)
@@ -562,10 +564,10 @@ public partial class Pages_Gerente_GerenciarMissoes : System.Web.UI.Page
         pnlMissoesEmConstrucao.Controls.Clear();
         pnlMissoesVisualizar.Controls.Clear();
 
-        List<Missao> listaDeMissoes = criarListaObjMissao(MissaoBD.procurarMissao(usuarioLogado.Emp_id));
-        List<MissaoUsuario> listaDeMissoesUsuario = criarListaObjMissaoUsuario(MissaoBD.procurarTodasMissaoUsuario(usuarioLogado.Emp_id));
+        //List<Missao> listaDeMissoes = criarListaObjMissao(MissaoBD.procurarMissao(usuarioLogado.Emp_id));
+        List<MissaoUsuario> listaDeMissoesUsuario = criarListaObjMissaoUsuario(MissaoBD.procurarTodasMissaoUsuarioGerente(usuarioLogado.Usu_id));
 
-        carregarMissoesIncompletas(listaDeMissoes);
+        //carregarMissoesIncompletas(listaDeMissoes);
         carregarTodasAsMissoesUsuario(listaDeMissoesUsuario);
     }
 
@@ -964,6 +966,54 @@ public partial class Pages_Gerente_GerenciarMissoes : System.Web.UI.Page
 
     }
 
+    void atribuirRecompensas(MissaoUsuario missaoUsuario)
+    {
+        if (missaoUsuario.Missao.Tipo.Equals(TipoMissaoEnum.SETOR.ToString()))
+        {
+            DataSet usuariosDs = SetorBD.procurarUsuariosSetor(usuarioLogado.Set_id);
+            List<Usuario> listaDeUsuarios = new List<Usuario>();
+
+            foreach (DataRow id in usuariosDs.Tables[0].Rows)
+            {
+                Usuario usu = new Usuario();
+                usu = procurarUsuarioPorId(Convert.ToInt32(id["usu_id"].ToString()));
+                listaDeUsuarios.Add(usu);
+            }
+
+            foreach(Usuario usuario in listaDeUsuarios)
+            {
+                usuario.Usu_qtdMoeda += missaoUsuario.Missao.QtdMoedas;
+                usuario.Usu_qtdPontos += missaoUsuario.Missao.QtdPontos;
+                usuario.Usu_qtdXp += missaoUsuario.Missao.QtdExp;
+
+                try
+                {
+                    UsuarioBD.atribuirRecompensaUsuario(usuario);
+                }
+                catch (Exception ex)
+                {
+                    Console.Write(ex.StackTrace);
+                }
+            }
+        }
+        else
+        {
+            Usuario usuario = procurarUsuarioPorId(missaoUsuario.Usuario.Usu_id);
+            usuario.Usu_qtdMoeda += missaoUsuario.Missao.QtdMoedas;
+            usuario.Usu_qtdPontos += missaoUsuario.Missao.QtdPontos;
+            usuario.Usu_qtdXp += missaoUsuario.Missao.QtdExp;
+
+            try
+            {
+                UsuarioBD.atribuirRecompensaUsuario(usuario);
+            }
+            catch (Exception ex)
+            {
+                Console.Write(ex.StackTrace);
+            }
+        }
+    }
+
     void validarMissao(object sender, EventArgs e, int mus_id)
     {
         try
@@ -972,6 +1022,9 @@ public partial class Pages_Gerente_GerenciarMissoes : System.Web.UI.Page
             missaoUsuario = criarObjMissaoUsuario(MissaoUsuarioBD.procurarMissaoUsuarioPorId(mus_id));
 
             missaoUsuario.Status = StatusMissaoEnum.VALIDADA;
+            missaoUsuario.DtValidacao = DateTime.Now;
+
+            atribuirRecompensas(missaoUsuario);
 
             MissaoUsuarioBD.validarMissao(missaoUsuario);
         }

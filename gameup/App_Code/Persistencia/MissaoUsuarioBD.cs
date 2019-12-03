@@ -98,6 +98,46 @@ public class MissaoUsuarioBD
         return ok;
     }
 
+    public static bool concluirMissao(MissaoUsuario missaoUsuario)
+    {
+        bool ok = true;
+
+        try
+        {
+            IDbConnection objConexao;
+            IDbCommand objComando;
+
+            objConexao = Mapped.Connection();
+
+            string query = "";
+            query += " UPDATE ";
+            query += " 	MISSAO_USUARIO ";
+            query += " SET ";
+            query += " 	MUS_STATUS = ?mus_status, ";
+            query += " 	MUS_DT_CONCLUSAO = ?dt_conclusao ";
+            query += " WHERE  ";
+            query += " 	MUS_ID = ?mus_id; ";
+
+            objComando = Mapped.Command(query, objConexao);
+            objComando.Parameters.Add(Mapped.Parameter("?mus_status", missaoUsuario.Status.ToString()));
+            objComando.Parameters.Add(Mapped.Parameter("?mus_id", missaoUsuario.Id));
+            objComando.Parameters.Add(Mapped.Parameter("?dt_conclusao", missaoUsuario.DtConclusao));
+
+            objComando.ExecuteNonQuery();
+
+            objConexao.Dispose();
+            objComando.Dispose();
+        }
+        catch (Exception e)
+        {
+            Console.Write(e);
+            ok = false;
+        }
+
+        return ok;
+    }
+
+
     public static DataSet procurarMissaoUsuarioPorId(int mus_id)
     {
 

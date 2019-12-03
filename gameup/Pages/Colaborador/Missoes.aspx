@@ -21,13 +21,13 @@
 
     <nav>
         <div class="nav nav-tabs" id="nav-tab" role="tablist">
-            <a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab" aria-controls="nav-home" aria-selected="true">Missões a fazer</a>
-            <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-profile" role="tab" aria-controls="nav-profile" aria-selected="false">Missões enviadas</a>
+            <asp:LinkButton runat="server" CssClass="nav-item nav-link active" ID="navVisualizarTab" data-toggle="tab" href="#nav-visualizar" role="tab" aria-controls="nav-visualizar" aria-selected="true">Visualizar missões</asp:LinkButton>
+            <asp:LinkButton runat="server" CssClass="nav-item nav-link" ID="navMissoesEnviadas" data-toggle="tab" href="#nav-enviadas" role="tab" aria-controls="nav-enviadas" aria-selected="true">Missões enviadas</asp:LinkButton>
         </div>
     </nav>
     <!-- Missoes a fazer -->
     <div class="tab-content card shadow border-top-0" id="nav-tabContent">
-        <div class="tab-pane fade show active p-4" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
+        <div class="tab-pane fade show active p-4" id="nav-visualizar" role="tabpanel" aria-labelledby="nav-visualizar">
             <div class="row">
 
                 <div class="col-12 col-md-4">
@@ -41,129 +41,13 @@
                     </div>
                 </div>
             </div>
-            <div class="row mt-3">
-                <div class="col-12 col-md-4 mb-4">
-                    <div class="card border-left-info shadow h-100 py-2">
-                        <div class="card-body">
-                            <div class="row no-gutters align-items-center">
-                                <div class="col mr-2">
-                                    <div class="text-sm font-weight-bold text-info text-uppercase mb-1">Entregar relatório técnico</div>
-                                    <div class="h6 mb-0 text-gray-800">Você precisa terminar o relatório técnico para entrega-lo a diretoria.</div>
-                                    <div class="mt-4">
-                                        <i class="fas fa-calendar-check fa-2x text-info"></i>
-                                        &nbsp; 12/06/2019
-                                    <br />
-                                        <br />
-                                        <button type="button" class="btn btn-info btn-block" data-toggle="modal" data-target="#exampleModalCenter">Detalhes</button>
-                                    </div>
-                                </div>
-                                <div class="col-auto">
-                                    <a href="#"><i class="fas fa-check fa-2x text-gray-300 icon-change"></i></a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-12 col-md-4 mb-4">
-                    <div class="card border-left-info shadow h-100 py-2">
-                        <div class="card-body">
-                            <div class="row no-gutters align-items-center">
-                                <div class="col mr-2">
-                                    <div class="text-sm font-weight-bold text-info text-uppercase mb-1">Entregar relatório técnico</div>
-                                    <div class="h6 mb-0 text-gray-800">Você precisa terminar o relatório técnico para entrega-lo a diretoria.</div>
-                                    <div class="mt-4">
-                                        <i class="fas fa-calendar-check fa-2x text-info"></i>
-                                        &nbsp; 12/06/2019
-                                    <br />
-                                        <br />
-                                        <button type="button" class="btn btn-info btn-block" data-toggle="modal" data-target="#exampleModalCenter">Detalhes</button>
-                                    </div>
-                                </div>
-                                <div class="col-auto">
-                                    <a href="#"><i class="fas fa-check fa-2x text-gray-300 icon-change"></i></a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-12 col-md-4 mb-4">
-                    <div class="card border-left-info shadow h-100 py-2">
-                        <div class="card-body">
-                            <div class="row no-gutters align-items-center">
-                                <div class="col mr-2">
-                                    <div class="text-sm font-weight-bold text-info text-uppercase mb-1">Entregar relatório técnico</div>
-                                    <div class="h6 mb-0 text-gray-800">Você precisa terminar o relatório técnico para entrega-lo a diretoria.</div>
-                                    <div class="mt-4">
-                                        <i class="fas fa-calendar-check fa-2x text-info"></i>
-                                        &nbsp; 12/06/2019
-                                    <br />
-                                        <br />
-                                        <button type="button" class="btn btn-info btn-block" data-toggle="modal" data-target="#exampleModalCenter">Detalhes</button>
-                                    </div>
-                                </div>
-                                <div class="col-auto">
-                                    <a href="#"><i class="fas fa-check fa-2x text-gray-300 icon-change"></i></a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-12 col-md-4 mb-4">
-                    <div class="card border-left-info shadow h-100 py-2">
-                        <div class="card-body">
-                            <div class="row no-gutters align-items-center">
-                                <div class="col mr-2">
-                                    <div class="text-sm font-weight-bold text-info text-uppercase mb-1">Entregar relatório técnico</div>
-                                    <div class="h6 mb-0 text-gray-800">Você precisa terminar o relatório técnico para entrega-lo a diretoria.</div>
-                                    <div class="mt-4">
-                                        <i class="fas fa-calendar-check fa-2x text-info"></i>
-                                        &nbsp; 12/06/2019
-                                    <br />
-                                        <br />
-                                        <button type="button" class="btn btn-info btn-block" data-toggle="modal" data-target="#exampleModalCenter">Detalhes</button>
-                                    </div>
-                                </div>
-                                <div class="col-auto">
-                                    <a href="#"><i class="fas fa-check fa-2x text-gray-300 icon-change"></i></a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-12 col-md-4 mb-4">
-                    <div class="card border-left-info shadow h-100 py-2">
-                        <div class="card-body">
-                            <div class="row no-gutters align-items-center">
-                                <div class="col mr-2">
-                                    <div class="text-sm font-weight-bold text-info text-uppercase mb-1">Entregar relatório técnico</div>
-                                    <div class="h6 mb-0 text-gray-800">Você precisa terminar o relatório técnico para entrega-lo a diretoria.</div>
-                                    <div class="mt-4">
-                                        <i class="fas fa-calendar-check fa-2x text-info"></i>
-                                        &nbsp; 12/06/2019
-                                    <br />
-                                        <br />
-                                        <button type="button" class="btn btn-info btn-block" data-toggle="modal" data-target="#exampleModalCenter">Detalhes</button>
-                                    </div>
-                                </div>
-                                <div class="col-auto">
-                                    <a href="#"><i class="fas fa-check fa-2x text-gray-300 icon-change"></i></a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-
-            </div>
+            <asp:Panel runat="server" ID="pnlMissoesVisualizar" CssClass="row mt-4">
+            </asp:Panel>
 
         </div>
-        <div class="tab-pane fade p-4" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
+        <div class="tab-pane fade p-4" id="nav-enviadas" role="tabpanel" aria-labelledby="nav-enviadas">
             <div class="row">
-                 <div class="col-12 col-md-4 mb-3">
+                <div class="col-12 col-md-4 mb-3">
                     <div class="input-group">
                         <input type="text" class="form-control bg-light border-0 small" placeholder="Procure suas concluídas ou aguardando validação" aria-label="Search" aria-describedby="basic-addon2">
                         <div class="input-group-append">
@@ -179,53 +63,9 @@
                     <button type="button" class="btn btn-warning">Pendentes</button>
                 </div>
             </div>
-            <div class="row pt-3">
-                <div class="col-12 col-md-4 mb-4">
-                    <div class="card border-left-success shadow h-100 py-2">
-                        <div class="card-body">
-                            <div class="row no-gutters align-items-center">
-                                <div class="col mr-2">
-                                    <div class="text-sm font-weight-bold text-success text-uppercase mb-1">Entregar relatório técnico</div>
-                                    <div class="h6 mb-0 text-gray-800">Você precisa terminar o relatório técnico para entrega-lo a diretoria.</div>
-                                    <div class="mt-4">
-                                        <i class="fas fa-calendar-check fa-2x text-success"></i>
-                                        &nbsp; 12/06/2019
-                                    <br />
-                                        <br />
-                                        <button type="button" class="btn btn-success btn-block" data-toggle="modal" data-target="#exampleModalCenter">Detalhes</button>
-                                    </div>
-                                </div>
-                                <div class="col-auto">
-                                    <a href="#"><i class="fas fa-check fa-2x text-success"></i></a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
 
-                <div class="col-12 col-md-4 mb-4">
-                    <div class="card border-left-warning shadow h-100 py-2">
-                        <div class="card-body">
-                            <div class="row no-gutters align-items-center">
-                                <div class="col mr-2">
-                                    <div class="text-sm font-weight-bold text-warning text-uppercase mb-1">Entregar relatório técnico</div>
-                                    <div class="h6 mb-0 text-gray-800">Você precisa terminar o relatório técnico para entrega-lo a diretoria.</div>
-                                    <div class="mt-4">
-                                        <i class="fas fa-calendar-check fa-2x text-warning"></i>
-                                        &nbsp; 12/06/2019
-                                    <br />
-                                        <br />
-                                        <button type="button" class="btn btn-warning btn-block" data-toggle="modal" data-target="#exampleModalCenter">Detalhes</button>
-                                    </div>
-                                </div>
-                                <div class="col-auto">
-                                    <a href="#"><i class="fas fa-clock fa-2x text-warning"></i></a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            <asp:Panel runat="server" ID="pnlMissoesEnviadas" CssClass="row mt-4">
+            </asp:Panel>
 
 
 
@@ -233,10 +73,8 @@
 
 
         </div>
-
-
         <!-- Modal -->
-        <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal fade" id="modalDetalhesMissao" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered" role="document">
                 <div class="modal-content p-4">
                     <div class="modal-header">
@@ -246,27 +84,49 @@
                         </button>
                     </div>
                     <div class="modal-body">
+                        <asp:Literal runat="server" ID="Literal1"></asp:Literal>
+
                         <div class="row">
                             <div class="col-12">
                                 <h6>Recompensas</h6>
                                 <div class="row mt-4">
                                     <div class="col-4 text-center text-success">
                                         <i class="fas fa-coins fa-2x"></i>
-                                        <p class="mt-3">50</p>
+                                        <p class="mt-3">
+                                            <asp:Literal runat="server" ID="ltrDetalhesMoedas">
+                                            </asp:Literal>
+                                        </p>
                                     </div>
                                     <div class="col-4 text-center text-warning">
                                         <i class="fas fa-star fa-2x"></i>
-                                        <p class="mt-3">3</p>
+                                        <p class="mt-3">
+                                            <asp:Literal runat="server" ID="ltrDetalhesEstrelas">
+                                            </asp:Literal>
+                                        </p>
                                     </div>
                                     <div class="col-4 text-center text-danger">
                                         <i class="fas fa-meteor fa-2x"></i>
-                                        <p class="mt-3">35</p>
+                                        <p class="mt-3">
+                                            <asp:Literal runat="server" ID="ltrDetalhesMeteoros">
+                                            </asp:Literal>
+                                        </p>
                                     </div>
                                 </div>
                             </div>
                         </div>
                         <div class="row mt-4">
-                            <p>Lorem Ipsum é simplesmente uma simulação de texto da indústria tipográfica e de impressos, e vem sendo utilizado desde o século XVI, quando um impressor desconhecido pegou uma bandeja de tipos e os embaralhou para fazer um livro de modelos de tipos. Lorem Ipsum sobreviveu não só a cinco séculos.</p>
+                            <p>
+                                <asp:Literal runat="server" ID="ltrDetalhesDescricao">
+                                </asp:Literal>
+                            </p>
+                        </div>
+
+                        <div class="row mt-4">
+                            <h6>
+                                <i class="fas fa-calendar-check"></i>
+                                &nbsp;
+                                Concluído em:
+                            <asp:Literal runat="server" ID="ltrDataConclusao"></asp:Literal></h6>
                         </div>
                     </div>
                 </div>
