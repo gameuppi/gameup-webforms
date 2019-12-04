@@ -9,10 +9,10 @@
     </div>
     <nav>
         <div class="nav nav-tabs text-center" id="nav-tab" role="tablist">
-            <asp:LinkButton runat="server" class="nav-item nav-link active" id="navCadastroTab" data-toggle="tab" href="#nav-cadastro" role="tab" aria-controls="nav-cadastro" aria-selected="true">Cadastrar</asp:LinkButton>
-            <asp:LinkButton runat="server" class="nav-item nav-link" id="navVisualizacaoTab" data-toggle="tab" href="#nav-visualizacao" role="tab" aria-controls="nav-visualizacao" aria-selected="false">Visualizar</asp:LinkButton>
-            <asp:LinkButton runat="server" class="nav-item nav-link" id="navConstrucaoTab" data-toggle="tab" href="#nav-construcao" role="tab" aria-controls="nav-construcao" aria-selected="false">Em construção</asp:LinkButton>
-            <asp:LinkButton runat="server" class="nav-item nav-link" id="navValidacaoTab" data-toggle="tab" href="#nav-validacao" role="tab" aria-controls="nav-validacao" aria-selected="false">Aguardando validação</asp:LinkButton>
+            <asp:LinkButton runat="server" class="nav-item nav-link active" ID="navCadastroTab" data-toggle="tab" href="#nav-cadastro" role="tab" aria-controls="nav-cadastro" aria-selected="true">Cadastrar</asp:LinkButton>
+            <asp:LinkButton runat="server" class="nav-item nav-link" ID="navVisualizacaoTab" data-toggle="tab" href="#nav-visualizacao" role="tab" aria-controls="nav-visualizacao" aria-selected="false">Visualizar</asp:LinkButton>
+            <asp:LinkButton runat="server" class="nav-item nav-link" ID="navConstrucaoTab" data-toggle="tab" href="#nav-construcao" role="tab" aria-controls="nav-construcao" aria-selected="false">Em construção</asp:LinkButton>
+            <asp:LinkButton runat="server" class="nav-item nav-link" ID="navValidacaoTab" data-toggle="tab" href="#nav-validacao" role="tab" aria-controls="nav-validacao" aria-selected="false">Aguardando validação</asp:LinkButton>
         </div>
     </nav>
     <!-- Missoes a fazer -->
@@ -21,6 +21,7 @@
             <div class="row">
                 <div class="col-12">
                     <div class="row">
+                        <asp:Label runat="server" ID="idMissao" CssClass="d-none"></asp:Label>
                         <div class="col-7">
                             <div class="form-check form-check-inline btn btn-info">
                                 <i class="fas fa-user"></i>&nbsp;
@@ -45,10 +46,6 @@
             <div class="row mt-5">
                 <div class="col-12 col-md-3">
                     <div class="row">
-                        <div class="col-12 text-center mb-5">
-                            <i class="fas fa-user-circle fa-10x"></i>
-                            <br />
-                        </div>
                         <div class="col-12 mt-4">
                             <img src="../../Assets/Imagens/astronauta3.png" class="img-fluid float-right" />
                         </div>
@@ -68,9 +65,14 @@
                                     <label for="txtNome">Nome</label>
                                     <asp:TextBox type="text" CssClass="form-control" ID="txtNome" runat="server" placeholder="Nome da missão" />
                                 </div>
-                                <div class="form-group col-12 col-md-6">
-                                    <label for="inputPassword4">Participantes</label>
-                                    <asp:TextBox type="text" CssClass="form-control" ID="txtParticipantes" runat="server" placeholder="Participantes" />
+                                <div class="col-12 col-md-6">
+                                    <label for="txtNome">Nome</label>
+                                    <div class="input-group">
+                                        <input type="text" class="form-control bg-light border-0 small" readonly placeholder="Procure por colaboradores ou setores" aria-label="Search" aria-describedby="basic-addon2">
+                                        <div class="input-group-append">
+                                            <asp:Button runat="server" ID="btnCarregarParticipantes" OnClick="btnCarregarParticipantes_Click" CssClass="btn btn-info" Text="Procurar" />
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                             <div class="form-row">
@@ -144,246 +146,66 @@
             </div>
 
 
+    </div>
 
-        </div>
-
-        <div class="tab-pane fade p-4" id="nav-visualizacao" role="tabpanel" aria-labelledby="nav-visualizacao-tab">
-            <div class="row">
-                <div class="col-12 col-md-4">
-                    <div class="input-group">
-                        <input type="text" class="form-control bg-light border-0 small" placeholder="Procure por colaborador ou setor" aria-label="Search" aria-describedby="basic-addon2">
-                        <div class="input-group-append">
-                            <button class="btn btn-info" type="button">
-                                <i class="fas fa-search fa-sm"></i>
-                            </button>
-                        </div>
+    <!-- Visualizar missoes -->
+    <div class="tab-pane fade p-4" id="nav-visualizacao" role="tabpanel" aria-labelledby="nav-visualizacao-tab">
+        <div class="row">
+            <div class="col-12 col-md-4">
+                <div class="input-group">
+                    <input type="text" class="form-control bg-light border-0 small" placeholder="Procure por colaborador ou setor" aria-label="Search" aria-describedby="basic-addon2">
+                    <div class="input-group-append">
+                        <button class="btn btn-info" type="button">
+                            <i class="fas fa-search fa-sm"></i>
+                        </button>
                     </div>
-                </div>
-            </div>
-            <div class="row mt-4">
-                <asp:Literal runat="server" ID="ltrCardsMissoes">
-
-                </asp:Literal>
-            </div>
-        </div>
-
-        <!-- PAINEL DE MISSOES EM CONSTRUCAO -->
-        <div class="tab-pane fade p-4 mb-4" id="nav-construcao" role="tabpanel" aria-labelledby="nav-construcao-tab">
-            <div class="row">
-
-                <div class="col-12 col-md-4">
-                    <div class="input-group">
-                        <input type="text" class="form-control bg-light border-0 small" placeholder="Procure por missões" aria-label="Search" aria-describedby="basic-addon2">
-                        <div class="input-group-append">
-                            <button class="btn btn-info" type="button">
-                                <i class="fas fa-search fa-sm"></i>
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="row mt-4">
-                <asp:Literal runat="server" ID="ltrMissoesEmConstrucao">
-
-                </asp:Literal>
-            </div>
-        </div>
-        <div class="tab-pane fade p-4" id="nav-validacao" role="tabpanel" aria-labelledby="nav-validacao-tab">
-            <div class="row">
-
-                <div class="col-12 col-md-4">
-                    <div class="input-group">
-                        <input type="text" class="form-control bg-light border-0 small" placeholder="Procure por missões" aria-label="Search" aria-describedby="basic-addon2">
-                        <div class="input-group-append">
-                            <button class="btn btn-info" type="button">
-                                <i class="fas fa-search fa-sm"></i>
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="row mt-4">
-
-                <div class="col-12 col-md-4 mb-4">
-                    <div class="card border-left-info shadow h-100 py-2">
-                        <div class="card-body">
-                            <div class="row no-gutters align-items-center">
-                                <div class="col mr-2">
-                                    <div class="text-sm font-weight-bold text-info text-uppercase mb-1">Entregar relatório técnico</div>
-                                    <div class="h6 mb-0 text-gray-800">Você precisa terminar o relatório técnico para entrega-lo a diretoria.</div>
-                                    <div class="mt-4">
-                                        <i class="fas fa-user fa-2x text-info"></i>
-                                        &nbsp; João Ricardo
-                                   
-                                        <br />
-                                        <br />
-                                        <button type="button" class="btn btn-info btn-block" data-toggle="modal" data-target="#exampleModalCenter">Detalhes</button>
-                                    </div>
-                                </div>
-                                <div class="col-auto">
-                                    <a href="#"><i class="fas fa-check fa-2x text-gray-500 icon-change"></i></a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-12 col-md-4 mb-4">
-                    <div class="card border-left-info shadow h-100 py-2">
-                        <div class="card-body">
-                            <div class="row no-gutters align-items-center">
-                                <div class="col mr-2">
-                                    <div class="text-sm font-weight-bold text-info text-uppercase mb-1">Entregar relatório técnico</div>
-                                    <div class="h6 mb-0 text-gray-800">Você precisa terminar o relatório técnico para entrega-lo a diretoria.</div>
-                                    <div class="mt-4">
-                                        <i class="fas fa-users fa-2x text-info"></i>
-                                        &nbsp; Financeiro 9/9
-                                   
-                                        <br />
-                                        <br />
-                                        <button type="button" class="btn btn-info btn-block" data-toggle="modal" data-target="#exampleModalCenter">Detalhes</button>
-                                    </div>
-                                </div>
-                                <div class="col-auto">
-                                    <a href="#"><i class="fas fa-check fa-2x text-gray-500 icon-change"></i></a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-12 col-md-4 mb-4">
-                    <div class="card border-left-info shadow h-100 py-2">
-                        <div class="card-body">
-                            <div class="row no-gutters align-items-center">
-                                <div class="col mr-2">
-                                    <div class="text-sm font-weight-bold text-info text-uppercase mb-1">Entregar relatório técnico</div>
-                                    <div class="h6 mb-0 text-gray-800">Você precisa terminar o relatório técnico para entrega-lo a diretoria.</div>
-                                    <div class="mt-4">
-                                        <i class="fas fa-users fa-2x text-info"></i>
-                                        &nbsp; Financeiro 9/9
-                                   
-                                        <br />
-                                        <br />
-                                        <button type="button" class="btn btn-info btn-block" data-toggle="modal" data-target="#exampleModalCenter">Detalhes</button>
-                                    </div>
-                                </div>
-                                <div class="col-auto">
-                                    <a href="#"><i class="fas fa-check fa-2x text-gray-500 icon-change"></i></a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
-
-                <div class="col-12 col-md-4 mb-4">
-                    <div class="card border-left-info shadow h-100 py-2">
-                        <div class="card-body">
-                            <div class="row no-gutters align-items-center">
-                                <div class="col mr-2">
-                                    <div class="text-sm font-weight-bold text-info text-uppercase mb-1">Entregar relatório técnico</div>
-                                    <div class="h6 mb-0 text-gray-800">Você precisa terminar o relatório técnico para entrega-lo a diretoria.</div>
-                                    <div class="mt-4">
-                                        <i class="fas fa-users fa-2x text-info"></i>
-                                        &nbsp; Financeiro 9/9
-                                   
-                                        <br />
-                                        <br />
-                                        <button type="button" class="btn btn-info btn-block" data-toggle="modal" data-target="#exampleModalCenter">Detalhes</button>
-                                    </div>
-                                </div>
-                                <div class="col-auto">
-                                    <a href="#"><i class="fas fa-check fa-2x text-gray-500 icon-change"></i></a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
-
-                <div class="col-12 col-md-4 mb-4">
-                    <div class="card border-left-info shadow h-100 py-2">
-                        <div class="card-body">
-                            <div class="row no-gutters align-items-center">
-                                <div class="col mr-2">
-                                    <div class="text-sm font-weight-bold text-info text-uppercase mb-1">Entregar relatório técnico</div>
-                                    <div class="h6 mb-0 text-gray-800">Você precisa terminar o relatório técnico para entrega-lo a diretoria.</div>
-                                    <div class="mt-4">
-                                        <i class="fas fa-users fa-2x text-info"></i>
-                                        &nbsp; Financeiro 9/9
-                                   
-                                        <br />
-                                        <br />
-                                        <button type="button" class="btn btn-info btn-block" data-toggle="modal" data-target="#exampleModalCenter">Detalhes</button>
-                                    </div>
-                                </div>
-                                <div class="col-auto">
-                                    <a href="#"><i class="fas fa-check fa-2x text-gray-500 icon-change"></i></a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
-
-                <div class="col-12 col-md-4 mb-4">
-                    <div class="card border-left-info shadow h-100 py-2">
-                        <div class="card-body">
-                            <div class="row no-gutters align-items-center">
-                                <div class="col mr-2">
-                                    <div class="text-sm font-weight-bold text-info text-uppercase mb-1">Entregar relatório técnico</div>
-                                    <div class="h6 mb-0 text-gray-800">Você precisa terminar o relatório técnico para entrega-lo a diretoria.</div>
-                                    <div class="mt-4">
-                                        <i class="fas fa-users fa-2x text-info"></i>
-                                        &nbsp; Financeiro 9/9
-                                   
-                                        <br />
-                                        <br />
-                                        <button type="button" class="btn btn-info btn-block" data-toggle="modal" data-target="#exampleModalCenter">Detalhes</button>
-                                    </div>
-                                </div>
-                                <div class="col-auto">
-                                    <a href="#"><i class="fas fa-check fa-2x text-gray-500 icon-change"></i></a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
-
-                <div class="col-12 col-md-4 mb-4">
-                    <div class="card border-left-info shadow h-100 py-2">
-                        <div class="card-body">
-                            <div class="row no-gutters align-items-center">
-                                <div class="col mr-2">
-                                    <div class="text-sm font-weight-bold text-info text-uppercase mb-1">Entregar relatório técnico</div>
-                                    <div class="h6 mb-0 text-gray-800">Você precisa terminar o relatório técnico para entrega-lo a diretoria.</div>
-                                    <div class="mt-4">
-                                        <i class="fas fa-users fa-2x text-info"></i>
-                                        &nbsp; Financeiro 9/9
-                                   
-                                        <br />
-                                        <br />
-                                        <button type="button" class="btn btn-info btn-block" data-toggle="modal" data-target="#exampleModalCenter">Detalhes</button>
-                                    </div>
-                                </div>
-                                <div class="col-auto">
-                                    <a href="#"><i class="fas fa-check fa-2x text-gray-500 icon-change"></i></a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
                 </div>
             </div>
         </div>
+        <asp:Panel runat="server" ID="pnlMissoesVisualizar" CssClass="row mt-4">
+        </asp:Panel>
+    </div>
+
+    <!-- PAINEL DE MISSOES EM CONSTRUCAO -->
+    <div class="tab-pane fade p-4 mb-4" id="nav-construcao" role="tabpanel" aria-labelledby="nav-construcao-tab">
+        <div class="row">
+
+            <div class="col-12 col-md-4">
+                <div class="input-group">
+                    <input type="text" class="form-control bg-light border-0 small" placeholder="Procure por missões" aria-label="Search" aria-describedby="basic-addon2">
+                    <div class="input-group-append">
+                        <button class="btn btn-info" type="button">
+                            <i class="fas fa-search fa-sm"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <asp:Panel runat="server" ID="pnlMissoesEmConstrucao" CssClass="row mt-4"></asp:Panel>
+    </div>
+
+    <!-- PAINEL DE MISSOES AGUARDANDO VALIDACAO -->
+    <div class="tab-pane fade p-4" id="nav-validacao" role="tabpanel" aria-labelledby="nav-validacao-tab">
+        <div class="row">
+
+            <div class="col-12 col-md-4">
+                <div class="input-group">
+                    <input type="text" class="form-control bg-light border-0 small" placeholder="Procure por missões" aria-label="Search" aria-describedby="basic-addon2">
+                    <div class="input-group-append">
+                        <button class="btn btn-info" type="button">
+                            <i class="fas fa-search fa-sm"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <asp:Panel runat="server" ID="pnlMissaoAgValidacao" CssClass="row mt-4"></asp:Panel>
     </div>
 
 
 
     <!-- Modal -->
-    <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal fade" id="modalDetalhesMissao" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content p-4">
                 <div class="modal-header">
@@ -393,38 +215,109 @@
                     </button>
                 </div>
                 <div class="modal-body">
+                    <asp:Literal runat="server" ID="Literal1"></asp:Literal>
+
                     <div class="row">
                         <div class="col-12">
                             <h6>Recompensas</h6>
                             <div class="row mt-4">
                                 <div class="col-4 text-center text-success">
                                     <i class="fas fa-coins fa-2x"></i>
-                                    <p class="mt-3">50</p>
+                                    <p class="mt-3">
+                                        <asp:Literal runat="server" ID="ltrDetalhesMoedas">
+                                        </asp:Literal>
+                                    </p>
                                 </div>
                                 <div class="col-4 text-center text-warning">
                                     <i class="fas fa-star fa-2x"></i>
-                                    <p class="mt-3">3</p>
+                                    <p class="mt-3">
+                                        <asp:Literal runat="server" ID="ltrDetalhesEstrelas">
+                                        </asp:Literal>
+                                    </p>
                                 </div>
                                 <div class="col-4 text-center text-danger">
                                     <i class="fas fa-meteor fa-2x"></i>
-                                    <p class="mt-3">35</p>
+                                    <p class="mt-3">
+                                        <asp:Literal runat="server" ID="ltrDetalhesMeteoros">
+                                        </asp:Literal>
+                                    </p>
                                 </div>
                             </div>
                         </div>
                     </div>
                     <div class="row mt-4">
-                        <p>Lorem Ipsum é simplesmente uma simulação de texto da indústria tipográfica e de impressos, e vem sendo utilizado desde o século XVI, quando um impressor desconhecido pegou uma bandeja de tipos e os embaralhou para fazer um livro de modelos de tipos. Lorem Ipsum sobreviveu não só a cinco séculos.</p>
+                        <p>
+                            <asp:Literal runat="server" ID="ltrDetalhesDescricao">
+                            </asp:Literal>
+                        </p>
                     </div>
 
                     <div class="row mt-4">
                         <h6>
                             <i class="fas fa-calendar-check"></i>
                             &nbsp;
-                                Concluído em: 12/06/2019</h6>
+                                Concluído em:
+                            <asp:Literal runat="server" ID="ltrDataConclusao"></asp:Literal></h6>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+
+
+    <!-- Modal cadastra missao -->
+    <div class="modal fade" id="modalCadastraMissao">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+
+                <div class="modal-header">
+                    <h4 class="modal-title">
+                        <asp:Literal runat="server" ID="ltrTituloModal"></asp:Literal>
+                    </h4>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+
+                <div class="modal-body">
+                    <asp:Literal runat="server" ID="msgModalCadastraMissao"></asp:Literal>
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-success" data-dismiss="modal">Pronto</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal participantes -->
+    <div class="modal fade" id="modalParticipantes">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+
+                <div class="modal-header">
+                    <h4 class="modal-title">
+                        <asp:Literal runat="server" ID="lblTituloParticipantes"></asp:Literal>
+                    </h4>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+
+                <div class="modal-body">
+                    <asp:ListBox runat="server" ID="ltbParticipantes" CssClass="form-control"></asp:ListBox>
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-success" data-dismiss="modal">Pronto</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--
+    <script>
+        window.addEventListener('keydown', function (e) {
+            var code = e.which || e.keyCode;
+            if (code == 116) e.preventDefault();
+            else return true;
+            // fazer algo aqui para quando a tecla F5 for premida
+        });
+    </script>  -->
 </asp:Content>
 

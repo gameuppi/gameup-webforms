@@ -18,9 +18,10 @@ public class Usuario
     private int usu_qtdMoeda;
     private int usu_qtdXp;
     private int usu_qtdPontos;
-    private TipoUsuarioEnum tus_id;
-    private Setor set_id;
+    private int tus_id;
+    private int set_id;
     private Usuario usu_idGerente;
+    private int emp_id;
 
     public int Usu_id
     {
@@ -152,7 +153,33 @@ public class Usuario
         }
     }
 
-    public TipoUsuarioEnum Tus_id
+    public Usuario Usu_idGerente
+    {
+        get
+        {
+            return usu_idGerente;
+        }
+
+        set
+        {
+            usu_idGerente = value;
+        }
+    }
+
+    public int Tus_id1
+    {
+        get
+        {
+            return Tus_id;
+        }
+
+        set
+        {
+            Tus_id = value;
+        }
+    }
+
+    public int Tus_id
     {
         get
         {
@@ -165,7 +192,7 @@ public class Usuario
         }
     }
 
-    public Setor Set_id
+    public int Set_id
     {
         get
         {
@@ -178,16 +205,16 @@ public class Usuario
         }
     }
 
-    public Usuario Usu_idGerente
+    public int Emp_id
     {
         get
         {
-            return usu_idGerente;
+            return emp_id;
         }
 
         set
         {
-            usu_idGerente = value;
+            emp_id = value;
         }
     }
 }

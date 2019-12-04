@@ -33,7 +33,7 @@
                         <div class="sidebar-brand-icon">
                             <i class="fas fa-user-circle"></i>
                         </div>
-                        <div class="sidebar-brand-text mx-3">Pedro A.</div>
+                        <asp:Label runat="server" ID="lblNome" CssClass="sidebar-brand-text mx-3"></asp:Label>
                     </a>
                     <div class="card-body text-white">
                         <h4 class="small font-weight-bold">Nível <sup>20</sup></h4>
@@ -81,21 +81,21 @@
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link" href="tables.html">
+                    <a class="nav-link" href="#">
                         <i class="fas fa-fw fa-chart-line"></i>
                         <span>Desempenho</span>
                     </a>
                 </li>
 
                  <li class="nav-item">
-                    <a class="nav-link" href="tables.html">
+                    <a class="nav-link" href="../../Pages/Colaborador/PlacarLideres.aspx">
                         <i class="fas fa-fw fa-flag-checkered"></i>
                         <span>Placar de líderes</span>
                     </a>
                 </li>
 
                  <li class="nav-item">
-                    <a class="nav-link" href="tables.html">
+                    <a class="nav-link" href="#">
                         <i class="fas fa-fw fa-newspaper"></i>
                         <span>Novidades</span>
                     </a>
@@ -109,7 +109,7 @@
                         <i class="fas fa-cog fa-2x icon-change-white"></i>
                     </div>
                     <div class="col-6">
-                        <i class="fas fa-power-off fa-2x icon-change-white"></i>
+                         <asp:LinkButton runat="server" ID="btnSair" CssClass="text-white" OnClick="btnSair_Click"><i class="fas fa-power-off fa-2x icon-change-white"></i></asp:LinkButton>
                     </div>
                 </div>
                 
@@ -306,26 +306,25 @@
             </a>
 
             <!-- Logout Modal-->
+             <!-- Logout Modal-->
             <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div class="modal-dialog" role="document">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+                            <h5 class="modal-title" id="exampleModalLabel">Você deseja realmente sair?</h5>
                             <button class="close" type="button" data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">×</span>
                             </button>
                         </div>
-                        <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
+                        <div class="modal-body">Clique em confirmar para encerrar sua sessão ou no ícone "X" superior para cancelar</div>
                         <div class="modal-footer">
-                            <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                            <a class="btn btn-primary" href="login.html">Logout</a>
+                            <asp:LinkButton runat="server" ID="btnSairDeVez" OnClick="btnSairDeVez_Click" CssClass="btn btn-danger">Confirmar</asp:LinkButton>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </form>
-
+        
     <!-- Bootstrap -->
     <script src="../../Assets/Vendor/jquery/jquery.min.js"></script>
     <script src="../../Assets/Vendor/bootstrap/js/bootstrap.min.js"></script>
@@ -344,5 +343,8 @@
     <script src="../../Assets/Custom/Js/demo/chart-area-demo.js"></script>
     <script src="../../Assets/Custom/Js/demo/chart-pie-demo.js"></script>
     <script src="../../Assets/Custom/Js/demo/chart-pie-demo.js"></script>
+        <asp:ScriptManager runat="server"></asp:ScriptManager>
+    </form>
+
 </body>
 </html>

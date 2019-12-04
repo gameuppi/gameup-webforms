@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Web;
 
@@ -19,6 +20,57 @@ public class Missao
     private int qtdMoedas;
     private string tipo;
     private string status;
+    private Usuario usuarioCriador;
+
+    public List<Missao> criarListaObjMissao(DataSet missoes)
+    {
+        List<Missao> listaDeMissoes = new List<Missao>();
+        Missao missao;
+        foreach (DataRow mis in missoes.Tables[0].Rows)
+        {
+            missao = new Missao();
+            missao.Id = Convert.ToInt32(mis["mis_id"]);
+            missao.Nome = mis["mis_nome"].ToString();
+            missao.Descricao = mis["mis_descricao"].ToString();
+
+            // Verifica se possui data inicio
+            if (mis["mis_dt_inicio"] != null)
+            {
+                missao.DtInicio = Convert.ToDateTime(mis["mis_dt_inicio"]);
+            }
+
+            // Verifica se possui data fim
+            if (mis["mis_dt_final"] != null)
+            {
+                missao.DtFinal = Convert.ToDateTime(mis["mis_dt_final"]);
+            }
+
+            // Verifica se possui qtd pontos
+            if (mis["mis_qtd_pontos"] != null)
+            {
+                missao.QtdPontos = Convert.ToInt32(mis["mis_qtd_pontos"]);
+            }
+
+            // Verifica se possui qtd moedas
+            if (mis["mis_qtd_moedas"] != null)
+            {
+                missao.QtdMoedas = Convert.ToInt32(mis["mis_qtd_moedas"]);
+            }
+
+            // Verifica se possui qtd exp
+            if (mis["mis_qtd_exp"] != null)
+            {
+                missao.QtdPontos = Convert.ToInt32(mis["mis_qtd_exp"]);
+            }
+
+            missao.Status = mis["mis_status"].ToString();
+            missao.Tipo = mis["mis_tipo"].ToString();
+
+            listaDeMissoes.Add(missao);
+        }
+
+        return listaDeMissoes;
+    }
 
     public int Id
     {
@@ -163,4 +215,16 @@ public class Missao
         }
     }
 
+    public Usuario UsuarioCriador
+    {
+        get
+        {
+            return usuarioCriador;
+        }
+
+        set
+        {
+            usuarioCriador = value;
+        }
+    }
 }
