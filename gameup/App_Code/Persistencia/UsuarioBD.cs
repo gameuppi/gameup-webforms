@@ -91,4 +91,39 @@ public class UsuarioBD
         }
 
     }
+
+    public static bool salvarAlteracoesPerfil(Usuario usuario)
+    {
+        bool ok = false;
+        try
+        {
+            DataSet ds = new DataSet();
+            IDbConnection objConexao;
+            IDbCommand objCommand;
+            objConexao = Mapped.Connection();
+
+            string query = "update usuario SET usu_nome = ?usu_nome, usu_apelido = ?usu_apelido WHERE usu_id = ?usu_id";
+
+            objCommand = Mapped.Command(query, objConexao);
+
+            objCommand.Parameters.Add(Mapped.Parameter("?usu_id", usuario.Usu_id));
+            objCommand.Parameters.Add(Mapped.Parameter("?usu_nome", usuario.Usu_nome));
+            objCommand.Parameters.Add(Mapped.Parameter("?usu_apelido", usuario.Usu_apelido));
+
+            objCommand.ExecuteNonQuery();
+
+            objConexao.Close();
+            objConexao.Dispose();
+            objCommand.Dispose();
+
+            ok = true;
+        }
+        catch (Exception ex)
+        {
+            Console.Write(ex.StackTrace);
+        }
+
+        return ok;
+
+    }
 }

@@ -35,34 +35,34 @@
                                                     <table id="ladder">
                                                         <tr>
                                                             <td class="text-center">
-                                                                <i class="fas fa-circle fa-4x " style=" color: #808080"></i>
+                                                                <i class="fas fa-circle fa-4x text-info"></i>
                                                                 <div class="mt-1 font-weight-bold">
                                                                     <asp:Label runat="server" ID="lbl2Posicao"></asp:Label>
                                                                 </div>
                                                                 <div class="mt-1">
                                                                     <asp:Label runat="server" ID="lblPontos2Posicao"></asp:Label>
                                                                 </div>
-                                                                <div class="mt-1" id="podium1"></div>
+                                                                <div class="mt-1 bg-info" id="podium1"></div>
                                                             </td>
                                                             <td class="text-center">
-                                                                <i class="fas fa-circle fa-4x " style=" color: #808080"></i>
+                                                                <i class="fas fa-circle fa-4x text-success"></i>
                                                                 <div class="mt-1 mt-1 font-weight-bold">
                                                                     <asp:Label runat="server" ID="lbl1Posicao"></asp:Label>
                                                                 </div>
                                                                 <div class="mt-1">
                                                                     <asp:Label runat="server" ID="lblPontos1Posicao"></asp:Label>
                                                                 </div>
-                                                                <div class="mt-1" id="podium0"></div>
+                                                                <div class="mt-1 bg-success" id="podium0"></div>
                                                             </td>
                                                             <td class="text-center">
-                                                                <i class="fas fa-circle fa-4x " style=" color: #808080"></i>
+                                                                <i class="fas fa-circle fa-4x text-warning"></i>
                                                                 <div class="mt-1 mt-1 font-weight-bold">
                                                                     <asp:Label runat="server" ID="lbl3Posicao"></asp:Label>
                                                                 </div>
                                                                 <div class="mt-1">
                                                                     <asp:Label runat="server" ID="lblPontos3Posicao"></asp:Label>
                                                                 </div>
-                                                                <div class="mt-1" id="podium2"></div>
+                                                                <div class="mt-1 bg-warning" id="podium2"></div>
                                                             </td>
                                                         </tr>
                                                     </table>
