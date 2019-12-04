@@ -83,7 +83,7 @@ public partial class Pages_Colaborador_LojaVirtual : System.Web.UI.Page
             
             LinkButton btnCard = new LinkButton();
             btnCard.Click += AoClicar;
-            btnCard.CssClass += "btn-floating btn-large halfway-fab btn-success fas fa-shopping-cart text-white";
+            btnCard.CssClass += "btn-floating btn-large halfway-fab btn-success fas fa-shopping-cart text-white";            
 
             Literal ltlText = new Literal();
             ltlText.Text += $"</div></div><br/><div class='col-md-12 card-custom-content'>" +
