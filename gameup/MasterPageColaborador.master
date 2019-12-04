@@ -133,6 +133,20 @@
                         <!-- Topbar Navbar -->
                         <ul class="navbar-nav ml-auto">
 
+                            <li>
+                                <a class="atalho" href="javascript: zoom(mais)" onfocus="javascript: zoom(mais)" accesskey="A" title="Aumenta 10%">Aumenta<span id="ksht4"></span></a>&nbsp;
+                                <a class="atalho" href="javascript: zoom(menos)" onfocus="javascript: zoom(menos)" accesskey="D" title="Diminui 10%">Diminui<span id="ksht5"></span></a>&nbsp;
+                                <a class="atalho" href="javascript: index=9;zoom(mais)" onfocus="javascript: index=9;zoom(mais)" accesskey="N" title="Tamanho Normal">Normal<span id="ksht6"></span></a>&nbsp;<br />
+                                <label for="aumento do texto"><input type="text" value="100%" id="percent" size="5" name="schriftgroesse" alt="Porcentagem do aumento do texto"></label>
+                            </li>
+
+                            <li>
+                                <span class="atalho"><br/>
+                                &nbsp;<br/>
+                                <label for="aumento do texto"></label>
+                                </span>
+                            </li>
+
                             <!-- Nav Item - Pontos -->
                             <li class="nav-item dropdown no-arrow mx-1">
                                 <a class="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -332,6 +346,9 @@
     <!-- JavaScript -->
     <script src="../../Assets/Vendor/jquery-easing/jquery.easing.min.js"></script>
     <script src="../../Assets/Custom/Js/main.js"></script>
+
+    <!-- Script Acessibilidade-->
+    <script src="Assets/Custom/Js/textzoom.js"></script>
 
     <!-- Scripts customizados do template -->
     <script src="../../Assets/Custom/Js/sb-admin-2.min.js"></script>

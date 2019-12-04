@@ -28,4 +28,25 @@ public class ProdutoDB
 
         return ds;
     }
+
+    public static DataSet procurarPorId( int pro_id)
+    {
+        DataSet ds = new DataSet();
+        IDbConnection objConexao;
+        IDbCommand objCommand;
+        IDataAdapter dataAdapter;
+        objConexao = Mapped.Connection();
+
+        string query = "select * from produtos where pro_id = ?pro_id";
+        objCommand = Mapped.Command(query, objConexao);
+        objCommand.Parameters.Add(Mapped.Parameter("?pro_id", pro_id));
+        dataAdapter = Mapped.Adapter(objCommand);
+        dataAdapter.Fill(ds);
+
+        objConexao.Close();
+        objConexao.Dispose();
+        objCommand.Dispose();
+
+        return ds;
+    }
 }

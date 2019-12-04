@@ -183,7 +183,7 @@
 
     </div>
 
-
+    <script src="../../Assets/Custom/Js/textzoom.js"></script>
     <!-- /.container-fluid -->
 </asp:Content>
 
