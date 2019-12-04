@@ -80,12 +80,12 @@ public class UsuarioDB
             IDbCommand objCommand;
             objConexao = Mapped.Connection();
 
-            string query = "update usuario SET usu_senha = ?usu_senha WHERE usu_email = ?usu_email";
+            string query = "update usuario SET usu_senha = ?usu_senha, usu_dataNascimento = ?usu_datanascimento WHERE usu_email = ?usu_email";
 
             objCommand = Mapped.Command(query, objConexao);
 
             objCommand.Parameters.Add(Mapped.Parameter("?usu_senha", usu.Usu_senha));
-            //objCommand.Parameters.Add(Mapped.Parameter("?usu_datanascimento", usu.Usu_dataNascimento));
+            objCommand.Parameters.Add(Mapped.Parameter("?usu_datanascimento", usu.Usu_dataNascimento));
             objCommand.Parameters.Add(Mapped.Parameter("?usu_email", usu.Usu_email));
 
             objCommand.ExecuteNonQuery();
@@ -96,8 +96,9 @@ public class UsuarioDB
 
             ok = 0;
         }
-        catch (Exception)
+        catch (Exception ex)
         {
+            Console.Write(ex.StackTrace);
             ok = -2;
         }
 
