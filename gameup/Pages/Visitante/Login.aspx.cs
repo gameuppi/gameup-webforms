@@ -70,10 +70,10 @@ public partial class Pages_Visitante_Login : System.Web.UI.Page
 
                 break;
             case -1:
-                ltlMsg.Text = "<ul><li>Senha Inválida</li></ul>";
+                ltlMsg.Text = "Ops... E-mail ou senha inválido!";
                 break;
             case -2:
-                ltlMsg.Text = "<ul><li>Email Inválido</li></ul>";
+                ltlMsg.Text = "Ops... E-mail ou senha inválido!";
                 break;
         }
     }

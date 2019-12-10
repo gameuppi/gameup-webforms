@@ -8,25 +8,44 @@
     <title></title>
     <link href="../../Assets/Vendor/bootstrap/css/bootstrap.css" rel="stylesheet" />
 </head>
-<body>
+<body class="bg-info">
     <form id="form1" runat="server">
-        <div class="row mt-5 pt-5">
-            <div class="col-4 offset-4 border border-dark">
-                <div class="text-center">
-                    <h3>Login</h3>
+         <div class="container">
+
+                <div class="card o-hidden border-0 shadow-lg my-5">
+                    <div class="card-body p-0">
+                        <!-- Nested Row within Card Body -->
+                        <div class="row">
+                            <div class="col-lg-5 d-lg-block bg-register-image p-5">
+                                <center><img src="../../Assets/Imagens/astronauta2.png" class="img-fluid" /></center>
+                            </div>
+                            <div class="col-lg-7">
+                                <div class="p-5">
+                                    <div class="text-left ml-3">
+                                        <h1 class="h4 text-gray-900 mb-4 font-weight-bold">Acesso a plataforma</h1>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="col-sm-12 mb-3 mb-sm-0 col-md-12">
+                                            <asp:TextBox runat="server" ID="txtEmail" placeholder="E-mail" type="email" required="required" CssClass="form-control"></asp:TextBox>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12 col-sm-12 form-group">
+                                         <asp:TextBox runat="server" ID="txtSenha" type="password" placeholder="Senha" required="required" CssClass="form-control"></asp:TextBox>
+                                    </div>
+                                    <br />
+                                    <div class="col-md-12">
+                                        <asp:Button runat="server" ID="btnLogin" Text="Entrar" CssClass="btn btn-primary btn-block" OnClick="btnLogin_Click" />
+                                    </div>
+                                    <br />
+                                    <div class="col-md-12 text-danger">
+                                       <asp:Literal runat="server" ID="ltlMsg"></asp:Literal>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <hr />
-                <label>E-mail:</label>
-                <asp:TextBox runat="server" ID="txtEmail" type="email" required="required" CssClass="form-control"></asp:TextBox>
-                <br />
-                <label>Senha:</label>
-                <asp:TextBox runat="server" ID="txtSenha" type="password" required="required" CssClass="form-control"></asp:TextBox>
-                <br />
-                <asp:Button runat="server" ID="btnLogin" Text="Entrar" CssClass="btn btn-primary btn-block" OnClick="btnLogin_Click" />
-                <br />
-                <asp:Literal runat="server" ID="ltlMsg"></asp:Literal>
-            </div>
-        </div>
+
     </form>
     <script src="../../Assets/Vendor/jquery/jquery.min.js"></script>
     <script src="../../Assets/Vendor/bootstrap/js/bootstrap.min.js"></script>

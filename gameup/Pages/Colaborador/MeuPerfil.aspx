@@ -6,7 +6,7 @@
     <!-- Page Heading -->
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
         <h1 class="h3 mb-0 text-gray-800">Meu Perfil</h1>
-        <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">Salvar alterações &nbsp; <i class="fas fa-save fa-sm text-white-50"></i></a>
+        <asp:LinkButton runat="server" ID="btnSalvar" CssClass="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm" Text="Salvar alterações" OnClick="btnSalvar_Click">Salvar alterações &ensp; <i class="fas fa-save fa-sm text-white-50"></i></asp:LinkButton>
     </div>
 
     <div class="row">
@@ -25,17 +25,16 @@
                             <div class="row">
                                 <div class="col-12 col-md-4">
                                     <img src="../../Assets/Imagens/perfil.jpg" class="img-fluid mb-2 rounded" />
-                                    <input type="text" class="form-control" id="formGroupExampleInput" placeholder="Nome de usuário">
+                                    <asp:TextBox runat="server"  ID="txtApelido" CssClass="form-control" placeholder="Nome de usuário"></asp:TextBox>
                                 </div>
                                 <div class="col-12 col-md-8">
                                     <div class="form-group">
-                                        <input type="text" class="form-control" id="formGroupExampleInput" placeholder="Nome">
+                                        <asp:TextBox runat="server" ID="txtNome" CssClass="form-control" placeholder="Nome"></asp:TextBox>
                                     </div>
                                     <div class="form-group">
-                                        <input type="text" class="form-control" readonly="true" id="formGroupExampleInput2" placeholder="Data de Nascimento">
-                                    </div>
+                                        <asp:TextBox runat="server"  readonly="true" ID="txtNasc" CssClass="form-control" placeholder="Data de nascimento"></asp:TextBox>                                    </div>
                                     <div class="form-group">
-                                        <input type="text" class="form-control" readonly="true" id="formGroupExampleInput2" placeholder="E-mail">
+                                        <asp:TextBox runat="server"  readonly="true" ID="txtEmail" CssClass="form-control" placeholder="E-mail"></asp:TextBox>
                                     </div>
                                     <a href="#" data-toggle="modal" data-target="#exampleModalCenter">Alterar senha</a>
 
@@ -90,7 +89,9 @@
                             <div class="row no-gutters align-items-center">
                                 <div class="col mr-2">
                                     <div class="text-sm font-weight-bold text-success text-uppercase mb-1">Moedas de ouro</div>
-                                    <div class="h5 mb-0 font-weight-bold text-gray-800">135</div>
+                                    <div class="h5 mb-0 font-weight-bold text-gray-800">
+                                        <asp:label runat="server" ID="lblMoedas" CssClass="h5 mb-0 font-weight-bold text-gray-800"></asp:label>
+                                    </div>
                                 </div>
                                 <div class="col-auto">
                                     <i class="fas fa-coins fa-2x text-gray-300"></i>
@@ -107,7 +108,7 @@
                             <div class="row no-gutters align-items-center">
                                 <div class="col mr-2">
                                     <div class="text-sm font-weight-bold text-warning text-uppercase mb-1">Pontos de habilidade</div>
-                                    <div class="h5 mb-0 font-weight-bold text-gray-800">2340</div>
+                                    <asp:label runat="server" ID="lblPontos" CssClass="h5 mb-0 font-weight-bold text-gray-800"></asp:label>
                                 </div>
                                 <div class="col-auto">
                                     <i class="fas fa-star fa-2x text-gray-300"></i>
@@ -131,7 +132,7 @@
                                         <div class="progress mb-1 mt-4">
                                             <div class="progress-bar bg-success" role="progressbar" style="width: 20%" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100"></div>
                                         </div>
-                                        <div class="text-xs font-weight-bold text-info text-uppercase">300 XP</div>
+                                        <asp:label runat="server" ID="lblExp" CssClass="text-xs font-weight-bold text-info text-uppercase"></asp:label>
                                     </div>
                                 </div>
                                 <div class="col-auto">
@@ -212,6 +213,29 @@
             </div>
         </div>
         <!-- Fim avatar -->
+
+         <!-- Modal cadastra missao -->
+    <div class="modal fade" id="modalSucesso">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+
+                <div class="modal-header">
+                    <h4 class="modal-title">
+                        <asp:Literal runat="server" ID="ltrTituloModal"></asp:Literal>
+                    </h4>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+
+                <div class="modal-body">
+                    <asp:Literal runat="server" ID="msgModalCadastraMissao"></asp:Literal>
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-success" data-dismiss="modal">Pronto</button>
+                </div>
+            </div>
+        </div>
+    </div>
 
 
         <!-- /.container-fluid -->
