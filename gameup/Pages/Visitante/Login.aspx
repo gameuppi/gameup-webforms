@@ -16,8 +16,8 @@
                     <div class="card-body p-0">
                         <!-- Nested Row within Card Body -->
                         <div class="row">
-                            <div class="col-lg-5 d-lg-block bg-register-image p-5">
-                                <center><img src="../../Assets/Imagens/astronauta2.png" class="img-fluid" /></center>
+                            <div class="col-lg-5 d-lg-block bg-register-image">
+                                <center><img src="../../Assets/Imagens/fgt.jpg" class="img-fluid" /></center>
                             </div>
                             <div class="col-lg-7">
                                 <div class="p-5">

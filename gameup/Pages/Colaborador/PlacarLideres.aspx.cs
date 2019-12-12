@@ -8,15 +8,20 @@ using System.Web.UI.WebControls;
 
 public partial class Pages_Colaborador_PlacarLideres : System.Web.UI.Page
 {
+    private static Usuario usuarioLogado;
+
     protected void Page_Load(object sender, EventArgs e)
     {
+
+        validarSessao();
+
         TableRow tr;
         TableCell tcPosicao;
         TableCell tcNome;
         TableCell tcPontos;
 
 
-        DataSet listaDeUsuariosDs = PlacarLideresBD.procurarUsuariosPlacarGeral(1);
+        DataSet listaDeUsuariosDs = PlacarLideresBD.procurarUsuariosPlacarGeral(usuarioLogado.Emp_id);
         List<Usuario> listaDeUsuarios = new List<Usuario>();
         Usuario usuario = new Usuario();
 
@@ -35,15 +40,15 @@ public partial class Pages_Colaborador_PlacarLideres : System.Web.UI.Page
             // Preenche top 3
             if (pos == 1)
             {
-                lbl1Posicao.Text = usu.Usu_nome;
+                lbl1Posicao.Text = formatarNome(usu.Usu_nome);
                 lblPontos1Posicao.Text = usu.Usu_qtdPontos.ToString();
             } else if (pos == 2)
             {
-                lbl2Posicao.Text = usu.Usu_nome;
+                lbl2Posicao.Text = formatarNome(usu.Usu_nome);
                 lblPontos2Posicao.Text = usu.Usu_qtdPontos.ToString();
             } else if (pos == 3)
             {
-                lbl3Posicao.Text = usu.Usu_nome;
+                lbl3Posicao.Text = formatarNome(usu.Usu_nome);
                 lblPontos3Posicao.Text = usu.Usu_qtdPontos.ToString();
             }
 
@@ -54,7 +59,7 @@ public partial class Pages_Colaborador_PlacarLideres : System.Web.UI.Page
             tr = new TableRow();
 
             tcPosicao.Text = pos.ToString();
-            tcNome.Text = usu.Usu_nome;
+            tcNome.Text = formatarNome(usu.Usu_nome);
             tcPontos.Text = usu.Usu_qtdPontos.ToString();
             tr.Controls.Add(tcPosicao);
             tr.Controls.Add(tcNome);
@@ -65,5 +70,39 @@ public partial class Pages_Colaborador_PlacarLideres : System.Web.UI.Page
             tblPlacarGeral.Controls.Add(tr);
         }
 
+    }
+
+    string formatarNome(string nome)
+    {
+        string nomeFormatado = nome;
+
+        if (nome.Count() > 8)
+        {
+            string[] nomes = nome.Split(' ');
+            nomeFormatado = nomes[0] + " " + nomes[1].Substring(0, 1) + ".";
+        }
+
+        return nomeFormatado;
+    }
+
+    void validarSessao()
+    {
+
+        if (Session["USUARIO"] == null)
+        {
+
+            Response.Redirect("../Visitante/Login.aspx");
+
+        }
+        else
+        {
+            usuarioLogado = (Usuario)Session["USUARIO"];
+
+            if (usuarioLogado.Tus_id != 1) // Gerente
+            {
+                Response.Redirect("../Visitante/Login.aspx");
+            }
+
+        }
     }
 }

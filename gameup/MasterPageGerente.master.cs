@@ -9,8 +9,12 @@ public partial class MasterPageGerente : System.Web.UI.MasterPage
 {
     protected void Page_Load(object sender, EventArgs e)
     {
+
+        ltrCss.Text = "<link href=\"/Assets/Custom/Css/sb-admin-2.css\" rel=\"stylesheet\">";
+        ltrCss.Text += "<link href=\"/Assets/Custom/Css/main.css\" rel=\"stylesheet\">";
+
         Usuario usuario = (Usuario) Session["USUARIO"];
-        lblNome.Text = usuario.Usu_nome;
+        lblNome.Text = formatarNome(usuario.Usu_nome);
     }
 
     protected void btnSair_Click(object sender, EventArgs e)
@@ -23,5 +27,35 @@ public partial class MasterPageGerente : System.Web.UI.MasterPage
     {
         Session["USUARIO"] = null;
         Response.Redirect("../Visitante/Login.aspx");
+    }
+
+    string formatarNome(string nome)
+    {
+        string nomeFormatado = nome;
+
+        if (nome.Count() > 8)
+        {
+            string[] nomes = nome.Split(' ');
+            nomeFormatado = nomes[0] + " " + nomes[1].Substring(0, 1) + ".";
+        }
+
+        return nomeFormatado;
+    }
+
+    protected void btnModoEscuro_Click(object sender, EventArgs e)
+    {
+    }
+
+    protected void alertsDropdown_Click(object sender, EventArgs e)
+    {
+        ltrCss.Text = "<link href=\"/Assets/Custom/Css/sb-admin-2-escuro.css\" rel=\"stylesheet\">";
+        ltrCss.Text += "<link href=\"/Assets/Custom/Css/main-escuro.css\" rel=\"stylesheet\">";
+    }
+
+    protected void btnModoContraste_Click(object sender, EventArgs e)
+    {
+
+        ltrCss.Text = "<link href=\"/Assets/Custom/Css/sb-admin-2-escuro.css\" rel=\"stylesheet\">";
+        ltrCss.Text += "<link href=\"/Assets/Custom/Css/main-escuro.css\" rel=\"stylesheet\">";
     }
 }

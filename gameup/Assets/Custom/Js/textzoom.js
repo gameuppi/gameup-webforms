@@ -1,6 +1,4 @@
 
-<!--
-
 	var ie4=document.all&&!document.getElementById
 	var ns4
 	var DOM2=document.getElementById
@@ -45,4 +43,3 @@
 			document.zoomerns.document.zoomerns_sub.document.close();
 		}
 	}
-//-->

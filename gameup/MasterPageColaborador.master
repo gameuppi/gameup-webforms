@@ -15,8 +15,9 @@
     <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
 
     <!-- Estilos customizados do template -->
-    <link href="Assets/Custom/Css/sb-admin-2.css" rel="stylesheet">
-    <link href="Assets/Custom/Css/main.css" rel="stylesheet">
+    <asp:Literal runat="server" ID="ltrCss">
+    
+    </asp:Literal>
 
     <asp:ContentPlaceHolder ID="head" runat="server">
     </asp:ContentPlaceHolder>
@@ -42,7 +43,7 @@
                         </div>
                     </div>
                 </div>
-                
+
                 <!-- Divider -->
                 <hr class="sidebar-divider d-none d-md-block">
 
@@ -55,9 +56,9 @@
                     </center>
                 </li>
                 <br />
-                 <!-- Divider -->
+                <!-- Divider -->
                 <hr class="sidebar-divider d-none d-md-block">
-                
+
                 <!-- Nav Item - Tables -->
                 <li class="nav-item">
                     <a class="nav-link" href="../../Pages/Colaborador/PainelPrincipal.aspx">
@@ -66,14 +67,14 @@
                     </a>
                 </li>
 
-                 <li class="nav-item">
+                <li class="nav-item">
                     <a class="nav-link" href="../../Pages/Colaborador/Missoes.aspx">
                         <i class="fas fa-fw fa-check"></i>
                         <span>Missões</span>
                     </a>
                 </li>
 
-                 <li class="nav-item">
+                <li class="nav-item">
                     <a class="nav-link" href="../../Pages/Colaborador/Conquistas.aspx">
                         <i class="fas fa-fw fa-medal"></i>
                         <span>Conquistas</span>
@@ -87,14 +88,14 @@
                     </a>
                 </li>
 
-                 <li class="nav-item">
+                <li class="nav-item">
                     <a class="nav-link" href="../../Pages/Colaborador/PlacarLideres.aspx">
                         <i class="fas fa-fw fa-flag-checkered"></i>
                         <span>Placar de líderes</span>
                     </a>
                 </li>
 
-                 <li class="nav-item">
+                <li class="nav-item">
                     <a class="nav-link" href="#">
                         <i class="fas fa-fw fa-newspaper"></i>
                         <span>Novidades</span>
@@ -109,10 +110,10 @@
                         <i class="fas fa-cog fa-2x icon-change-white"></i>
                     </div>
                     <div class="col-6">
-                         <asp:LinkButton runat="server" ID="btnSair" CssClass="text-white" OnClick="btnSair_Click"><i class="fas fa-power-off fa-2x icon-change-white"></i></asp:LinkButton>
+                        <asp:LinkButton runat="server" ID="btnSair" CssClass="text-white" OnClick="btnSair_Click"><i class="fas fa-power-off fa-2x icon-change-white"></i></asp:LinkButton>
                     </div>
                 </div>
-                
+
             </ul>
             <!-- End of Sidebar -->
 
@@ -124,7 +125,10 @@
 
                     <!-- Topbar -->
                     <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
-
+                        <!--<div class="custom-control custom-switch">
+                            <asp:CheckBox runat="server" ID="customSwitch1" type="checkbox" CssClass="custom-control-input" />
+                            <label class="custom-control-label" for="customSwitch1">Ativar modo escuro</label>
+                        </div>-->
                         <!-- Sidebar Toggle (Topbar) -->
                         <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3" type="button">
                             <i class="fa fa-bars"></i>
@@ -132,22 +136,14 @@
 
                         <!-- Topbar Navbar -->
                         <ul class="navbar-nav ml-auto">
-
-                            <li>
-                                <a class="atalho" href="javascript: zoom(mais)" onfocus="javascript: zoom(mais)" accesskey="A" title="Aumenta 10%">Aumenta<span id="ksht4"></span></a>&nbsp;
-                                <a class="atalho" href="javascript: zoom(menos)" onfocus="javascript: zoom(menos)" accesskey="D" title="Diminui 10%">Diminui<span id="ksht5"></span></a>&nbsp;
-                                <a class="atalho" href="javascript: index=9;zoom(mais)" onfocus="javascript: index=9;zoom(mais)" accesskey="N" title="Tamanho Normal">Normal<span id="ksht6"></span></a>&nbsp;<br />
-                                <label for="aumento do texto"><input type="text" value="100%" id="percent" size="5" name="schriftgroesse" alt="Porcentagem do aumento do texto"></label>
-                            </li>
-
-                            <li>
-                                <span class="atalho"><br/>
-                                &nbsp;<br/>
-                                <label for="aumento do texto"></label>
-                                </span>
-                            </li>
-
                             <!-- Nav Item - Pontos -->
+
+                            <li class="nav-item no-arrow mx-1">
+                                <asp:LinkButton runat="server" CssClass="nav-link" ID="btnModoContraste" OnClick="btnModoContraste_Click" aria-haspopup="true" aria-expanded="false">
+                                    Modo monocromático &ensp;
+                                     <i class="fas fa-low-vision fa-fw"></i>
+                                </asp:LinkButton>
+                            </li>
                             <li class="nav-item dropdown no-arrow mx-1">
                                 <a class="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     <i class="fas fa-star fa-fw"></i>
@@ -320,7 +316,7 @@
             </a>
 
             <!-- Logout Modal-->
-             <!-- Logout Modal-->
+            <!-- Logout Modal-->
             <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div class="modal-dialog" role="document">
                     <div class="modal-content">
@@ -338,28 +334,28 @@
                 </div>
             </div>
         </div>
-        
-    <!-- Bootstrap -->
-    <script src="../../Assets/Vendor/jquery/jquery.min.js"></script>
-    <script src="../../Assets/Vendor/bootstrap/js/bootstrap.min.js"></script>
 
-    <!-- JavaScript -->
-    <script src="../../Assets/Vendor/jquery-easing/jquery.easing.min.js"></script>
-    <script src="../../Assets/Custom/Js/main.js"></script>
+        <!-- Bootstrap -->
+        <script src="../../Assets/Vendor/jquery/jquery.min.js"></script>
+        <script src="../../Assets/Vendor/bootstrap/js/bootstrap.min.js"></script>
 
-    <!-- Script Acessibilidade-->
-    <script src="Assets/Custom/Js/textzoom.js"></script>
+        <!-- JavaScript -->
+        <script src="../../Assets/Vendor/jquery-easing/jquery.easing.min.js"></script>
+        <script src="../../Assets/Custom/Js/main.js"></script>
 
-    <!-- Scripts customizados do template -->
-    <script src="../../Assets/Custom/Js/sb-admin-2.min.js"></script>
+        <!-- Script Acessibilidade-->
+        <script src="Assets/Custom/Js/textzoom.js"></script>
 
-    <!-- Plugins da página e gráficos -->
-    <script src="../../Assets/Vendor/chart.js/Chart.min.js"></script>
+        <!-- Scripts customizados do template -->
+        <script src="../../Assets/Custom/Js/sb-admin-2.min.js"></script>
 
-    <!-- Scripts do plugin de gráficos -->
-    <script src="../../Assets/Custom/Js/demo/chart-area-demo.js"></script>
-    <script src="../../Assets/Custom/Js/demo/chart-pie-demo.js"></script>
-    <script src="../../Assets/Custom/Js/demo/chart-pie-demo.js"></script>
+        <!-- Plugins da página e gráficos -->
+        <script src="../../Assets/Vendor/chart.js/Chart.min.js"></script>
+
+        <!-- Scripts do plugin de gráficos -->
+        <script src="../../Assets/Custom/Js/demo/chart-area-demo.js"></script>
+        <script src="../../Assets/Custom/Js/demo/chart-pie-demo.js"></script>
+        <script src="../../Assets/Custom/Js/demo/chart-pie-demo.js"></script>
         <asp:ScriptManager runat="server"></asp:ScriptManager>
     </form>
 

@@ -1,0 +1,163 @@
+﻿.card-custom {
+    position: relative;
+    margin: 0.5rem 0 1rem 0;
+    background-color: #fff;
+    -webkit-transition: -webkit-box-shadow .25s;
+    transition: -webkit-box-shadow .25s;
+    transition: box-shadow .25s;
+    transition: box-shadow .25s, -webkit-box-shadow .25s;
+    border-radius: 2px;
+}
+
+.float {
+    position: fixed;
+    width: 60px;
+    height: 60px;
+    bottom: 40px;
+    right: 40px;
+    background-color: #0C9;
+    color: #FFF;
+    border-radius: 50px;
+    text-align: center;
+    box-shadow: 2px 2px 3px #999;
+}
+
+
+    .card-custom .card-custom-image {
+        position: relative;
+    }
+
+        .card-custom .card-custom-image img {
+            border-radius: 2px 2px 0 0;
+            position: relative;
+            left: 0;
+            right: 0;
+            top: 0;
+            bottom: 0;
+            width: 100%;
+            background-size: cover !important;
+        }
+
+        .card-custom .card-custom-image .card-custom-title {
+            color: #fff;
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            max-width: 100%;
+            padding: 24px;
+        }
+
+.btn-floating {
+    display: inline-block;
+    color: #fff;
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+    width: 40px;
+    height: 40px;
+    line-height: 40px;
+    padding: 0;
+    border-radius: 50%;
+    cursor: pointer;
+    vertical-align: middle;
+}
+
+
+    .btn-floating:before {
+        border-radius: 0;
+    }
+
+    .btn-floating.btn-large {
+        width: 56px;
+        height: 56px;
+        padding: 0;
+    }
+
+        .btn-floating.btn-large.halfway-fab {
+            bottom: -28px;
+        }
+
+        .btn-floating.btn-large i {
+            line-height: 56px;
+        }
+
+.card-custom .card-custom-content {
+    padding: 24px;
+    border-radius: 0 0 2px 2px;
+}
+
+    .card-custom .card-custom-content p {
+        margin: 0;
+    }
+
+    .card-custom .card-custom-content .card-custom-title {
+        display: block;
+        line-height: 32px;
+        margin-bottom: 8px;
+    }
+
+        .card-custom .card-custom-content .card-custom-title i {
+            line-height: 32px;
+        }
+
+
+.btn-floating.halfway-fab {
+    position: absolute;
+    right: 24px;
+    bottom: -20px;
+}
+
+.icon-change {
+    transition: ease-in-out 0.1s;
+}
+
+    .icon-change:hover {
+        color: #ccc !important;
+        color: #1cc88a !important;
+        transform: scale(1.2);
+    }
+
+.icon-change-white {
+    transition: ease-in-out 0.1s;
+}
+
+.icon-change-white:hover {
+    transform: scale(1.2);
+}
+
+.card-zoom {
+    transition: ease-in-out .1s;
+}
+
+    .card-zoom:hover {
+        transform: scale(1.02);
+        z-index: 1000;
+    }
+
+
+td {
+    
+    vertical-align: bottom;
+    padding: 5px;
+}
+
+#response {
+    font-family: courier-new, courier;
+}
+
+#podium0, #podium1, #podium2 {
+    width: 8rem;
+    background: gray;
+}
+
+#podium0 { /* gold */
+    height: 250px;
+}
+
+#podium1 { /* silver */
+    height: 200px;
+}
+
+#podium2 { /* bronze */
+    height: 150px;
+}

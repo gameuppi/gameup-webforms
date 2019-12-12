@@ -831,7 +831,7 @@ public partial class Pages_Gerente_GerenciarMissoes : System.Web.UI.Page
 
                 LinkButton btnVerDetalhes = new LinkButton();
                 btnVerDetalhes.Text = "Detalhes";
-                btnVerDetalhes.Click += (sender, e) => { this.verDetalhesMissao(sender, e, missao.Missao.Id); };
+                btnVerDetalhes.Click += (sender, e) => { this.verDetalhesMissao(sender, e, missao.Id); };
                 btnVerDetalhes.ID = (missao.Id + 20).ToString();
                 btnVerDetalhes.CssClass = "btn btn-block btn-warning";
 
