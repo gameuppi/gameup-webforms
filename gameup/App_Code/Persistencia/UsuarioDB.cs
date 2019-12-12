@@ -104,5 +104,45 @@ public class UsuarioDB
 
         return ok;
     }
-    
+
+    public static bool UpdateMoedaUsuario(int pro_valorMoeda, Usuario usu)
+    {
+        bool ok = false;
+
+        usu.Usu_qtdMoeda = usu.Usu_qtdMoeda - pro_valorMoeda;
+        if ( usu.Usu_qtdMoeda <= 0)
+        {
+            return false;
+        }
+
+        try
+        {
+            DataSet ds = new DataSet();
+            IDbConnection objConexao;
+            IDbCommand objCommand;
+            objConexao = Mapped.Connection();
+
+            string query = "update usuario SET usu_qtdMoeda = ?usu_qtdMoeda WHERE usu_id = ?usu_id";
+
+            objCommand = Mapped.Command(query, objConexao);
+
+            objCommand.Parameters.Add(Mapped.Parameter("?usu_qtdMoeda", usu.Usu_qtdMoeda));
+            objCommand.Parameters.Add(Mapped.Parameter("?usu_id", usu.Usu_id));
+
+            objCommand.ExecuteNonQuery();
+
+            objConexao.Close();
+            objConexao.Dispose();
+            objCommand.Dispose();
+
+            ok = true;
+        }
+        catch (Exception ex)
+        {
+            Console.Write(ex.StackTrace);
+            ok = false;
+        }
+
+        return ok;
+    }
 }
