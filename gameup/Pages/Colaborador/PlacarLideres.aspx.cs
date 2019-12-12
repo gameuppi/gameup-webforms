@@ -10,13 +10,15 @@ public partial class Pages_Colaborador_PlacarLideres : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
+        Usuario usuarioLogado = (Usuario)Session["USUARIO"];
+
         TableRow tr;
         TableCell tcPosicao;
         TableCell tcNome;
         TableCell tcPontos;
 
 
-        DataSet listaDeUsuariosDs = PlacarLideresBD.procurarUsuariosPlacarGeral(1);
+        DataSet listaDeUsuariosDs = PlacarLideresBD.procurarUsuariosPlacarGeral(usuarioLogado.Emp_id);
         List<Usuario> listaDeUsuarios = new List<Usuario>();
         Usuario usuario = new Usuario();
 
