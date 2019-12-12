@@ -30,7 +30,10 @@
                 </div>
                 <div class="col-md-12">
                     <asp:Label ID="txtDescricao" runat="server" CssClass="form-control"></asp:Label>
-                    <br /><br /><br /><hr class="border-dark"/>
+                    <br />
+                    <br />
+                    <br />
+                    <hr class="border-dark" />
                 </div>
                 <div class="col-md-6">
                     <asp:Button ID="btnConfirmar" runat="server" Text="Confirmar" CssClass="btn btn-block btn-primary" OnClick="btnConfirmar_Click" />
@@ -44,6 +47,29 @@
 
     <div class="col-12 col-md-12">
         <asp:Literal ID="lblMsg" runat="server"></asp:Literal>
+    </div>
+
+    <!-- Modal compra -->
+    <div class="modal fade" id="modalCompra">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+
+                <div class="modal-header">
+                    <h4 class="modal-title">
+                        <asp:Literal runat="server" ID="ltrTituloModal"></asp:Literal>
+                    </h4>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+
+                <div class="modal-body">
+                    <asp:Literal runat="server" ID="msgModalCadastraMissao"></asp:Literal>
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-success" data-dismiss="modal">Pronto</button>
+                </div>
+            </div>
+        </div>
     </div>
 </asp:Content>
 

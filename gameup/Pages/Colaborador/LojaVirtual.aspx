@@ -11,23 +11,31 @@
     <!-- Content Row -->
     <div class="row">
 
+         <div class="col-xl-12 col-md-12 mb-4">
+            <div class="card border-left-warning shadow py-2">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-12">
+                            <h6>Seja muito bem-vindo! Para saber mais como a loja virtual funciona, consulte o regulamento.</h6>
+                            <a href="#">Acessar o regulamento</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
         <!-- Card superior - Regulamento -->
         <div class="col-xl-12 col-md-12 mb-4">
             <div class="card border-left-primary shadow h-100 py-2">
                 <div class="card-body">
                     <div class="row">
-                        <div class="col-12 col-md-7">
-                            <!--<img src="../../Assets/Imagens/store.png" class="img-fluid" />-->
+                        <div class="col-12">
+                            <h5>Recompensas adquiridas</h5>
                         </div>
-                        <div class="col-12 col-md-5">
-                            <h4 class="text-dark">Conclua missões, ganhe moedas e adquira benefícios...</h4>
-                            <hr />
-                            <h5>Cada missão concluída e validada irá te proporcionar moedas que poderão ser utilizadas para
-                                adquirir benefícios e produtos na loja virtual.
-                            </h5>
-                            <button type="button" class="btn btn-info p-4 mt-5 btn-block">
-                                Veja o regulamento
-                            </button>
+                        <div class="col-12">
+                            <div class="row">
+                                <asp:Literal runat="server" ID="ltrMeuProdutos">
+                                </asp:Literal>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -35,8 +43,23 @@
         </div>
 
         <!-- Card de item -  -->
+        <div class="col-xl-12 col-md-12 mb-4">
+            <div class="card border-left-primary shadow h-100 py-2">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-12">
+                            <h5>Para adquirir</h5>
+                        </div>
+                        <div class="col-12">
+                            <asp:Panel ID="painel1" runat="server" CssClass="row"></asp:Panel>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+       
         <div class="col-12 col-md-12">
-            <asp:Panel ID="painel1" runat="server" CssClass="row"></asp:Panel>
+            
         </div>
 
         <!-- Card de item -  -->

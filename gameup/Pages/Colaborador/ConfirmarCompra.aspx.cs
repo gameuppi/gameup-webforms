@@ -97,11 +97,21 @@ public partial class Pages_Colaborador_ConfirmarCompra : System.Web.UI.Page
     {
         if (ProdutoDB.FazMovimentacaoFinanceira(produto, usuarioLogado))
         {
-            Response.Redirect("LojaVirtual.aspx");
+            // Preenche modal
+            msgModalCadastraMissao.Text = "<h5 class='text-success'>Produto adquirido com sucesso!</h5>";
+            ltrTituloModal.Text = "Ótimo!";
+            // Abre modal de sucesso
+            Page.ClientScript.RegisterStartupScript(this.GetType(), "script", "<script>$('#modalCompra').modal('show');</script>");
+            //Response.Redirect("LojaVirtual.aspx");
         }
         else
         {
-            lblMsg.Text = "<div class='alert alert-danger>Não foi possivel realizar a compra</div>";
+            // Preenche modal
+            msgModalCadastraMissao.Text = "<h5 class='text-danger'>Falha ao comprar o produto, seu saldo pode ser insuficiente!</h5>";
+            ltrTituloModal.Text = "Oops!";
+            // Abre modal de sucesso
+            Page.ClientScript.RegisterStartupScript(this.GetType(), "script", "<script>$('#modalCompra').modal('show');</script>");
+            //Response.Redirect("LojaVirtual.aspx");
         }
     }
 

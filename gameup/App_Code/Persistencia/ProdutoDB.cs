@@ -72,14 +72,42 @@ public class ProdutoDB
         return ds;
     }
 
+    public static DataSet procurarMeusProdutos(int usu_id)
+    {
+        DataSet ds = new DataSet();
+        IDbConnection objConexao;
+        IDbCommand objCommand;
+        IDataAdapter dataAdapter;
+        objConexao = Mapped.Connection();
+
+        string query = "select pro.* from movfinanceira mov join produtos pro on pro.pro_id = mov.pro_id where mov.usu_id = ?usu_id limit 4";
+        objCommand = Mapped.Command(query, objConexao);
+        objCommand.Parameters.Add(Mapped.Parameter("?usu_id", usu_id));
+        dataAdapter = Mapped.Adapter(objCommand);
+        dataAdapter.Fill(ds);
+
+        objConexao.Close();
+        objConexao.Dispose();
+        objCommand.Dispose();
+
+        return ds;
+    }
+
     public static bool FazMovimentacaoFinanceira(Produto pro, Usuario usu)
     {
         bool ok = false;
         int qtd = 1;
 
-        ok = UpdateMovEstoque(pro.Pro_id, qtd);
-        ok = InsertMovFinanceira(pro, usu, qtd);
-        ok = UsuarioDB.UpdateMoedaUsuario(pro.Pro_valorMoeda, usu);
+        if (usu.Usu_qtdMoeda >= pro.Pro_valorMoeda)
+        {
+            ok = UsuarioDB.UpdateMoedaUsuario(pro.Pro_valorMoeda, usu);
+            ok = UpdateMovEstoque(pro.Pro_id, qtd);
+            ok = InsertMovFinanceira(pro, usu, qtd);
+        } else
+        {
+            ok = false;
+        }
+
 
         return ok;
     }

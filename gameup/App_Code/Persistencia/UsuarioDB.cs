@@ -110,7 +110,7 @@ public class UsuarioDB
         bool ok = false;
 
         usu.Usu_qtdMoeda = usu.Usu_qtdMoeda - pro_valorMoeda;
-        if ( usu.Usu_qtdMoeda <= 0)
+        if ( usu.Usu_qtdMoeda < 0)
         {
             return false;
         }

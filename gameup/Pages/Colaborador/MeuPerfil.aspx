@@ -24,8 +24,8 @@
                         <div class="card-body">
                             <div class="row">
                                 <div class="col-12 col-md-4">
-                                    <img src="../../Assets/Imagens/perfil.jpg" class="img-fluid mb-2 rounded" />
-                                    <asp:TextBox runat="server"  ID="txtApelido" CssClass="form-control" placeholder="Nome de usuário"></asp:TextBox>
+                                    <img src="../../Assets/Imagens/perfil2.jpg" class="img-fluid mb-2 rounded" />
+                                    <asp:TextBox runat="server" ID="txtApelido" CssClass="form-control" placeholder="Nome de usuário"></asp:TextBox>
                                 </div>
                                 <div class="col-12 col-md-8">
                                     <div class="form-group">

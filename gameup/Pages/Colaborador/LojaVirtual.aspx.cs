@@ -14,6 +14,52 @@ public partial class Pages_Colaborador_LojaVirtual : System.Web.UI.Page
     {
         //validarSessao();
         CriaCards();
+        CarregaMeusProdutos();
+    }
+
+    void CarregaMeusProdutos()
+    {
+        DataSet produtosDs = ProdutoDB.procurarMeusProdutos(usuarioLogado.Usu_id);
+        Produto produto;
+        List<Produto> listaDeProdutos = new List<Produto>();
+
+        foreach (DataRow p in produtosDs.Tables[0].Rows)
+        {
+            produto = new Produto();
+
+            if (p["pro_id"] != null)
+            {
+                produto.Pro_id = Convert.ToInt32(p["pro_id"]);
+            }
+            produto.Pro_nome = p["pro_nome"].ToString();
+            produto.Pro_subTitulo = p["pro_subTitulo"].ToString();
+            produto.Pro_descricao = p["pro_descricao"].ToString();
+            produto.Pro_logo = p["pro_logo"].ToString();
+
+            listaDeProdutos.Add(produto);
+        }
+
+        string resp = "";
+
+        foreach (Produto p in listaDeProdutos)
+        {
+            resp += " <div class='col-12 col-md-3'> ";
+            resp += "     <div class='card-custom border-left-success shadow'> ";
+            resp += "         <div class='card-custom-image'> ";
+            resp += $"             <img src='{p.Pro_logo}'> ";
+            resp += $"             <span class='card-custom-title font-weight-bold'>{p.Pro_nome} ";
+            resp += "             </span> ";
+            resp += "         </div> ";
+            resp += "         <div class='card-custom-content'> ";
+            resp += $"             <p>{p.Pro_descricao}</p> ";
+            resp += "         </div> ";
+            resp += "     </div> ";
+            resp += " </div> ";
+        
+
+        }
+        ltrMeuProdutos.Text = resp;
+
     }
 
     void validarSessao()
@@ -41,7 +87,7 @@ public partial class Pages_Colaborador_LojaVirtual : System.Web.UI.Page
     {
         usuarioLogado = (Usuario)Session["USUARIO"];
 
-        DataSet ds = ProdutoDB.FindAllEmpresa( usuarioLogado.Emp_id);
+        DataSet ds = ProdutoDB.FindAllEmpresa(usuarioLogado.Emp_id);
 
         List<Produto> listaProdutos = new List<Produto>();
         Produto produto;
