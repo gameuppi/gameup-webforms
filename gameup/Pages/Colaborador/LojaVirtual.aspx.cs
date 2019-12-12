@@ -132,6 +132,7 @@ public partial class Pages_Colaborador_LojaVirtual : System.Web.UI.Page
             Literal ltlText = new Literal();
             ltlText.Text += $"      </div></div><br/><div class='col-md-12 card-custom-content'>" +
                            $"           <p>{pro.Pro_subTitulo}</p>" +
+                           $"           <p>{pro.Pro_valorMoeda} Moedas</p>" +
                            $"       </div>" +
                            $"   </div>" +
                            $"</div>";
@@ -193,8 +194,11 @@ public partial class Pages_Colaborador_LojaVirtual : System.Web.UI.Page
     }
     private void ContinuarCompra(object sender, EventArgs e, int pro_id)
     {
-        Produto produto = CriarObjetoProduto(ProdutoDB.procurarPorId(pro_id));
+        //Produto produto = CriarObjetoProduto(ProdutoDB.procurarPorId(pro_id));
 
+        string url = $"ConfirmarCompra.aspx?pro_id={pro_id}";
+
+        Response.Redirect(url);
 
     }
 
