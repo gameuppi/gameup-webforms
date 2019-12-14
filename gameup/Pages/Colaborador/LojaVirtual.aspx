@@ -16,8 +16,8 @@
                 <div class="card-body">
                     <div class="row">
                         <div class="col-12">
-                            <h6>Seja muito bem-vindo! Para saber mais como a loja virtual funciona, consulte o regulamento.</h6>
-                            <a href="#">Acessar o regulamento</a>
+                            <h6>Seja muito bem-vindo! Para saber mais como a loja virtual funciona, consulte o link ao lado. <a href="#"> Acessar o regulamento</a></h6>
+                            
                         </div>
                     </div>
                 </div>
