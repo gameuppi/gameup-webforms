@@ -27,54 +27,68 @@
                     <div class="card-body p-0">
                         <!-- Nested Row within Card Body -->
                         <div class="row">
-                            <div class="col-lg-5 d-lg-block bg-register-image">
+                            <div class="col-lg-5 d-lg-block">
+                                <center><img src="../../Assets/Imagens/fgt.jpg" class="img-fluid" /></center>
                             </div>
-                            <div class="col-lg-7">
-                                <div class="p-5">
-                                    <div class="text-left ml-3">
-                                        <h1 class="h4 text-gray-900 mb-4 font-weight-bold">Completar Cadastro</h1>
-                                    </div>
-                                    <div class="form-group">
-                                        <div class="col-sm-12 mb-3 mb-sm-0 col-md-12">
-                                            <asp:TextBox ID="txtEmail" runat="server" type="email" placeholder="Digite seu E-mail" CssClass="form-control"></asp:TextBox>
+                            <div class="col-lg-7 p-5">
+                                <div class="row">
+                                    <div class="container">
+                                        <div class="col-12">
+                                            <div class="text-left ml-3">
+                                                <h1 class="h4 text-gray-900 mb-4 font-weight-bold">Olá, seja muito bem vindo!</h1>
+                                                <p>Sua empresa te cadastrou na nossa plataforma, preencha os campos abaixo e acesse para ver como ela funciona.</p>
+                                            </div>
                                         </div>
-                                    </div>
-                                    <div class="col-md-12 col-sm-12 form-group">
-                                        <asp:TextBox ID="txtDataNascimento" runat="server" type="date" CssClass="form-control" required="required"></asp:TextBox>
-                                    </div>
-                                    <div class="form-group row">
-                                        <div class="col-md-5 col-sm-12 ml-4">
-                                            <asp:TextBox ID="txtSenha" runat="server" placeholder="Digite sua Senha" type="password" CssClass="form-control"></asp:TextBox>
+                                        <div class="col-12">
+                                            <div class="col-12 mb-2">
+                                                <asp:TextBox ID="txtEmail" runat="server" type="email" placeholder="E-mail" CssClass="form-control"></asp:TextBox>
+                                            </div>
+
+                                            <div class="col-12 mb-2">
+                                                <asp:TextBox ID="txtDataNascimento" runat="server" type="date" CssClass="form-control" required="required"></asp:TextBox>
+                                            </div>
+
+                                            <div class="col-12 mb-2">
+                                                <asp:TextBox ID="txtSenha" runat="server" placeholder="Senha" type="password" CssClass="form-control" data-toggle="popover" data-placement="right" data-content="Vivamussagittis lacus vel augue laoreet rutrum faucibus."></asp:TextBox>
+                                            </div>
+                                            <div class="col-12 mb-2">
+                                                <asp:TextBox ID="txtConfirmarSenha" runat="server" placeholder="Confirme sua senha" type="password" CssClass="form-control"></asp:TextBox>
+                                            </div>
+                                            <button type="button" class="btn btn-lg btn-danger" data-toggle="popover" title="Popover title" data-content="And here's some amazing content. It's very engaging. Right?" id="teste">Click to toggle popover</button>
+
                                         </div>
-                                        <div class="col-md-6 col-sm-12">
-                                            <asp:TextBox ID="txtConfirmarSenha" runat="server" placeholder="Digite sua Senha Novamente" type="password" CssClass="form-control"></asp:TextBox>
+
+                                        <div class="col-12">
+                                            <div class="col-md-12">
+                                                <asp:CheckBox ID="checkConcordo" runat="server" />
+                                                <label>Li e concordo com os <a href="#">termos de uso</a></label>
+                                            </div>
+                                            <div class="col-md-12">
+                                                <asp:CheckBox ID="checkNovidades" runat="server" />
+                                                <label>Desejo receber novidades por e-mail</label>
+                                            </div>
+                                            <br />
+                                            <div class="col-md-12">
+                                                <asp:Button ID="btnSalvar" runat="server" Text="Salvar e acessar a plataforma" CssClass="btn btn-block btn-primary" OnClick="btnSalvar_Click" />
+                                            </div>
                                         </div>
-                                    </div>
-                                    <div class="col-md-12">
-                                        <asp:CheckBox ID="checkConcordo" runat="server"/>
-                                        <label> Li e concordo com os <a href="#">termos de uso</a></label>
-                                    </div>
-                                    <div class="col-md-12">
-                                        <asp:CheckBox ID="checkNovidades" runat="server" />
-                                        <label>Desejo receber novidades por e-mail</label>
-                                    </div>
-                                    <div class="col-md-12">
-                                        <asp:Button ID="btnSalvar" runat="server" Text="Salvar e acessar a plataforma" CssClass="btn btn-block btn-info" OnClick="btnSalvar_Click" />
-                                    </div>
-                                    <div class="col-md-12">
-                                        <asp:Literal ID="ltlMsg" runat="server"></asp:Literal>
+                                        <div class="col-md-12">
+                                            <asp:Literal ID="ltlMsg" runat="server"></asp:Literal>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-
             </div>
+
+        </div>
         </div>
     </form>
 
     <!-- Bootstrap -->
+    <script src="https://unpkg.com/@popperjs/core@2"></script>
     <script src="../../Assets/Vendor/jquery/jquery.min.js"></script>
     <script src="../../Assets/Vendor/bootstrap/js/bootstrap.min.js"></script>
 
