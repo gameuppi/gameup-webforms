@@ -1,5 +1,10 @@
-﻿$('#myModal').on('shown.bs.modal', function () {
-  $('#myInput').trigger('focus')
-})
+﻿$(document).ready(function () {
+    $('#myModal').on('shown.bs.modal', function () {
+        $('#myInput').trigger('focus')
+    });
 
-$('[data-toggle="popover"]').popover();
+    $('[data-toggle="tooltip"]').tooltip();
+
+    $('[data-toggle="popover"]').popover();
+
+});

@@ -5,7 +5,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
-public partial class Pages_Visitante_AssinaturaDePacote : System.Web.UI.Page
+public partial class Pages_Visitante_CompletarCadastro : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
