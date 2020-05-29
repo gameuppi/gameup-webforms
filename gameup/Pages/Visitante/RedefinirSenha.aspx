@@ -76,10 +76,15 @@
                             </button>
                         </div>
                         <div class="modal-body">
-                            <p>Oba! Falta pouco para você recuperar seu acesso. Veja a mensagem enviada para o seu e-mail e digite o código no campo abaixo.</p>
-                            <asp:TextBox runat="server" ID="txtCodigo" MaxLength="5" placeholder="Código de segurança" CssClass="form-control" onkeyup="this.value = this.value.toUpperCase();" />
+                            <p>Oba! Falta pouco para você recuperar seu acesso.</p>
+                            <div id="inputSpace">
+                                <asp:TextBox runat="server" ID="txtCodigo" MaxLength="5" placeholder="Código de segurança" CssClass="form-control" onkeyup="this.value = this.value.toUpperCase();" />
+                            </div>
                             <br />
-                            <input type="button" id="btnConfirmar" class="form-control btn btn-primary" value="Confirmar" />
+                            <div id="buttonSpace">
+                                <input type="button" id="btnConfirmar" class="form-control btn btn-primary" value="Confirmar" />
+                                <input type="button" id="btnSalvar" class="form-control btn btn-primary d-none" value="Salvar nova senha" />
+                            </div>
                             <br />
                             <label id="lblMensagem"></label>
                         </div>
@@ -90,33 +95,41 @@
             <script src="../../Assets/Vendor/jquery/jquery.min.js"></script>
             <script src="../../Assets/Vendor/bootstrap/js/bootstrap.min.js"></script>
             <script src="../../Assets/Custom/Js/sb-admin-2.js"></script>
-             <script type="text/javascript">
-                 $(document).ready(function () {
-                     $('#btnConfirmar').click(function () {
-                         var email = $('#txtEmail').val();
-                         var codigo = $('#txtCodigo').val();
-                         $.ajax({
-                             type: 'POST',
-                             contentType: "application/json; charset=utf-8",
-                             url: 'RedefinirSenha.aspx/verificarCodigo',
-                             data: "{'codigoDigitado':'" + codigo + "', 'email':'" + email + "'}",
-                             async: false,
-                             success: function (response) {
-                                 $('#txtCodigo').val('');
-                                 if (response.d) {
-                                     alert("Deu certo, redirecionando...");
-                                 } else {
-                                     $('#lblMensagem').html("<br /> <p class='text-danger'>Vish, código expirado, já validado ou inválido.</p>");
-                                 }
-                             },
-                             error: function (response) {
-                                 alert("Erro");
-                                 console.log(response);
-                             }
-                         });
-                     });
-                 })
-        </script>
+            <script type="text/javascript">
+                $(document).ready(function () {
+                    $('#btnConfirmar').click(function () {
+                        var email = $('#txtEmail').val();
+                        var codigo = $('#txtCodigo').val();
+                        $.ajax({
+                            type: 'POST',
+                            contentType: "application/json; charset=utf-8",
+                            url: 'RedefinirSenha.aspx/verificarCodigo',
+                            data: "{'codigoDigitado':'" + codigo + "', 'email':'" + email + "'}",
+                            async: false,
+                            success: function (response) {
+                                $('#txtCodigo').val('');
+                                if (response.d) {
+                                    $('#inputSpace').html("");
+                                    $('#buttonSpace').html("");
+                                    $('#inputSpace').append("<input type='password' placeholder='Nova senha' id='txtSenha' class='form-control' /> <br />");
+                                    $('#inputSpace').append("<input type='password' placeholder='Confirmar nova senha' id='txtSenhaConfirma' class='form-control' />");
+                                    $('#btnSalvar').attr("class", "form-control btn btn-primary");
+                                } else {
+                                    $('#lblMensagem').append("<br /> <p class='text-danger'>Vish, código expirado, já validado ou inválido.</p>");
+                                }
+                            },
+                            error: function (response) {
+                                alert("Erro");
+                                console.log(response);
+                            }
+                        });
+                    });
+
+                    $('#btnSalvar').click(function () {
+                        alert("sdfsd");
+                    });
+                })
+            </script>
             <asp:ScriptManager runat="server"></asp:ScriptManager>
     </form>
 </body>

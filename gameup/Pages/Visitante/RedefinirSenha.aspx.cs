@@ -101,6 +101,25 @@ public partial class Pages_Visitante_RedefinirSenha : System.Web.UI.Page
             throw ex;
         }
     }
+
+    [WebMethod]
+    public static bool SalvarNovaSenha(string senha, string email)
+    {
+        bool ok = false;
+        try
+        {
+            UsuarioBD.UpdateNovaSenha(senha, email);
+            ok = true;
+        }
+        catch (Exception ex)
+        {
+            throw ex;
+        }
+
+        return ok;
+    }
+
+
     [WebMethod]
     public static bool verificarCodigo(string codigoDigitado, string email)
     {
