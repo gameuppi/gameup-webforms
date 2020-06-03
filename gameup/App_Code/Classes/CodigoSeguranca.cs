@@ -8,23 +8,11 @@ using System.Web;
 /// </summary>
 public class CodigoSeguranca
 {
-    private string email;
+    private int id;
     private string codigo;
     private DateTime dtCriacao;
     private DateTime dtValidade;
 
-    public string Email
-    {
-        get
-        {
-            return email;
-        }
-
-        set
-        {
-            email = value;
-        }
-    }
 
     public string Codigo
     {
@@ -62,6 +50,19 @@ public class CodigoSeguranca
         set
         {
             dtValidade = value;
+        }
+    }
+
+    public int Id
+    {
+        get
+        {
+            return id;
+        }
+
+        set
+        {
+            id = value;
         }
     }
 }

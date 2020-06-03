@@ -22,15 +22,15 @@ public class CodigoSegurancaBD
 
             string query = "";
             query += "INSERT ";
-            query += "	INTO CODIGO_SEGURANCA ( ";
-            query += "		CSE_EMAIL, ";
+            query += "	INTO CODIGOSEGURANCA ( ";
+            query += "		USU_ID, ";
             query += "		CSE_CODIGO, ";
             query += "		CSE_DTCRIACAO, ";
             query += "		CSE_DTVALIDADE, ";
             query += "		CSE_STATUS ";
             query += "	) ";
             query += "VALUES ( ";
-            query += "		?EMAIL, ";
+            query += "		?ID, ";
             query += "		?CODIGO, ";
             query += "		?DTCRIACAO, ";
             query += "		?DTVALIDADE, ";
@@ -38,7 +38,7 @@ public class CodigoSegurancaBD
             query += "	); ";
 
             objComando = Mapped.Command(query, objConexao);
-            objComando.Parameters.Add(Mapped.Parameter("?EMAIL", codigoSeguranca.Email));
+            objComando.Parameters.Add(Mapped.Parameter("?ID", codigoSeguranca.Id));
             objComando.Parameters.Add(Mapped.Parameter("?CODIGO", codigoSeguranca.Codigo));
             objComando.Parameters.Add(Mapped.Parameter("?DTCRIACAO", codigoSeguranca.DtCriacao));
             objComando.Parameters.Add(Mapped.Parameter("?DTVALIDADE", codigoSeguranca.DtValidade));
@@ -70,7 +70,7 @@ public class CodigoSegurancaBD
 
             string query = "";
             query += " UPDATE ";
-            query += " 	CODIGO_SEGURANCA ";
+            query += " 	CODIGOSEGURANCA ";
             query += " SET ";
             query += " 	CSE_STATUS = ?STATUS ";
             query += " WHERE ";
@@ -124,6 +124,52 @@ public class CodigoSegurancaBD
             objCommand = Mapped.Command(query, objConexao);
 
             objCommand.Parameters.Add(Mapped.Parameter("?EMAIL", email));
+
+            dataAdapter = Mapped.Adapter(objCommand);
+
+            dataAdapter.Fill(ds);
+
+            objConexao.Close();
+            objConexao.Dispose();
+            objCommand.Dispose();
+
+            return ds;
+        }
+        catch (Exception ex)
+        {
+            throw ex;
+        }
+    }
+
+    public static DataSet BuscarCodigoSegurancaPorId(int id)
+    {
+        try
+        {
+            DataSet ds = new DataSet();
+            IDbConnection objConexao;
+            IDbCommand objCommand;
+            IDataAdapter dataAdapter;
+
+            objConexao = Mapped.Connection();
+            string query = "";
+            query += "SELECT  ";
+            query += "	cod.*  ";
+            query += "FROM ";
+            query += "	 codigoseguranca cod ";
+            query += "WHERE  ";
+            query += "	cod.usu_id = ?ID ";
+            query += "	AND cod.cse_dtCriacao = ( ";
+            query += "		SELECT  ";
+            query += "			MAX(cod2.cse_dtcriacao)  ";
+            query += "		FROM  ";
+            query += "			codigoseguranca cod2  ";
+            query += "		WHERE  ";
+            query += "			cod.usu_id = cod2.usu_id ";
+            query += "	); ";
+
+            objCommand = Mapped.Command(query, objConexao);
+
+            objCommand.Parameters.Add(Mapped.Parameter("?ID", id));
 
             dataAdapter = Mapped.Adapter(objCommand);
 

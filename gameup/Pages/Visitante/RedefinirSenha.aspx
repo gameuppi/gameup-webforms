@@ -109,8 +109,10 @@
                             success: function (response) {
                                 $('#txtCodigo').val('');
                                 if (response.d) {
-                                    $('#inputSpace').html("");
-                                    $('#buttonSpace').html("");
+                                    $('#txtEmail').attr("class", "d-none");
+                                    $('#txtCodigo').attr("class", "d-none");
+                                    $('#lblMensagem').html("");
+                                    $('#btnConfirmar').attr("class", "d-none");
                                     $('#inputSpace').append("<input type='password' placeholder='Nova senha' id='txtSenha' class='form-control' /> <br />");
                                     $('#inputSpace').append("<input type='password' placeholder='Confirmar nova senha' id='txtSenhaConfirma' class='form-control' />");
                                     $('#btnSalvar').attr("class", "form-control btn btn-primary");
@@ -126,7 +128,28 @@
                     });
 
                     $('#btnSalvar').click(function () {
-                        alert("sdfsd");
+                        var senha = $('#txtSenha').val();
+                        var confirmaSenha = $('#txtSenhaConfirma').val();
+                        var email = $('#txtEmail').val();
+                        $.ajax({
+                            type: 'POST',
+                            contentType: "application/json; charset=utf-8",
+                            url: 'RedefinirSenha.aspx/salvarNovaSenha',
+                            data: "{'senha':'" + senha + "', 'confirmaSenha':'" + confirmaSenha + "', 'email':' " + email + "'}",
+                            async: false,
+                            success: function (response) {
+                                $('#txtCodigo').val('');
+                                if (response.d) {
+                                    alert("Tudo pronto! Senha redefinida com sucesso!");
+                                    window.location.href = "Login.aspx";
+                                } else {
+                                    $('#lblMensagem').append("<br /> <p class='text-danger'>As senhas precisam coincidir e atender as regras de segurança</p>");
+                                }
+                            },
+                            error: function (response) {
+                                $('#lblMensagem').append("<br /> <p class='text-danger'>As senhas precisam coincidir e atender as regras de segurança</p>");
+                            }
+                        });
                     });
                 })
             </script>

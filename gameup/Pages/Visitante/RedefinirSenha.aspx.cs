@@ -31,7 +31,8 @@ public partial class Pages_Visitante_RedefinirSenha : System.Web.UI.Page
             string codigo = gerarCodigo(5);
             try
             {
-                bool ok = salvarCodigo(codigo, email);
+                int id = Convert.ToInt32(usuarioExiste.Tables[0].Rows[0]["usu_id"].ToString());
+                bool ok = salvarCodigo(codigo, id);
 
                 if (ok)
                 {
@@ -48,10 +49,10 @@ public partial class Pages_Visitante_RedefinirSenha : System.Web.UI.Page
         }
     }
 
-    private bool salvarCodigo(string codigo, string email)
+    private bool salvarCodigo(string codigo, int id)
     {
         CodigoSeguranca codigoSeguranca = new CodigoSeguranca();
-        codigoSeguranca.Email = email;
+        codigoSeguranca.Id = id;
         codigoSeguranca.Codigo = codigo;
         codigoSeguranca.DtCriacao = DateTime.Now;
         codigoSeguranca.DtValidade = DateTime.Now.AddHours(3);
@@ -126,7 +127,8 @@ public partial class Pages_Visitante_RedefinirSenha : System.Web.UI.Page
         bool ok = false;
         try
         {
-            DataSet codigoInfo = CodigoSegurancaBD.BuscarCodigoSegurancaPorEmail(email);
+            DataSet usuario = UsuarioBD.procurarUsuarioPorEmail(email);
+            DataSet codigoInfo = CodigoSegurancaBD.BuscarCodigoSegurancaPorId(Convert.ToInt32(usuario.Tables[0].Rows[0]["usu_id"].ToString()));
 
             string codigo = codigoInfo.Tables[0].Rows[0]["cse_codigo"].ToString();
             int idCodigo = Convert.ToInt32(codigoInfo.Tables[0].Rows[0]["cse_id"].ToString());
@@ -149,6 +151,25 @@ public partial class Pages_Visitante_RedefinirSenha : System.Web.UI.Page
         {
             throw ex;
         }
+    }
+
+    [WebMethod]
+    public static bool salvarNovaSenha(string senha, string confirmaSenha, string email)
+    {
+        bool ok = false;
+        try
+        {
+            if (senha.Equals(confirmaSenha))
+            {
+                ok = UsuarioBD.UpdateNovaSenha(senha, email);
+            }
+        }
+        catch (Exception ex)
+        {
+            throw ex;
+        }
+
+        return ok;
     }
 
     public static bool AtualizarStatusDoCodigo(int idCodigo, StatusCodigoSegurancaEnum status)
