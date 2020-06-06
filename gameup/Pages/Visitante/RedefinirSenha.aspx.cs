@@ -8,6 +8,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Web.Services;
+using System.Text.RegularExpressions;
 
 public partial class Pages_Visitante_RedefinirSenha : System.Web.UI.Page
 {
@@ -107,10 +108,19 @@ public partial class Pages_Visitante_RedefinirSenha : System.Web.UI.Page
     public static bool SalvarNovaSenha(string senha, string email)
     {
         bool ok = false;
+
+        Regex padraoSenha = new Regex(@"^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{6,})");
+
         try
         {
-            UsuarioBD.UpdateNovaSenha(senha, email);
-            ok = true;
+            if (padraoSenha.IsMatch(senha))
+            {
+                UsuarioBD.UpdateNovaSenha(senha, email);
+                ok = true;
+            } else
+            {
+                ok = false;
+            }
         }
         catch (Exception ex)
         {
@@ -157,11 +167,17 @@ public partial class Pages_Visitante_RedefinirSenha : System.Web.UI.Page
     public static bool salvarNovaSenha(string senha, string confirmaSenha, string email)
     {
         bool ok = false;
+        Regex padraoSenha = new Regex(@"^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{6,})");
+
         try
         {
-            if (senha.Equals(confirmaSenha))
+            if (padraoSenha.IsMatch(senha))
             {
                 ok = UsuarioBD.UpdateNovaSenha(senha, email);
+            }
+            else
+            {
+                ok = false;
             }
         }
         catch (Exception ex)

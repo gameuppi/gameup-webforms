@@ -92,9 +92,13 @@
                 </div>
             </div>
 
+            <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+            <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
             <script src="../../Assets/Vendor/jquery/jquery.min.js"></script>
             <script src="../../Assets/Vendor/bootstrap/js/bootstrap.min.js"></script>
-            <script src="../../Assets/Custom/Js/sb-admin-2.js"></script>
+            <script src="../../Assets/Custom/Js/main.js"></script>
+
             <script type="text/javascript">
                 $(document).ready(function () {
                     $('#btnConfirmar').click(function () {
@@ -113,7 +117,7 @@
                                     $('#txtCodigo').attr("class", "d-none");
                                     $('#lblMensagem').html("");
                                     $('#btnConfirmar').attr("class", "d-none");
-                                    $('#inputSpace').append("<input type='password' placeholder='Nova senha' id='txtSenha' class='form-control' /> <br />");
+                                    $('#inputSpace').append("<input type='password' placeholder='Nova senha' id='txtSenha' class='form-control'  data-toggle='popover' title='Para sua segurança' data-trigger='focus' data-content='A senha de conter no mínimo 6 caracteres, incluindo ao menos um número, um caracter especial, e uma letra maiúscula e minúscula.' /> <br />");
                                     $('#inputSpace').append("<input type='password' placeholder='Confirmar nova senha' id='txtSenhaConfirma' class='form-control' />");
                                     $('#btnSalvar').attr("class", "form-control btn btn-primary");
                                 } else {
@@ -139,15 +143,14 @@
                             async: false,
                             success: function (response) {
                                 $('#txtCodigo').val('');
-                                if (response.d) {
-                                    alert("Tudo pronto! Senha redefinida com sucesso!");
+                                if (response.d == true) {
                                     window.location.href = "Login.aspx";
                                 } else {
-                                    $('#lblMensagem').append("<br /> <p class='text-danger'>As senhas precisam coincidir e atender as regras de segurança</p>");
+                                    $('#lblMensagem').html("<br /> <p class='text-danger'>As senhas precisam coincidir e atender as regras de segurança</p>");
                                 }
                             },
                             error: function (response) {
-                                $('#lblMensagem').append("<br /> <p class='text-danger'>As senhas precisam coincidir e atender as regras de segurança</p>");
+                                $('#lblMensagem').html("<br /> <p class='text-danger'>As senhas precisam coincidir e atender as regras de segurança</p>");
                             }
                         });
                     });

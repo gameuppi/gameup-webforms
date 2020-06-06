@@ -17,12 +17,7 @@ public partial class Pages_Visitante_CompletarCadastro : System.Web.UI.Page
     {
         if (checkConcordo.Checked)
         {
-            Regex padraoSenha = new Regex(@"/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[$*&@#])[0-9a-zA-Z$*&@#]{6,}$/");
-
-            if (padraoSenha.IsMatch(txtSenha.Text))
-            {
-                Console.WriteLine("dsfsdf");
-            }
+            Regex padraoSenha = new Regex(@"^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{6,})");
 
             if (txtSenha.Text.Equals(txtConfirmarSenha.Text) && padraoSenha.IsMatch(txtSenha.Text))
             {
@@ -46,12 +41,12 @@ public partial class Pages_Visitante_CompletarCadastro : System.Web.UI.Page
             }
             else
             {
-                ltlMsg.Text = "<ul><li>Vish, suas senhas não coincidem ou não seguem os padrões de segurança</li></ul>";
+                ltlMsg.Text = "<br /><p>Vish, suas senhas não coincidem ou não seguem os padrões de segurança</p>";
             } 
         }
         else
         {
-            ltlMsg.Text = "<ul><li>Selecione a opção de concordo com os termos</li></ul>";
+            ltlMsg.Text = "<br /><p>Vish, você precisa aceitar e concordar com nossos termos.</p>";
         }
     }
 }

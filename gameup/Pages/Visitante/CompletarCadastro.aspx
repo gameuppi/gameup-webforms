@@ -38,14 +38,17 @@
                                             </div>
 
                                             <div class="col-12 mb-2">
-                                                <asp:TextBox ID="txtDataNascimento" runat="server" type="text" onfocus="(this.type='date')" onblur="(this.type='text')" placeholder="Data de nascimento" CssClass="form-control" required="required"></asp:TextBox>
+                                                <asp:TextBox ID="txtDataNascimento" runat="server" type="text" onfocus="(this.type='date')" onblur="(this.type='text')"  placeholder="Data de nascimento" CssClass="form-control" required="required"></asp:TextBox>
                                             </div>
 
                                             <div class="col-12 mb-2">
-                                                <asp:TextBox ID="txtSenha" runat="server" placeholder="Senha" type="password" CssClass="form-control"  data-toggle="popover" title="Para sua segurança"  data-trigger="focus"  data-content="A senha de conter entre 6 e 12 caracteres, incluindo um número e um caracter especial."></asp:TextBox>
+                                                <asp:TextBox ID="txtSenha" runat="server" placeholder="Senha" type="password" CssClass="form-control" data-toggle="popover" title="Para sua segurança" data-trigger="focus" data-content="A senha de conter no mínimo 6 caracteres, incluindo ao menos um número, um caracter especial, e uma letra maiúscula e minúscula."></asp:TextBox>
                                             </div>
                                             <div class="col-12 mb-2">
                                                 <asp:TextBox ID="txtConfirmarSenha" runat="server" placeholder="Confirme sua senha" type="password" CssClass="form-control"></asp:TextBox>
+                                                <div class="text-warning">
+                                                    <label type="text" id="lblConfirmarSenha" class="mt-1" />
+                                                </div>
                                             </div>
                                         </div>
 
@@ -62,9 +65,10 @@
                                             <div class="col-md-12">
                                                 <asp:Button ID="btnSalvar" runat="server" Text="Salvar e acessar a plataforma" CssClass="btn btn-block btn-primary" OnClick="btnSalvar_Click" />
                                             </div>
-                                        </div>
-                                        <div class="col-md-12">
-                                            <asp:Literal ID="ltlMsg" runat="server"></asp:Literal>
+
+                                            <div class="col-md-12 text-danger">
+                                                <asp:Literal ID="ltlMsg" runat="server"></asp:Literal>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -78,10 +82,11 @@
         </div>
     </form>
 
-    
+
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script><script src="../../Assets/Vendor/jquery/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <script src="../../Assets/Vendor/jquery/jquery.min.js"></script>
     <script src="../../Assets/Vendor/bootstrap/js/bootstrap.min.js"></script>
     <script src="../../Assets/Custom/Js/main.js"></script>
 </body>

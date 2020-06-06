@@ -7,4 +7,13 @@
 
     $('[data-toggle="popover"]').popover();
 
+    $('#txtConfirmarSenha').on('keyup', function () {
+        if ($('#txtConfirmarSenha').val().length >= 3) {
+            if ($('#txtConfirmarSenha').val() != $('#txtSenha').val()) {
+                $('#lblConfirmarSenha').html("As senhas não coincidem");
+            } else {
+                $('#lblConfirmarSenha').html("");
+            }
+        }
+    })
 });
