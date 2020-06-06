@@ -126,4 +126,37 @@ public class UsuarioBD
         return ok;
 
     }
+
+    public static bool UpdateNovaSenha(string senha, string email)
+    {
+        bool ok = false;
+        try
+        {
+            IDbConnection objConexao;
+            IDbCommand objCommand;
+            objConexao = Mapped.Connection();
+
+            string query = "update usuario SET usu_senha = ?usu_senha WHERE usu_email = ?usu_email";
+
+            objCommand = Mapped.Command(query, objConexao);
+
+            objCommand.Parameters.Add(Mapped.Parameter("?usu_senha", UsuarioDB.Cryptografia(senha.Trim())));
+            objCommand.Parameters.Add(Mapped.Parameter("?usu_email", email.Trim()));
+
+            objCommand.ExecuteNonQuery();
+
+            objConexao.Close();
+            objConexao.Dispose();
+            objCommand.Dispose();
+
+            ok = true;
+        }
+        catch (Exception ex)
+        {
+            Console.Write(ex.StackTrace);
+        }
+
+        return ok;
+
+    }
 }

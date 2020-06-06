@@ -40,6 +40,12 @@
                         </div>
                     </div>
                 </div>
+                
+                <div class="col-12 col-md-8 text-right">
+                    <asp:Button runat="server" type="checkbox" class="btn btn-dark" Text="Todas" ID="btnTodas" OnClick="btnTodas_Click" />
+                    <asp:Button runat="server" type="button" class="btn btn-success" Text="Concluídas" ID="btnConcluidas" OnClick="btnConcluidas_Click" />
+                    <asp:Button runat="server" type="button" class="btn btn-info" Text="Em andamento" ID="btnEmAndamento" OnClick="btnEmAndamento_Click" />
+                </div>
             </div>
             <asp:Panel runat="server" ID="pnlMissoesVisualizar" CssClass="row mt-4">
             </asp:Panel>
@@ -56,11 +62,6 @@
                             </button>
                         </div>
                     </div>
-                </div>
-                <div class="col-12 col-md-8 text-right">
-                    <button type="button" class="btn btn-dark">Todas</button>
-                    <button type="button" class="btn btn-success">Aceitas</button>
-                    <button type="button" class="btn btn-warning">Pendentes</button>
                 </div>
             </div>
 

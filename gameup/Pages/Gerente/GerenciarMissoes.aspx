@@ -146,171 +146,176 @@
             </div>
 
 
-    </div>
+        </div>
 
-    <!-- Visualizar missoes -->
-    <div class="tab-pane fade p-4" id="nav-visualizacao" role="tabpanel" aria-labelledby="nav-visualizacao-tab">
-        <div class="row">
-            <div class="col-12 col-md-4">
-                <div class="input-group">
-                    <input type="text" class="form-control bg-light border-0 small" placeholder="Procure por colaborador ou setor" aria-label="Search" aria-describedby="basic-addon2">
-                    <div class="input-group-append">
-                        <button class="btn btn-info" type="button">
-                            <i class="fas fa-search fa-sm"></i>
-                        </button>
+        <!-- Visualizar missoes -->
+        <div class="tab-pane fade p-4" id="nav-visualizacao" role="tabpanel" aria-labelledby="nav-visualizacao-tab">
+            <div class="row">
+                <div class="col-12 col-md-4">
+                    <div class="input-group">
+                        <input type="text" class="form-control bg-light border-0 small" placeholder="Procure por colaborador ou setor" aria-label="Search" aria-describedby="basic-addon2">
+                        <div class="input-group-append">
+                            <button class="btn btn-info" type="button">
+                                <i class="fas fa-search fa-sm"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 col-md-8 text-right">
+                    <asp:Button runat="server" type="checkbox" class="btn btn-dark" Text="Todas" ID="btnTodas" OnClick="btnTodas_Click"/>
+                    <asp:Button runat="server" type="button" class="btn btn-success" Text="Concluídas" ID="btnConcluidas" OnClick="btnConcluidas_Click" />
+                    <asp:Button runat="server" type="button" class="btn btn-warning" Text="Pendentes" ID="btnEmAndamento" OnClick="btnEmAndamento_Click" />
+                </div>
+            </div>
+            <asp:Panel runat="server" ID="pnlMissoesVisualizar" CssClass="row mt-4">
+            </asp:Panel>
+        </div>
+
+        <!-- PAINEL DE MISSOES EM CONSTRUCAO -->
+        <div class="tab-pane fade p-4 mb-4" id="nav-construcao" role="tabpanel" aria-labelledby="nav-construcao-tab">
+            <div class="row">
+
+                <div class="col-12 col-md-4">
+                    <div class="input-group">
+                        <input type="text" class="form-control bg-light border-0 small" placeholder="Procure por missões" aria-label="Search" aria-describedby="basic-addon2">
+                        <div class="input-group-append">
+                            <button class="btn btn-info" type="button">
+                                <i class="fas fa-search fa-sm"></i>
+                            </button>
+                        </div>
                     </div>
                 </div>
             </div>
+            <asp:Panel runat="server" ID="pnlMissoesEmConstrucao" CssClass="row mt-4"></asp:Panel>
         </div>
-        <asp:Panel runat="server" ID="pnlMissoesVisualizar" CssClass="row mt-4">
-        </asp:Panel>
-    </div>
 
-    <!-- PAINEL DE MISSOES EM CONSTRUCAO -->
-    <div class="tab-pane fade p-4 mb-4" id="nav-construcao" role="tabpanel" aria-labelledby="nav-construcao-tab">
-        <div class="row">
+        <!-- PAINEL DE MISSOES AGUARDANDO VALIDACAO -->
+        <div class="tab-pane fade p-4" id="nav-validacao" role="tabpanel" aria-labelledby="nav-validacao-tab">
+            <div class="row">
 
-            <div class="col-12 col-md-4">
-                <div class="input-group">
-                    <input type="text" class="form-control bg-light border-0 small" placeholder="Procure por missões" aria-label="Search" aria-describedby="basic-addon2">
-                    <div class="input-group-append">
-                        <button class="btn btn-info" type="button">
-                            <i class="fas fa-search fa-sm"></i>
-                        </button>
+                <div class="col-12 col-md-4">
+                    <div class="input-group">
+                        <input type="text" class="form-control bg-light border-0 small" placeholder="Procure por missões" aria-label="Search" aria-describedby="basic-addon2">
+                        <div class="input-group-append">
+                            <button class="btn btn-info" type="button">
+                                <i class="fas fa-search fa-sm"></i>
+                            </button>
+                        </div>
                     </div>
                 </div>
             </div>
+            <asp:Panel runat="server" ID="pnlMissaoAgValidacao" CssClass="row mt-4"></asp:Panel>
         </div>
-        <asp:Panel runat="server" ID="pnlMissoesEmConstrucao" CssClass="row mt-4"></asp:Panel>
-    </div>
 
-    <!-- PAINEL DE MISSOES AGUARDANDO VALIDACAO -->
-    <div class="tab-pane fade p-4" id="nav-validacao" role="tabpanel" aria-labelledby="nav-validacao-tab">
-        <div class="row">
 
-            <div class="col-12 col-md-4">
-                <div class="input-group">
-                    <input type="text" class="form-control bg-light border-0 small" placeholder="Procure por missões" aria-label="Search" aria-describedby="basic-addon2">
-                    <div class="input-group-append">
-                        <button class="btn btn-info" type="button">
-                            <i class="fas fa-search fa-sm"></i>
+
+        <!-- Modal -->
+        <div class="modal fade" id="modalDetalhesMissao" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content p-4">
+                    <div class="modal-header">
+                        <h4 class="modal-title text-dark font-weight-bold" id="exampleModalLongTitle">Detalhes da Missão</h4>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
-                </div>
-            </div>
-        </div>
-        <asp:Panel runat="server" ID="pnlMissaoAgValidacao" CssClass="row mt-4"></asp:Panel>
-    </div>
+                    <div class="modal-body">
+                        <asp:Literal runat="server" ID="Literal1"></asp:Literal>
 
-
-
-    <!-- Modal -->
-    <div class="modal fade" id="modalDetalhesMissao" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered" role="document">
-            <div class="modal-content p-4">
-                <div class="modal-header">
-                    <h4 class="modal-title text-dark font-weight-bold" id="exampleModalLongTitle">Detalhes da Missão</h4>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <asp:Literal runat="server" ID="Literal1"></asp:Literal>
-
-                    <div class="row">
-                        <div class="col-12">
-                            <h6>Recompensas</h6>
-                            <div class="row mt-4">
-                                <div class="col-4 text-center text-success">
-                                    <i class="fas fa-coins fa-2x"></i>
-                                    <p class="mt-3">
-                                        <asp:Literal runat="server" ID="ltrDetalhesMoedas">
-                                        </asp:Literal>
-                                    </p>
-                                </div>
-                                <div class="col-4 text-center text-warning">
-                                    <i class="fas fa-star fa-2x"></i>
-                                    <p class="mt-3">
-                                        <asp:Literal runat="server" ID="ltrDetalhesEstrelas">
-                                        </asp:Literal>
-                                    </p>
-                                </div>
-                                <div class="col-4 text-center text-danger">
-                                    <i class="fas fa-meteor fa-2x"></i>
-                                    <p class="mt-3">
-                                        <asp:Literal runat="server" ID="ltrDetalhesMeteoros">
-                                        </asp:Literal>
-                                    </p>
+                        <div class="row">
+                            <div class="col-12">
+                                <h6>Recompensas</h6>
+                                <div class="row mt-4">
+                                    <div class="col-4 text-center text-success">
+                                        <i class="fas fa-coins fa-2x"></i>
+                                        <p class="mt-3">
+                                            <asp:Literal runat="server" ID="ltrDetalhesMoedas">
+                                            </asp:Literal>
+                                        </p>
+                                    </div>
+                                    <div class="col-4 text-center text-warning">
+                                        <i class="fas fa-star fa-2x"></i>
+                                        <p class="mt-3">
+                                            <asp:Literal runat="server" ID="ltrDetalhesEstrelas">
+                                            </asp:Literal>
+                                        </p>
+                                    </div>
+                                    <div class="col-4 text-center text-danger">
+                                        <i class="fas fa-meteor fa-2x"></i>
+                                        <p class="mt-3">
+                                            <asp:Literal runat="server" ID="ltrDetalhesMeteoros">
+                                            </asp:Literal>
+                                        </p>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="row mt-4">
-                        <p>
-                            <asp:Literal runat="server" ID="ltrDetalhesDescricao">
-                            </asp:Literal>
-                        </p>
-                    </div>
+                        <div class="row mt-4">
+                            <p>
+                                <asp:Literal runat="server" ID="ltrDetalhesDescricao">
+                                </asp:Literal>
+                            </p>
+                        </div>
 
-                    <div class="row mt-4">
-                        <h6>
-                            <i class="fas fa-calendar-check"></i>
-                            &nbsp;
+                        <div class="row mt-4">
+                            <h6>
+                                <i class="fas fa-calendar-check"></i>
+                                &nbsp;
                                 Concluído em:
                             <asp:Literal runat="server" ID="ltrDataConclusao"></asp:Literal></h6>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
 
 
-    <!-- Modal cadastra missao -->
-    <div class="modal fade" id="modalCadastraMissao">
-        <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content">
+        <!-- Modal cadastra missao -->
+        <div class="modal fade" id="modalCadastraMissao">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
 
-                <div class="modal-header">
-                    <h4 class="modal-title">
-                        <asp:Literal runat="server" ID="ltrTituloModal"></asp:Literal>
-                    </h4>
-                    <button type="button" class="close" data-dismiss="modal">&times;</button>
-                </div>
+                    <div class="modal-header">
+                        <h4 class="modal-title">
+                            <asp:Literal runat="server" ID="ltrTituloModal"></asp:Literal>
+                        </h4>
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    </div>
 
-                <div class="modal-body">
-                    <asp:Literal runat="server" ID="msgModalCadastraMissao"></asp:Literal>
-                </div>
+                    <div class="modal-body">
+                        <asp:Literal runat="server" ID="msgModalCadastraMissao"></asp:Literal>
+                    </div>
 
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-success" data-dismiss="modal">Pronto</button>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Modal participantes -->
-    <div class="modal fade" id="modalParticipantes">
-        <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content">
-
-                <div class="modal-header">
-                    <h4 class="modal-title">
-                        <asp:Literal runat="server" ID="lblTituloParticipantes"></asp:Literal>
-                    </h4>
-                    <button type="button" class="close" data-dismiss="modal">&times;</button>
-                </div>
-
-                <div class="modal-body">
-                    <asp:ListBox runat="server" ID="ltbParticipantes" CssClass="form-control"></asp:ListBox>
-                </div>
-
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-success" data-dismiss="modal">Pronto</button>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-success" data-dismiss="modal">Pronto</button>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-    <!--
+
+        <!-- Modal participantes -->
+        <div class="modal fade" id="modalParticipantes">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+
+                    <div class="modal-header">
+                        <h4 class="modal-title">
+                            <asp:Literal runat="server" ID="lblTituloParticipantes"></asp:Literal>
+                        </h4>
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    </div>
+
+                    <div class="modal-body">
+                        <asp:ListBox runat="server" ID="ltbParticipantes" CssClass="form-control"></asp:ListBox>
+                    </div>
+
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-success" data-dismiss="modal">Pronto</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--
     <script>
         window.addEventListener('keydown', function (e) {
             var code = e.which || e.keyCode;
