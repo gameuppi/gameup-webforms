@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text.RegularExpressions;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
@@ -16,7 +17,14 @@ public partial class Pages_Visitante_CompletarCadastro : System.Web.UI.Page
     {
         if (checkConcordo.Checked)
         {
-            if (txtSenha.Text.Equals(txtConfirmarSenha.Text))
+            Regex padraoSenha = new Regex(@"/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[$*&@#])[0-9a-zA-Z$*&@#]{6,}$/");
+
+            if (padraoSenha.IsMatch(txtSenha.Text))
+            {
+                Console.WriteLine("dsfsdf");
+            }
+
+            if (txtSenha.Text.Equals(txtConfirmarSenha.Text) && padraoSenha.IsMatch(txtSenha.Text))
             {
                 Usuario usu = new Usuario();
 
@@ -38,7 +46,7 @@ public partial class Pages_Visitante_CompletarCadastro : System.Web.UI.Page
             }
             else
             {
-                //msg de aviso
+                ltlMsg.Text = "<ul><li>Vish, suas senhas não coincidem ou não seguem os padrões de segurança</li></ul>";
             } 
         }
         else

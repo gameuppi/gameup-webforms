@@ -55,7 +55,7 @@ public partial class Pages_Visitante_RedefinirSenha : System.Web.UI.Page
         codigoSeguranca.Id = id;
         codigoSeguranca.Codigo = codigo;
         codigoSeguranca.DtCriacao = DateTime.Now;
-        codigoSeguranca.DtValidade = DateTime.Now.AddHours(3);
+        codigoSeguranca.DtValidade = DateTime.Now.AddHours(1);
 
         bool ok = CodigoSegurancaBD.InsertCodigoSeguranca(codigoSeguranca);
 
