@@ -18,6 +18,10 @@
     <link href="Assets/Custom/Css/sb-admin-2.css" rel="stylesheet">
     <link href="Assets/Custom/Css/main.css" rel="stylesheet">
 
+    <asp:Literal runat="server" ID="ltrCss">
+    
+    </asp:Literal>
+
     <asp:ContentPlaceHolder ID="head" runat="server">
     </asp:ContentPlaceHolder>
 </head>
@@ -33,9 +37,11 @@
                         <div class="sidebar-brand-icon">
                             <i class="fas fa-user-circle"></i>
                         </div>
-                        <div class="sidebar-brand-text mx-3">Pedro A.</div>
+                        <asp:Label runat="server" ID="lblNome" CssClass="sidebar-brand-text mx-3"></asp:Label>
                     </a>
-
+                    <div class="col-md-12 text-white">
+                        <asp:Label runat="server" ID="lblCargo" CssClass="sidebar-brand-text mx-3"></asp:Label>
+                    </div>
                 </div>
 
                 <!-- Divider -->
@@ -50,7 +56,7 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="../../Pages/Representante/Missoes.aspx">
+                    <a class="nav-link" href="../../Pages/Representante/GerenciarColaboradores.aspx">
                         <i class="fas fa-fw fa-users"></i>
                         <span>Colaboradores</span>
                     </a>
@@ -104,7 +110,7 @@
                         <i class="fas fa-cog fa-2x icon-change-white"></i>
                     </div>
                     <div class="col-6">
-                        <i class="fas fa-power-off fa-2x icon-change-white"></i>
+                        <asp:LinkButton runat="server" ID="btnSair" CssClass="text-white" OnClick="btnSair_Click"><i class="fas fa-power-off fa-2x icon-change-white"></i></asp:LinkButton>
                     </div>
                 </div>
 
@@ -128,7 +134,7 @@
                         <!-- Topbar Navbar -->
                         <ul class="navbar-nav ml-auto">
 
-                         
+
                             <!-- Nav Item - Alerts -->
                             <li class="nav-item dropdown no-arrow mx-1">
                                 <a class="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -210,46 +216,48 @@
             </a>
 
             <!-- Logout Modal-->
+            <!-- Logout Modal-->
             <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div class="modal-dialog" role="document">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+                            <h5 class="modal-title" id="exampleModalLabel">Você deseja realmente sair?</h5>
                             <button class="close" type="button" data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">×</span>
                             </button>
                         </div>
-                        <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
+                        <div class="modal-body">Clique em confirmar para encerrar sua sessão ou no ícone "X" superior para cancelar</div>
                         <div class="modal-footer">
-                            <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                            <a class="btn btn-primary" href="login.html">Logout</a>
+                            <asp:LinkButton runat="server" ID="btnSairDeVez" OnClick="btnSairDeVez_Click" CssClass="btn btn-danger">Confirmar</asp:LinkButton>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
+
+            <!-- Bootstrap -->
+            <script src="../../Assets/Vendor/jquery/jquery.min.js"></script>
+            <script src="../../Assets/Vendor/bootstrap/js/bootstrap.min.js"></script>
+
+            <!-- JavaScript -->
+            <script src="../../Assets/Vendor/jquery-easing/jquery.easing.min.js"></script>
+            <script src="../../Assets/Custom/Js/main.js"></script>
+
+            <!-- Script Acessibilidade-->
+            <script src="Assets/Custom/Js/textzoom.js"></script>
+
+            <!-- Scripts customizados do template -->
+            <script src="../../Assets/Custom/Js/sb-admin-2.min.js"></script>
+
+            <!-- Plugins da página e gráficos -->
+            <script src="../../Assets/Vendor/chart.js/Chart.min.js"></script>
+
+            <!-- Scripts do plugin de gráficos -->
+            <script src="../../Assets/Custom/Js/demo/chart-area-demo.js"></script>
+            <script src="../../Assets/Custom/Js/demo/chart-pie-demo.js"></script>
+            <script src="../../Assets/Custom/Js/demo/chart-pie-demo.js"></script>
+            <asp:ScriptManager runat="server"></asp:ScriptManager>
     </form>
 
-    <!-- Bootstrap -->
-    <script src="../../Assets/Vendor/jquery/jquery.min.js"></script>
-    <script src="../../Assets/Vendor/bootstrap/js/bootstrap.min.js"></script>
 
-    <!-- JavaScript -->
-    <script src="../../Assets/Vendor/jquery-easing/jquery.easing.min.js"></script>
-    <script src="../../Assets/Custom/Js/main.js"></script>
-
-    <!-- Script Acessibilidade-->
-    <script src="Assets/Custom/Js/textzoom.js"></script>
-
-    <!-- Scripts customizados do template -->
-    <script src="../../Assets/Custom/Js/sb-admin-2.min.js"></script>
-
-    <!-- Plugins da página e gráficos -->
-    <script src="../../Assets/Vendor/chart.js/Chart.min.js"></script>
-
-    <!-- Scripts do plugin de gráficos -->
-    <script src="../../Assets/Custom/Js/demo/chart-area-demo.js"></script>
-    <script src="../../Assets/Custom/Js/demo/chart-pie-demo.js"></script>
-    <script src="../../Assets/Custom/Js/demo/chart-pie-demo.js"></script>
 </body>
 </html>
