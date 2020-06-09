@@ -13,8 +13,16 @@ public partial class MasterPageGerente : System.Web.UI.MasterPage
         ltrCss.Text = "<link href=\"/Assets/Custom/Css/sb-admin-2.css\" rel=\"stylesheet\">";
         ltrCss.Text += "<link href=\"/Assets/Custom/Css/main.css\" rel=\"stylesheet\">";
 
-        Usuario usuario = (Usuario) Session["USUARIO"];
-        lblNome.Text = formatarNome(usuario.Usu_nome);
+        if (Session["USUARIO"] != null)
+        {
+            Usuario usuario = (Usuario)Session["USUARIO"];
+            lblNome.Text = formatarNome(usuario.Usu_nome);
+            lblCargo.Text = "Gerente";
+        }
+        else
+        {
+            Response.Redirect("../Visitante/Login.aspx");
+        }
     }
 
     protected void btnSair_Click(object sender, EventArgs e)

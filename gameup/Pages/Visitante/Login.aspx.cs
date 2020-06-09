@@ -56,7 +56,7 @@ public partial class Pages_Visitante_Login : System.Web.UI.Page
                 }
                 else if (usuario.Tus_id == 3)
                 {
-                    Response.Redirect("../Representante/PainelPrincipal.aspx");
+                    Response.Redirect("../Representante/GerenciarColaboradores.aspx");
                 }
                 else if (usuario.Tus_id == 4)
                 {
