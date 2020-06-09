@@ -62,7 +62,7 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="../../Pages/Representante/Missoes.aspx">
+                    <a class="nav-link" href="../../Pages/Representante/GerenciarSetores.aspx">
                         <i class="fas fa-fw fa-users-cog"></i>
                         <span>Setores</span>
                     </a>
