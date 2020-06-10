@@ -78,7 +78,7 @@
                         <div class="modal-body">
                             <p>Oba! Falta pouco para você recuperar seu acesso.</p>
                             <div id="inputSpace">
-                                <asp:TextBox runat="server" ID="txtCodigo" MaxLength="5" placeholder="Código de segurança" CssClass="form-control" onkeyup="this.value = this.value.toUpperCase();" />
+                                <asp:TextBox runat="server" ID="txtCodigo" MaxLength="8" placeholder="Código de segurança" CssClass="form-control" onkeyup="this.value = this.value.toUpperCase();" />
                             </div>
                             <br />
                             <div id="buttonSpace">

@@ -29,7 +29,7 @@ public partial class Pages_Visitante_RedefinirSenha : System.Web.UI.Page
         }
         else
         {
-            string codigo = gerarCodigo(5);
+            string codigo = gerarCodigo(8);
             try
             {
                 int id = Convert.ToInt32(usuarioExiste.Tables[0].Rows[0]["usu_id"].ToString());
