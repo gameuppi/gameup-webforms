@@ -34,8 +34,11 @@
                         <div class="sidebar-brand-icon">
                             <i class="fas fa-user-circle"></i>
                         </div>
-                        <asp:Label runat="server" ID="lblNome" CssClass="sidebar-brand-text mx-3"></asp:Label>
+                        <asp:Label runat="server" ID="lblNome" CssClass="sidebar-brand-text mx-3"></asp:Label>                        
                     </a>
+                    <div class="col-md-12 text-white">
+                        <asp:Label runat="server" ID="lblCargo" CssClass="sidebar-brand-text mx-3"></asp:Label>
+                    </div>
                     <div class="card-body text-white">
                         <h4 class="small font-weight-bold">Nível <sup>20</sup></h4>
                         <div class="progress mb-4">

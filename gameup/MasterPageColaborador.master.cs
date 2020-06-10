@@ -18,6 +18,7 @@ public partial class MasterPageColaborador : System.Web.UI.MasterPage
         {
             Usuario usuario = (Usuario)Session["USUARIO"];
             lblNome.Text = formatarNome(usuario.Usu_nome);
+            lblCargo.Text = "Colaborador";
         } else
         {
             Response.Redirect("../Visitante/Login.aspx");

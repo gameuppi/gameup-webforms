@@ -30,6 +30,18 @@ public partial class Pages_Colaborador_Missoes : System.Web.UI.Page
         carregarTodasAsMissoesUsuario(listaDeMissoesUsuario);
     }
 
+    public void carregarMissoesPorStatus(string status)
+    {
+        pnlMissoesVisualizar.Controls.Clear();
+
+        //List<Missao> listaDeMissoes = criarListaObjMissao(MissaoBD.procurarMissao(usuarioLogado.Emp_id));
+        DataSet missoesConcluidas = MissaoBD.procurarTodasMissaoUsuarioColaboradorPorStatus(usuarioLogado.Usu_id, status);
+
+        List<MissaoUsuario> listaDeMissoesUsuario = criarListaObjMissaoUsuario(missoesConcluidas);
+
+        carregarTodasAsMissoesUsuario(listaDeMissoesUsuario);
+    }
+    
     public void carregarTodasAsMissoesUsuario(List<MissaoUsuario> listaMissoesUsuario)
     {
         string resp = "";
@@ -480,5 +492,20 @@ public partial class Pages_Colaborador_Missoes : System.Web.UI.Page
             }
 
         }
+    }
+    
+    protected void btnTodas_Click(object sender, EventArgs e)
+    {
+        carregarMissoes();
+    }
+
+    protected void btnConcluidas_Click(object sender, EventArgs e)
+    {
+        carregarMissoesPorStatus(StatusMissaoEnum.VALIDADA.ToString());
+    }
+
+    protected void btnEmAndamento_Click(object sender, EventArgs e)
+    {
+        carregarMissoesPorStatus(StatusMissaoEnum.EM_ANDAMENTO.ToString());
     }
 }

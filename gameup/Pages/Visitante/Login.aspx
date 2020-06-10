@@ -22,7 +22,8 @@
                             <div class="col-lg-7">
                                 <div class="p-5">
                                     <div class="text-left ml-3">
-                                        <h1 class="h4 text-gray-900 mb-4 font-weight-bold">Acesso a plataforma</h1>
+                                        <h1 class="h4 text-gray-900 mb-4 font-weight-bold">Bem vindo de volta!</h1>
+                                        <p>Preencha os campos abaixo com suas credenciais e acesse a plataforma.</p>
                                     </div>
                                     <div class="form-group">
                                         <div class="col-sm-12 mb-3 mb-sm-0 col-md-12">
@@ -34,7 +35,11 @@
                                     </div>
                                     <br />
                                     <div class="col-md-12">
-                                        <asp:Button runat="server" ID="btnLogin" Text="Entrar" CssClass="btn btn-primary btn-block" OnClick="btnLogin_Click" />
+                                        <asp:Button runat="server" ID="btnLogin" Text="Acessar a plataforma" CssClass="btn btn-primary btn-block" OnClick="btnLogin_Click" />
+                                    </div>
+                                    <br />
+                                    <div class="col-md-12">
+                                        <a href="RedefinirSenha.aspx" class="float-right">Esqueci minha senha</a>
                                     </div>
                                     <br />
                                     <div class="col-md-12 text-danger">

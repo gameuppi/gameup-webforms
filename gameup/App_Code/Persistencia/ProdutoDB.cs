@@ -112,31 +112,63 @@ public class ProdutoDB
         return ok;
     }
 
+    public static DataSet ProcurarQtdSaidaProduto(int pro_id)
+    {
+        DataSet ds = new DataSet();
+        IDbConnection objConexao;
+        IDbCommand objCommand;
+        IDataAdapter dataAdapter;
+        objConexao = Mapped.Connection();
+
+        string query = "select mes_qtdsaida, mes_saldo from movestoque where pro_id = ?pro_id";
+        objCommand = Mapped.Command(query, objConexao);
+        objCommand.Parameters.Add(Mapped.Parameter("?pro_id", pro_id));
+        dataAdapter = Mapped.Adapter(objCommand);
+        dataAdapter.Fill(ds);
+
+        objConexao.Close();
+        objConexao.Dispose();
+        objCommand.Dispose();
+
+        return ds;
+    }
+
     public static bool UpdateMovEstoque(int pro_id, int qtd)
     {
         bool ok = false;
 
+        int qtdSaida = 0;
+        int qtdSaldo = 0;
+        DataSet dsQtd = ProcurarQtdSaidaProduto(pro_id);
+
+        qtdSaida = Convert.ToInt32(dsQtd.Tables[0].Rows[0]["mes_qtdsaida"].ToString());
+        qtdSaldo = Convert.ToInt32(dsQtd.Tables[0].Rows[0]["mes_saldo"].ToString());
+
         try
         {
-            DataSet ds = new DataSet();
-            IDbConnection objConexao;
-            IDbCommand objCommand;
-            objConexao = Mapped.Connection();
+            if (qtdSaida+qtd <= qtdSaldo) {
+                DataSet ds = new DataSet();
+                IDbConnection objConexao;
+                IDbCommand objCommand;
+                objConexao = Mapped.Connection();
 
-            string query = "update movestoque SET mes_qtdSaida = ?qtd WHERE pro_id = ?pro_id";
+                qtd += qtdSaida;
 
-            objCommand = Mapped.Command(query, objConexao);
+                string query = "update movestoque SET mes_qtdSaida = ?qtd WHERE pro_id = ?pro_id";
 
-            objCommand.Parameters.Add(Mapped.Parameter("?qtd", qtd));
-            objCommand.Parameters.Add(Mapped.Parameter("?pro_id", pro_id));            
+                objCommand = Mapped.Command(query, objConexao);
 
-            objCommand.ExecuteNonQuery();
+                objCommand.Parameters.Add(Mapped.Parameter("?qtd", qtd));
+                objCommand.Parameters.Add(Mapped.Parameter("?pro_id", pro_id));
 
-            objConexao.Close();
-            objConexao.Dispose();
-            objCommand.Dispose();
+                objCommand.ExecuteNonQuery();
 
-            ok = true;
+                objConexao.Close();
+                objConexao.Dispose();
+                objCommand.Dispose();
+
+                ok = true;
+            }
         }
         catch (Exception ex)
         {

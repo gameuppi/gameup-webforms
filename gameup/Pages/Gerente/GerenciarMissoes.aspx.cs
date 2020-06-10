@@ -1053,4 +1053,31 @@ public partial class Pages_Gerente_GerenciarMissoes : System.Web.UI.Page
     {
         carregarListaParticipantes();
     }
+
+    protected void btnTodas_Click(object sender, EventArgs e)
+    {
+        carregarMissoes();
+    }
+
+    protected void btnConcluidas_Click(object sender, EventArgs e)
+    {
+        carregarMissoesPorStatus(StatusMissaoEnum.VALIDADA.ToString());
+    }
+
+    protected void btnEmAndamento_Click(object sender, EventArgs e)
+    {
+        carregarMissoesPorStatus(StatusMissaoEnum.EM_ANDAMENTO.ToString());
+    }
+
+    public void carregarMissoesPorStatus(string status)
+    {
+        pnlMissoesVisualizar.Controls.Clear();
+
+        //List<Missao> listaDeMissoes = criarListaObjMissao(MissaoBD.procurarMissao(usuarioLogado.Emp_id));
+        DataSet missoesConcluidas = MissaoBD.procurarTodasMissaoUsuarioGerentePorStatus(usuarioLogado.Usu_id, status);
+
+        List<MissaoUsuario> listaDeMissoesUsuario = criarListaObjMissaoUsuario(missoesConcluidas);
+
+        carregarTodasAsMissoesUsuario(listaDeMissoesUsuario);
+    }
 }

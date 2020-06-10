@@ -32,7 +32,7 @@
 
 
         <!-- Desempenho -->
-        <div class="col-xl-8 col-lg-7">
+        <div class="col-xl-8 col-lg-7 ">
             <div class="card shadow mb-4">
                 <!-- Card Header - Dropdown -->
                 <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
@@ -94,11 +94,17 @@
                                     <i class="fas fa-user-circle fa-3x"></i>&nbsp;
                                 </div>
                                 <div class="col-6 text-left">
-                                    <h5 class="font-weight-bold">Carlos Ferreira</h5>
-                                    <p>Gerente de T.I.</p>
+                                    <div class="mt-1 font-weight-bold">
+                                        <asp:Label runat="server" ID="lbl1Posicao"></asp:Label>
+                                        
+                                    </div>
+                                        <asp:Label runat="server" ID="txtApelido1"></asp:Label>
                                 </div>
                                 <div class="col-3 text-center">
-                                    <h3>1º</h3>
+                                    <div class="mt-1">
+                                        <asp:Label runat="server" ID="lblPontos1Posicao"></asp:Label>
+                                        
+                                    </div>
                                 </div>
                             </div>
                         </li>
@@ -108,11 +114,15 @@
                                     <i class="fas fa-user-circle fa-3x"></i>&nbsp;
                                 </div>
                                 <div class="col-6 text-left">
-                                    <h5 class="font-weight-bold">Júlia Pereira</h5>
-                                    <p>Analista de Sistemas</p>
+                                    <div class="mt-1 font-weight-bold">
+                                        <asp:Label runat="server" ID="lbl2Posicao"></asp:Label>
+                                    </div>
+                                     <asp:Label runat="server" ID="txtApelido2"></asp:Label>
                                 </div>
                                 <div class="col-3 text-center">
-                                    <h3>2º</h3>
+                                    <div class="mt-1">
+                                        <asp:Label runat="server" ID="lblPontos2Posicao"></asp:Label>
+                                    </div>
                                 </div>
                             </div>
                         </li>
@@ -122,11 +132,15 @@
                                     <i class="fas fa-user-circle fa-3x"></i>&nbsp;
                                 </div>
                                 <div class="col-6 text-left">
-                                    <h5 class="font-weight-bold">Rodrigo Silva</h5>
-                                    <p>Suporte Técnico</p>
+                                    <div class="mt-1 font-weight-bold">
+                                        <asp:Label runat="server" ID="lbl3Posicao"></asp:Label>
+                                    </div>
+                                    <asp:Label runat="server" ID="txtApelido3"></asp:Label>
                                 </div>
                                 <div class="col-3 text-center">
-                                    <h3>3º</h3>
+                                    <div class="mt-1">
+                                        <asp:Label runat="server" ID="lblPontos3Posicao"></asp:Label>
+                                    </div>
                                 </div>
                             </div>
                         </li>

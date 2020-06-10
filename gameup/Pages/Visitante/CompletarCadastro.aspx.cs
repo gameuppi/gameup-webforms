@@ -1,11 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text.RegularExpressions;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
-public partial class Pages_Visitante_AssinaturaDePacote : System.Web.UI.Page
+public partial class Pages_Visitante_CompletarCadastro : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
@@ -16,7 +17,9 @@ public partial class Pages_Visitante_AssinaturaDePacote : System.Web.UI.Page
     {
         if (checkConcordo.Checked)
         {
-            if (txtSenha.Text.Equals(txtConfirmarSenha.Text))
+            Regex padraoSenha = new Regex(@"^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{6,})");
+
+            if (txtSenha.Text.Equals(txtConfirmarSenha.Text) && padraoSenha.IsMatch(txtSenha.Text))
             {
                 Usuario usu = new Usuario();
 
@@ -38,12 +41,12 @@ public partial class Pages_Visitante_AssinaturaDePacote : System.Web.UI.Page
             }
             else
             {
-                //msg de aviso
+                ltlMsg.Text = "<br /><p>Vish, suas senhas não coincidem ou não seguem os padrões de segurança</p>";
             } 
         }
         else
         {
-            ltlMsg.Text = "<ul><li>Selecione a opção de concordo com os termos</li></ul>";
+            ltlMsg.Text = "<br /><p>Vish, você precisa aceitar e concordar com nossos termos.</p>";
         }
     }
 }
