@@ -107,5 +107,32 @@
         </div>
     </div>
 
+    <!-- Modal Redefinição -->
+            <div class="modal fade" id="modalRedefinicaoEnviada" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content p-4">
+                        <div class="modal-header">
+                            <h4 class="modal-title text-dark font-weight-bold" id="exampleModalLongTitle">E-mail enviado com sucesso!</h4>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <p>Oba! Falta pouco para você recuperar seu acesso.</p>
+                            <div id="inputSpace">
+                                <asp:TextBox runat="server" ID="txtCodigo" MaxLength="8" placeholder="Código de segurança" CssClass="form-control" onkeyup="this.value = this.value.toUpperCase();" />
+                            </div>
+                            <br />
+                            <div id="buttonSpace">
+                                <input type="button" id="btnConfirmar" class="form-control btn btn-primary" value="Confirmar" />
+                                <input type="button" id="btnSalvar" class="form-control btn btn-primary d-none" value="Salvar nova senha" />
+                            </div>
+                            <br />
+                            <label id="lblMensagem"></label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
 </asp:Content>
 

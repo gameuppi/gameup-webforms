@@ -2,6 +2,9 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
+using System.Net;
+using System.Net.Mail;
+using System.Text;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
@@ -194,6 +197,19 @@ public partial class Pages_Representante_GerenciarColaboradores : System.Web.UI.
         switch (UsuarioBD.InsertColaborador(usu))
         {
             case true:
+                try
+                {
+                    string hash = gerarHash(DateTime.Now.AddDays(1).ToString()+ "&" + usu.Usu_email);
+
+                    EnviarEmail(usu.Usu_email, usu.Usu_nome, hash);
+
+                } catch(Exception)
+                {
+                    msgModalCadastraColaborador.Text = "<h5 class='text-danger'> Falha ao cadastrar colaborador...</h5>";
+                    ltrTituloModal.Text = "Vish, que pena!";
+                    // Abre modal de erro
+                    Page.ClientScript.RegisterStartupScript(this.GetType(), "script", "<script>$('#modalCadastraColaborador').modal('show');</script>");
+                }
                 msgModalCadastraColaborador.Text = "<h5 class='text-success'> Um novo colaborador foi cadastrado com sucesso!</h5>";
                 ltrTituloModal.Text = "Ótimo!";
                 // Abre modal de sucesso
@@ -206,6 +222,46 @@ public partial class Pages_Representante_GerenciarColaboradores : System.Web.UI.
                 ltrTituloModal.Text = "Poxa vida!";
                 Page.ClientScript.RegisterStartupScript(this.GetType(), "script", "<script>$('#modalCadastraColaborador').modal('show');</script>");
                 break;
+        }
+    }
+
+    protected string gerarHash(string texto)
+    {
+        byte[] stringBase64 = new byte[texto.Length];
+        stringBase64 = Encoding.UTF8.GetBytes(texto);
+        string hash = Convert.ToBase64String(stringBase64);
+
+        return hash;
+    }
+
+    
+
+    public bool EnviarEmail(string destinatario, string nome, string codigo)
+    {
+        try
+        {
+            MailMessage mailMessage = new MailMessage();
+            mailMessage.From = new MailAddress("gameup.enterprise@gmail.com", "Equipe GameUP");
+
+            mailMessage.CC.Add(destinatario);
+            mailMessage.Subject = "Seja muito bem vindo(a)!";
+            mailMessage.IsBodyHtml = true;
+            mailMessage.Body = "Olá, <b>" + nome + "</b> <br />" + "<a href='http://localhost:62235/Pages/Visitante/CompletarCadastro.aspx?hash=" + codigo +"'>Clique aqui para confirmar seu cadastro.</a>";
+
+            SmtpClient smtpClient = new SmtpClient("smtp.gmail.com", Convert.ToInt32("587"));
+
+            smtpClient.UseDefaultCredentials = false;
+            smtpClient.Credentials = new NetworkCredential("gameup.enterprise@gmail.com", "B@n@n@123");
+
+            smtpClient.EnableSsl = true;
+
+            smtpClient.Send(mailMessage);
+
+            return true;
+        }
+        catch (Exception ex)
+        {
+            throw ex;
         }
     }
 }
