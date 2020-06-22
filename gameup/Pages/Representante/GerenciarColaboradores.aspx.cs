@@ -6,6 +6,7 @@ using System.Net;
 using System.Net.Mail;
 using System.Text;
 using System.Web;
+using System.Web.Services;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
@@ -234,7 +235,13 @@ public partial class Pages_Representante_GerenciarColaboradores : System.Web.UI.
         return hash;
     }
 
-    
+    [WebMethod]
+    public static string ExibirDetalhesColaborador(string email)
+    {
+        return email;
+    }
+
+
 
     public bool EnviarEmail(string destinatario, string nome, string codigo)
     {
@@ -263,5 +270,9 @@ public partial class Pages_Representante_GerenciarColaboradores : System.Web.UI.
         {
             throw ex;
         }
+    }
+        protected void gvColaboradores_SelectedIndexChanged(object sender, EventArgs e)
+    {
+        Console.WriteLine("sfsd");
     }
 }
