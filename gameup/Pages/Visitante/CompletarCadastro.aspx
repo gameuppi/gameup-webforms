@@ -34,11 +34,11 @@
                                         </div>
                                         <div class="col-12">
                                             <div class="col-12 mb-2">
-                                                <asp:TextBox ID="txtEmail" runat="server" type="email" placeholder="E-mail" CssClass="form-control"></asp:TextBox>
+                                                <asp:TextBox ID="txtEmail" runat="server" type="email" placeholder="E-mail" CssClass="form-control" readonly></asp:TextBox>
                                             </div>
 
                                             <div class="col-12 mb-2">
-                                                <asp:TextBox ID="txtDataNascimento" runat="server" type="text" onfocus="(this.type='date')" onblur="(this.type='text')"  placeholder="Data de nascimento" CssClass="form-control" required="required"></asp:TextBox>
+                                                <asp:TextBox ID="txtDataNascimento" runat="server" type="text" onfocus="(this.type='date')" onblur="(this.type='text')" placeholder="Data de nascimento" CssClass="form-control" required="required"></asp:TextBox>
                                             </div>
 
                                             <div class="col-12 mb-2">
@@ -79,7 +79,25 @@
             </div>
 
         </div>
+
+        <!-- Modal erro de hash -->
+        <div class="modal fade" id="modalErroHash" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content p-4">
+                    <div class="modal-header">
+                        <h4 class="modal-title text-dark font-weight-bold" id="exampleModalLongTitle">Vish, e-mail não encontrado</h4>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <p>Você não tem permissão para estar aqui.</p>
+                    </div>
+                    <asp:Button runat="server" ID="btnConfirmarRedirecionamento" OnClick="btnConfirmarRedirecionamento_Click" CssClass="btn btn-info form-control" />
+                </div>
+            </div>
         </div>
+        <asp:ScriptManager runat="server"></asp:ScriptManager>
     </form>
 
 
