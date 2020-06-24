@@ -86,17 +86,17 @@
                                     <div class="form-row">
                                         <div class="form-group col-md-6">
                                             <label for="inputEmail4">Nome</label>
-                                            <input type="text" class="form-control" id="inputEmail4" placeholder="Nome da missão">
+                                            <asp:TextBox runat="server" CssClass="form-control" placeholder="Nome do produto" ID="txtNome"></asp:TextBox>
                                         </div>
                                         <div class="form-group col-12 col-md-6">
                                             <label for="inputPassword4">Subtítulo</label>
-                                            <input type="text" class="form-control" id="inputPassword4" placeholder="Participantes">
+                                            <asp:TextBox runat="server" CssClass="form-control" placeholder="Subtítulo do produto" ID="txtSubtitulo"></asp:TextBox>
                                         </div>
                                     </div>
                                     <div class="form-row">
                                         <div class="form-group col-12">
                                             <label for="inputPassword4">Descrição</label>
-                                            <textarea class="form-control" placeholder="Descrição da missão"></textarea>
+                                            <asp:TextBox runat="server" CssClass="form-control" placeholder="Descrição do produto" ID="txtDescricao"></asp:TextBox>
                                         </div>
                                     </div>
                                     <div class="row mt-4">
@@ -106,7 +106,7 @@
                                                     <i class="fas fa-coins fa-2x text-success"></i>
                                                 </div>
                                                 <div class="col-12 col-md-6">
-                                                    <input type="number" class="form-control" />
+                                                    <asp:TextBox type="number" runat="server" CssClass="form-control" placeholder="Preço" ID="txtValorMoeda"></asp:TextBox>
                                                 </div>
                                             </div>
                                         </div>
@@ -117,7 +117,7 @@
                                                     <i class="fas fa-cart-plus fa-2x text-warning"></i>
                                                 </div>
                                                 <div class="col-12 col-md-6">
-                                                    <input type="number" class="form-control" />
+                                                    <asp:TextBox type="number" runat="server" CssClass="form-control" placeholder="Quantidade" ID="txtQuantidade"></asp:TextBox>
                                                 </div>
                                             </div>
                                         </div>
@@ -128,17 +128,17 @@
                                                     <i class="fas fa-tag fa-2x text-danger"></i>
                                                 </div>
                                                 <div class="col-12 col-md-6">
-                                                    <select class="form-control">
-                                                        <option class="form-control">Selecione</option>
-                                                        <option class="form-control">Físico</option>
-                                                    </select>
+                                                    <asp:DropDownList runat="server" ID="drpCategoria">
+                                                        <asp:ListItem class="form-control" Value="categoria">Categoria</asp:ListItem>
+                                                        <asp:ListItem class="form-control" Value="fisico">Físico</asp:ListItem>
+                                                    </asp:DropDownList>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="row mt-4">
                                         <div class="col-12">
-                                            <button type="button" class="btn btn-success">Cadastrar</button>
+                                            <asp:Button runat="server" ID="btnCadastrar" CssClass="btn btn-success" OnClick="btnCadastrar_Click" Text="Cadastrar" />
                                         </div>
                                     </div>
                                 </div>

@@ -8,144 +8,143 @@ using System.Web;
 /// </summary>
 public class Produto
 {
-    private int pro_id;
-    private string pro_nome;
-    private string pro_subTitulo;
-    private string pro_descricao;
-    private int pro_valorMoeda;
-    private string pro_logo;
-    private StatusProdutoEnum pro_status;
-    private Empresa emp_id;
-    private Usuario usu_id;
-    private TipoItemsEnum tip_id;
-
-    public int Pro_id
+    private int id;
+    private string nome;
+    private string subtitulo;
+    private string descricao;
+    private int preco;
+    private string logoUrl;
+    private StatusProdutoEnum status;
+    private Empresa empresaId;
+    private Usuario usuarioId;
+    private CategoriaProdutoEnum categoria;
+    public int Id
     {
         get
         {
-            return pro_id;
+            return id;
         }
 
         set
         {
-            pro_id = value;
+            id = value;
         }
     }
 
-    public string Pro_nome
+    public string Nome
     {
         get
         {
-            return pro_nome;
+            return nome;
         }
 
         set
         {
-            pro_nome = value;
+            nome = value;
         }
     }
 
-    public string Pro_subTitulo
+    public string Subtitulo
     {
         get
         {
-            return pro_subTitulo;
+            return subtitulo;
         }
 
         set
         {
-            pro_subTitulo = value;
+            subtitulo = value;
         }
     }
 
-    public string Pro_descricao
+    public string Descricao
     {
         get
         {
-            return pro_descricao;
+            return descricao;
         }
 
         set
         {
-            pro_descricao = value;
+            descricao = value;
         }
     }
 
-    public int Pro_valorMoeda
+    public int Preco
     {
         get
         {
-            return pro_valorMoeda;
+            return preco;
         }
 
         set
         {
-            pro_valorMoeda = value;
+            preco = value;
         }
     }
 
-    public string Pro_logo
+    public string LogoUrl
     {
         get
         {
-            return pro_logo;
+            return logoUrl;
         }
 
         set
         {
-            pro_logo = value;
+            logoUrl = value;
         }
     }
 
-    public StatusProdutoEnum Pro_status
+    public StatusProdutoEnum Status
     {
         get
         {
-            return pro_status;
+            return status;
         }
 
         set
         {
-            pro_status = value;
+            status = value;
         }
     }
 
-    public Empresa Emp_id
+    public Empresa EmpresaId
     {
         get
         {
-            return emp_id;
+            return empresaId;
         }
 
         set
         {
-            emp_id = value;
+            empresaId = value;
         }
     }
 
-    public Usuario Usu_id
+    public Usuario UsuarioId
     {
         get
         {
-            return usu_id;
+            return usuarioId;
         }
 
         set
         {
-            usu_id = value;
+            usuarioId = value;
         }
     }
 
-    public TipoItemsEnum Tip_id
+    public CategoriaProdutoEnum Categoria
     {
         get
         {
-            return tip_id;
+            return categoria;
         }
 
         set
         {
-            tip_id = value;
+            categoria = value;
         }
     }
 }

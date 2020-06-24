@@ -30,7 +30,7 @@ public class ProdutoDB
         return ds;
     }
 
-    public static DataSet procurarPorId( int pro_id)
+    public static DataSet procurarPorId(int pro_id)
     {
         DataSet ds = new DataSet();
         IDbConnection objConexao;
@@ -98,16 +98,61 @@ public class ProdutoDB
         bool ok = false;
         int qtd = 1;
 
-        if (usu.Usu_qtdMoeda >= pro.Pro_valorMoeda)
+        if (usu.Usu_qtdMoeda >= pro.Preco)
         {
-            ok = UsuarioDB.UpdateMoedaUsuario(pro.Pro_valorMoeda, usu);
-            ok = UpdateMovEstoque(pro.Pro_id, qtd);
+            ok = UsuarioDB.UpdateMoedaUsuario(pro.Preco, usu);
+            ok = UpdateMovEstoque(pro.Id, qtd);
             ok = InsertMovFinanceira(pro, usu, qtd);
-        } else
+        }
+        else
         {
             ok = false;
         }
 
+
+        return ok;
+    }
+
+    public static bool InsertMovimentacaoEstoque(Produto produto, int quantidade)
+    {
+        bool ok = false;
+
+        try
+        {
+            IDbConnection objConexao;
+            IDbCommand objComando;
+
+            objConexao = Mapped.Connection();
+
+            string query = "";
+            query += " INSERT INTO  ";
+            query += " 	movestoque (mes_dhcriacao, mes_qtdentrada, mes_qtdsaida, mes_saldo, mes_descricao, pro_id, emp_id) ";
+            query += " VALUES( ";
+            query += " 	?dataCriacao,  ";
+            query += " 	?quantidadeEntrada,  ";
+            query += " 	0,  ";
+            query += " 	?saldo,  ";
+            query += " 	'Criação do Produto',  ";
+            query += " 	(select max(pro_id) from produtos), ";
+            query += " 	?empresaId  ";
+            query += " ) ";
+
+            objComando = Mapped.Command(query, objConexao);
+            objComando.Parameters.Add(Mapped.Parameter("?dataCriacao", DateTime.Now));
+            objComando.Parameters.Add(Mapped.Parameter("?quantidadeEntrada", quantidade));
+            objComando.Parameters.Add(Mapped.Parameter("?saldo", quantidade));
+            objComando.Parameters.Add(Mapped.Parameter("?empresaId", produto.EmpresaId.Emp_id));
+
+            objComando.ExecuteNonQuery();
+
+            objConexao.Dispose();
+            objComando.Dispose();
+
+            ok = true;
+        } catch (Exception ex)
+        {
+            ok = false;
+        }
 
         return ok;
     }
@@ -146,7 +191,8 @@ public class ProdutoDB
 
         try
         {
-            if (qtdSaida+qtd <= qtdSaldo) {
+            if (qtdSaida + qtd <= qtdSaldo)
+            {
                 DataSet ds = new DataSet();
                 IDbConnection objConexao;
                 IDbCommand objCommand;
@@ -194,12 +240,66 @@ public class ProdutoDB
                            " values(?mfi_valorProd, ?mfi_qtdProd, ?mfi_dHCompra, ?pro_id, ?emp_id, ?usu_id)";
 
             objComando = Mapped.Command(query, objConexao);
-            objComando.Parameters.Add(Mapped.Parameter("?mfi_valorProd", pro.Pro_valorMoeda));
+            objComando.Parameters.Add(Mapped.Parameter("?mfi_valorProd", pro.Preco));
             objComando.Parameters.Add(Mapped.Parameter("?mfi_qtdProd", qtd));
             objComando.Parameters.Add(Mapped.Parameter("?mfi_dHCompra", DateTime.Now));
-            objComando.Parameters.Add(Mapped.Parameter("?pro_id", pro.Pro_id));
+            objComando.Parameters.Add(Mapped.Parameter("?pro_id", pro.Id));
             objComando.Parameters.Add(Mapped.Parameter("?emp_id", usu.Emp_id));
             objComando.Parameters.Add(Mapped.Parameter("?usu_id", usu.Usu_id));
+
+            objComando.ExecuteNonQuery();
+
+            objConexao.Dispose();
+            objComando.Dispose();
+
+            ok = true;
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine(ex.StackTrace);
+            ok = false;
+        }
+
+        return ok;
+    }
+
+    public static bool InsertProduto(Produto produto)
+    {
+        bool ok = false;
+
+        try
+        {
+            IDbConnection objConexao;
+            IDbCommand objComando;
+
+            objConexao = Mapped.Connection();
+
+            string query = "";
+
+            query += " INSERT INTO  ";
+            query += "  produtos (pro_nome, pro_subtitulo, pro_descricao, pro_valormoeda, prod_logo, pro_status, emp_id, usu_id, tip_id) ";
+            query += " VALUES( ";
+            query += " 	?nome,  ";
+            query += " 	?subtitulo,  ";
+            query += " 	?descricao,  ";
+            query += " 	?preco,  ";
+            query += " 	?logoUrl,  ";
+            query += " 	?status, ";
+            query += " 	?empresaId,  ";
+            query += " 	?usuarioId,  ";
+            query += " 	categoria ";
+            query += " ) ";
+
+            objComando = Mapped.Command(query, objConexao);
+            objComando.Parameters.Add(Mapped.Parameter("?nome", produto.Nome));
+            objComando.Parameters.Add(Mapped.Parameter("?subtitulo", produto.Subtitulo));
+            objComando.Parameters.Add(Mapped.Parameter("?descricao", produto.Descricao));
+            objComando.Parameters.Add(Mapped.Parameter("?preco", produto.Preco));
+            objComando.Parameters.Add(Mapped.Parameter("?logoUrl", produto.LogoUrl));
+            objComando.Parameters.Add(Mapped.Parameter("?status", produto.Status));
+            objComando.Parameters.Add(Mapped.Parameter("?empresaId", produto.EmpresaId.Emp_id));
+            objComando.Parameters.Add(Mapped.Parameter("?usuarioId", produto.UsuarioId));
+            objComando.Parameters.Add(Mapped.Parameter("?categoria", produto.Categoria));
 
             objComando.ExecuteNonQuery();
 
