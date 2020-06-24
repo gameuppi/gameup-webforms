@@ -404,15 +404,23 @@ public class ProdutoDB
         objConexao = Mapped.Connection();
 
         string query = "";
-        query += " SELECT ";
-        query += " 	 mov.mes_saldo qtd ";
-        query += " FROM ";
-        query += " 	movestoque mov ";
-        query += " WHERE ";
+        query += " SELECT  ";
+        query += " 	 SUM(mov.mes_saldo) qtd  ";
+        query += " FROM  ";
+        query += " 	movestoque mov  ";
+        query += " 	JOIN produtos pro ON pro.pro_id = mov.pro_id ";
+        query += " WHERE  ";
         query += " 	mov.emp_id = ?emp_id ";
-        query += " ORDER BY  ";
-        query += " 	mov.mes_dhcriacao ";
-        query += " LIMIT 1 ";
+        query += " 	AND mov.mes_id = ( ";
+        query += " 		SELECT  ";
+        query += " 			MAX(mes_id)  ";
+        query += " 		FROM  ";
+        query += " 			movestoque  ";
+        query += " 		WHERE  ";
+        query += " 			emp_id = mov.emp_id ";
+        query += " 			AND pro_id = mov.pro_id ";
+        query += " 	) ";
+        query += " 	AND pro.pro_status = '1' ";
 
         objCommand = Mapped.Command(query, objConexao);
         objCommand.Parameters.Add(Mapped.Parameter("?emp_id", usuario.Emp_id));

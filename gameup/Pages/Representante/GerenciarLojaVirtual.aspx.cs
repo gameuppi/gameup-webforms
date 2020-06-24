@@ -58,7 +58,7 @@ public partial class Pages_Representante_GerenciarLojaVirtual : System.Web.UI.Pa
         foreach(ProdutoEstoque prod in listaDeProdutos)
         {
             Literal ltlImg = new Literal();
-            ltlImg.Text = $"<div class='col-12 col-md-3'>" +
+            ltlImg.Text = $"<div class='col-12 col-md-3 mt-2'>" +
                           $"    <div class='card-custom border-left-success shadow h-100'>" +
                           $"        <div class='card-custom-image'>" +
                           $"            <img src='{prod.LogoUrl}'>" +
@@ -137,6 +137,7 @@ public partial class Pages_Representante_GerenciarLojaVirtual : System.Web.UI.Pa
         produto.Empresa = empresa;
         produto.Empresa.Emp_id = usuarioLogado.Emp_id;
         produto.Usuario = usuarioLogado;
+        produto.Status = StatusProdutoEnum.DISPONIVEL;
 
         String[] logos = new string[] {
             "../../Assets/Imagens/jantar.jpg",
