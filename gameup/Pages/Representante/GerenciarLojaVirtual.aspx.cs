@@ -35,21 +35,23 @@ public partial class Pages_Representante_GerenciarLojaVirtual : System.Web.UI.Pa
 
     void popularVisualizacaoDeProdutos()
     {
-        DataSet produtos = ProdutoDB.BuscarTodosOsProdutosPorEmpresaEStatus(usuarioLogado.Emp_id, StatusProdutoEnum.DISPONIVEL);
+        DataSet produtos = ProdutoDB.BuscarTodosOsProdutosPorEmpresaEStatus(usuarioLogado.Emp_id);
         ProdutoEstoque produto;
         List<ProdutoEstoque> listaDeProdutos = new List<ProdutoEstoque>();
 
         foreach (DataRow prod in produtos.Tables[0].Rows)
         {
             produto = criarObjetoProdutoEstoque(
+                    Convert.ToInt32(prod["id"].ToString()),
                     prod["nome"].ToString(),
                     prod["subtitulo"].ToString(),
                     prod["descricao"].ToString(),
                     Convert.ToInt32(prod["preco"].ToString()),
-                    Convert.ToInt32(prod["quantidade"].ToString()),
+                    !prod["quantidade"].ToString().Equals("") ? Convert.ToInt32(prod["quantidade"].ToString()) : 0,
                     prod["categoria"].ToString(),
                     usuarioLogado,
-                    prod["logo_url"].ToString()
+                    prod["logo_url"].ToString(),
+                    (StatusProdutoEnum)Enum.Parse(typeof(StatusProdutoEnum), prod["status"].ToString())
             );
 
             listaDeProdutos.Add(produto);
@@ -67,22 +69,95 @@ public partial class Pages_Representante_GerenciarLojaVirtual : System.Web.UI.Pa
                           $"            </span><div class='text-center'>";
 
             LinkButton btnCard = new LinkButton();
-            //btnCard.Click += (sender, e) => { this.ContinuarCompra(sender, e, pro.Id); };
-            //btnCard.ID = prod.Id.ToString();
-            btnCard.CssClass = "btn-floating btn-large halfway-fab btn-success fas fa-shopping-cart text-white";
+            btnCard.Click += (sender, e) => { this.VisualizarListaCompradores(sender, e, prod.Id); };
+            btnCard.ID = prod.Id.ToString();
+            btnCard.CssClass = "btn-floating btn-large halfway-fab btn-info";
+            btnCard.Text = "<center><i class='fas fa-list text-white'></i></center>";
 
             Literal ltlText = new Literal();
             ltlText.Text += $"      </div></div><br/><div class='col-md-12 card-custom-content'>" +
                            $"           <p>{prod.Subtitulo}</p>" +
                            $"           <p>{prod.Preco} Moedas</p>" +
-                           $"       </div>" +
-                           $"   </div>" +
-                           $"</div>";
+                           $"           <div class='row mt-3 d-flex justify-content-between'>";
+
+            Button btnAtivar = new Button();
+            btnAtivar.CssClass = "btn btn-success col-5";
+            btnAtivar.Text = "Ativar";
+            btnAtivar.Click += (sender, e) => { this.AtivarProduto(sender, e, prod.Id); };
+            btnAtivar.ID = prod.Id.ToString() + "ativar";
+
+            Button btnDesativar = new Button();
+            btnDesativar.CssClass = "btn btn-danger col-5";
+            btnDesativar.Text = "Desativar";
+            btnDesativar.Click += (sender, e) => { this.DesativarProduto(sender, e, prod.Id); };
+            btnDesativar.ID = prod.Id.ToString() + "desativar";
+
+            if (prod.Status.Equals(StatusProdutoEnum.DISPONIVEL))
+            {
+                btnAtivar.Enabled = false;
+                btnAtivar.Attributes["disabled"] = "disabled";
+            } else if (prod.Status.Equals(StatusProdutoEnum.INDISPONIVEL))
+            {
+                btnDesativar.Enabled = false;
+                btnDesativar.Attributes["disabled"] = "disabled";
+            }
+
+            Literal ltlTextFinal = new Literal();
+            ltlTextFinal.Text += $" </div> </div></div> </div>";
 
             pnlVisualizarProdutos.Controls.Add(ltlImg);
             pnlVisualizarProdutos.Controls.Add(btnCard);
             pnlVisualizarProdutos.Controls.Add(ltlText);
+            pnlVisualizarProdutos.Controls.Add(btnAtivar);
+            pnlVisualizarProdutos.Controls.Add(btnDesativar);
+            pnlVisualizarProdutos.Controls.Add(ltlTextFinal);
         }
+    }
+
+    private void AtivarProduto(object sender, EventArgs e, int pro_id)
+    {
+        ProdutoDB.AlterarStatusProduto(pro_id, StatusProdutoEnum.DISPONIVEL);
+    }
+
+    private void DesativarProduto(object sender, EventArgs e, int pro_id)
+    {
+        ProdutoDB.AlterarStatusProduto(pro_id, StatusProdutoEnum.INDISPONIVEL);
+    }
+
+    private void VisualizarListaCompradores(object sender, EventArgs e, int pro_id)
+    {
+        DataSet listaDeUsuarios = ProdutoDB.BuscarCompradoresPorIdDoProduto(pro_id);
+
+        List<UsuarioComprador> listaDeUsuarioComprador = new List<UsuarioComprador>();
+        UsuarioComprador usuarioComprador;
+
+        foreach (DataRow usu in listaDeUsuarios.Tables[0].Rows)
+        {
+            usuarioComprador = criarObjetoUsuarioComprador(
+                    usu["usu_nome"].ToString(),
+                    usu["set_nome"].ToString()
+            );
+
+            listaDeUsuarioComprador.Add(usuarioComprador);
+        }
+
+        // Carrega o modal 
+        Page.ClientScript.RegisterStartupScript(this.GetType(), "script", "<script>$('#modalParticipantes').modal('show');</script>");
+
+        // Carrega os colaboradores no modal
+        foreach(UsuarioComprador usuario in listaDeUsuarioComprador)
+        {
+            ltbCompradores.Items.Add(new ListItem(usuario.NomeUsuario, usuario.NomeSetor));
+        }
+    }
+
+    protected UsuarioComprador criarObjetoUsuarioComprador(string nomeUsuario, string nomeSetor)
+    {
+        UsuarioComprador usuario = new UsuarioComprador();
+        usuario.NomeUsuario = nomeUsuario;
+        usuario.NomeSetor = nomeSetor;
+
+        return usuario;
     }
 
 
@@ -122,6 +197,16 @@ public partial class Pages_Representante_GerenciarLojaVirtual : System.Web.UI.Pa
         if (ProdutoDB.InsertProduto(produto))
         {
             ProdutoDB.InsertMovimentacaoEstoque(produto, Convert.ToInt32(txtQuantidade.Text));
+            lblCorpo.Text = "<h5 class='text-success'> Novo produto cadastrado com sucesso!</h5>";
+            lblTitulo.Text = "Ótimo!";
+            Page.ClientScript.RegisterStartupScript(this.GetType(), "script", "<script>$('#modalGenerico').modal('show');</script>");
+
+            txtNome.Text = "";
+            txtSubtitulo.Text = "";
+            txtDescricao.Text = "";
+            txtValorMoeda.Text = "";
+            txtQuantidade.Text = "";
+            drpCategoria.Text = "";
         }
     }
 
@@ -154,9 +239,10 @@ public partial class Pages_Representante_GerenciarLojaVirtual : System.Web.UI.Pa
         return produto;
     }
 
-    protected ProdutoEstoque criarObjetoProdutoEstoque(string nome, string subtitulo, string descricao, int preco, int quantidade, string categoria, Usuario usuarioLogado, string logoUrl)
+    protected ProdutoEstoque criarObjetoProdutoEstoque(int id, string nome, string subtitulo, string descricao, int preco, int quantidade, string categoria, Usuario usuarioLogado, string logoUrl, StatusProdutoEnum status)
     {
         ProdutoEstoque produto = new ProdutoEstoque();
+        produto.Id = id;
         produto.Nome = nome;
         produto.Subtitulo = subtitulo;
         produto.Descricao = descricao;
@@ -164,6 +250,7 @@ public partial class Pages_Representante_GerenciarLojaVirtual : System.Web.UI.Pa
         produto.Quantidade = quantidade;
         produto.Categoria = (CategoriaProdutoEnum)Enum.Parse(typeof(CategoriaProdutoEnum), categoria);
         produto.LogoUrl = logoUrl;
+        produto.Status = status;
 
         return produto;
     }

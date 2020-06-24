@@ -30,7 +30,7 @@ public class ProdutoDB
         return ds;
     }
 
-    public static DataSet BuscarTodosOsProdutosPorEmpresaEStatus(int empresaId, StatusProdutoEnum status)
+    public static DataSet BuscarTodosOsProdutosPorEmpresaEStatus(int empresaId)
     {
         DataSet ds = new DataSet();
         IDbConnection objConexao;
@@ -40,6 +40,7 @@ public class ProdutoDB
 
         string query = "";
         query += " SELECT ";
+        query += " 	pro.pro_id id, ";
         query += " 	pro.pro_nome nome, ";
         query += " 	pro.pro_subtitulo subtitulo, ";
         query += " 	pro.pro_descricao descricao, ";
@@ -56,16 +57,15 @@ public class ProdutoDB
         query += " 		LIMIT 1 ";
         query += " 	) quantidade, ";
         query += " 	CASE WHEN pro.tip_id = 1 THEN 'FISICO' ELSE 'VIRTUAL' END categoria, ";
-        query += " 	pro.pro_logo logo_url ";
+        query += " 	pro.pro_logo logo_url, ";
+        query += " 	pro.pro_status status ";
         query += " FROM ";
         query += " 	produtos pro ";
         query += " WHERE ";
-        query += " 	pro.emp_id = ?emp_id ";
-        query += " 	AND pro.pro_status = ?status ";
+        query += " 	pro.emp_id = ?emp_id; ";
 
         objCommand = Mapped.Command(query, objConexao);
         objCommand.Parameters.Add(Mapped.Parameter("?emp_id", empresaId));
-        objCommand.Parameters.Add(Mapped.Parameter("?status", status));
         dataAdapter = Mapped.Adapter(objCommand);
         dataAdapter.Fill(ds);
 
@@ -195,7 +195,8 @@ public class ProdutoDB
             objComando.Dispose();
 
             ok = true;
-        } catch (Exception ex)
+        }
+        catch (Exception ex)
         {
             ok = false;
         }
@@ -566,6 +567,68 @@ public class ProdutoDB
 
         return nome;
     }
-    
+
+    public static DataSet BuscarCompradoresPorIdDoProduto(int id)
+    {
+        DataSet ds = new DataSet();
+        IDbConnection objConexao;
+        IDbCommand objCommand;
+        IDataAdapter dataAdapter;
+        objConexao = Mapped.Connection();
+
+        string query = "";
+        query += " SELECT  ";
+        query += " 	usu.usu_nome usu_nome, ";
+        query += " 	seto.set_nome set_nome";
+        query += " FROM ";
+        query += " 	movfinanceira mov ";
+        query += " 	JOIN usuario usu ON usu.usu_id = mov.usu_id ";
+        query += " 	JOIN setor seto ON seto.set_id = usu.set_id ";
+        query += " WHERE ";
+        query += " 	mov.pro_id = ?pro_id ";
+
+        objCommand = Mapped.Command(query, objConexao);
+        objCommand.Parameters.Add(Mapped.Parameter("?pro_id", id));
+        dataAdapter = Mapped.Adapter(objCommand);
+        dataAdapter.Fill(ds);
+
+        objConexao.Close();
+        objConexao.Dispose();
+        objCommand.Dispose();
+
+        return ds;
+    }
+
+    public static void AlterarStatusProduto(int pro_id, StatusProdutoEnum status)
+    {
+        bool ok = false;
+        try
+        {
+            DataSet ds = new DataSet();
+            IDbConnection objConexao;
+            IDbCommand objCommand;
+            objConexao = Mapped.Connection();
+
+            string query = "update produtos SET pro_status = ?status WHERE pro_id = ?pro_id";
+
+            objCommand = Mapped.Command(query, objConexao);
+
+            objCommand.Parameters.Add(Mapped.Parameter("?status", status));
+            objCommand.Parameters.Add(Mapped.Parameter("?pro_id", pro_id));
+
+            objCommand.ExecuteNonQuery();
+
+            objConexao.Close();
+            objConexao.Dispose();
+            objCommand.Dispose();
+
+            ok = true;
+        }
+        catch (Exception ex)
+        {
+            Console.Write(ex.StackTrace);
+            ok = false;
+        }
+    }
 
 }

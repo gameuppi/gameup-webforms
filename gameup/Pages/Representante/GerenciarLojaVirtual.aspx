@@ -95,7 +95,7 @@
                 <div class="tab-pane fade show active p-4" id="nav-cadastro" role="tabpanel" aria-labelledby="nav-cadastro-tab">
                     <div class="row mt-5">
                         <div class="col-12 col-md-3 text-center">
-                            <i class="fas fa-user-circle fa-10x"></i>
+                            <img src="../../Assets/Imagens/astronauta2.png" class="img-fluid float-right" />
                         </div>
                         <div class="col-12 col-md-9">
                             <div class="row">
@@ -174,6 +174,13 @@
                 <div class="tab-pane fade show p-4" id="nav-visualizacao" role="tabpanel" aria-labelledby="nav-visualizacao-tab">
 
                     <div class="row mt-4">
+                        
+                    <div class="col-12 text-right">
+                        <asp:Button runat="server" type="checkbox" class="btn btn-dark" Text="Todos" ID="btnTodas" />
+                        <asp:Button runat="server" type="checkbox" class="btn btn-success" Text="Ativados" ID="Button1" />
+                        <asp:Button runat="server" type="button" class="btn btn-danger" Text="Desativados" ID="btnConcluidas" />
+                    </div>
+
                         <asp:Panel runat="server" ID="pnlVisualizarProdutos" CssClass="row mt-4"></asp:Panel>
                         <!-- Card de item -  -->
                         <!-- <div class="col-12 col-md-3">
@@ -200,6 +207,51 @@
                                 </div>
                             </div>
                         </div> -->
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Modal lista de compradores -->
+        <div class="modal fade" id="modalParticipantes">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+
+                    <div class="modal-header">
+                        <h5 class="modal-title">Veja quem já adquiriu esse prêmio
+                        </h5>
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    </div>
+
+                    <div class="modal-body">
+                        <asp:ListBox runat="server" ID="ltbCompradores" CssClass="form-control"></asp:ListBox>
+                    </div>
+
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-success" data-dismiss="modal">Pronto</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Modal generico -->
+        <div class="modal fade" id="modalGenerico">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+
+                    <div class="modal-header">
+                        <h5 class="modal-title">
+                            <asp:Label runat="server" ID="lblTitulo"></asp:Label>
+                        </h5>
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    </div>
+
+                    <div class="modal-body">
+                        <asp:Label runat="server" ID="lblCorpo"></asp:Label>
+                    </div>
+
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-success" data-dismiss="modal">Pronto</button>
                     </div>
                 </div>
             </div>
