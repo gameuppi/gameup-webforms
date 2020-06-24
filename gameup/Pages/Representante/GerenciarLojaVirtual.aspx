@@ -174,24 +174,23 @@
                 <div class="tab-pane fade show p-4" id="nav-visualizacao" role="tabpanel" aria-labelledby="nav-visualizacao-tab">
 
                     <div class="row mt-4">
-                        <asp:Literal runat="server" ID="ltrVisualizarProdutos"></asp:Literal>
+                        <asp:Panel runat="server" ID="pnlVisualizarProdutos" CssClass="row mt-4"></asp:Panel>
                         <!-- Card de item -  -->
-                        <div class="col-12 col-md-3">
+                        <!-- <div class="col-12 col-md-3">
                             <div class="card-custom border-left-success shadow">
                                 <div class="card-custom-image">
                                     <img src="../../Assets/Imagens/piscina.jpg">
                                     <span class="card-custom-title font-weight-bold">Descanso merecido
-                        <br />
+                                        <br />
                                         <small>3 disponíveis</small>
                                     </span>
                                     <a class="btn-floating btn-large halfway-fab btn-info">
                                         <center>
-                            <i class="fas fa-info text-white"></i>
-                        </center>
+                                            <i class="fas fa-info text-white"></i>
+                                        </center>
                                     </a>
                                 </div>
                                 <div class="card-custom-content">
-
                                     <p>Consiga uma folga em um dia de sua escolha</p>
                                     <div class="row mt-3">
                                         <button class="btn btn-success col">Ativar</button>
@@ -200,77 +199,8 @@
                                     </div>
                                 </div>
                             </div>
-                        </div>
-
-                        <!-- Card de item -  -->
-                        <div class="col-12 col-md-3">
-                            <div class="card-custom border-left-success shadow">
-                                <div class="card-custom-image">
-                                    <img src="../../Assets/Imagens/jantar.jpg">
-                                    <span class="card-custom-title font-weight-bold">Bon appétit!
-                        <br />
-                                        <small>1 disponíveis</small>
-                                    </span>
-                                    <a class="btn-floating btn-large halfway-fab btn-success">
-                                        <center>
-                            <i class="fas fa-info text-white"></i>
-                        </center>
-                                    </a>
-                                </div>
-                                <div class="card-custom-content">
-
-                                    <p>Uma reserva de jantar para um ótimo fim de semana.</p>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Card de item -  -->
-                        <div class="col-12 col-md-3">
-                            <div class="card-custom border-left-success shadow">
-                                <div class="card-custom-image">
-                                    <img src="../../Assets/Imagens/tempo.jpg">
-                                    <span class="card-custom-title font-weight-bold">O tempo voa
-                        <br />
-                                        <small>2 disponíveis</small>
-                                    </span>
-                                    <a class="btn-floating btn-large halfway-fab btn-success">
-                                        <center>
-                            <i class="fas fa-info text-white"></i>
-                        </center>
-                                    </a>
-                                </div>
-                                <div class="card-custom-content">
-
-                                    <p>Acrescente +30 minutos na sua pausa de almoço</p>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Card de item -  -->
-                        <div class="col-12 col-md-3">
-                            <div class="card-custom border-left-success shadow">
-                                <div class="card-custom-image">
-                                    <img src="../../Assets/Imagens/piscina.jpg">
-                                    <span class="card-custom-title font-weight-bold">Descanso merecido
-                        <br />
-                                        <small>3 disponíveis</small>
-                                    </span>
-                                    <a class="btn-floating btn-large halfway-fab btn-success">
-                                        <center>
-                            <i class="fas fa-info text-white"></i>
-                        </center>
-                                    </a>
-                                </div>
-                                <div class="card-custom-content">
-
-                                    <p>Consiga uma folga em um dia de sua escolha</p>
-                                </div>
-                            </div>
-                        </div>
-
+                        </div> -->
                     </div>
-
-
                 </div>
             </div>
         </div>
