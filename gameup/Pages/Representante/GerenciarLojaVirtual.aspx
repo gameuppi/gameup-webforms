@@ -20,16 +20,38 @@
                             <i class="fas fa-chart-pie text-info fa-8x"></i>
                         </div>
                         <div class="col-12 col-md-2">
-                            <h3>60%</h3>
+                            <h3>
+                                <asp:Label runat="server" ID="lblPorcentagemEmEstoque"></asp:Label>
+                            </h3>
                             <h5>em estoque</h5>
                         </div>
                         <div class="col-12 col-md-4">
-                            <h4>16 itens ativos</h4>
-                            <h4>9 disponíveis</h4>
+                            <h4>
+                                <strong>
+                                    <asp:Label runat="server" ID="lblIQtdItensAtivos"></asp:Label>
+                                </strong>
+                                itens ativos
+                            </h4>
+                            <h4>
+                                <strong>
+                                    <asp:Label runat="server" ID="lblQtdItensDisponiveis"></asp:Label>
+                                </strong>
+                                disponíveis
+                            </h4>
                         </div>
                         <div class="col-12 col-md-4">
-                            <h4>9450 moedas gastas</h4>
-                            <h4>34 itens vendidos</h4>
+                            <h4>
+                                <strong>
+                                    <asp:Label runat="server" ID="lblQtdMoedasGastas"></asp:Label>
+                                </strong>
+                                moedas gastas
+                            </h4>
+                            <h4>
+                                <strong>
+                                    <asp:Label runat="server" ID="lblQtdItensVendidos"></asp:Label>
+                                </strong>
+                                itens vendidos
+                            </h4>
                         </div>
                     </div>
                 </div>
@@ -43,7 +65,7 @@
                     <div class="row no-gutters align-items-center">
                         <div class="col mr-2">
                             <div class="text-sm font-weight-bold text-success text-uppercase mb-1">Item mais vendido</div>
-                            <div class="h5 mb-0 font-weight-bold text-gray-800">12</div>
+                            <asp:Label runat="server" ID="lblQtdItemMaisVendido" CssClass="h5 mb-0 font-weight-bold text-gray-800"></asp:Label>
                         </div>
                         <div class="col-auto">
                             <i class="fas fa-shopping-cart fa-2x text-gray-300"></i>
@@ -51,7 +73,9 @@
                     </div>
                     <div class="row">
                         <div class=" text-center col-12 card p-4 mt-4">
-                            <h4>"O tempo voa"</h4>
+                            <h4>
+                                <asp:Label runat="server" ID="lblNomeItemMaisVendido"></asp:Label>
+                            </h4>
                         </div>
 
                     </div>
@@ -128,9 +152,8 @@
                                                     <i class="fas fa-tag fa-2x text-danger"></i>
                                                 </div>
                                                 <div class="col-12 col-md-6">
-                                                    <asp:DropDownList runat="server" ID="drpCategoria">
-                                                        <asp:ListItem class="form-control" Value="categoria">Categoria</asp:ListItem>
-                                                        <asp:ListItem class="form-control" Value="fisico">Físico</asp:ListItem>
+                                                    <asp:DropDownList runat="server" ID="drpCategoria" CssClass="form-control">
+                                                        <asp:ListItem class="form-control" Value="FISICO">Físico</asp:ListItem>
                                                     </asp:DropDownList>
                                                 </div>
                                             </div>

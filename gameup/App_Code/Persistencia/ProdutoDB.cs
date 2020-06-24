@@ -141,7 +141,7 @@ public class ProdutoDB
             objComando.Parameters.Add(Mapped.Parameter("?dataCriacao", DateTime.Now));
             objComando.Parameters.Add(Mapped.Parameter("?quantidadeEntrada", quantidade));
             objComando.Parameters.Add(Mapped.Parameter("?saldo", quantidade));
-            objComando.Parameters.Add(Mapped.Parameter("?empresaId", produto.EmpresaId.Emp_id));
+            objComando.Parameters.Add(Mapped.Parameter("?empresaId", produto.Empresa.Emp_id));
 
             objComando.ExecuteNonQuery();
 
@@ -277,7 +277,7 @@ public class ProdutoDB
             string query = "";
 
             query += " INSERT INTO  ";
-            query += "  produtos (pro_nome, pro_subtitulo, pro_descricao, pro_valormoeda, prod_logo, pro_status, emp_id, usu_id, tip_id) ";
+            query += "  produtos (pro_nome, pro_subtitulo, pro_descricao, pro_valormoeda, pro_logo, pro_status, emp_id, usu_id, tip_id) ";
             query += " VALUES( ";
             query += " 	?nome,  ";
             query += " 	?subtitulo,  ";
@@ -287,7 +287,7 @@ public class ProdutoDB
             query += " 	?status, ";
             query += " 	?empresaId,  ";
             query += " 	?usuarioId,  ";
-            query += " 	categoria ";
+            query += " 	?categoria ";
             query += " ) ";
 
             objComando = Mapped.Command(query, objConexao);
@@ -295,10 +295,10 @@ public class ProdutoDB
             objComando.Parameters.Add(Mapped.Parameter("?subtitulo", produto.Subtitulo));
             objComando.Parameters.Add(Mapped.Parameter("?descricao", produto.Descricao));
             objComando.Parameters.Add(Mapped.Parameter("?preco", produto.Preco));
-            objComando.Parameters.Add(Mapped.Parameter("?logoUrl", produto.LogoUrl));
+            objComando.Parameters.Add(Mapped.Parameter("?logoUrl", produto.LogoUrl == null ? "Sem logo" : produto.LogoUrl));
             objComando.Parameters.Add(Mapped.Parameter("?status", produto.Status));
-            objComando.Parameters.Add(Mapped.Parameter("?empresaId", produto.EmpresaId.Emp_id));
-            objComando.Parameters.Add(Mapped.Parameter("?usuarioId", produto.UsuarioId));
+            objComando.Parameters.Add(Mapped.Parameter("?empresaId", produto.Empresa.Emp_id));
+            objComando.Parameters.Add(Mapped.Parameter("?usuarioId", produto.Usuario.Usu_id));
             objComando.Parameters.Add(Mapped.Parameter("?categoria", produto.Categoria));
 
             objComando.ExecuteNonQuery();
@@ -316,4 +316,162 @@ public class ProdutoDB
 
         return ok;
     }
+
+    public static int BuscarQtdItensAtivos(Usuario usuario)
+    {
+        DataSet ds = new DataSet();
+        IDbConnection objConexao;
+        IDbCommand objCommand;
+        IDataAdapter dataAdapter;
+        objConexao = Mapped.Connection();
+
+        string query = "";
+        query += " SELECT ";
+        query += " 	COUNT(pro_id) qtd ";
+        query += " FROM ";
+        query += " 	produtos ";
+        query += " WHERE ";
+        query += " 	emp_id = ?emp_id ";
+        query += " 	AND pro_status = ?status ";
+
+        objCommand = Mapped.Command(query, objConexao);
+        objCommand.Parameters.Add(Mapped.Parameter("?emp_id", usuario.Emp_id));
+        objCommand.Parameters.Add(Mapped.Parameter("?status", StatusProdutoEnum.DISPONIVEL));
+        dataAdapter = Mapped.Adapter(objCommand);
+        dataAdapter.Fill(ds);
+
+        objConexao.Close();
+        objConexao.Dispose();
+        objCommand.Dispose();
+
+        int qtd = !ds.Tables[0].Rows[0]["qtd"].ToString().Equals("") ? Convert.ToInt32(ds.Tables[0].Rows[0]["qtd"]) : 0;
+
+        return qtd;
+    }
+
+    public static int BuscarQtdItensDisponiveis(Usuario usuario)
+    {
+        DataSet ds = new DataSet();
+        IDbConnection objConexao;
+        IDbCommand objCommand;
+        IDataAdapter dataAdapter;
+        objConexao = Mapped.Connection();
+
+        string query = "";
+        query += " SELECT ";
+        query += " 	 mov.mes_saldo qtd ";
+        query += " FROM ";
+        query += " 	movestoque mov ";
+        query += " WHERE ";
+        query += " 	mov.emp_id = ?emp_id ";
+        query += " ORDER BY  ";
+        query += " 	mov.mes_dhcriacao ";
+        query += " LIMIT 1 ";
+
+        objCommand = Mapped.Command(query, objConexao);
+        objCommand.Parameters.Add(Mapped.Parameter("?emp_id", usuario.Emp_id));
+        dataAdapter = Mapped.Adapter(objCommand);
+        dataAdapter.Fill(ds);
+
+        objConexao.Close();
+        objConexao.Dispose();
+        objCommand.Dispose();
+
+        int qtd = !ds.Tables[0].Rows[0]["qtd"].ToString().Equals("") ? Convert.ToInt32(ds.Tables[0].Rows[0]["qtd"]) : 0;
+
+        return qtd;
+    }
+
+    public static int BuscarQtdMoedasGastas(Usuario usuario)
+    {
+        DataSet ds = new DataSet();
+        IDbConnection objConexao;
+        IDbCommand objCommand;
+        IDataAdapter dataAdapter;
+        objConexao = Mapped.Connection();
+
+        string query = "";
+        query += " SELECT ";
+        query += " 	 SUM(mov.mfi_valorprod * mfi_qtdprod) qtd ";
+        query += " FROM ";
+        query += " 	movfinanceira mov ";
+        query += " WHERE ";
+        query += " 	mov.emp_id = ?emp_id ";
+
+        objCommand = Mapped.Command(query, objConexao);
+        objCommand.Parameters.Add(Mapped.Parameter("?emp_id", usuario.Emp_id));
+        dataAdapter = Mapped.Adapter(objCommand);
+        dataAdapter.Fill(ds);
+
+        objConexao.Close();
+        objConexao.Dispose();
+        objCommand.Dispose();
+
+        int qtd = !ds.Tables[0].Rows[0]["qtd"].ToString().Equals("") ? Convert.ToInt32(ds.Tables[0].Rows[0]["qtd"]) : 0;
+
+        return qtd;
+    }
+
+    public static int BuscarQtdItensVendidos(Usuario usuario)
+    {
+        DataSet ds = new DataSet();
+        IDbConnection objConexao;
+        IDbCommand objCommand;
+        IDataAdapter dataAdapter;
+        objConexao = Mapped.Connection();
+
+        string query = "";
+        query += " SELECT ";
+        query += " 	 SUM(mov.mfi_qtdprod) qtd ";
+        query += " FROM ";
+        query += " 	movfinanceira mov ";
+        query += " WHERE ";
+        query += " 	mov.emp_id = ?emp_id ";
+
+        objCommand = Mapped.Command(query, objConexao);
+        objCommand.Parameters.Add(Mapped.Parameter("?emp_id", usuario.Emp_id));
+        dataAdapter = Mapped.Adapter(objCommand);
+        dataAdapter.Fill(ds);
+
+        objConexao.Close();
+        objConexao.Dispose();
+        objCommand.Dispose();
+
+        int qtd = !ds.Tables[0].Rows[0]["qtd"].ToString().Equals("") ? Convert.ToInt32(ds.Tables[0].Rows[0]["qtd"]) : 0;
+
+        return qtd;
+    }
+
+    public static int BuscarQtdItemMaisVendido(Usuario usuario)
+    {
+        DataSet ds = new DataSet();
+        IDbConnection objConexao;
+        IDbCommand objCommand;
+        IDataAdapter dataAdapter;
+        objConexao = Mapped.Connection();
+
+        string query = "";
+        query += " SELECT ";
+        query += " 	 SUM(mov.mfi_qtdprod) qtd ";
+        query += " FROM ";
+        query += " 	movfinanceira mov ";
+        query += " WHERE ";
+        query += " 	mov.emp_id = ?emp_id ";
+
+        objCommand = Mapped.Command(query, objConexao);
+        objCommand.Parameters.Add(Mapped.Parameter("?emp_id", usuario.Emp_id));
+        dataAdapter = Mapped.Adapter(objCommand);
+        dataAdapter.Fill(ds);
+
+        objConexao.Close();
+        objConexao.Dispose();
+        objCommand.Dispose();
+
+        int qtd = !ds.Tables[0].Rows[0]["qtd"].ToString().Equals("") ? Convert.ToInt32(ds.Tables[0].Rows[0]["qtd"]) : 0;
+
+        return qtd;
+    }
+
+    
+
 }

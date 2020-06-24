@@ -15,8 +15,8 @@ public class Produto
     private int preco;
     private string logoUrl;
     private StatusProdutoEnum status;
-    private Empresa empresaId;
-    private Usuario usuarioId;
+    private Empresa empresa;
+    private Usuario usuario;
     private CategoriaProdutoEnum categoria;
     public int Id
     {
@@ -109,29 +109,29 @@ public class Produto
         }
     }
 
-    public Empresa EmpresaId
+    public Empresa Empresa
     {
         get
         {
-            return empresaId;
+            return empresa;
         }
 
         set
         {
-            empresaId = value;
+            empresa = value;
         }
     }
 
-    public Usuario UsuarioId
+    public Usuario Usuario
     {
         get
         {
-            return usuarioId;
+            return usuario;
         }
 
         set
         {
-            usuarioId = value;
+            usuario = value;
         }
     }
 
