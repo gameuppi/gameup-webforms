@@ -20,13 +20,15 @@ public partial class Pages_Representante_GerenciarLojaVirtual : System.Web.UI.Pa
         int qtdItensDisponiveis = ProdutoDB.BuscarQtdItensDisponiveis(usuarioLogado);
         int qtdMoedasGastas = ProdutoDB.BuscarQtdMoedasGastas(usuarioLogado);
         int qtdItensVendidos = ProdutoDB.BuscarQtdItensVendidos(usuarioLogado);
-        //int qtdItemMaisVendido = ProdutoDB.BuscarQtdItemMaisVendido(usuarioLogado);
-        //string nomeItemMaisVendido = ProdutoDB.BuscarNomeItemMaisVendido(usuarioLogado);
+        int qtdItemMaisVendido = ProdutoDB.BuscarQtdItemMaisVendido(usuarioLogado);
+        string nomeItemMaisVendido = ProdutoDB.BuscarNomeItemMaisVendido(usuarioLogado);
 
         lblIQtdItensAtivos.Text = qtdItensAtivos.ToString();
         lblQtdItensDisponiveis.Text = qtdItensDisponiveis.ToString();
         lblQtdMoedasGastas.Text = qtdMoedasGastas.ToString();
         lblQtdItensVendidos.Text = qtdItensVendidos.ToString();
+        lblQtdItemMaisVendido.Text = qtdItemMaisVendido.ToString();
+        lblNomeItemMaisVendido.Text = nomeItemMaisVendido;
     }
     void validarSessao()
     {

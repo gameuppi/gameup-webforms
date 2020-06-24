@@ -452,11 +452,16 @@ public class ProdutoDB
 
         string query = "";
         query += " SELECT ";
-        query += " 	 SUM(mov.mfi_qtdprod) qtd ";
+        query += " 	SUM(mes_qtdsaida) qtd ";
         query += " FROM ";
-        query += " 	movfinanceira mov ";
+        query += " 	movestoque ";
         query += " WHERE ";
-        query += " 	mov.emp_id = ?emp_id ";
+        query += " 	emp_id = ?emp_id ";
+        query += " GROUP BY ";
+        query += " 	pro_id ";
+        query += " ORDER BY ";
+        query += " 	SUM(mes_qtdsaida) DESC ";
+        query += " LIMIT 1 ";
 
         objCommand = Mapped.Command(query, objConexao);
         objCommand.Parameters.Add(Mapped.Parameter("?emp_id", usuario.Emp_id));
@@ -472,6 +477,41 @@ public class ProdutoDB
         return qtd;
     }
 
+    public static string BuscarNomeItemMaisVendido(Usuario usuario)
+    {
+        DataSet ds = new DataSet();
+        IDbConnection objConexao;
+        IDbCommand objCommand;
+        IDataAdapter dataAdapter;
+        objConexao = Mapped.Connection();
+
+        string query = "";
+        query += " SELECT ";
+        query += " 	pro.pro_nome nome ";
+        query += " FROM ";
+        query += " 	movestoque mov ";
+        query += " 	JOIN produtos pro ON pro.pro_id = mov.pro_id ";
+        query += " WHERE ";
+        query += " 	mov.emp_id = ?emp_id ";
+        query += " GROUP BY ";
+        query += " 	mov.pro_id ";
+        query += " ORDER BY ";
+        query += " 	SUM(mov.mes_qtdsaida) DESC ";
+        query += " LIMIT 1 ";
+
+        objCommand = Mapped.Command(query, objConexao);
+        objCommand.Parameters.Add(Mapped.Parameter("?emp_id", usuario.Emp_id));
+        dataAdapter = Mapped.Adapter(objCommand);
+        dataAdapter.Fill(ds);
+
+        objConexao.Close();
+        objConexao.Dispose();
+        objCommand.Dispose();
+
+        string nome = ds.Tables[0].Rows[0]["nome"].ToString();
+
+        return nome;
+    }
     
 
 }

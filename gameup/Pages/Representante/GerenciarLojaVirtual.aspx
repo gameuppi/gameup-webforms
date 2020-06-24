@@ -174,6 +174,7 @@
                 <div class="tab-pane fade show p-4" id="nav-visualizacao" role="tabpanel" aria-labelledby="nav-visualizacao-tab">
 
                     <div class="row mt-4">
+                        <asp:Literal runat="server" ID="ltrVisualizarProdutos"></asp:Literal>
                         <!-- Card de item -  -->
                         <div class="col-12 col-md-3">
                             <div class="card-custom border-left-success shadow">
@@ -183,7 +184,7 @@
                         <br />
                                         <small>3 disponíveis</small>
                                     </span>
-                                    <a class="btn-floating btn-large halfway-fab btn-success">
+                                    <a class="btn-floating btn-large halfway-fab btn-info">
                                         <center>
                             <i class="fas fa-info text-white"></i>
                         </center>
@@ -192,6 +193,11 @@
                                 <div class="card-custom-content">
 
                                     <p>Consiga uma folga em um dia de sua escolha</p>
+                                    <div class="row mt-3">
+                                        <button class="btn btn-success col">Ativar</button>
+                                        &nbsp;
+                                        <button class="btn btn-danger col">Desativar</button>
+                                    </div>
                                 </div>
                             </div>
                         </div>

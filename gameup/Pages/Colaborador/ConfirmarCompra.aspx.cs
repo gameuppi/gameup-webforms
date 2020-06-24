@@ -16,14 +16,14 @@ public partial class Pages_Colaborador_ConfirmarCompra : System.Web.UI.Page
         usuarioLogado = (Usuario)Session["USUARIO"];
 
         produto = CriarObjetoProduto(ProdutoDB.procurarPorId(Convert.ToInt32(Request.QueryString["pro_id"])));
-        MovimentacaoEstoque mvEstoque = CarregaObjetoEstoque(produto.Pro_id);
+        MovimentacaoEstoque mvEstoque = CarregaObjetoEstoque(produto.Id);
 
-        imgLogo.ImageUrl = produto.Pro_logo;
-        txtNome.Text = produto.Pro_nome;
+        imgLogo.ImageUrl = produto.LogoUrl;
+        txtNome.Text = produto.Nome;
         txtQtd.Text = $"{mvEstoque.Mes_saldo.ToString()} Disponíveis";
-        txtValor.Text = $"{produto.Pro_valorMoeda.ToString()} Moedas";
-        txtSub.Text = produto.Pro_subTitulo;
-        txtDescricao.Text = produto.Pro_descricao;        
+        txtValor.Text = $"{produto.Preco.ToString()} Moedas";
+        txtSub.Text = produto.Subtitulo;
+        txtDescricao.Text = produto.Descricao;        
     }
 
 
@@ -35,24 +35,24 @@ public partial class Pages_Colaborador_ConfirmarCompra : System.Web.UI.Page
         {
             foreach (DataRow pro in produtoDs.Tables[0].Rows)
             {
-                produto.Pro_id = Convert.ToInt32(pro["pro_id"]);
-                produto.Pro_nome = pro["pro_nome"].ToString();
-                produto.Pro_subTitulo = pro["pro_subTitulo"].ToString();
-                produto.Pro_descricao = pro["pro_descricao"].ToString();
-                produto.Pro_logo = pro["pro_logo"].ToString();
+                produto.Id = Convert.ToInt32(pro["pro_id"]);
+                produto.Nome = pro["pro_nome"].ToString();
+                produto.Subtitulo = pro["pro_subTitulo"].ToString();
+                produto.Descricao = pro["pro_descricao"].ToString();
+                produto.LogoUrl = pro["pro_logo"].ToString();
 
                 if (Convert.ToInt32(pro["pro_status"]) == 1)
                 {
-                    produto.Pro_status = StatusProdutoEnum.DISPONIVEL;
+                    produto.Status = StatusProdutoEnum.DISPONIVEL;
                 }
                 else
                 {
-                    produto.Pro_status = StatusProdutoEnum.INDISPONIVEL;
+                    produto.Status = StatusProdutoEnum.INDISPONIVEL;
                 }
 
                 if (pro["pro_valorMoeda"] != null)
                 {
-                    produto.Pro_valorMoeda = Convert.ToInt32(pro["pro_valorMoeda"]);
+                    produto.Preco = Convert.ToInt32(pro["pro_valorMoeda"]);
                 }
 
                 Empresa emp = new Empresa();
@@ -60,13 +60,13 @@ public partial class Pages_Colaborador_ConfirmarCompra : System.Web.UI.Page
                 Usuario usu = new Usuario();
 
                 emp.Emp_id = Convert.ToInt32(pro["emp_id"]);
-                produto.Emp_id = emp;
+                produto.Empresa = emp;
 
                 tip.Tip_id = Convert.ToInt32(pro["tip_id"]);
-                produto.Tip_id = tip;
+                produto.Categoria = CategoriaProdutoEnum.FISICO; // arrumar
 
                 usu.Usu_id = Convert.ToInt32(pro["usu_id"]);
-                produto.Usu_id = usu;
+                produto.Usuario = usu;
             }
         }
         catch (Exception ex)
