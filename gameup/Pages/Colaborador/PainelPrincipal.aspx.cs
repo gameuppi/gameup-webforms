@@ -13,7 +13,6 @@ public partial class Pages_Colaborador_PainelPrincipal : System.Web.UI.Page
     protected void Page_Load(object sender, EventArgs e)
     {
         validarSessao();
-
         TableRow tr;
         TableCell tcPosicao;
         TableCell tcNome;
@@ -57,7 +56,7 @@ public partial class Pages_Colaborador_PainelPrincipal : System.Web.UI.Page
 
         }
 
-       
+
     }
 
     string formatarNome(string nome)
@@ -93,4 +92,71 @@ public partial class Pages_Colaborador_PainelPrincipal : System.Web.UI.Page
 
         }
     }
+    
+
+    public string ObterDadosDoUsuario()
+{
+    DataTable dados = new DataTable();
+
+    DataSet gerargraficosetor1 = MissaoUsuarioBD.ContarXpPontoMoedaPorData(usuarioLogado.Usu_id);
+    DataSet gerargraficosetor2 = MissaoUsuarioBD.ContarXpPontoMoedaPorData2(usuarioLogado.Usu_id);
+    DataSet gerargraficosetor3 = MissaoUsuarioBD.ContarXpPontoMoedaPorData3(usuarioLogado.Usu_id);
+    DataSet gerargraficosetor4 = MissaoUsuarioBD.ContarXpPontoMoedaPorData4(usuarioLogado.Usu_id);
+    DataSet gerargraficosetor5 = MissaoUsuarioBD.ContarXpPontoMoedaPorData5(usuarioLogado.Usu_id);
+    DataSet gerargraficosetor6 = MissaoUsuarioBD.ContarXpPontoMoedaPorData6(usuarioLogado.Usu_id);
+
+    string pontos1 = gerargraficosetor1.Tables[0].Rows[0]["qtd_pontos"].ToString();
+    string experiencia1 = gerargraficosetor1.Tables[0].Rows[0]["qtd_exp"].ToString();
+    string moeda1 = gerargraficosetor1.Tables[0].Rows[0]["qtd_moedas"].ToString();
+
+    string pontos2 = gerargraficosetor2.Tables[0].Rows[0]["qtd_pontos"].ToString();
+    string experiencia2 = gerargraficosetor2.Tables[0].Rows[0]["qtd_exp"].ToString();
+    string moeda2 = gerargraficosetor2.Tables[0].Rows[0]["qtd_moedas"].ToString();
+
+    string pontos3 = gerargraficosetor3.Tables[0].Rows[0]["qtd_pontos"].ToString();
+    string experiencia3 = gerargraficosetor3.Tables[0].Rows[0]["qtd_exp"].ToString();
+    string moeda3 = gerargraficosetor3.Tables[0].Rows[0]["qtd_moedas"].ToString();
+
+    string pontos4 = gerargraficosetor4.Tables[0].Rows[0]["qtd_pontos"].ToString();
+    string experiencia4 = gerargraficosetor4.Tables[0].Rows[0]["qtd_exp"].ToString();
+    string moeda4 = gerargraficosetor4.Tables[0].Rows[0]["qtd_moedas"].ToString();
+
+    string pontos5 = gerargraficosetor5.Tables[0].Rows[0]["qtd_pontos"].ToString();
+    string experiencia5 = gerargraficosetor5.Tables[0].Rows[0]["qtd_exp"].ToString();
+    string moeda5 = gerargraficosetor5.Tables[0].Rows[0]["qtd_moedas"].ToString();
+
+    string pontos6 = gerargraficosetor6.Tables[0].Rows[0]["qtd_pontos"].ToString();
+    string experiencia6 = gerargraficosetor6.Tables[0].Rows[0]["qtd_exp"].ToString();
+    string moeda6 = gerargraficosetor6.Tables[0].Rows[0]["qtd_moedas"].ToString();
+
+    //coluna dos dados
+    dados.Columns.Add(new DataColumn("Data", typeof(string)));
+    dados.Columns.Add(new DataColumn("Moedas", typeof(string)));
+    dados.Columns.Add(new DataColumn("Pontos", typeof(string)));
+    dados.Columns.Add(new DataColumn("Experiencia", typeof(string)));
+    // Os dados que serão mostrados no charts
+    dados.Rows.Add(new object[] { "Janeiro", moeda6, pontos6, experiencia6 });
+    dados.Rows.Add(new object[] { "Fevereiro", moeda5, pontos5, experiencia5 });
+    dados.Rows.Add(new object[] { "Março", moeda4, pontos4, experiencia4 });
+    dados.Rows.Add(new object[] { "Abril", moeda3, pontos3, experiencia3 });
+    dados.Rows.Add(new object[] { "Maio", moeda2, pontos2, experiencia2 });
+    dados.Rows.Add(new object[] { "junho", moeda1, pontos1, experiencia1 });
+
+    string strDados;
+
+    strDados = "[['Data','Moedas', 'Pontos', 'Experiencia'],";
+
+    foreach (DataRow dr in dados.Rows)
+    {
+        strDados = strDados + "[";
+        strDados = strDados + "'" + dr[0] + "'" + "," + dr[1] + "," + dr[2] + "," + dr[3];
+        strDados = strDados + "],";
+    }
+    strDados = strDados + "]";
+
+
+    return strDados;
+}
+
+
 }

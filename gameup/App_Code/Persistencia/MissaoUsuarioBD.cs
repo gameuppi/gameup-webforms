@@ -302,8 +302,133 @@ public class MissaoUsuarioBD
         return ds;
 
     }
+    // select para trazer pontos do mes passado 
+    public static DataSet ContarXpPontoMoedaPorData4(int usu_id)
+    {
+
+        DataSet ds = new DataSet();
+        IDbConnection objConexao;
+        IDbCommand objCommand;
+        IDataAdapter dataAdapter;
+
+        objConexao = Mapped.Connection();
+        string query = "";
+        query += " SELECT ";
+        query += "     mus.usu_id, ";
+        query += "     SUM(mis.mis_qtd_exp) 'qtd_exp',";
+        query += "     SUM(mis.mis_qtd_pontos) 'qtd_pontos',";
+        query += "     SUM(mis.mis_qtd_moedas) 'qtd_moedas'";
+        query += " FROM";
+        query += "     missao_usuario mus ";
+        query += "     JOIN missao mis ON mis.mis_id = mus.mis_id";
+        query += " WHERE";
+        query += "     MONTH(mus.mus_dt_conclusao) = MONTH(SYSDATE()) -3";
+        query += "     AND YEAR(mus.mus_dt_conclusao) = YEAR(SYSDATE())";
+        query += "     AND mus.usu_id = ?usu_id";
 
 
+
+
+        objCommand = Mapped.Command(query, objConexao);
+
+        objCommand.Parameters.Add(Mapped.Parameter("?usu_id", usu_id));
+
+        dataAdapter = Mapped.Adapter(objCommand);
+
+        dataAdapter.Fill(ds);
+
+        objConexao.Close();
+        objConexao.Dispose();
+        objCommand.Dispose();
+
+        return ds;
+
+    }
+    // select para trazer pontos do mes passado 
+    public static DataSet ContarXpPontoMoedaPorData5(int usu_id)
+    {
+
+        DataSet ds = new DataSet();
+        IDbConnection objConexao;
+        IDbCommand objCommand;
+        IDataAdapter dataAdapter;
+
+        objConexao = Mapped.Connection();
+        string query = "";
+        query += " SELECT ";
+        query += "     mus.usu_id, ";
+        query += "     SUM(mis.mis_qtd_exp) 'qtd_exp',";
+        query += "     SUM(mis.mis_qtd_pontos) 'qtd_pontos',";
+        query += "     SUM(mis.mis_qtd_moedas) 'qtd_moedas'";
+        query += " FROM";
+        query += "     missao_usuario mus ";
+        query += "     JOIN missao mis ON mis.mis_id = mus.mis_id";
+        query += " WHERE";
+        query += "     MONTH(mus.mus_dt_conclusao) = MONTH(SYSDATE()) -4";
+        query += "     AND YEAR(mus.mus_dt_conclusao) = YEAR(SYSDATE())";
+        query += "     AND mus.usu_id = ?usu_id";
+
+
+
+
+        objCommand = Mapped.Command(query, objConexao);
+
+        objCommand.Parameters.Add(Mapped.Parameter("?usu_id", usu_id));
+
+        dataAdapter = Mapped.Adapter(objCommand);
+
+        dataAdapter.Fill(ds);
+
+        objConexao.Close();
+        objConexao.Dispose();
+        objCommand.Dispose();
+
+        return ds;
+
+    }
+    // select para trazer pontos do mes passado 
+    public static DataSet ContarXpPontoMoedaPorData6(int usu_id)
+    {
+
+        DataSet ds = new DataSet();
+        IDbConnection objConexao;
+        IDbCommand objCommand;
+        IDataAdapter dataAdapter;
+
+        objConexao = Mapped.Connection();
+        string query = "";
+        query += " SELECT ";
+        query += "     mus.usu_id, ";
+        query += "     SUM(mis.mis_qtd_exp) 'qtd_exp',";
+        query += "     SUM(mis.mis_qtd_pontos) 'qtd_pontos',";
+        query += "     SUM(mis.mis_qtd_moedas) 'qtd_moedas'";
+        query += " FROM";
+        query += "     missao_usuario mus ";
+        query += "     JOIN missao mis ON mis.mis_id = mus.mis_id";
+        query += " WHERE";
+        query += "     MONTH(mus.mus_dt_conclusao) = MONTH(SYSDATE()) -5";
+        query += "     AND YEAR(mus.mus_dt_conclusao) = YEAR(SYSDATE())";
+        query += "     AND mus.usu_id = ?usu_id";
+
+
+
+
+        objCommand = Mapped.Command(query, objConexao);
+
+        objCommand.Parameters.Add(Mapped.Parameter("?usu_id", usu_id));
+
+        dataAdapter = Mapped.Adapter(objCommand);
+
+        dataAdapter.Fill(ds);
+
+        objConexao.Close();
+        objConexao.Dispose();
+        objCommand.Dispose();
+
+        return ds;
+
+    }
+    // 
     public static DataSet teste(int usu_id, int ano, int mes)
     {
 
@@ -333,4 +458,6 @@ public class MissaoUsuarioBD
         return ds;
 
     }
+
+    
 }
