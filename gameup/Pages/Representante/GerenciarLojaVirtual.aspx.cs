@@ -35,7 +35,7 @@ public partial class Pages_Representante_GerenciarLojaVirtual : System.Web.UI.Pa
 
     void popularVisualizacaoDeProdutos()
     {
-        DataSet produtos = ProdutoDB.BuscarTodosOsProdutosPorEmpresaEStatus(usuarioLogado.Emp_id);
+        DataSet produtos = ProdutoDB.BuscarTodosOsProdutosPorEmpresa(usuarioLogado.Emp_id);
         ProdutoEstoque produto;
         List<ProdutoEstoque> listaDeProdutos = new List<ProdutoEstoque>();
 
@@ -97,6 +97,95 @@ public partial class Pages_Representante_GerenciarLojaVirtual : System.Web.UI.Pa
                 btnAtivar.Enabled = false;
                 btnAtivar.Attributes["disabled"] = "disabled";
             } else if (prod.Status.Equals(StatusProdutoEnum.INDISPONIVEL))
+            {
+                btnDesativar.Enabled = false;
+                btnDesativar.Attributes["disabled"] = "disabled";
+            }
+
+            Literal ltlTextFinal = new Literal();
+            ltlTextFinal.Text += $" </div> </div></div> </div>";
+
+            pnlVisualizarProdutos.Controls.Add(ltlImg);
+            pnlVisualizarProdutos.Controls.Add(btnCard);
+            pnlVisualizarProdutos.Controls.Add(ltlText);
+            pnlVisualizarProdutos.Controls.Add(btnAtivar);
+            pnlVisualizarProdutos.Controls.Add(btnDesativar);
+            pnlVisualizarProdutos.Controls.Add(ltlTextFinal);
+        }
+    }
+
+    void limparTela()
+    {
+        pnlVisualizarProdutos.Controls.Clear();
+    }
+
+    void popularVisualizacaoDeProdutosPorStatus(StatusProdutoEnum status)
+    {
+        limparTela();
+
+        DataSet produtos = ProdutoDB.BuscarTodosOsProdutosPorEmpresaEStatus(usuarioLogado.Emp_id, status);
+        ProdutoEstoque produto;
+        List<ProdutoEstoque> listaDeProdutos = new List<ProdutoEstoque>();
+
+        foreach (DataRow prod in produtos.Tables[0].Rows)
+        {
+            produto = criarObjetoProdutoEstoque(
+                    Convert.ToInt32(prod["id"].ToString()),
+                    prod["nome"].ToString(),
+                    prod["subtitulo"].ToString(),
+                    prod["descricao"].ToString(),
+                    Convert.ToInt32(prod["preco"].ToString()),
+                    !prod["quantidade"].ToString().Equals("") ? Convert.ToInt32(prod["quantidade"].ToString()) : 0,
+                    prod["categoria"].ToString(),
+                    usuarioLogado,
+                    prod["logo_url"].ToString(),
+                    (StatusProdutoEnum)Enum.Parse(typeof(StatusProdutoEnum), prod["status"].ToString())
+            );
+
+            listaDeProdutos.Add(produto);
+        }
+
+        foreach (ProdutoEstoque prod in listaDeProdutos)
+        {
+            Literal ltlImg = new Literal();
+            ltlImg.Text = $"<div class='col-12 col-md-3 mt-2'>" +
+                          $"    <div class='card-custom border-left-success shadow h-100'>" +
+                          $"        <div class='card-custom-image'>" +
+                          $"            <img src='{prod.LogoUrl}'>" +
+                          $"            <span class='card-custom-title font-weight-bold'>{prod.Nome}" +
+                          $"            <br /><small>{prod.Quantidade} disponíveis</small>" +
+                          $"            </span><div class='text-center'>";
+
+            LinkButton btnCard = new LinkButton();
+            btnCard.Click += (sender, e) => { this.VisualizarListaCompradores(sender, e, prod.Id); };
+            btnCard.ID = prod.Id.ToString();
+            btnCard.CssClass = "btn-floating btn-large halfway-fab btn-info";
+            btnCard.Text = "<center><i class='fas fa-list text-white'></i></center>";
+
+            Literal ltlText = new Literal();
+            ltlText.Text += $"      </div></div><br/><div class='col-md-12 card-custom-content'>" +
+                           $"           <p>{prod.Subtitulo}</p>" +
+                           $"           <p>{prod.Preco} Moedas</p>" +
+                           $"           <div class='row mt-3 d-flex justify-content-between'>";
+
+            Button btnAtivar = new Button();
+            btnAtivar.CssClass = "btn btn-success col-5";
+            btnAtivar.Text = "Ativar";
+            btnAtivar.Click += (sender, e) => { this.AtivarProduto(sender, e, prod.Id); };
+            btnAtivar.ID = prod.Id.ToString() + "ativar";
+
+            Button btnDesativar = new Button();
+            btnDesativar.CssClass = "btn btn-danger col-5";
+            btnDesativar.Text = "Desativar";
+            btnDesativar.Click += (sender, e) => { this.DesativarProduto(sender, e, prod.Id); };
+            btnDesativar.ID = prod.Id.ToString() + "desativar";
+
+            if (prod.Status.Equals(StatusProdutoEnum.DISPONIVEL))
+            {
+                btnAtivar.Enabled = false;
+                btnAtivar.Attributes["disabled"] = "disabled";
+            }
+            else if (prod.Status.Equals(StatusProdutoEnum.INDISPONIVEL))
             {
                 btnDesativar.Enabled = false;
                 btnDesativar.Attributes["disabled"] = "disabled";
@@ -208,6 +297,8 @@ public partial class Pages_Representante_GerenciarLojaVirtual : System.Web.UI.Pa
             txtQuantidade.Text = "";
             drpCategoria.Text = "";
         }
+
+        Response.Redirect("GerenciarLojaVirtual.aspx");
     }
 
     protected Produto criarObjetoProduto(string nome, string subtitulo, string descricao, int preco, int quantidade, string categoria, Usuario usuarioLogado)
@@ -255,4 +346,20 @@ public partial class Pages_Representante_GerenciarLojaVirtual : System.Web.UI.Pa
         return produto;
     }
 
+
+    protected void btnTodas_Click(object sender, EventArgs e)
+    {
+        popularVisualizacaoDeProdutos();
+    }
+
+    protected void btnAtivados_Click(object sender, EventArgs e)
+    {
+        popularVisualizacaoDeProdutosPorStatus(StatusProdutoEnum.DISPONIVEL);
+    }
+
+
+    protected void btnDesativados_Click(object sender, EventArgs e)
+    {
+        popularVisualizacaoDeProdutosPorStatus(StatusProdutoEnum.INDISPONIVEL);
+    }
 }

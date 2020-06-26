@@ -30,7 +30,7 @@ public class ProdutoDB
         return ds;
     }
 
-    public static DataSet BuscarTodosOsProdutosPorEmpresaEStatus(int empresaId)
+    public static DataSet BuscarTodosOsProdutosPorEmpresa(int empresaId)
     {
         DataSet ds = new DataSet();
         IDbConnection objConexao;
@@ -66,6 +66,54 @@ public class ProdutoDB
 
         objCommand = Mapped.Command(query, objConexao);
         objCommand.Parameters.Add(Mapped.Parameter("?emp_id", empresaId));
+        dataAdapter = Mapped.Adapter(objCommand);
+        dataAdapter.Fill(ds);
+
+        objConexao.Close();
+        objConexao.Dispose();
+        objCommand.Dispose();
+
+        return ds;
+    }
+
+    public static DataSet BuscarTodosOsProdutosPorEmpresaEStatus(int empresaId, StatusProdutoEnum status)
+    {
+        DataSet ds = new DataSet();
+        IDbConnection objConexao;
+        IDbCommand objCommand;
+        IDataAdapter dataAdapter;
+        objConexao = Mapped.Connection();
+
+        string query = "";
+        query += " SELECT ";
+        query += " 	pro.pro_id id, ";
+        query += " 	pro.pro_nome nome, ";
+        query += " 	pro.pro_subtitulo subtitulo, ";
+        query += " 	pro.pro_descricao descricao, ";
+        query += " 	pro.pro_valormoeda preco, ";
+        query += " 	( ";
+        query += " 		SELECT  ";
+        query += " 			mes_saldo ";
+        query += " 		FROM ";
+        query += " 			movestoque ";
+        query += " 		WHERE ";
+        query += " 			pro_id = pro.pro_id ";
+        query += " 		ORDER BY ";
+        query += " 			mes_id DESC ";
+        query += " 		LIMIT 1 ";
+        query += " 	) quantidade, ";
+        query += " 	CASE WHEN pro.tip_id = 1 THEN 'FISICO' ELSE 'VIRTUAL' END categoria, ";
+        query += " 	pro.pro_logo logo_url, ";
+        query += " 	pro.pro_status status ";
+        query += " FROM ";
+        query += " 	produtos pro ";
+        query += " WHERE ";
+        query += " 	pro.emp_id = ?emp_id ";
+        query += " 	AND pro.pro_status = ?status; ";
+
+        objCommand = Mapped.Command(query, objConexao);
+        objCommand.Parameters.Add(Mapped.Parameter("?emp_id", empresaId));
+        objCommand.Parameters.Add(Mapped.Parameter("?status", status));
         dataAdapter = Mapped.Adapter(objCommand);
         dataAdapter.Fill(ds);
 

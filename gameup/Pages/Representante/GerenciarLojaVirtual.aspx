@@ -176,9 +176,9 @@
                     <div class="row mt-4">
                         
                     <div class="col-12 text-right">
-                        <asp:Button runat="server" type="checkbox" class="btn btn-dark" Text="Todos" ID="btnTodas" />
-                        <asp:Button runat="server" type="checkbox" class="btn btn-success" Text="Ativados" ID="Button1" />
-                        <asp:Button runat="server" type="button" class="btn btn-danger" Text="Desativados" ID="btnConcluidas" />
+                        <asp:Button runat="server" type="checkbox" class="btn btn-dark" Text="Todos" ID="btnTodas" OnClick="btnTodas_Click" />
+                        <asp:Button runat="server" type="checkbox" class="btn btn-success" Text="Ativados" ID="btnAtivados" OnClick="btnAtivados_Click" />
+                        <asp:Button runat="server" type="button" class="btn btn-danger" Text="Desativados" ID="btnDesativados" OnClick="btnDesativados_Click" />
                     </div>
 
                         <asp:Panel runat="server" ID="pnlVisualizarProdutos" CssClass="row mt-4"></asp:Panel>
