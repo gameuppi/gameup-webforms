@@ -419,6 +419,48 @@ public class MissaoBD
     }
 
 
+    public static DataSet procurarTodasMissaoUsuarioColaboradorEmpresa(int emp_id)
+    {
+        DataSet ds = new DataSet();
+        IDbConnection objConexao;
+        IDbCommand objCommand;
+        IDataAdapter dataAdapter;
+
+        objConexao = Mapped.Connection();
+        string query = "";
+        query += " SELECT ";
+        query += "     MUS.MIS_ID, ";
+        query += "     MUS.MUS_ID, ";
+        query += "     MUS.MUS_DT_ATRIBUICAO, ";
+        query += "     MUS.MUS_DT_CONCLUSAO, ";
+        query += "     MUS.MUS_STATUS, ";
+        query += "     MUS.USU_ID,";
+        query += "     MIS.EMP_ID,";
+        query += "     USU.SET_ID";
+        query += " FROM ";
+        query += "     MISSAO_USUARIO MUS";
+        query += "     JOIN MISSAO MIS ON MUS.MIS_ID = MIS.MIS_ID";
+        query += "     JOIN usuario usu ON usu.usu_id = mus.usu_id";
+        query += " WHERE ";
+        query += "     MUS.MUS_STATUS <> 'INCOMPLETA' ";
+        query += "     AND usu.emp_ID = ?emp_id";
+
+        objCommand = Mapped.Command(query, objConexao);
+        objCommand.Parameters.Add(Mapped.Parameter("?emp_id", emp_id));
+
+        dataAdapter = Mapped.Adapter(objCommand);
+
+        dataAdapter.Fill(ds);
+
+        objConexao.Close();
+        objConexao.Dispose();
+        objCommand.Dispose();
+
+        return ds;
+
+    }
+
+
 
 
     public static DataSet procurarTodasMissaoUsuarioColaboradorPorStatus(int usu_id, string status)

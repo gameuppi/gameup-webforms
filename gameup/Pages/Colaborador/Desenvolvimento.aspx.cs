@@ -27,7 +27,7 @@ public partial class Pages_Colaborador_Desenvolvimento : System.Web.UI.Page
 
     protected string obterDadosPontos()
     {
-        DataSet listaXpPontosMoedas = MissaoUsuarioBD.ContarXpPontoMoedaPorData(usuarioLogado.Usu_id);
+        DataSet listaXpPontosMoedas = MissaoUsuarioBD.ContarXpPontoMoedaPorData(usuarioLogado.Usu_id, 0);
 
         string qtdXp = listaXpPontosMoedas.Tables[0].Rows[0]["qtd_exp"].ToString();
         string qtdPontos = listaXpPontosMoedas.Tables[0].Rows[0]["qtd_pontos"].ToString();
@@ -62,9 +62,9 @@ public partial class Pages_Colaborador_Desenvolvimento : System.Web.UI.Page
     // Obter dados de pontos xp e moedas dos ultimos 3meses
     protected string obterDadosPontosVariosMeses()
     {
-        DataSet listaXpPontosMoedas1 = MissaoUsuarioBD.ContarXpPontoMoedaPorData(usuarioLogado.Usu_id);
-        DataSet listaXpPontosMoedas2 = MissaoUsuarioBD.ContarXpPontoMoedaPorData2(usuarioLogado.Usu_id);
-        DataSet listaXpPontosMoedas3 = MissaoUsuarioBD.ContarXpPontoMoedaPorData3(usuarioLogado.Usu_id);
+        DataSet listaXpPontosMoedas1 = MissaoUsuarioBD.ContarXpPontoMoedaPorData(usuarioLogado.Usu_id, 0);
+        DataSet listaXpPontosMoedas2 = MissaoUsuarioBD.ContarXpPontoMoedaPorData(usuarioLogado.Usu_id, 1);
+        DataSet listaXpPontosMoedas3 = MissaoUsuarioBD.ContarXpPontoMoedaPorData(usuarioLogado.Usu_id, 2);
         string qtdXp1 = listaXpPontosMoedas1.Tables[0].Rows[0]["qtd_exp"].ToString();
         string qtdPontos1 = listaXpPontosMoedas1.Tables[0].Rows[0]["qtd_pontos"].ToString();
         string qtdMoedas1 = listaXpPontosMoedas1.Tables[0].Rows[0]["qtd_moedas"].ToString();

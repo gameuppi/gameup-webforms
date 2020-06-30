@@ -20,6 +20,7 @@ public partial class Pages_Gerente_Relatorios : System.Web.UI.Page
             carregarMissoes();
         }
     }
+    //RELATÓRIO DE GERENTE
 
     //grafico semanal
     public string ObterDadosDoUsuarioSema()
@@ -65,20 +66,22 @@ public partial class Pages_Gerente_Relatorios : System.Web.UI.Page
         CultureInfo culture = new CultureInfo("pt-BR");
         DateTimeFormatInfo dtfi = culture.DateTimeFormat;
 
-        //DateTime dia7 = Convert.ToDateTime("2020-06-24");
-        DateTime dia7 = Convert.ToDateTime(gerargraficosetor7.Tables[0].Rows[0]["mus_dt_conclusao"].ToString());
-        DateTime dia6 = Convert.ToDateTime(gerargraficosetor6.Tables[0].Rows[0]["mus_dt_conclusao"].ToString());
-        DateTime dia5 = Convert.ToDateTime(gerargraficosetor5.Tables[0].Rows[0]["mus_dt_conclusao"].ToString());
-        DateTime dia4 = Convert.ToDateTime(gerargraficosetor4.Tables[0].Rows[0]["mus_dt_conclusao"].ToString());
-        DateTime dia3 = Convert.ToDateTime(gerargraficosetor3.Tables[0].Rows[0]["mus_dt_conclusao"].ToString());
-        DateTime dia2 = Convert.ToDateTime(gerargraficosetor2.Tables[0].Rows[0]["mus_dt_conclusao"].ToString());
+        DateTime dia1 = DateTime.Now;
+        DateTime dia2 = dia1.AddDays(-1);
+        DateTime dia3 = dia1.AddDays(-2);
+        DateTime dia4 = dia1.AddDays(-3);
+        DateTime dia5 = dia1.AddDays(-4);
+        DateTime dia6 = dia1.AddDays(-5);
+        DateTime dia7 = dia1.AddDays(-6);
+
+
         string dia7s = dtfi.GetDayName(dia7.DayOfWeek);
         string dia6s = dtfi.GetDayName(dia6.DayOfWeek);
         string dia5s = dtfi.GetDayName(dia5.DayOfWeek);
         string dia4s = dtfi.GetDayName(dia4.DayOfWeek);
         string dia3s = dtfi.GetDayName(dia3.DayOfWeek);
         string dia2s = dtfi.GetDayName(dia2.DayOfWeek);
-        string dia1s = dtfi.GetDayName(System.DateTime.Now.DayOfWeek);
+        string dia1s = dtfi.GetDayName(dia1.DayOfWeek);
 
         //testedata = testedata.Substring(0, 1).ToUpper() + testedata.Substring(1);
         //coluna dos dados
@@ -88,11 +91,47 @@ public partial class Pages_Gerente_Relatorios : System.Web.UI.Page
         dados.Columns.Add(new DataColumn("Experiencia", typeof(string)));
         // Os dados que serão mostrados no charts
 
-        if (moeda1 == "" || pontos1 == "" || experiencia1 == "" )
+        if (moeda1 == "" || pontos1 == "" || experiencia1 == "")
         {
             moeda1 = "0";
             pontos1 = "0";
             experiencia1 = "0";
+        }
+         if (moeda2 == "" || pontos2 == "" || experiencia2 == "")
+        {
+            moeda2 = "0";
+            pontos2 = "0";
+            experiencia2 = "0";
+        }
+         if (moeda3 == "" || pontos3 == "" || experiencia3 == "")
+        {
+            moeda3 = "0";
+            pontos3 = "0";
+            experiencia3 = "0";
+        }
+         if (moeda4 == "" || pontos4 == "" || experiencia4 == "")
+        {
+            moeda4 = "0";
+            pontos4 = "0";
+            experiencia4 = "0";
+        }
+         if (moeda5 == "" || pontos5 == "" || experiencia5 == "")
+        {
+            moeda5 = "0";
+            pontos5 = "0";
+            experiencia5 = "0";
+        }
+         if (moeda6 == "" || pontos6 == "" || experiencia6 == "")
+        {
+            moeda6 = "0";
+            pontos6 = "0";
+            experiencia6 = "0";
+        }
+         if (moeda7 == "" || pontos7 == "" || experiencia7 == "")
+        {
+            moeda7 = "0";
+            pontos7 = "0";
+            experiencia7 = "0";
         }
 
         dados.Rows.Add(new object[] { dia7s, moeda7, pontos7, experiencia7 });
@@ -145,18 +184,32 @@ public partial class Pages_Gerente_Relatorios : System.Web.UI.Page
         CultureInfo culture = new CultureInfo("pt-BR");
         DateTimeFormatInfo dtfi = culture.DateTimeFormat;
 
-        DateTime mes3 = Convert.ToDateTime(gerargraficosetor3.Tables[0].Rows[0]["mus_dt_conclusao"].ToString());
-        DateTime mes2 = Convert.ToDateTime(gerargraficosetor2.Tables[0].Rows[0]["mus_dt_conclusao"].ToString());
-        DateTime mes1 = Convert.ToDateTime(gerargraficosetor1.Tables[0].Rows[0]["mus_dt_conclusao"].ToString());
+        DateTime mes1 = DateTime.Now;
+        DateTime mes2 = mes1.AddMonths(-1);
+        DateTime mes3 = mes1.AddMonths(-2);
+
         string mes3s = dtfi.GetMonthName(mes3.Month);
         string mes2s = dtfi.GetMonthName(mes2.Month);
         string mes1s = dtfi.GetMonthName(mes1.Month);
+
 
         if (moeda1 == "" || pontos1 == "" || experiencia1 == "")
         {
             moeda1 = "0";
             pontos1 = "0";
             experiencia1 = "0";
+        }
+         if (moeda2 == "" || pontos2 == "" || experiencia2 == "")
+        {
+            moeda2 = "0";
+            pontos2 = "0";
+            experiencia2 = "0";
+        }
+         if (moeda3 == "" || pontos3 == "" || experiencia3 == "")
+        {
+            moeda3 = "0";
+            pontos3 = "0";
+            experiencia3 = "0";
         }
 
         //coluna dos dados
@@ -228,12 +281,15 @@ public partial class Pages_Gerente_Relatorios : System.Web.UI.Page
         CultureInfo culture = new CultureInfo("pt-BR");
         DateTimeFormatInfo dtfi = culture.DateTimeFormat;
 
-        DateTime mes6 = Convert.ToDateTime(gerargraficosetor6.Tables[0].Rows[0]["mus_dt_conclusao"].ToString());
-        DateTime mes5 = Convert.ToDateTime(gerargraficosetor5.Tables[0].Rows[0]["mus_dt_conclusao"].ToString());
-        DateTime mes4 = Convert.ToDateTime(gerargraficosetor4.Tables[0].Rows[0]["mus_dt_conclusao"].ToString());
-        DateTime mes3 = Convert.ToDateTime(gerargraficosetor3.Tables[0].Rows[0]["mus_dt_conclusao"].ToString());
-        DateTime mes2 = Convert.ToDateTime(gerargraficosetor2.Tables[0].Rows[0]["mus_dt_conclusao"].ToString());
-        DateTime mes1 = Convert.ToDateTime(gerargraficosetor1.Tables[0].Rows[0]["mus_dt_conclusao"].ToString());
+        DateTime mes1 = DateTime.Now;
+        DateTime mes2 = mes1.AddMonths(-1);
+        DateTime mes3 = mes1.AddMonths(-2);
+        DateTime mes4 = mes1.AddMonths(-3);
+        DateTime mes5 = mes1.AddMonths(-4);
+        DateTime mes6 = mes1.AddMonths(-5);
+
+
+
         string mes6s = dtfi.GetMonthName(mes6.Month);
         string mes5s = dtfi.GetMonthName(mes5.Month);
         string mes4s = dtfi.GetMonthName(mes4.Month);
@@ -246,6 +302,35 @@ public partial class Pages_Gerente_Relatorios : System.Web.UI.Page
             moeda1 = "0";
             pontos1 = "0";
             experiencia1 = "0";
+        } if (moeda2 == "" || pontos2 == "" || experiencia2 == "")
+        {
+            moeda2 = "0";
+            pontos2 = "0";
+            experiencia2 = "0";
+        }
+         if (moeda3 == "" || pontos3 == "" || experiencia3 == "")
+        {
+            moeda3 = "0";
+            pontos3 = "0";
+            experiencia3 = "0";
+        }
+         if (moeda4 == "" || pontos4 == "" || experiencia4 == "")
+        {
+            moeda4 = "0";
+            pontos4 = "0";
+            experiencia4 = "0";
+        }
+         if (moeda5 == "" || pontos5 == "" || experiencia5 == "")
+        {
+            moeda5 = "0";
+            pontos5 = "0";
+            experiencia5 = "0";
+        }
+         if (moeda6 == "" || pontos6 == "" || experiencia6 == "")
+        {
+            moeda6 = "0";
+            pontos6 = "0";
+            experiencia6 = "0";
         }
         //coluna dos dados
         dados.Columns.Add(new DataColumn("Data", typeof(string)));
