@@ -152,6 +152,142 @@ public class UsuarioBD
 
     }
 
+    public static bool UpdateGerente(int usu_id)
+    {
+        bool ok = false;
+        try
+        {
+            DataSet ds = new DataSet();
+            IDbConnection objConexao;
+            IDbCommand objCommand;
+            objConexao = Mapped.Connection();
+
+            string query = "update usuario SET tus_id = ?tus_id WHERE usu_id = ?usu_id";
+
+            objCommand = Mapped.Command(query, objConexao);
+
+            objCommand.Parameters.Add(Mapped.Parameter("?usu_id", usu_id));
+            objCommand.Parameters.Add(Mapped.Parameter("?tus_id", 2));
+
+            objCommand.ExecuteNonQuery();
+
+            objConexao.Close();
+            objConexao.Dispose();
+            objCommand.Dispose();
+
+            ok = true;
+        }
+        catch (Exception ex)
+        {
+            Console.Write(ex.StackTrace);
+        }
+
+        return ok;
+
+    }
+
+    public static bool UpdateGerente2(int usu_id)
+    {
+        bool ok = false;
+        try
+        {
+            DataSet ds = new DataSet();
+            IDbConnection objConexao;
+            IDbCommand objCommand;
+            objConexao = Mapped.Connection();
+
+            string query = "update usuario SET tus_id = ?tus_id WHERE usu_id = ?usu_id";
+
+            objCommand = Mapped.Command(query, objConexao);
+
+            objCommand.Parameters.Add(Mapped.Parameter("?usu_id", usu_id));
+            objCommand.Parameters.Add(Mapped.Parameter("?tus_id", 1));
+
+            objCommand.ExecuteNonQuery();
+
+            objConexao.Close();
+            objConexao.Dispose();
+            objCommand.Dispose();
+
+            ok = true;
+        }
+        catch (Exception ex)
+        {
+            Console.Write(ex.StackTrace);
+        }
+
+        return ok;
+
+    }
+
+    public static bool UpdateInativo(int usu_id)
+    {
+        bool ok = false;
+        try
+        {
+            DataSet ds = new DataSet();
+            IDbConnection objConexao;
+            IDbCommand objCommand;
+            objConexao = Mapped.Connection();
+
+            string query = "update usuario SET usu_statususuario = ?status WHERE usu_id = ?usu_id";
+
+            objCommand = Mapped.Command(query, objConexao);
+
+            objCommand.Parameters.Add(Mapped.Parameter("?usu_id", usu_id));
+            objCommand.Parameters.Add(Mapped.Parameter("?status", 2));
+
+            objCommand.ExecuteNonQuery();
+
+            objConexao.Close();
+            objConexao.Dispose();
+            objCommand.Dispose();
+
+            ok = true;
+        }
+        catch (Exception ex)
+        {
+            Console.Write(ex.StackTrace);
+        }
+
+        return ok;
+
+    }
+
+    public static bool UpdateInativo2(int usu_id)
+    {
+        bool ok = false;
+        try
+        {
+            DataSet ds = new DataSet();
+            IDbConnection objConexao;
+            IDbCommand objCommand;
+            objConexao = Mapped.Connection();
+
+            string query = "update usuario SET usu_statususuario = ?status WHERE usu_id = ?usu_id";
+
+            objCommand = Mapped.Command(query, objConexao);
+
+            objCommand.Parameters.Add(Mapped.Parameter("?usu_id", usu_id));
+            objCommand.Parameters.Add(Mapped.Parameter("?status", 1));
+
+            objCommand.ExecuteNonQuery();
+
+            objConexao.Close();
+            objConexao.Dispose();
+            objCommand.Dispose();
+
+            ok = true;
+        }
+        catch (Exception ex)
+        {
+            Console.Write(ex.StackTrace);
+        }
+
+        return ok;
+
+    }
+
     public static bool UpdateNovaSenha(string senha, string email)
     {
         bool ok = false;

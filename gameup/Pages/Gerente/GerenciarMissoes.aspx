@@ -7,12 +7,26 @@
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
         <h1 class="h3 mb-0 text-gray-800">Missões</h1>
     </div>
+
+    <script src="../../Assets/Vendor/jquery/jquery.min.js"></script>
+
+    <asp:HiddenField ID="TabName" runat="server" />
+    <script type="text/javascript">
+        $(function () {
+            var tabName = $("[id*=TabName]").val() != "" ? $("[id*=TabName]").val() : "nav-cadastro";
+            $('#Tabs a[href="#' + tabName + '"]').tab('show');
+            $("#Tabs a").click(function () {
+                $("[id*=TabName]").val($(this).attr("href").replace("#", ""));
+            });
+        });
+    </script>
+
     <nav>
-        <div class="nav nav-tabs text-center" id="nav-tab" role="tablist">
-            <asp:LinkButton runat="server" class="nav-item nav-link active" ID="navCadastroTab" data-toggle="tab" href="#nav-cadastro" role="tab" aria-controls="nav-cadastro" aria-selected="true">Cadastrar</asp:LinkButton>
-            <asp:LinkButton runat="server" class="nav-item nav-link" ID="navVisualizacaoTab" data-toggle="tab" href="#nav-visualizacao" role="tab" aria-controls="nav-visualizacao" aria-selected="false">Visualizar</asp:LinkButton>
-            <asp:LinkButton runat="server" class="nav-item nav-link" ID="navConstrucaoTab" data-toggle="tab" href="#nav-construcao" role="tab" aria-controls="nav-construcao" aria-selected="false">Em construção</asp:LinkButton>
-            <asp:LinkButton runat="server" class="nav-item nav-link" ID="navValidacaoTab" data-toggle="tab" href="#nav-validacao" role="tab" aria-controls="nav-validacao" aria-selected="false">Aguardando validação</asp:LinkButton>
+        <div class="nav nav-tabs text-center " id="Tabs" role="tablist">
+            <asp:LinkButton runat="server" class="nav-item nav-link active" ID="navCadastroTab" ClientIDMode="Static" data-toggle="tab" href="#nav-cadastro" role="tab" aria-controls="nav-cadastro" aria-selected="true">Cadastrar</asp:LinkButton>
+            <asp:LinkButton runat="server" class="nav-item nav-link" ID="navVisualizacaoTab" ClientIDMode="Static" data-toggle="tab" href="#nav-visualizacao" role="tab" aria-controls="nav-visualizacao" aria-selected="false">Visualizar</asp:LinkButton>
+            <asp:LinkButton runat="server" class="nav-item nav-link" ID="navConstrucaoTab" ClientIDMode="Static" data-toggle="tab" href="#nav-construcao" role="tab" aria-controls="nav-construcao" aria-selected="false">Em construção</asp:LinkButton>
+            <asp:LinkButton runat="server" class="nav-item nav-link" ID="navValidacaoTab" ClientIDMode="Static" data-toggle="tab" href="#nav-validacao" role="tab" aria-controls="nav-validacao" aria-selected="false">Aguardando validação</asp:LinkButton>
         </div>
     </nav>
     <!-- Missoes a fazer -->
@@ -162,7 +176,7 @@
                     </div>
                 </div>
                 <div class="col-12 col-md-8 text-right">
-                    <asp:Button runat="server" type="checkbox" class="btn btn-dark" Text="Todas" ID="btnTodas" OnClick="btnTodas_Click"/>
+                    <asp:Button runat="server" type="checkbox" class="btn btn-dark" Text="Todas" ID="btnTodas" OnClick="btnTodas_Click" />
                     <asp:Button runat="server" type="button" class="btn btn-success" Text="Concluídas" ID="btnConcluidas" OnClick="btnConcluidas_Click" />
                     <asp:Button runat="server" type="button" class="btn btn-warning" Text="Pendentes" ID="btnEmAndamento" OnClick="btnEmAndamento_Click" />
                 </div>

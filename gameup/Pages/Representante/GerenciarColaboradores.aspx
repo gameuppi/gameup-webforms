@@ -5,6 +5,16 @@
 
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
 
+    <style>
+        .dataTables_length {
+            text-align: left !important;
+        }
+
+        .dataTables_info {
+            text-align: left !important;
+        }
+    </style>
+
     <link href="../../Assets/Vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet" />
 
     <!-- Page Heading -->
@@ -15,22 +25,71 @@
     <div class="row">
         <div class="col-12 col-md-8">
             <!-- Resumo -->
-            <div class="card shadow mb-4">
+            <div class="card shadow mb-4 h-100">
                 <div class="card-header py-3">
                     <asp:Literal ID="lblNome" runat="server"></asp:Literal>
                 </div>
-                <div class="card-body text-center">
+                <div class="card-body">
                     <asp:Literal ID="lblUsuario" runat="server"></asp:Literal>
-                    <div class="mt-5 mr-10">
-                        <asp:Button ID="btnVisualizar" runat="server" />
-                        <asp:Button ID="btnEditar" runat="server" />
-                    </div>
+                    <asp:Repeater runat="server" ID="rptColaborador" OnItemCommand="rptColaborador_ItemCommand">
+                        <ItemTemplate>
+                            <div class='col-md-12 m-0 font-weight-normal'>
+                                <div class='row'>
+                                    <div class='col-md-6'>
+                                        <div class='col-md-12'>
+                                            <div class='card-custom border-left-success shadow'>
+                                                <div class='card-custom-image'>
+                                                    <img src='http://localhost:62235/Assets/Imagens/astronautasentado.jpg' class='img-fluid'>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class='col-md-6'>
+                                        <div class='col-md-12'>
+                                            <b>Nome</b>: <%# Eval("usu_nome") %>
+                                        </div>
+                                        <div class='col-md-12'>
+                                            <b>Apelido</b>: <%# Eval("usu_apelido") %>
+                                        </div>
+                                        <div class='col-md-12'>
+                                            <b>Setor</b>: <%# Eval("set_id") %>
+                                        </div>
+                                        <div class='col-md-12'>
+                                            <b>Cargo</b>: <%# Eval("tus_id") %>
+                                        </div>
+                                        <div class='col-md-12'>
+                                            <b>E-mail</b>: <%# Eval("usu_email") %>
+                                        </div>
+                                        <div class='col-md-12'>
+                                            <b>Pontos</b>: <%# Eval("usu_qtdPontos") %>
+                                        </div>
+                                        <div class='col-md-12'>
+                                            <b>Experiência</b>: <%# Eval("usu_qtdXp") %>
+                                        </div>
+                                        <div class='col-md-12'>
+                                            <b>Status</b>: <%# Eval("usu_statusUsuario") %>
+                                        </div>
+                                        <div class='col-md-12'>
+                                            <b>Nivel</b>: <%# Eval("niv_id") %>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-4 mt-4"></div>
+                                            <div class="col-md-4 mt-4"></div>
+                                            <div class="col-md-4 mt-4">
+                                                <asp:LinkButton ID="btnEditar" runat="server" CommandName="Edite" CommandArgument='<%# Bind("usu_id") %>' Text="Editar" CssClass="btn btn-block btn-primary"></asp:LinkButton>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </ItemTemplate>
+                    </asp:Repeater>
                 </div>
             </div>
         </div>
         <div class="col-12 col-md-4">
             <!-- Resumo -->
-            <div class="card shadow mb-4">
+            <div class="card shadow mb-4 h-100">
                 <div class="card-header py-3">
                     <h6 class="m-0 font-weight-bold text-dark">Cadastrar Novos Colaboradores</h6>
                 </div>
@@ -56,36 +115,39 @@
     <div class="row">
         <div class="col-12 col-md-12">
             <!-- Resumo -->
-            <div class="card shadow mb-4">
+            <div class="card shadow mb-4 mt-4">
                 <div class="card-header py-3">
                     <h6 class="m-0 font-weight-bold text-dark">Lista de Colaboradores</h6>
                 </div>
                 <div class="card-body text-center">
-                    <asp:GridView OnSelectedIndexChanged="gvColaboradores_SelectedIndexChanged" ID="gvColaboradores" runat="server" BackColor="White" BorderColor="#999999" BorderStyle="Solid" BorderWidth="1px" CellPadding="3" ForeColor="Black" GridLines="Vertical" AutoGenerateColumns="False" CssClass="col-md-12">
-                        <AlternatingRowStyle BackColor="#CCCCCC" />
-                        <Columns>
-                            <asp:TemplateField>
-                                <ItemTemplate>
-                                    <button type="button" class="btn btn-default btn-sm btnDetalhes">
+                    <div class="table-responsive">
+                        <div class="col-md-12">
+                            <asp:GridView OnSelectedIndexChanged="gvColaboradores_SelectedIndexChanged" ID="gvColaboradores" runat="server" ClientIDMode="Static" CellPadding="3" GridLines="Vertical" AutoGenerateColumns="False" CssClass="table table-striped table-hover tabela" OnRowCommand="gvColaboradores_RowCommand">
+                                <Columns>
+                                    <asp:TemplateField>
+                                        <ItemTemplate>
+                                            <asp:LinkButton ID="btnColaborador" runat="server" CssClass="btn btn-default btn-sm btnDetalhes" CommandName="Editar" CommandArgument='<%# Bind("usu_id") %>'>
                                         <span class="fas fa-search-plus"></span>
-                                    </button>
-                                </ItemTemplate>
-                            </asp:TemplateField>
-                            <asp:BoundField DataField="usu_nome" HeaderText="Usuario" />
-                            <asp:BoundField DataField="usu_email" HeaderText="E-mail" ItemStyle-CssClass="btnDetalhes" />
-                            <asp:BoundField DataField="tus_id" HeaderText="Cargo" />
-                            <asp:BoundField DataField="set_id" HeaderText="Setor" />
-                            <asp:BoundField DataField="usu_statususuario" HeaderText="Status" />
-                        </Columns>
-                        <FooterStyle BackColor="#CCCCCC" />
-                        <HeaderStyle BackColor="#4e73df" Font-Bold="True" ForeColor="White" />
-                        <PagerStyle BackColor="#999999" ForeColor="Black" HorizontalAlign="Center" />
-                        <SelectedRowStyle BackColor="#000099" Font-Bold="True" ForeColor="White" />
-                        <SortedAscendingCellStyle BackColor="#F1F1F1" />
-                        <SortedAscendingHeaderStyle BackColor="#808080" />
-                        <SortedDescendingCellStyle BackColor="#CAC9C9" />
-                        <SortedDescendingHeaderStyle BackColor="#383838" />
-                    </asp:GridView>
+                                            </asp:LinkButton>
+                                        </ItemTemplate>
+                                    </asp:TemplateField>
+                                    <asp:BoundField DataField="usu_nome" HeaderText="Usuario" />
+                                    <asp:BoundField DataField="usu_email" HeaderText="E-mail" ItemStyle-CssClass="btnDetalhes" />
+                                    <asp:BoundField DataField="tus_id" HeaderText="Cargo" />
+                                    <asp:BoundField DataField="set_id" HeaderText="Setor" />
+                                    <asp:BoundField DataField="usu_statususuario" HeaderText="Status" />
+                                </Columns>
+                                <FooterStyle BackColor="#CCCCCC" />
+                                <HeaderStyle BackColor="#4e73df" Font-Bold="True" ForeColor="White" />
+                                <PagerStyle BackColor="#999999" ForeColor="Black" HorizontalAlign="Center" />
+                                <SelectedRowStyle BackColor="#000099" Font-Bold="True" ForeColor="White" />
+                                <SortedAscendingCellStyle BackColor="#F1F1F1" />
+                                <SortedAscendingHeaderStyle BackColor="#808080" />
+                                <SortedDescendingCellStyle BackColor="#CAC9C9" />
+                                <SortedDescendingHeaderStyle BackColor="#383838" />
+                            </asp:GridView>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -109,6 +171,28 @@
 
                 <div class="modal-footer">
                     <button type="button" class="btn btn-success" data-dismiss="modal">Pronto</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Editar colaborador -->
+    <div class="modal fade" id="modalEditaColaborador">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">
+                        <asp:Literal runat="server" ID="lblTitulo"></asp:Literal>
+                    </h4>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <asp:CheckBox ID="cbGerenteModal" runat="server" Text="&nbsp; Gerente" /><br />
+                    <asp:CheckBox ID="cbInativoModal" runat="server" Text="&nbsp; Inativo" />
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-success" data-dismiss="modal">Cancelar</button>
+                    <asp:Button ID="btnSalve" runat="server" CssClass="btn btn-success" OnClick="btnSalve_Click" Text="Salvar"/>
                 </div>
             </div>
         </div>
