@@ -20,16 +20,38 @@
                             <i class="fas fa-chart-pie text-info fa-8x"></i>
                         </div>
                         <div class="col-12 col-md-2">
-                            <h3>60%</h3>
+                            <h3>
+                                <asp:Label runat="server" ID="lblPorcentagemEmEstoque"></asp:Label>
+                            </h3>
                             <h5>em estoque</h5>
                         </div>
                         <div class="col-12 col-md-4">
-                            <h4>16 itens ativos</h4>
-                            <h4>9 disponíveis</h4>
+                            <h4>
+                                <strong>
+                                    <asp:Label runat="server" ID="lblIQtdItensAtivos"></asp:Label>
+                                </strong>
+                                itens ativos
+                            </h4>
+                            <h4>
+                                <strong>
+                                    <asp:Label runat="server" ID="lblQtdItensDisponiveis"></asp:Label>
+                                </strong>
+                                disponíveis
+                            </h4>
                         </div>
                         <div class="col-12 col-md-4">
-                            <h4>9450 moedas gastas</h4>
-                            <h4>34 itens vendidos</h4>
+                            <h4>
+                                <strong>
+                                    <asp:Label runat="server" ID="lblQtdMoedasGastas"></asp:Label>
+                                </strong>
+                                moedas gastas
+                            </h4>
+                            <h4>
+                                <strong>
+                                    <asp:Label runat="server" ID="lblQtdItensVendidos"></asp:Label>
+                                </strong>
+                                itens vendidos
+                            </h4>
                         </div>
                     </div>
                 </div>
@@ -43,7 +65,7 @@
                     <div class="row no-gutters align-items-center">
                         <div class="col mr-2">
                             <div class="text-sm font-weight-bold text-success text-uppercase mb-1">Item mais vendido</div>
-                            <div class="h5 mb-0 font-weight-bold text-gray-800">12</div>
+                            <asp:Label runat="server" ID="lblQtdItemMaisVendido" CssClass="h5 mb-0 font-weight-bold text-gray-800"></asp:Label>
                         </div>
                         <div class="col-auto">
                             <i class="fas fa-shopping-cart fa-2x text-gray-300"></i>
@@ -51,7 +73,9 @@
                     </div>
                     <div class="row">
                         <div class=" text-center col-12 card p-4 mt-4">
-                            <h4>"O tempo voa"</h4>
+                            <h4>
+                                <asp:Label runat="server" ID="lblNomeItemMaisVendido"></asp:Label>
+                            </h4>
                         </div>
 
                     </div>
@@ -71,7 +95,7 @@
                 <div class="tab-pane fade show active p-4" id="nav-cadastro" role="tabpanel" aria-labelledby="nav-cadastro-tab">
                     <div class="row mt-5">
                         <div class="col-12 col-md-3 text-center">
-                            <i class="fas fa-user-circle fa-10x"></i>
+                            <img src="../../Assets/Imagens/astronauta2.png" class="img-fluid float-right" />
                         </div>
                         <div class="col-12 col-md-9">
                             <div class="row">
@@ -86,17 +110,17 @@
                                     <div class="form-row">
                                         <div class="form-group col-md-6">
                                             <label for="inputEmail4">Nome</label>
-                                            <input type="text" class="form-control" id="inputEmail4" placeholder="Nome da missão">
+                                            <asp:TextBox runat="server" CssClass="form-control" placeholder="Nome do produto" ID="txtNome"></asp:TextBox>
                                         </div>
                                         <div class="form-group col-12 col-md-6">
                                             <label for="inputPassword4">Subtítulo</label>
-                                            <input type="text" class="form-control" id="inputPassword4" placeholder="Participantes">
+                                            <asp:TextBox runat="server" CssClass="form-control" placeholder="Subtítulo do produto" ID="txtSubtitulo"></asp:TextBox>
                                         </div>
                                     </div>
                                     <div class="form-row">
                                         <div class="form-group col-12">
                                             <label for="inputPassword4">Descrição</label>
-                                            <textarea class="form-control" placeholder="Descrição da missão"></textarea>
+                                            <asp:TextBox runat="server" CssClass="form-control" placeholder="Descrição do produto" ID="txtDescricao"></asp:TextBox>
                                         </div>
                                     </div>
                                     <div class="row mt-4">
@@ -106,7 +130,7 @@
                                                     <i class="fas fa-coins fa-2x text-success"></i>
                                                 </div>
                                                 <div class="col-12 col-md-6">
-                                                    <input type="number" class="form-control" />
+                                                    <asp:TextBox type="number" runat="server" CssClass="form-control" placeholder="Preço" ID="txtValorMoeda"></asp:TextBox>
                                                 </div>
                                             </div>
                                         </div>
@@ -117,7 +141,7 @@
                                                     <i class="fas fa-cart-plus fa-2x text-warning"></i>
                                                 </div>
                                                 <div class="col-12 col-md-6">
-                                                    <input type="number" class="form-control" />
+                                                    <asp:TextBox type="number" runat="server" CssClass="form-control" placeholder="Quantidade" ID="txtQuantidade"></asp:TextBox>
                                                 </div>
                                             </div>
                                         </div>
@@ -128,17 +152,16 @@
                                                     <i class="fas fa-tag fa-2x text-danger"></i>
                                                 </div>
                                                 <div class="col-12 col-md-6">
-                                                    <select class="form-control">
-                                                        <option class="form-control">Selecione</option>
-                                                        <option class="form-control">Físico</option>
-                                                    </select>
+                                                    <asp:DropDownList runat="server" ID="drpCategoria" CssClass="form-control">
+                                                        <asp:ListItem class="form-control" Value="FISICO">Físico</asp:ListItem>
+                                                    </asp:DropDownList>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="row mt-4">
                                         <div class="col-12">
-                                            <button type="button" class="btn btn-success">Cadastrar</button>
+                                            <asp:Button runat="server" ID="btnCadastrar" CssClass="btn btn-success" OnClick="btnCadastrar_Click" Text="Cadastrar" />
                                         </div>
                                     </div>
                                 </div>
@@ -151,97 +174,85 @@
                 <div class="tab-pane fade show p-4" id="nav-visualizacao" role="tabpanel" aria-labelledby="nav-visualizacao-tab">
 
                     <div class="row mt-4">
-                        <!-- Card de item -  -->
-                        <div class="col-12 col-md-3">
-                            <div class="card-custom border-left-success shadow">
-                                <div class="card-custom-image">
-                                    <img src="../../Assets/Imagens/piscina.jpg">
-                                    <span class="card-custom-title font-weight-bold">Descanso merecido
-                        <br />
-                                        <small>3 disponíveis</small>
-                                    </span>
-                                    <a class="btn-floating btn-large halfway-fab btn-success">
-                                        <center>
-                            <i class="fas fa-info text-white"></i>
-                        </center>
-                                    </a>
-                                </div>
-                                <div class="card-custom-content">
-
-                                    <p>Consiga uma folga em um dia de sua escolha</p>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Card de item -  -->
-                        <div class="col-12 col-md-3">
-                            <div class="card-custom border-left-success shadow">
-                                <div class="card-custom-image">
-                                    <img src="../../Assets/Imagens/jantar.jpg">
-                                    <span class="card-custom-title font-weight-bold">Bon appétit!
-                        <br />
-                                        <small>1 disponíveis</small>
-                                    </span>
-                                    <a class="btn-floating btn-large halfway-fab btn-success">
-                                        <center>
-                            <i class="fas fa-info text-white"></i>
-                        </center>
-                                    </a>
-                                </div>
-                                <div class="card-custom-content">
-
-                                    <p>Uma reserva de jantar para um ótimo fim de semana.</p>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Card de item -  -->
-                        <div class="col-12 col-md-3">
-                            <div class="card-custom border-left-success shadow">
-                                <div class="card-custom-image">
-                                    <img src="../../Assets/Imagens/tempo.jpg">
-                                    <span class="card-custom-title font-weight-bold">O tempo voa
-                        <br />
-                                        <small>2 disponíveis</small>
-                                    </span>
-                                    <a class="btn-floating btn-large halfway-fab btn-success">
-                                        <center>
-                            <i class="fas fa-info text-white"></i>
-                        </center>
-                                    </a>
-                                </div>
-                                <div class="card-custom-content">
-
-                                    <p>Acrescente +30 minutos na sua pausa de almoço</p>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Card de item -  -->
-                        <div class="col-12 col-md-3">
-                            <div class="card-custom border-left-success shadow">
-                                <div class="card-custom-image">
-                                    <img src="../../Assets/Imagens/piscina.jpg">
-                                    <span class="card-custom-title font-weight-bold">Descanso merecido
-                        <br />
-                                        <small>3 disponíveis</small>
-                                    </span>
-                                    <a class="btn-floating btn-large halfway-fab btn-success">
-                                        <center>
-                            <i class="fas fa-info text-white"></i>
-                        </center>
-                                    </a>
-                                </div>
-                                <div class="card-custom-content">
-
-                                    <p>Consiga uma folga em um dia de sua escolha</p>
-                                </div>
-                            </div>
-                        </div>
-
+                        
+                    <div class="col-12 text-right">
+                        <asp:Button runat="server" type="checkbox" class="btn btn-dark" Text="Todos" ID="btnTodas" OnClick="btnTodas_Click" />
+                        <asp:Button runat="server" type="checkbox" class="btn btn-success" Text="Ativados" ID="btnAtivados" OnClick="btnAtivados_Click" />
+                        <asp:Button runat="server" type="button" class="btn btn-danger" Text="Desativados" ID="btnDesativados" OnClick="btnDesativados_Click" />
                     </div>
 
+                        <asp:Panel runat="server" ID="pnlVisualizarProdutos" CssClass="row mt-4"></asp:Panel>
+                        <!-- Card de item -  -->
+                        <!-- <div class="col-12 col-md-3">
+                            <div class="card-custom border-left-success shadow">
+                                <div class="card-custom-image">
+                                    <img src="../../Assets/Imagens/piscina.jpg">
+                                    <span class="card-custom-title font-weight-bold">Descanso merecido
+                                        <br />
+                                        <small>3 disponíveis</small>
+                                    </span>
+                                    <a class="btn-floating btn-large halfway-fab btn-info">
+                                        <center>
+                                            <i class="fas fa-info text-white"></i>
+                                        </center>
+                                    </a>
+                                </div>
+                                <div class="card-custom-content">
+                                    <p>Consiga uma folga em um dia de sua escolha</p>
+                                    <div class="row mt-3">
+                                        <button class="btn btn-success col">Ativar</button>
+                                        &nbsp;
+                                        <button class="btn btn-danger col">Desativar</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div> -->
+                    </div>
+                </div>
+            </div>
+        </div>
 
+        <!-- Modal lista de compradores -->
+        <div class="modal fade" id="modalParticipantes">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+
+                    <div class="modal-header">
+                        <h5 class="modal-title">Veja quem já adquiriu esse prêmio
+                        </h5>
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    </div>
+
+                    <div class="modal-body">
+                        <asp:ListBox runat="server" ID="ltbCompradores" CssClass="form-control"></asp:ListBox>
+                    </div>
+
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-success" data-dismiss="modal">Pronto</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Modal generico -->
+        <div class="modal fade" id="modalGenerico">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+
+                    <div class="modal-header">
+                        <h5 class="modal-title">
+                            <asp:Label runat="server" ID="lblTitulo"></asp:Label>
+                        </h5>
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    </div>
+
+                    <div class="modal-body">
+                        <asp:Label runat="server" ID="lblCorpo"></asp:Label>
+                    </div>
+
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-success" data-dismiss="modal">Pronto</button>
+                    </div>
                 </div>
             </div>
         </div>

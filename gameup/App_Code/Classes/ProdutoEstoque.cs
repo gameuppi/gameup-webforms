@@ -4,9 +4,9 @@ using System.Linq;
 using System.Web;
 
 /// <summary>
-/// Descrição resumida de Loja
+/// Descrição resumida de ProdutoEstoque
 /// </summary>
-public class Produto
+public class ProdutoEstoque
 {
     private int id;
     private string nome;
@@ -15,9 +15,9 @@ public class Produto
     private int preco;
     private string logoUrl;
     private StatusProdutoEnum status;
-    private Empresa empresa;
-    private Usuario usuario;
     private CategoriaProdutoEnum categoria;
+    private int quantidade;
+
     public int Id
     {
         get
@@ -109,32 +109,6 @@ public class Produto
         }
     }
 
-    public Empresa Empresa
-    {
-        get
-        {
-            return empresa;
-        }
-
-        set
-        {
-            empresa = value;
-        }
-    }
-
-    public Usuario Usuario
-    {
-        get
-        {
-            return usuario;
-        }
-
-        set
-        {
-            usuario = value;
-        }
-    }
-
     public CategoriaProdutoEnum Categoria
     {
         get
@@ -145,6 +119,19 @@ public class Produto
         set
         {
             categoria = value;
+        }
+    }
+
+    public int Quantidade
+    {
+        get
+        {
+            return quantidade;
+        }
+
+        set
+        {
+            quantidade = value;
         }
     }
 }

@@ -329,6 +329,29 @@
                 </div>
             </div>
         </div>
+
+        <!-- Modal generico  -->
+        <div class="modal fade" id="modalGenerico">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+
+                    <div class="modal-header">
+                        <h4 class="modal-title">
+                            <asp:Literal runat="server" ID="ltrTitulo"></asp:Literal>
+                        </h4>
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    </div>
+
+                    <div class="modal-body">
+                        <asp:Literal runat="server" ID="ltrCorpo"></asp:Literal>
+                    </div>
+
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-success" data-dismiss="modal">Pronto</button>
+                    </div>
+                </div>
+            </div>
+        </div>
         <!--
     <script>
         window.addEventListener('keydown', function (e) {
