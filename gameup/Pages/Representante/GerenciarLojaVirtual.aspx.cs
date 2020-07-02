@@ -35,6 +35,8 @@ public partial class Pages_Representante_GerenciarLojaVirtual : System.Web.UI.Pa
 
     void popularVisualizacaoDeProdutos()
     {
+        limparTela();
+
         DataSet produtos = ProdutoDB.BuscarTodosOsProdutosPorEmpresa(usuarioLogado.Emp_id);
         ProdutoEstoque produto;
         List<ProdutoEstoque> listaDeProdutos = new List<ProdutoEstoque>();

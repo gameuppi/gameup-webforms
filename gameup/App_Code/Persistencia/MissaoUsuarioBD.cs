@@ -152,7 +152,8 @@ public class MissaoUsuarioBD
         query += " 	MUS_ID, ";
         query += " 	USU_ID, ";
         query += " 	MIS_ID, ";
-        query += " 	MUS_DT_CONCLUSAO ";
+        query += " 	MUS_DT_CONCLUSAO, ";
+        query += " 	MUS_ARQUIVO ";
         query += " FROM ";
         query += " 	MISSAO_USUARIO ";
         query += " WHERE  ";

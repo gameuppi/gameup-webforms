@@ -177,7 +177,8 @@ public class MissaoBD
         query += "    MIS.MIS_QTD_PONTOS, ";
         query += "    MIS.MIS_QTD_MOEDAS, ";
         query += "    MIS.MIS_QTD_EXP, ";
-        query += "    MUS.USU_ID ";
+        query += "    MUS.USU_ID, ";
+        query += "    MUS.MUS_ARQUIVO ";
         query += " FROM ";
         query += "    MISSAO_USUARIO MUS ";
         query += "    JOIN MISSAO MIS ON MUS.MIS_ID = MIS.MIS_ID ";

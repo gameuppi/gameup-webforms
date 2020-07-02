@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
+using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -41,7 +42,7 @@ public partial class Pages_Colaborador_Missoes : System.Web.UI.Page
 
         carregarTodasAsMissoesUsuario(listaDeMissoesUsuario);
     }
-    
+
     public void carregarTodasAsMissoesUsuario(List<MissaoUsuario> listaMissoesUsuario)
     {
         string resp = "";
@@ -57,7 +58,7 @@ public partial class Pages_Colaborador_Missoes : System.Web.UI.Page
                 usuario.Usu_nome = id["usu_nome"].ToString();
             }
 
-             if (missao.Status.Equals(StatusMissaoEnum.AG_VALIDACAO))
+            if (missao.Status.Equals(StatusMissaoEnum.AG_VALIDACAO))
             {
                 Literal topo = new Literal();
                 Literal rodape = new Literal();
@@ -203,6 +204,9 @@ public partial class Pages_Colaborador_Missoes : System.Web.UI.Page
                 resp += "             </div> ";
                 resp += "         </div> ";
                 resp += "     </div> ";
+                resp += "     <div> ";
+                resp += "           teste ";
+                resp += "     </div> ";
                 resp += " </div> ";
 
                 rodape.Text = resp;
@@ -217,31 +221,13 @@ public partial class Pages_Colaborador_Missoes : System.Web.UI.Page
         {
             resp = "<div class='col-12 col-md-4 mb-4'> <h5>Não há missões para visualizar...</h5> </div>";
         }
-        
+
     }
 
     void concluirMissao(object sender, EventArgs e, int mus_id)
     {
-        try
-        {
-            MissaoUsuario missaoUsuario = new MissaoUsuario();
-            missaoUsuario = criarObjMissaoUsuario(MissaoUsuarioBD.procurarMissaoUsuarioPorId(mus_id));
-
-            missaoUsuario.Status = StatusMissaoEnum.AG_VALIDACAO;
-            missaoUsuario.DtConclusao = DateTime.Now;
-
-            //atribuirRecompensas(missaoUsuario);
-
-            MissaoUsuarioBD.concluirMissao(missaoUsuario);
-        }
-        catch (Exception ex)
-        {
-            Console.Write(ex);
-        }
-        finally
-        {
-            carregarMissoes();
-        }
+        hfIdMissao.Value = mus_id.ToString();
+        Page.ClientScript.RegisterStartupScript(this.GetType(), "script", "<script>$('#modalConcluirMissao').modal('show');</script>");
     }
 
     public MissaoUsuario procurarDetalhesMissaoPorId(int idMissao)
@@ -259,6 +245,7 @@ public partial class Pages_Colaborador_Missoes : System.Web.UI.Page
         missaoUsuario.Usuario = procurarUsuarioPorId(Convert.ToInt32(missao.Tables[0].Rows[0]["usu_id"]));
         missaoUsuario.Missao = procurarMissaoPorId(Convert.ToInt32(missao.Tables[0].Rows[0]["mis_id"]));
         missaoUsuario.DtConclusao = Convert.ToDateTime(missao.Tables[0].Rows[0]["mus_dt_conclusao"]);
+        missaoUsuario.Arquivo = !missao.Tables[0].Rows[0]["mus_arquivo"].ToString().Equals("") ? missao.Tables[0].Rows[0]["mus_arquivo"].ToString() : null;
 
         return missaoUsuario;
     }
@@ -272,6 +259,7 @@ public partial class Pages_Colaborador_Missoes : System.Web.UI.Page
         ltrDetalhesEstrelas.Text = missao.Missao.QtdExp.ToString();
         ltrDetalhesMeteoros.Text = missao.Missao.QtdPontos.ToString();
         ltrDetalhesDescricao.Text = missao.Missao.Descricao;
+        lblIdMissaoUsuario.Text = missao.Id.ToString();
 
         if (missao.DtConclusao != Convert.ToDateTime("01/01/0001"))
         {
@@ -282,11 +270,51 @@ public partial class Pages_Colaborador_Missoes : System.Web.UI.Page
             ltrDataConclusao.Text = " Ainda não foi concluída";
         }
 
+        DataSet caminhoArquivoDs = ArquivoBD.BuscarNomeDoArquivoPorIdDaMissaoUsuario(mus_id);
+        string caminhoArquivo = caminhoArquivoDs.Tables[0].Rows[0]["mus_arquivo"].ToString();
 
-        //ltrDataConclusao.Text = missao.dt;
+        if (!caminhoArquivo.Equals(""))
+        {
+            lblTextoAnexo.Text = "";
 
+            string[] caminhoSeparado = caminhoArquivo.Split('\\');
+            string nomeArquivo = caminhoSeparado[caminhoSeparado.Length - 1];
+
+            //LinkButton btnBaixarAnexo = new LinkButton();
+            //btnBaixarAnexo.Click += new EventHandler(baixarAnexo);
+            //nBaixarAnexo.Text = nomeArquivo;
+
+            //pnlAnexo.Controls.Add(btnBaixarAnexo);
+
+            btnBaixarAnexo.Text = nomeArquivo;
+
+            pnlAnexo.Controls.Add(btnBaixarAnexo);
+
+            hfIdMissaoUsuario.Value = mus_id.ToString();
+        }
+        else
+        {
+            lblTextoAnexo.Text = "Não há anexos";
+        }
 
         Page.ClientScript.RegisterStartupScript(this.GetType(), "script", "<script>$('#modalDetalhesMissao').modal('show');</script>");
+    }
+
+    void baixarAnexo(string caminho)
+    {
+        string caminhoFormatado = caminho.Substring(caminho.LastIndexOf("gameup"));
+        string[] caminhoSeparado = caminhoFormatado.Split('\\');
+        string nomeArquivo = caminhoSeparado[caminhoSeparado.Length - 1];
+
+        //Response.ContentType = "Application/any";
+        Response.AppendHeader("Content-Disposition", "attachment; filename=" + nomeArquivo);
+        Response.TransmitFile(caminho);
+        Response.End();
+    }
+
+    void deletarAnexo(Object sender, EventArgs e, int idMissaoUsuario)
+    {
+        Console.Write("dsfsdfdsf");
     }
 
     public Missao procurarMissaoPorId(int idMissao)
@@ -493,7 +521,7 @@ public partial class Pages_Colaborador_Missoes : System.Web.UI.Page
 
         }
     }
-    
+
     protected void btnTodas_Click(object sender, EventArgs e)
     {
         carregarMissoes();
@@ -507,5 +535,71 @@ public partial class Pages_Colaborador_Missoes : System.Web.UI.Page
     protected void btnEmAndamento_Click(object sender, EventArgs e)
     {
         carregarMissoesPorStatus(StatusMissaoEnum.EM_ANDAMENTO.ToString());
+    }
+
+
+    bool InserirArquivo(string caminho, string nome, int missaoUsuarioId)
+    {
+        bool ok = false;
+
+        string caminhoCompleto = caminho + nome;
+        if (ArquivoBD.InserirArquivo(caminhoCompleto, missaoUsuarioId))
+        {
+            ok = true;
+        }
+
+        return ok;
+    }
+
+    protected void btnConfirmarConclusaoMissao_Click(object sender, EventArgs e)
+    {
+        int missaoUsuarioId = Convert.ToInt32(hfIdMissao.Value);
+
+        if (fuAnexo.HasFile)
+        {
+            string caminhoArquivo = AppDomain.CurrentDomain.BaseDirectory + System.Configuration.ConfigurationManager.AppSettings["caminhoArquivos"] + @"\";
+
+            string nomeArquivo = usuarioLogado.Usu_id + "-" + missaoUsuarioId + "-" + fuAnexo.FileName.ToString();
+            fuAnexo.SaveAs(caminhoArquivo + nomeArquivo);
+
+            InserirArquivo(caminhoArquivo, nomeArquivo, missaoUsuarioId);
+        }
+
+        try
+        {
+            int mus_id = Convert.ToInt32(hfIdMissao.Value);
+
+            MissaoUsuario missaoUsuario = new MissaoUsuario();
+            missaoUsuario = criarObjMissaoUsuario(MissaoUsuarioBD.procurarMissaoUsuarioPorId(mus_id));
+
+            missaoUsuario.Status = StatusMissaoEnum.AG_VALIDACAO;
+            missaoUsuario.DtConclusao = DateTime.Now;
+
+            //atribuirRecompensas(missaoUsuario);
+
+            MissaoUsuarioBD.concluirMissao(missaoUsuario);
+        }
+        catch (Exception ex)
+        {
+            Console.Write(ex);
+        }
+        finally
+        {
+            Response.Redirect("../Colaborador/Missoes.aspx");
+            carregarMissoes();
+        }
+    }
+
+    protected void btnBaixarAnexo_Click(object sender, EventArgs e)
+    {
+        int idMissao = Convert.ToInt32(hfIdMissaoUsuario.Value);
+
+        DataSet caminhoArquivoDs = ArquivoBD.BuscarNomeDoArquivoPorIdDaMissaoUsuario(idMissao);
+        string caminhoArquivo = caminhoArquivoDs.Tables[0].Rows[0]["mus_arquivo"].ToString();
+
+        if (!caminhoArquivo.Equals(""))
+        {
+            baixarAnexo(caminhoArquivo);
+        }
     }
 }
