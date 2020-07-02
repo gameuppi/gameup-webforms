@@ -35,9 +35,11 @@ public partial class Pages_Representante_GerenciarLojaVirtual : System.Web.UI.Pa
 
     void popularVisualizacaoDeProdutos()
     {
+        limparTela();
+        
         DataSet produtos = ProdutoDB.BuscarTodosOsProdutosPorEmpresa(usuarioLogado.Emp_id);
         ProdutoEstoque produto;
-        List<ProdutoEstoque> listaDeProdutos = new List<ProdutoEstoque>();
+        List<ProdutoEstoque> listaDeProdutos = new List<ProdutoEstoque>();        
 
         foreach (DataRow prod in produtos.Tables[0].Rows)
         {
@@ -349,17 +351,20 @@ public partial class Pages_Representante_GerenciarLojaVirtual : System.Web.UI.Pa
 
     protected void btnTodas_Click(object sender, EventArgs e)
     {
+        TabName.Value = Request.Form[TabName.UniqueID];
         popularVisualizacaoDeProdutos();
     }
 
     protected void btnAtivados_Click(object sender, EventArgs e)
     {
+        TabName.Value = Request.Form[TabName.UniqueID];
         popularVisualizacaoDeProdutosPorStatus(StatusProdutoEnum.DISPONIVEL);
     }
 
 
     protected void btnDesativados_Click(object sender, EventArgs e)
     {
+        TabName.Value = Request.Form[TabName.UniqueID];
         popularVisualizacaoDeProdutosPorStatus(StatusProdutoEnum.INDISPONIVEL);
     }
 }

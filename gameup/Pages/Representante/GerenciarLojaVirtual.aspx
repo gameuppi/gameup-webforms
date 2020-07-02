@@ -7,6 +7,7 @@
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
         <h1 class="h3 mb-0 text-gray-800">Gerenciar Loja Virtual</h1>
     </div>
+
     <div class="row">
         <div class="col-12 col-md-9">
             <!-- Resumo -->
@@ -23,7 +24,6 @@
                             <h3>
                                 <asp:Label runat="server" ID="lblPorcentagemEmEstoque"></asp:Label>
                             </h3>
-                            <h5>em estoque</h5>
                         </div>
                         <div class="col-12 col-md-4">
                             <h4>
@@ -85,7 +85,7 @@
 
         <div class="col-12">
             <nav>
-                <div class="nav nav-tabs text-center" id="nav-tab" role="tablist">
+                <div class="nav nav-tabs text-center" id="Tabs" role="tablist">
                     <a class="nav-item nav-link active" id="nav-cadastro-tab" data-toggle="tab" href="#nav-cadastro" role="tab" aria-controls="nav-cadastro" aria-selected="true">Adicionar</a>
                     <a class="nav-item nav-link" id="nav-visualizacao-tab" data-toggle="tab" href="#nav-visualizacao" role="tab" aria-controls="nav-visualizacao" aria-selected="false">Visualizar</a>
                 </div>
@@ -256,5 +256,21 @@
                 </div>
             </div>
         </div>
+
+        
+
+    <script src="../../Assets/Vendor/jquery/jquery.min.js"></script>
+
+    <asp:HiddenField ID="TabName" runat="server" />
+    <script type="text/javascript">
+        $(function () {
+            var tabName = $("[id*=TabName]").val() != "" ? $("[id*=TabName]").val() : "nav-cadastro";
+            $('#Tabs a[href="#' + tabName + '"]').tab('show');
+            $("#Tabs a").click(function () {
+                $("[id*=TabName]").val($(this).attr("href").replace("#", ""));
+            });
+        });
+    </script>
+
 </asp:Content>
 

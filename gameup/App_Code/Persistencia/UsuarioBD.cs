@@ -339,6 +339,7 @@ public class UsuarioBD
             query += "		EMP_ID, ";
             query += "		SET_ID, ";
             query += "		TUS_ID, ";
+            query += "		USU_STATUSUSUARIO, ";
             query += "		NIV_ID ";
             query += "	) ";
             query += "VALUES ( ";
@@ -347,6 +348,7 @@ public class UsuarioBD
             query += "		?EMP_ID, ";
             query += "		?SET_ID, ";
             query += "		?TUS_ID, ";
+            query += "		3, ";
             query += "		1 ";
             query += "	); ";
 

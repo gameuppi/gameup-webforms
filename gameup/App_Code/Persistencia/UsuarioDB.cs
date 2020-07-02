@@ -80,7 +80,7 @@ public class UsuarioDB
             IDbCommand objCommand;
             objConexao = Mapped.Connection();
 
-            string query = "update usuario SET usu_senha = ?usu_senha, usu_dataNascimento = ?usu_datanascimento WHERE usu_email = ?usu_email";
+            string query = "update usuario SET usu_senha = ?usu_senha, usu_dataNascimento = ?usu_datanascimento, usu_statususuario = 1 WHERE usu_email = ?usu_email";
 
             objCommand = Mapped.Command(query, objConexao);
 
