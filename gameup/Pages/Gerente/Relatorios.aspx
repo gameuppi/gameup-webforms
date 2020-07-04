@@ -1,9 +1,10 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MasterPageRepresentante.master" AutoEventWireup="true" CodeFile="Relatorios.aspx.cs" Inherits="Pages_Representante_Relatorios" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MasterPageGerente.master" AutoEventWireup="true" CodeFile="Relatorios.aspx.cs" Inherits="Pages_Gerente_Relatorios" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
-    
+
+
 
     <!-- Gráfico semestral  -->
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
@@ -80,7 +81,7 @@
             <div class="card shadow mb-4 ">
                 <!-- Card Header - Accordion -->
                 <a href="#collapseCardExample5" class="d-block card-header py-3" data-toggle="collapse" role="button" aria-expanded="true" aria-controls="collapseCardExample">
-                    <h6 class="m-0 font-weight-bold text-center">GRÁFICO DE DESEMPENHO DA EMPRESA</h6>
+                    <h6 class="m-0 font-weight-bold text-center">GRÁFICO DE DESEMPENHO DO SETOR</h6>
                 </a>
                 <!-- Card Content - Collapse -->
                 <div class="collapse show" id="collapseCardExample5">
@@ -106,14 +107,14 @@
                         <div class="col-6">
                             <asp:DropDownList runat="server" class="btn btn-secondary dropdown-toggle" ID="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 
-                                <asp:ListItem Selected="True" Value="sem"> Semestral </asp:ListItem>
-                                <asp:ListItem Value="tri"> Trimestral </asp:ListItem>
-                                <asp:ListItem Value="sema"> Semanal </asp:ListItem>
+                                <asp:ListItem Selected="True" Value="sem"> Semestre </asp:ListItem>
+                                <asp:ListItem Value="tri"> trimestre </asp:ListItem>
+                                <asp:ListItem Value="sema"> semanal </asp:ListItem>
 
                             </asp:DropDownList>
                         </div>
                         <div class="col ">
-                            <asp:Button runat="server" ID="btnGerarGrafico" CssClass="btn btn-dark" OnClick="btnGerarGrafico_Click" Text="Gerar Gráfico " />
+                            <asp:Button runat="server" ID="btnGerarGrafico" CssClass="btn btn-dark" OnClick="btn1_Click" Text="Gerar Gráfico " />
                         </div>
                     </div>
                 </div>
@@ -131,7 +132,7 @@
             <div class="card shadow mb-4">
                 <!-- Card Header - Accordion -->
                 <a href="#collapseCardExample2" class="d-block card-header py-3" data-toggle="collapse" role="button" aria-expanded="true" aria-controls="collapseCardExample">
-                    <h6 class="m-0 font-weight-bold text-center">MISSÕES DA EMPRESA</h6>
+                    <h6 class="m-0 font-weight-bold text-center">MISSÕES DO SETOR</h6>
                 </a>
                 <!-- Card Content - Collapse -->
                 <div class="collapse show" id="collapseCardExample2">
@@ -235,7 +236,7 @@
             <div class="card shadow mb-4">
                     <!-- Card Header - Accordion -->
                     <a href="#collapseCardExample7" class="d-block card-header py-3" data-toggle="collapse" role="button" aria-expanded="true" aria-controls="collapseCardExample">
-                        <h6 class="m-0 font-weight-bold text-center">GRÁFICO ATUAL DE MISSÕES DA EMPRESA</h6>
+                        <h6 class="m-0 font-weight-bold text-center">GRÁFICO ATUAL DE MISSÕES DO SETOR</h6>
                     </a>
                     <!-- Card Content - Collapse -->
                     <div class="collapse show" id="collapseCardExample7">
@@ -248,6 +249,9 @@
             </div>
         </div>
     </div>
-    
+
+
+
+
 </asp:Content>
 

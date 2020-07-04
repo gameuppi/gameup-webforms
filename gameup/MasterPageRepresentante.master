@@ -39,7 +39,7 @@
                         </div>
                         <asp:Label runat="server" ID="lblNome" CssClass="sidebar-brand-text mx-3"></asp:Label>
                     </a>
-                    <div class="col-md-12 text-white">
+                    <div class="card text-center p-2">
                         <asp:Label runat="server" ID="lblCargo" CssClass="sidebar-brand-text mx-3"></asp:Label>
                     </div>
                 </div>
@@ -255,6 +255,43 @@
             <script src="../../Assets/Custom/Js/demo/chart-area-demo.js"></script>
             <script src="../../Assets/Custom/Js/demo/chart-pie-demo.js"></script>
             <script src="../../Assets/Custom/Js/demo/chart-pie-demo.js"></script>
+            <script src="../../Assets/Vendor/datatables/jquery.dataTables.js"></script>
+            <script src="../../Assets/Vendor/datatables/dataTables.bootstrap4.min.js"></script>
+            <link href="../../Assets/Vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet" />
+
+
+            <script>
+                $(document).ready(function () {
+                    $('.tabela').DataTable({
+                        language: {
+                            sProcessing: "A processar...",
+                            sLengthMenu: "Mostrar _MENU_ registos",
+                            sZeroRecords: "N&atilde;o foram encontrados resultados",
+                            sInfo: "Mostrando de _START_ at&eacute; _END_ de _TOTAL_ registos",
+                            sInfoEmpty: "Mostrando de 0 at&eacute; 0 de 0 registos",
+                            sInfoFiltered: "(filtrado de _MAX_ registos no total)",
+                            sInfoPostFix: "",
+                            sSearch: "Procurar:",
+                            sUrl: "",
+                            oPaginate: {
+                                sFirst: "Primeiro",
+                                sPrevious: "Anterior",
+                                sNext: "Seguinte",
+                                sLast: "&Uacute;ltimo"
+                            }
+                            //buttons: {
+                            //    colvis: 'Exibir Colunas',
+                            //    copyTitle: 'Registros Copiados',
+                            //    copySuccess: {
+                            //        _: 'Copiados %d registros',
+                            //        1: 'Copiado 1 registro'
+                            //    }
+                            //}
+                        }
+                    });
+                });
+            </script>
+
             <asp:ScriptManager runat="server"></asp:ScriptManager>
     </form>
 

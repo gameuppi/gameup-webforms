@@ -1056,16 +1056,19 @@ public partial class Pages_Gerente_GerenciarMissoes : System.Web.UI.Page
 
     protected void btnTodas_Click(object sender, EventArgs e)
     {
+        TabName.Value = Request.Form[TabName.UniqueID];
         carregarMissoes();
     }
 
     protected void btnConcluidas_Click(object sender, EventArgs e)
     {
+        TabName.Value = Request.Form[TabName.UniqueID];
         carregarMissoesPorStatus(StatusMissaoEnum.VALIDADA.ToString());
     }
 
     protected void btnEmAndamento_Click(object sender, EventArgs e)
     {
+        TabName.Value = Request.Form[TabName.UniqueID];
         carregarMissoesPorStatus(StatusMissaoEnum.EM_ANDAMENTO.ToString());
     }
 

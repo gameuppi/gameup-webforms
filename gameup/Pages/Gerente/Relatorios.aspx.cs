@@ -7,7 +7,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
-public partial class Pages_Representante_Relatorios : System.Web.UI.Page
+public partial class Pages_Gerente_Relatorios : System.Web.UI.Page
 {
     private static Usuario usuarioLogado;
     private static MissaoUsuario missUsuarioLogado;
@@ -20,21 +20,20 @@ public partial class Pages_Representante_Relatorios : System.Web.UI.Page
             carregarMissoes();
         }
     }
-
-    //RELATORIO DE REPRESENTANTE
+    //RELATÓRIO DE GERENTE
 
     //grafico semanal
     public string ObterDadosDoUsuarioSema()
     {
         DataTable dados = new DataTable();
 
-        DataSet gerargraficosetor1 = MissaoUsuarioBD.ContarXpPontoMoedaPorSemanaEmpresa(usuarioLogado.Emp_id, 0);
-        DataSet gerargraficosetor2 = MissaoUsuarioBD.ContarXpPontoMoedaPorSemanaEmpresa(usuarioLogado.Emp_id, 1);
-        DataSet gerargraficosetor3 = MissaoUsuarioBD.ContarXpPontoMoedaPorSemanaEmpresa(usuarioLogado.Emp_id, 2);
-        DataSet gerargraficosetor4 = MissaoUsuarioBD.ContarXpPontoMoedaPorSemanaEmpresa(usuarioLogado.Emp_id, 3);
-        DataSet gerargraficosetor5 = MissaoUsuarioBD.ContarXpPontoMoedaPorSemanaEmpresa(usuarioLogado.Emp_id, 4);
-        DataSet gerargraficosetor6 = MissaoUsuarioBD.ContarXpPontoMoedaPorSemanaEmpresa(usuarioLogado.Emp_id, 5);
-        DataSet gerargraficosetor7 = MissaoUsuarioBD.ContarXpPontoMoedaPorSemanaEmpresa(usuarioLogado.Emp_id, 6);
+        DataSet gerargraficosetor1 = SetorBD.ContarXpPontoMoedaPorSemanaSetor(usuarioLogado.Set_id, 0);
+        DataSet gerargraficosetor2 = SetorBD.ContarXpPontoMoedaPorSemanaSetor(usuarioLogado.Set_id, 1);
+        DataSet gerargraficosetor3 = SetorBD.ContarXpPontoMoedaPorSemanaSetor(usuarioLogado.Set_id, 2);
+        DataSet gerargraficosetor4 = SetorBD.ContarXpPontoMoedaPorSemanaSetor(usuarioLogado.Set_id, 3);
+        DataSet gerargraficosetor5 = SetorBD.ContarXpPontoMoedaPorSemanaSetor(usuarioLogado.Set_id, 4);
+        DataSet gerargraficosetor6 = SetorBD.ContarXpPontoMoedaPorSemanaSetor(usuarioLogado.Set_id, 5);
+        DataSet gerargraficosetor7 = SetorBD.ContarXpPontoMoedaPorSemanaSetor(usuarioLogado.Set_id, 6);
 
         string pontos1 = gerargraficosetor1.Tables[0].Rows[0]["qtd_pontos"].ToString();
         string experiencia1 = gerargraficosetor1.Tables[0].Rows[0]["qtd_exp"].ToString();
@@ -67,15 +66,6 @@ public partial class Pages_Representante_Relatorios : System.Web.UI.Page
         CultureInfo culture = new CultureInfo("pt-BR");
         DateTimeFormatInfo dtfi = culture.DateTimeFormat;
 
-        //DateTime dia7 = Convert.ToDateTime("2020-06-24");
-
-        //DateTime dia7 = Convert.ToDateTime(gerargraficosetor7.Tables[0].Rows[0]["mus_dt_conclusao"].ToString());
-        //DateTime dia6 = Convert.ToDateTime(gerargraficosetor6.Tables[0].Rows[0]["mus_dt_conclusao"].ToString());
-        //DateTime dia5 = Convert.ToDateTime(gerargraficosetor5.Tables[0].Rows[0]["mus_dt_conclusao"].ToString());
-        //DateTime dia4 = Convert.ToDateTime(gerargraficosetor4.Tables[0].Rows[0]["mus_dt_conclusao"].ToString());
-        //DateTime dia3 = Convert.ToDateTime(gerargraficosetor3.Tables[0].Rows[0]["mus_dt_conclusao"].ToString());
-        //DateTime dia2 = Convert.ToDateTime(gerargraficosetor2.Tables[0].Rows[0]["mus_dt_conclusao"].ToString());
-
         DateTime dia1 = DateTime.Now;
         DateTime dia2 = dia1.AddDays(-1);
         DateTime dia3 = dia1.AddDays(-2);
@@ -93,7 +83,6 @@ public partial class Pages_Representante_Relatorios : System.Web.UI.Page
         string dia2s = dtfi.GetDayName(dia2.DayOfWeek);
         string dia1s = dtfi.GetDayName(dia1.DayOfWeek);
 
-
         //testedata = testedata.Substring(0, 1).ToUpper() + testedata.Substring(1);
         //coluna dos dados
         dados.Columns.Add(new DataColumn("Data", typeof(string)));
@@ -108,37 +97,37 @@ public partial class Pages_Representante_Relatorios : System.Web.UI.Page
             pontos1 = "0";
             experiencia1 = "0";
         }
-        if (moeda2 == "" || pontos2 == "" || experiencia2 == "")
+         if (moeda2 == "" || pontos2 == "" || experiencia2 == "")
         {
             moeda2 = "0";
             pontos2 = "0";
             experiencia2 = "0";
         }
-        if (moeda3 == "" || pontos3 == "" || experiencia3 == "")
+         if (moeda3 == "" || pontos3 == "" || experiencia3 == "")
         {
             moeda3 = "0";
             pontos3 = "0";
             experiencia3 = "0";
         }
-        if (moeda4 == "" || pontos4 == "" || experiencia4 == "")
+         if (moeda4 == "" || pontos4 == "" || experiencia4 == "")
         {
             moeda4 = "0";
             pontos4 = "0";
             experiencia4 = "0";
         }
-        if (moeda5 == "" || pontos5 == "" || experiencia5 == "")
+         if (moeda5 == "" || pontos5 == "" || experiencia5 == "")
         {
             moeda5 = "0";
             pontos5 = "0";
             experiencia5 = "0";
         }
-        if (moeda6 == "" || pontos6 == "" || experiencia6 == "")
+         if (moeda6 == "" || pontos6 == "" || experiencia6 == "")
         {
             moeda6 = "0";
             pontos6 = "0";
             experiencia6 = "0";
         }
-        if (moeda7 == "" || pontos7 == "" || experiencia7 == "")
+         if (moeda7 == "" || pontos7 == "" || experiencia7 == "")
         {
             moeda7 = "0";
             pontos7 = "0";
@@ -175,10 +164,10 @@ public partial class Pages_Representante_Relatorios : System.Web.UI.Page
     {
         DataTable dados = new DataTable();
 
+        DataSet gerargraficosetor1 = SetorBD.ContarXpPontoMoedaPorData1Setor(usuarioLogado.Set_id, 0);
+        DataSet gerargraficosetor2 = SetorBD.ContarXpPontoMoedaPorData1Setor(usuarioLogado.Set_id, 1);
+        DataSet gerargraficosetor3 = SetorBD.ContarXpPontoMoedaPorData1Setor(usuarioLogado.Set_id, 2);
 
-        DataSet gerargraficosetor1 = MissaoUsuarioBD.ContarXpPontoMoedaPorData1Empresa(usuarioLogado.Emp_id, 0);
-        DataSet gerargraficosetor2 = MissaoUsuarioBD.ContarXpPontoMoedaPorData1Empresa(usuarioLogado.Emp_id, 1);
-        DataSet gerargraficosetor3 = MissaoUsuarioBD.ContarXpPontoMoedaPorData1Empresa(usuarioLogado.Emp_id, 2);
 
         string pontos1 = gerargraficosetor1.Tables[0].Rows[0]["qtd_pontos"].ToString();
         string experiencia1 = gerargraficosetor1.Tables[0].Rows[0]["qtd_exp"].ToString();
@@ -195,16 +184,14 @@ public partial class Pages_Representante_Relatorios : System.Web.UI.Page
         CultureInfo culture = new CultureInfo("pt-BR");
         DateTimeFormatInfo dtfi = culture.DateTimeFormat;
 
-        //DateTime mes3 = Convert.ToDateTime(gerargraficosetor3.Tables[0].Rows[0]["mus_dt_conclusao"].ToString());
-        //DateTime mes2 = Convert.ToDateTime(gerargraficosetor2.Tables[0].Rows[0]["mus_dt_conclusao"].ToString());
-        //DateTime mes1 = Convert.ToDateTime(gerargraficosetor1.Tables[0].Rows[0]["mus_dt_conclusao"].ToString());
         DateTime mes1 = DateTime.Now;
         DateTime mes2 = mes1.AddMonths(-1);
         DateTime mes3 = mes1.AddMonths(-2);
-        
+
         string mes3s = dtfi.GetMonthName(mes3.Month);
         string mes2s = dtfi.GetMonthName(mes2.Month);
         string mes1s = dtfi.GetMonthName(mes1.Month);
+
 
         if (moeda1 == "" || pontos1 == "" || experiencia1 == "")
         {
@@ -231,7 +218,7 @@ public partial class Pages_Representante_Relatorios : System.Web.UI.Page
         dados.Columns.Add(new DataColumn("Pontos", typeof(string)));
         dados.Columns.Add(new DataColumn("Experiencia", typeof(string)));
         // Os dados que serão mostrados no charts
-
+        
         dados.Rows.Add(new object[] { mes3s, moeda3, pontos3, experiencia3 });
         dados.Rows.Add(new object[] { mes2s, moeda2, pontos2, experiencia2 });
         dados.Rows.Add(new object[] { mes1s, moeda1, pontos1, experiencia1 });
@@ -258,12 +245,13 @@ public partial class Pages_Representante_Relatorios : System.Web.UI.Page
     {
         DataTable dados = new DataTable();
 
-        DataSet gerargraficosetor1 = MissaoUsuarioBD.ContarXpPontoMoedaPorData1Empresa(usuarioLogado.Emp_id, 0);
-        DataSet gerargraficosetor2 = MissaoUsuarioBD.ContarXpPontoMoedaPorData1Empresa(usuarioLogado.Emp_id, 1);
-        DataSet gerargraficosetor3 = MissaoUsuarioBD.ContarXpPontoMoedaPorData1Empresa(usuarioLogado.Emp_id, 2);
-        DataSet gerargraficosetor4 = MissaoUsuarioBD.ContarXpPontoMoedaPorData1Empresa(usuarioLogado.Emp_id, 3);
-        DataSet gerargraficosetor5 = MissaoUsuarioBD.ContarXpPontoMoedaPorData1Empresa(usuarioLogado.Emp_id, 4);
-        DataSet gerargraficosetor6 = MissaoUsuarioBD.ContarXpPontoMoedaPorData1Empresa(usuarioLogado.Emp_id, 5);
+        DataSet gerargraficosetor1 = SetorBD.ContarXpPontoMoedaPorData1Setor(usuarioLogado.Set_id, 0);
+        DataSet gerargraficosetor2 = SetorBD.ContarXpPontoMoedaPorData1Setor(usuarioLogado.Set_id, 1);
+        DataSet gerargraficosetor3 = SetorBD.ContarXpPontoMoedaPorData1Setor(usuarioLogado.Set_id, 2);
+        DataSet gerargraficosetor4 = SetorBD.ContarXpPontoMoedaPorData1Setor(usuarioLogado.Set_id, 3);
+        DataSet gerargraficosetor5 = SetorBD.ContarXpPontoMoedaPorData1Setor(usuarioLogado.Set_id, 4);
+        DataSet gerargraficosetor6 = SetorBD.ContarXpPontoMoedaPorData1Setor(usuarioLogado.Set_id, 5);
+
 
         string pontos1 = gerargraficosetor1.Tables[0].Rows[0]["qtd_pontos"].ToString();
         string experiencia1 = gerargraficosetor1.Tables[0].Rows[0]["qtd_exp"].ToString();
@@ -293,13 +281,6 @@ public partial class Pages_Representante_Relatorios : System.Web.UI.Page
         CultureInfo culture = new CultureInfo("pt-BR");
         DateTimeFormatInfo dtfi = culture.DateTimeFormat;
 
-        //DateTime mes6 = Convert.ToDateTime(gerargraficosetor6.Tables[0].Rows[0]["mus_dt_conclusao"].ToString());
-        //DateTime mes5 = Convert.ToDateTime(gerargraficosetor5.Tables[0].Rows[0]["mus_dt_conclusao"].ToString());
-        //DateTime mes4 = Convert.ToDateTime(gerargraficosetor4.Tables[0].Rows[0]["mus_dt_conclusao"].ToString());
-        //DateTime mes3 = Convert.ToDateTime(gerargraficosetor3.Tables[0].Rows[0]["mus_dt_conclusao"].ToString());
-        //DateTime mes2 = Convert.ToDateTime(gerargraficosetor2.Tables[0].Rows[0]["mus_dt_conclusao"].ToString());
-        //DateTime mes1 = Convert.ToDateTime(gerargraficosetor1.Tables[0].Rows[0]["mus_dt_conclusao"].ToString());
-
         DateTime mes1 = DateTime.Now;
         DateTime mes2 = mes1.AddMonths(-1);
         DateTime mes3 = mes1.AddMonths(-2);
@@ -307,7 +288,7 @@ public partial class Pages_Representante_Relatorios : System.Web.UI.Page
         DateTime mes5 = mes1.AddMonths(-4);
         DateTime mes6 = mes1.AddMonths(-5);
 
-        
+
 
         string mes6s = dtfi.GetMonthName(mes6.Month);
         string mes5s = dtfi.GetMonthName(mes5.Month);
@@ -316,15 +297,12 @@ public partial class Pages_Representante_Relatorios : System.Web.UI.Page
         string mes2s = dtfi.GetMonthName(mes2.Month);
         string mes1s = dtfi.GetMonthName(mes1.Month);
 
-
-
         if (moeda1 == "" || pontos1 == "" || experiencia1 == "")
         {
             moeda1 = "0";
             pontos1 = "0";
             experiencia1 = "0";
-        }
-         if (moeda2 == "" || pontos2 == "" || experiencia2 == "")
+        } if (moeda2 == "" || pontos2 == "" || experiencia2 == "")
         {
             moeda2 = "0";
             pontos2 = "0";
@@ -383,31 +361,28 @@ public partial class Pages_Representante_Relatorios : System.Web.UI.Page
         return strDados;
     }
 
-
+    
     void validarSessao()
     {
         if (Session["USUARIO"] == null)
         {
-
             Response.Redirect("../Visitante/Login.aspx");
-
         }
         else
         {
             usuarioLogado = (Usuario)Session["USUARIO"];
 
-            if (usuarioLogado.Tus_id != 3) // Representante
+            if (usuarioLogado.Tus_id != 1 && usuarioLogado.Tus_id != 2) // Colaborador ou Gerente
             {
                 Response.Redirect("../Visitante/Login.aspx");
             }
-
         }
     }
 
     //Criação do grafico de missoes (validadas, aguardando e em andamento) está sendo chamado em 'grafico  Missoes'
     protected string obterDados()
     {
-        DataSet listaDeMissoesUsu2 = MissaoBD.procurarTodasMissaoUsuarioColaboradorEmpresa(usuarioLogado.Emp_id);
+        DataSet listaDeMissoesUsu2 = MissaoBD.procurarTodasMissaoUsuarioColaboradorSetor(usuarioLogado.Set_id);
         int contAg = 0;
         int contEm = 0;
         int contVa = 0;
@@ -468,7 +443,8 @@ public partial class Pages_Representante_Relatorios : System.Web.UI.Page
     //metodo que faz a verificação e contagem dos tipos de missao
     public void carregarMissoes()
     {
-        DataSet listaDeMissoesUsu = MissaoBD.procurarTodasMissaoUsuarioColaboradorEmpresa(usuarioLogado.Emp_id);
+        
+        DataSet listaDeMissoesUsu = MissaoBD.procurarTodasMissaoUsuarioColaboradorSetor(usuarioLogado.Set_id);
         int contAg = 0;
         int contEm = 0;
         int contVa = 0;
@@ -512,19 +488,17 @@ public partial class Pages_Representante_Relatorios : System.Web.UI.Page
 
 
 
-    protected void btnGerarGrafico_Click(object sender, EventArgs e)
+    protected void btn1_Click(object sender, EventArgs e)
     {
         if (dropdownMenuButton.SelectedValue.ToString().Equals("sem"))
         {
             ltlGerarGrafico.Text = "<div id='curve_chart_Sem' style=' min-height: 380px; '></div>";
 
-        }
-        else if (dropdownMenuButton.SelectedValue.ToString().Equals("tri"))
+        }else if(dropdownMenuButton.SelectedValue.ToString().Equals("tri"))
         {
             ltlGerarGrafico.Text = "<div id='curve_chart_Tri' style=' min-height: 380px; '></div>";
 
-        }
-        else if (dropdownMenuButton.SelectedValue.ToString().Equals("sema"))
+        }else if (dropdownMenuButton.SelectedValue.ToString().Equals("sema"))
         {
             ltlGerarGrafico.Text = "<div id='curve_chart_Sema' style=' min-height: 380px; '></div>";
         }

@@ -29,12 +29,12 @@ public partial class Pages_Colaborador_LojaVirtual : System.Web.UI.Page
 
             if (p["pro_id"] != null)
             {
-                produto.Pro_id = Convert.ToInt32(p["pro_id"]);
+                produto.Id = Convert.ToInt32(p["pro_id"]);
             }
-            produto.Pro_nome = p["pro_nome"].ToString();
-            produto.Pro_subTitulo = p["pro_subTitulo"].ToString();
-            produto.Pro_descricao = p["pro_descricao"].ToString();
-            produto.Pro_logo = p["pro_logo"].ToString();
+            produto.Nome = p["pro_nome"].ToString();
+            produto.Subtitulo = p["pro_subTitulo"].ToString();
+            produto.Descricao = p["pro_descricao"].ToString();
+            produto.LogoUrl = p["pro_logo"].ToString();
 
             listaDeProdutos.Add(produto);
         }
@@ -46,12 +46,12 @@ public partial class Pages_Colaborador_LojaVirtual : System.Web.UI.Page
             resp += " <div class='col-12 col-md-3'> ";
             resp += "     <div class='card-custom border-left-success shadow'> ";
             resp += "         <div class='card-custom-image'> ";
-            resp += $"             <img src='{p.Pro_logo}'> ";
-            resp += $"             <span class='card-custom-title font-weight-bold'>{p.Pro_nome} ";
+            resp += $"             <img src='{p.LogoUrl}'> ";
+            resp += $"             <span class='card-custom-title font-weight-bold'>{p.Nome} ";
             resp += "             </span> ";
             resp += "         </div> ";
             resp += "         <div class='card-custom-content'> ";
-            resp += $"             <p>{p.Pro_descricao}</p> ";
+            resp += $"             <p>{p.Descricao}</p> ";
             resp += "         </div> ";
             resp += "     </div> ";
             resp += " </div> ";
@@ -98,25 +98,25 @@ public partial class Pages_Colaborador_LojaVirtual : System.Web.UI.Page
 
             if (p["pro_id"] != null)
             {
-                produto.Pro_id = Convert.ToInt32(p["pro_id"]);
+                produto.Id = Convert.ToInt32(p["pro_id"]);
             }
-            produto.Pro_nome = p["pro_nome"].ToString();
-            produto.Pro_subTitulo = p["pro_subTitulo"].ToString();
-            produto.Pro_descricao = p["pro_descricao"].ToString();
-            produto.Pro_logo = p["pro_logo"].ToString();
+            produto.Nome = p["pro_nome"].ToString();
+            produto.Subtitulo = p["pro_subTitulo"].ToString();
+            produto.Descricao = p["pro_descricao"].ToString();
+            produto.LogoUrl = p["pro_logo"].ToString();
 
             if (Convert.ToInt32(p["pro_status"]) == 1)
             {
-                produto.Pro_status = StatusProdutoEnum.DISPONIVEL;
+                produto.Status = StatusProdutoEnum.DISPONIVEL;
             }
             else
             {
-                produto.Pro_status = StatusProdutoEnum.INDISPONIVEL;
+                produto.Status = StatusProdutoEnum.INDISPONIVEL;
             }
 
             if (p["pro_valorMoeda"] != null)
             {
-                produto.Pro_valorMoeda = Convert.ToInt32(p["pro_valorMoeda"]);
+                produto.Preco = Convert.ToInt32(p["pro_valorMoeda"]);
             }
 
             Empresa emp = new Empresa();
@@ -124,13 +124,13 @@ public partial class Pages_Colaborador_LojaVirtual : System.Web.UI.Page
             Usuario usu = new Usuario();
 
             emp.Emp_id = Convert.ToInt32(p["emp_id"]);
-            produto.Emp_id = emp;
+            produto.Empresa = emp;
 
             tip.Tip_id = Convert.ToInt32(p["tip_id"]);
-            produto.Tip_id = tip;
+            produto.Categoria = CategoriaProdutoEnum.FISICO; // arrumar
 
             usu.Usu_id = Convert.ToInt32(p["usu_id"]);
-            produto.Usu_id = usu;
+            produto.Usuario = usu;
 
             listaProdutos.Add(produto);
         }
@@ -160,25 +160,25 @@ public partial class Pages_Colaborador_LojaVirtual : System.Web.UI.Page
 
         foreach (Produto pro in listaPro)
         {
-            MovimentacaoEstoque mes_qtd = CarregaObjetoEstoque(pro.Pro_id);
+            MovimentacaoEstoque mes_qtd = CarregaObjetoEstoque(pro.Id);
             Literal ltlImg = new Literal();
             ltlImg.Text = $"<div class='col-12 col-md-3'>" +
                           $"    <div class='card-custom border-left-success shadow h-100'>" +
                           $"        <div class='card-custom-image'>" +
-                          $"            <img src='{pro.Pro_logo}'>" +
-                          $"            <span class='card-custom-title font-weight-bold'>{pro.Pro_nome}" +
+                          $"            <img src='{pro.LogoUrl}'>" +
+                          $"            <span class='card-custom-title font-weight-bold'>{pro.Nome}" +
                           $"            <br /><small>{mes_qtd.Mes_saldo} disponíveis</small>" +
                           $"            </span><div class='text-center'>";
 
             LinkButton btnCard = new LinkButton();
-            btnCard.Click += (sender, e) => { this.ContinuarCompra(sender, e, pro.Pro_id); };
-            btnCard.ID = pro.Pro_id.ToString();
+            btnCard.Click += (sender, e) => { this.ContinuarCompra(sender, e, pro.Id); };
+            btnCard.ID = pro.Id.ToString();
             btnCard.CssClass = "btn-floating btn-large halfway-fab btn-success fas fa-shopping-cart text-white";
 
             Literal ltlText = new Literal();
             ltlText.Text += $"      </div></div><br/><div class='col-md-12 card-custom-content'>" +
-                           $"           <p>{pro.Pro_subTitulo}</p>" +
-                           $"           <p>{pro.Pro_valorMoeda} Moedas</p>" +
+                           $"           <p>{pro.Subtitulo}</p>" +
+                           $"           <p>{pro.Preco} Moedas</p>" +
                            $"       </div>" +
                            $"   </div>" +
                            $"</div>";
@@ -197,24 +197,24 @@ public partial class Pages_Colaborador_LojaVirtual : System.Web.UI.Page
         {
             foreach (DataRow pro in produtoDs.Tables[0].Rows)
             {
-                produto.Pro_id = Convert.ToInt32(pro["pro_id"]);
-                produto.Pro_nome = pro["pro_nome"].ToString();
-                produto.Pro_subTitulo = pro["pro_subTitulo"].ToString();
-                produto.Pro_descricao = pro["pro_descricao"].ToString();
-                produto.Pro_logo = pro["pro_logo"].ToString();
+                produto.Id = Convert.ToInt32(pro["pro_id"]);
+                produto.Nome = pro["pro_nome"].ToString();
+                produto.Subtitulo = pro["pro_subTitulo"].ToString();
+                produto.Descricao = pro["pro_descricao"].ToString();
+                produto.LogoUrl = pro["pro_logo"].ToString();
 
                 if (Convert.ToInt32(pro["pro_status"]) == 1)
                 {
-                    produto.Pro_status = StatusProdutoEnum.DISPONIVEL;
+                    produto.Status = StatusProdutoEnum.DISPONIVEL;
                 }
                 else
                 {
-                    produto.Pro_status = StatusProdutoEnum.INDISPONIVEL;
+                    produto.Status = StatusProdutoEnum.INDISPONIVEL;
                 }
 
                 if (pro["pro_valorMoeda"] != null)
                 {
-                    produto.Pro_valorMoeda = Convert.ToInt32(pro["pro_valorMoeda"]);
+                    produto.Preco = Convert.ToInt32(pro["pro_valorMoeda"]);
                 }
 
                 Empresa emp = new Empresa();
@@ -222,13 +222,13 @@ public partial class Pages_Colaborador_LojaVirtual : System.Web.UI.Page
                 Usuario usu = new Usuario();
 
                 emp.Emp_id = Convert.ToInt32(pro["emp_id"]);
-                produto.Emp_id = emp;
+                produto.Empresa = emp;
 
                 tip.Tip_id = Convert.ToInt32(pro["tip_id"]);
-                produto.Tip_id = tip;
+                produto.Categoria = CategoriaProdutoEnum.FISICO; // arrumar
 
                 usu.Usu_id = Convert.ToInt32(pro["usu_id"]);
-                produto.Usu_id = usu;
+                produto.Usuario = usu;
             }
         }
         catch (Exception ex)
