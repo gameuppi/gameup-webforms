@@ -204,9 +204,6 @@ public partial class Pages_Colaborador_Missoes : System.Web.UI.Page
                 resp += "             </div> ";
                 resp += "         </div> ";
                 resp += "     </div> ";
-                resp += "     <div> ";
-                resp += "           teste ";
-                resp += "     </div> ";
                 resp += " </div> ";
 
                 rodape.Text = resp;
