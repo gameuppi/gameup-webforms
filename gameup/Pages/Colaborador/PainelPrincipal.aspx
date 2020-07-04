@@ -3,6 +3,7 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
+   <!-- PAINEL PRINCIPAL DE COLABORADOR -->
     <!-- Page Heading -->
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
         <h1 class="h3 mb-0 text-gray-800">Painel Principal</h1>
@@ -76,28 +77,30 @@
                                     </div>
                                 </div>
                             </div>
-                        </li><br />
+                        </li>
+                        <br />
                     </ul>
                 </div>
             </div>
         </div>
 
+        <!-- Gráfico semanal  -->
         <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
         <script type="text/javascript">
             google.charts.load('current', { 'packages': ['corechart'] });
             google.charts.setOnLoadCallback(drawChart);
 
             function drawChart() {
-                var data = google.visualization.arrayToDataTable(<%=ObterDadosDoUsuario()%>);
+                var data = google.visualization.arrayToDataTable(<%=ObterDadosDoUsuarioSema()%>);
 
 
                 var options = {
-                    title: 'Company Performance',
+                    title: 'Grafico de desempenho semanal',
                     curveType: 'function',
                     legend: { position: 'bottom' }
                 };
 
-                var chart = new google.visualization.LineChart(document.getElementById('curve_chart'));
+                var chart = new google.visualization.LineChart(document.getElementById('curve_chart_Sema'));
 
 
                 chart.draw(data, options);
@@ -114,10 +117,7 @@
                 </div>
                 <!-- Card Body -->
                 <div class="card-body">
-                    <div id="curve_chart" style="min-height: 250px;"></div>
-                    <a href="Desenvolvimento.aspx">
-                        <asp:Button runat="server" class="btn btn-outline-info" type="button" Text="Ver mais..." />
-                    </a>
+                    <div id='curve_chart_Sema' style=' min-height: 290px; '></div>
                 </div>
             </div>
         </div>
@@ -127,16 +127,13 @@
             <div class="card shadow mb-4">
                 <!-- Card Header - Dropdown -->
                 <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                    <h6 class="m-0 font-weight-bold text-dark">Últimas novidades</h6>
+                    <h6 class="m-0 font-weight-bold text-dark">Nossa Loja Virtual</h6>
                 </div>
                 <!-- Card Body -->
                 <div class="card-body">
-                    <ul class="list-group list-group-flush">
-                        <li class="list-group-item">João Ferraz alcançou a medalha de logar cinco dias consecutivos</li>
-                        <li class="list-group-item">Gabriela Diniz completou todas as missões da semana</li>
-                        <li class="list-group-item">Mariana Oliveria atingiu o nível 5</li>
-                        <li class="list-group-item">Matheus Souza completou sua missão difícil</li>
-                    </ul>
+                    <p class="text-justify">&nbsp &nbsp Com a Loja virtual fica mais fácil obter itens exclusivos, mas corra, os itens são limitados.
+                        Complete novas missões obtenha muito mais moedas e aproveite..</p>
+                    <img src="https://image.freepik.com/vetores-gratis/e-commerce-infografico_23-2147494118.jpg" class="img-fluid" alt="Imagem responsiva">
                 </div>
             </div>
         </div>
@@ -145,18 +142,17 @@
             <div class="card shadow mb-4">
                 <!-- Card Header - Dropdown -->
                 <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                    <h6 class="m-0 font-weight-bold text-dark">Missões em andamento</h6>
+                    <h6 class="m-0 font-weight-bold text-dark">Nosso Processo de Missões</h6>
                 </div>
                 <!-- Card Body -->
                 <div class="card-body">
-                    <ul class="list-group list-group-flush">
-                        <li class="list-group-item">
-                            <asp:Literal runat="server" ID="ltlMissao1"></asp:Literal>
-                        </li>
-                        <li class="list-group-item">Finalizar a planilha de custos</li>
-                        <li class="list-group-item">Enviar os documentos de compra para o contador</li>
-                        <li class="list-group-item">Revisar a planilha de vendas</li>
-                    </ul>
+                    <p class="text-justify">&nbsp  Você já parou para pensar como o processo de missão é realizado? <br />
+                                            Anteriormente se dava tarefas por meio de pedidos informais ou físicos, dando brechas 
+                                            para o funcionário esquecer ou até fazer de maneira diferente do que o chefe queria. 
+                                            Agora com o processo de missão ficou tudo mais fácil, voce consulta a tela de missões, 
+                                            visualiza os detalhes de cada missão e as realiza e ainda por cima recebe recompensas 
+                                            </p>
+                    <img src="https://image.freepik.com/vetores-gratis/ilustracao-de-missao-negocio_53876-37670.jpg" class="img-fluid" alt="Imagem responsiva" style=' min-height: 60px;' >
                 </div>
             </div>
         </div>
@@ -167,43 +163,14 @@
             <div class="card shadow mb-4">
                 <!-- Card Header - Dropdown -->
                 <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                    <h6 class="m-0 font-weight-bold text-dark">Avisos</h6>
+                    <h6 class="m-0 font-weight-bold text-dark">Nosso Placar de Líderes</h6>
                 </div>
                 <!-- Card Body -->
                 <div class="card-body">
-                    <ul class="list-group list-group-flush">
-                        <li class="list-group-item">
-                            <div class="row">
-                                <div class="col-1 text-left text-danger">
-                                    <i class="fas fa-exclamation fa-1x"></i>&nbsp;
-                                </div>
-                                <div class="col-11 text-left">
-                                    Falta 1 dia para o fim do prazo da sua missão "Entregar relatório"
-                                </div>
-                            </div>
-                        </li>
-                        <li class="list-group-item">
-                            <div class="row">
-                                <div class="col-1 text-left text-warning">
-                                    <i class="fas fa-exclamation fa-1x"></i>&nbsp;
-                                </div>
-                                <div class="col-11 text-left">
-                                    O dia da entrega está chegando...
-                                </div>
-                            </div>
-                        </li>
-
-                        <li class="list-group-item">
-                            <div class="row">
-                                <div class="col-1 text-left text-success">
-                                    <i class="fas fa-exclamation fa-1x"></i>&nbsp;
-                                </div>
-                                <div class="col-11 text-left">
-                                    Existem novos itens na loja virtual
-                                </div>
-                            </div>
-                        </li>
-                    </ul>
+                    <p class="text-justify">&nbsp &nbsp Você trabalha muito e o mínimo que podemos fazer é te colocar na posição que você faz jus ,
+                        consulte as posições no nosso placar de líderes e veja os mais bem pontuados da empresa, não espero menos do que o primeiro
+                        lugar de voce! Corre lá! </p>
+                    <img src="https://image.freepik.com/vetores-gratis/trofeus-e-conquistas_23-2147499035.jpg" class="img-fluid" alt="Imagem responsiva">
                 </div>
             </div>
         </div>
