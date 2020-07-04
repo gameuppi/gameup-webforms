@@ -40,7 +40,7 @@
                         </div>
                     </div>
                 </div>
-                
+
                 <div class="col-12 col-md-8 text-right">
                     <asp:Button runat="server" type="checkbox" class="btn btn-dark" Text="Todas" ID="btnTodas" OnClick="btnTodas_Click" />
                     <asp:Button runat="server" type="button" class="btn btn-success" Text="Concluídas" ID="btnConcluidas" OnClick="btnConcluidas_Click" />
@@ -82,6 +82,7 @@
                         <h4 class="modal-title text-dark font-weight-bold" id="exampleModalLongTitle">Detalhes da Missão</h4>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
+                            <asp:Label runat="server" ID="lblIdMissaoUsuario" CssClass="d-none"></asp:Label>
                         </button>
                     </div>
                     <div class="modal-body">
@@ -121,7 +122,18 @@
                                 </asp:Literal>
                             </p>
                         </div>
-
+                        <div class="row mt-4">
+                            <p>
+                                <i class="fas fa-paperclip text-gray-600"></i>
+                                <asp:HiddenField runat="server" ID="hfIdMissaoUsuario" />
+                                <asp:Label runat="server" ID="lblTextoAnexo"></asp:Label>
+                                &nbsp;
+                                <asp:Panel runat="server" ID="pnlAnexo">
+                                    <asp:LinkButton runat="server" ID="btnBaixarAnexo" OnClick="btnBaixarAnexo_Click" >
+                                    </asp:LinkButton>
+                                </asp:Panel>
+                            </p>
+                        </div>
                         <div class="row mt-4">
                             <h6>
                                 <i class="fas fa-calendar-check"></i>
@@ -134,6 +146,40 @@
             </div>
         </div>
 
+        <!-- Modal concluir missão -->
+        <div class="modal fade" id="modalConcluirMissao" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+            <asp:HiddenField runat="server" ID="hfIdMissao" />
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content p-4">
+                    <div class="modal-header">
+                        <h4 class="modal-title text-dark font-weight-bold" id="exampleModalLongTitle">Muito bem!</h4>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                            <asp:Label runat="server" ID="Label1" CssClass="d-none"></asp:Label>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="row">
+                            <label class="col-12">
+                                <p>
+                                    Mas antes de efetivar essa conclusão, se você quiser, pode anexar um arquivo no campo abaixo.
+                                </p>
+                            </label>
+                            <asp:Label runat="server" ID="lblTeste"></asp:Label>
+                            <asp:Label runat="server" ID="lblUploadArquivo" CssClass="col-12">
+                                <asp:FileUpload runat="server" ID="fuAnexo" CssClass="form-control-file" />
+                            </asp:Label>
+                            <br />
+                            <br />
+                            <div class="col-12 mt-2">
+                                <asp:Button runat="server" ID="btnConfirmarConclusaoMissao" CssClass="btn btn-success form-control" Text="Confirmar conclusão" OnClick="btnConfirmarConclusaoMissao_Click" />
+                            </div>
+                            <asp:Panel runat="server" ID="Panel1"></asp:Panel>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
 
 
     </div>
