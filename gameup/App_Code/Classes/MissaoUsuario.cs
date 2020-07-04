@@ -15,6 +15,7 @@ public class MissaoUsuario
     private StatusMissaoEnum status;
     private Missao missao;
     private Usuario usuario;
+    private string arquivo;
 
     public int Id
     {
@@ -104,6 +105,19 @@ public class MissaoUsuario
         set
         {
             dtValidacao = value;
+        }
+    }
+
+    public string Arquivo
+    {
+        get
+        {
+            return arquivo;
+        }
+
+        set
+        {
+            arquivo = value;
         }
     }
 }
