@@ -71,18 +71,13 @@
                     </a>
                     <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordionSidebar">
                         <div class="bg-primary py-2 collapse-inner rounded">
-                            <a class="collapse-item text-white" href="../../Pages/Colaborador/PainelPrincipal.aspx"><i class="fas fa-fw fa-table"></i>
-                                <span>Painel Principal</span>
-                                <a class="collapse-item text-white" href="../../Pages/Colaborador/Missoes.aspx"><i class="fas fa-fw fa-check"></i>
+                                <a class="collapse-item text-white" href="Missoes.aspx"><i class="fas fa-fw fa-check"></i>
                                     <span>Missões</span></a>
-                                <a class="collapse-item text-white" href="../../Pages/Colaborador/Conquistas.aspx"><i class="fas fa-fw fa-medal"></i>
-                                    <span>Conquistas</span></a>
-                                <a class="collapse-item text-white" href="#"><i class="fas fa-fw fa-chart-line"></i>
+                                <a class="collapse-item text-white" href="Desempenho.aspx"><i class="fas fa-fw fa-chart-line"></i>
                                     <span>Desempenho</span></a>
-                                <a class="collapse-item text-white" href="../../Pages/Colaborador/PlacarLideres.aspx"><i class="fas fa-fw fa-flag-checkered"></i>
+                                <a class="collapse-item text-white" href="PlacarLideres.aspx"><i class="fas fa-fw fa-flag-checkered"></i>
                                     <span>Placar de líderes</span></a>
-                                <a class="collapse-item text-white" href="#"><i class="fas fa-fw fa-newspaper"></i>
-                                    <span>Novidades</span></a>
+                                
                         </div>
                     </div>
                 </li>
@@ -98,7 +93,7 @@
                     </a>
                     <div id="collapseTwo" class="collapse show" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                         <div class="bg-primary py-2 collapse-inner rounded">
-                            <a class="collapse-item text-white" href="#"><i class="fas fa-fw fa-table"></i>
+                            <a class="collapse-item text-white" href="PainelPrincipal.aspx"><i class="fas fa-fw fa-table"></i>
                                 <span>Painel Principal</span>
                                 <a class="collapse-item text-white" href="#"><i class="fas fa-fw fa-users"></i>
                                     <span>Colaboradores</span></a>
@@ -106,14 +101,8 @@
                                     <span>Setores</span></a>
                                 <a class="collapse-item text-white" href="../../Pages/Gerente/Relatorios.aspx"><i class="fas fa-fw fa-chart-line"></i>
                                     <span>Relatórios</span></a>
-                                <a class="collapse-item text-white" href="#"><i class="fas fa-fw fa-flag-checkered"></i>
-                                    <span>Placar de Líderes</span></a>
                                 <a class="collapse-item text-white" href="../../Pages/Gerente/GerenciarMissoes.aspx"><i class="fas fa-fw fa-check"></i>
-                                    <span>Missões</span></a>
-                                <a class="collapse-item text-white" href="#"><i class="fas fa-fw fa-shopping-basket"></i>
-                                    <span>Loja Virtual</span></a>
-                                <a class="collapse-item text-white" href="#"><i class="fas fa-fw fa-medal"></i>
-                                    <span>Conquistas</span></a>
+                                    <span>Gerenciar Missões</span></a>
                         </div>
                     </div>
                 </li>
