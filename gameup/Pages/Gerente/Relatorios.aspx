@@ -118,9 +118,6 @@
                         </div>
                     </div>
                 </div>
-                <div class="card shadow mb-4 ">
-                    <br />
-                </div>
             </div>
         </div>
 

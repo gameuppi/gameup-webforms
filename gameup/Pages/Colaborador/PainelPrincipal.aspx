@@ -95,7 +95,7 @@
 
 
                 var options = {
-                    title: 'Grafico de desempenho semanal',
+                    title: 'Grafico de desempenho semanal pessoal',
                     curveType: 'function',
                     legend: { position: 'bottom' }
                 };

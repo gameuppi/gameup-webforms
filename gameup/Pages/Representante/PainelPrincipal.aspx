@@ -1,10 +1,11 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MasterPageGerente.master" AutoEventWireup="true" CodeFile="PainelPrincipal.aspx.cs" Inherits="Pages_Gerente_PainelPrincipal" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MasterPageRepresentante.master" AutoEventWireup="true" CodeFile="PainelPrincipal.aspx.cs" Inherits="Pages_Representante_PainelPrincipal" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" Runat="Server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
-    
-    
+
+    <%--PAINEL PRINCIPAL DE REPRESENTANTE--%>
+      
     <!-- PAINEL PRINCIPAL DE GERENTE -->
 
     <!-- Page Heading -->
@@ -98,7 +99,7 @@
 
 
                 var options = {
-                    title: 'Grafico de desempenho semanal pessoal',
+                    title: 'Grafico de desempenho semanal da empresa',
                     curveType: 'function',
                     legend: { position: 'bottom' }
                 };
@@ -182,7 +183,6 @@
 
     <script src="../../Assets/Custom/Js/textzoom.js"></script>
     <!-- /.container-fluid -->
-
 
 
 </asp:Content>
