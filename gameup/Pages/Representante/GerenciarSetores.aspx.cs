@@ -17,6 +17,11 @@ public partial class Pages_Representante_GerenciarSetores : System.Web.UI.Page
         btnEditar.Visible = false;
         btnVisualizar.Visible = false;
 
+        if (gvSetores.Rows.Count > 0)
+        {
+            gvSetores.HeaderRow.TableSection = TableRowSection.TableHeader;
+        }
+
         if (!IsPostBack)
         {
             lblNome.Text = "<h6 class='m-0 font-weight-bold text-dark'>Colaborador: Selecione um colaborador</h6>";
@@ -43,7 +48,13 @@ public partial class Pages_Representante_GerenciarSetores : System.Web.UI.Page
         }
 
         gvSetores.DataSource = dt;
-        gvSetores.DataBind();
+        gvSetores.DataBind();        
+
+        if (gvSetores.Rows.Count > 0)
+        {
+            gvSetores.HeaderRow.TableSection = TableRowSection.TableHeader;
+        }
+
     }
 
     string formatarNome(string nome)
@@ -61,7 +72,6 @@ public partial class Pages_Representante_GerenciarSetores : System.Web.UI.Page
 
     void validarSessao()
     {
-
         if (Session["USUARIO"] == null)
         {
 
@@ -107,5 +117,10 @@ public partial class Pages_Representante_GerenciarSetores : System.Web.UI.Page
                 Page.ClientScript.RegisterStartupScript(this.GetType(), "script", "<script>$('#modalCadastraSetor').modal('show');</script>");
                 break;
         }
+    }
+
+    protected void gvSetores_RowCommand(object sender, GridViewCommandEventArgs e)
+    {
+        
     }
 }

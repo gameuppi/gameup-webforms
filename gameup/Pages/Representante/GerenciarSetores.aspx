@@ -1,17 +1,21 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MasterPageRepresentante.master" AutoEventWireup="true" CodeFile="GerenciarSetores.aspx.cs" Inherits="Pages_Representante_GerenciarSetores" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
-    <script src="../../Assets/Vendor/datatables/jquery.dataTables.js"></script>
-    <script src="../../Assets/Vendor/datatables/dataTables.bootstrap4.min.js"></script>
-    <link href="../../Assets/Vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet" />
-
-    <script>
-        $(document).ready(function () {
-            $('#gvColaboradores').DataTable();
-        });
-    </script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
+
+    <style>
+        .dataTables_length {
+            text-align: left !important;
+        }
+
+        .dataTables_info {
+            text-align: left !important;
+        }
+    </style>
+
+    <link href="../../Assets/Vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet" />
+
     <!-- Page Heading -->
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
         <h1 class="h3 mb-0 text-gray-800">Setores</h1>
@@ -56,21 +60,30 @@
                     <h6 class="m-0 font-weight-bold text-dark">Lista de Setores</h6>
                 </div>
                 <div class="card-body text-center">
-                    <asp:GridView ID="gvSetores" runat="server" BackColor="White" BorderColor="#999999" BorderStyle="Solid" BorderWidth="1px" CellPadding="3" ForeColor="Black" GridLines="Vertical" AutoGenerateColumns="False" CssClass="col-md-12">
-                        <AlternatingRowStyle BackColor="#CCCCCC" />
-                        <Columns>
-                            <asp:ButtonField Text="Botão" />
-                            <asp:BoundField DataField="set_nome" HeaderText="Usuario" />
-                        </Columns>
-                        <FooterStyle BackColor="#CCCCCC" />
-                        <HeaderStyle BackColor="Black" Font-Bold="True" ForeColor="White" />
-                        <PagerStyle BackColor="#999999" ForeColor="Black" HorizontalAlign="Center" />
-                        <SelectedRowStyle BackColor="#000099" Font-Bold="True" ForeColor="White" />
-                        <SortedAscendingCellStyle BackColor="#F1F1F1" />
-                        <SortedAscendingHeaderStyle BackColor="#808080" />
-                        <SortedDescendingCellStyle BackColor="#CAC9C9" />
-                        <SortedDescendingHeaderStyle BackColor="#383838" />                        
-                    </asp:GridView>
+                    <div class="table-responsive">
+                        <div class="col-md-12">
+                            <asp:GridView ID="gvSetores" runat="server" ClientIDMode="Static" CellPadding="3" GridLines="Vertical" AutoGenerateColumns="False" CssClass="table table-striped table-hover tabela" OnRowCommand="gvSetores_RowCommand">
+                                <Columns>
+                                    <asp:TemplateField>
+                                        <ItemTemplate>
+                                            <asp:LinkButton ID="btnSetor" runat="server" CssClass="btn btn-default btn-sm btnDetalhes" CommandName="Editar" CommandArgument='<%# Bind("set_id") %>'>
+                                        <span class="fas fa-search-plus"></span>
+                                            </asp:LinkButton>
+                                        </ItemTemplate>
+                                    </asp:TemplateField>
+                                    <asp:BoundField DataField="set_nome" HeaderText="Setor" />
+                                </Columns>
+                                <FooterStyle BackColor="#CCCCCC" />
+                                <HeaderStyle BackColor="#4e73df" Font-Bold="True" ForeColor="White" />
+                                <PagerStyle BackColor="#999999" ForeColor="Black" HorizontalAlign="Center" />
+                                <SelectedRowStyle BackColor="#000099" Font-Bold="True" ForeColor="White" />
+                                <SortedAscendingCellStyle BackColor="#F1F1F1" />
+                                <SortedAscendingHeaderStyle BackColor="#808080" />
+                                <SortedDescendingCellStyle BackColor="#CAC9C9" />
+                                <SortedDescendingHeaderStyle BackColor="#383838" />
+                            </asp:GridView>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -98,6 +111,33 @@
             </div>
         </div>
     </div>
+
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('.btnDetalhes').click(function () {
+                var email = $('.btnDetalhes').html();
+                $.ajax({
+                    type: 'POST',
+                    contentType: "application/json; charset=utf-8",
+                    url: 'GerenciarSetores.aspx/ExibirDetalhesSetor',
+                    data: "{'email':'" + email + "'}",
+                    async: false,
+                    success: function (response) {
+                        if (response) {
+
+                        } else {
+                            alert("erro")
+                        }
+                    },
+                    error: function (response) {
+                        alert("Erro");
+                        console.log(response);
+                    }
+                });
+            })
+        });
+    </script>
 
 </asp:Content>
 

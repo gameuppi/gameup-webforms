@@ -35,6 +35,32 @@ public class UsuarioBD
 
     }
 
+    public static string procurarNomeUsuario(int usu_id)
+    {
+        DataSet ds = new DataSet();
+        IDbConnection objConexao;
+        IDbCommand objCommand;
+        IDataAdapter dataAdapter;
+
+        objConexao = Mapped.Connection();
+        string query = "SELECT usu_nome from usuario WHERE usu_id = ?usu_id";
+
+        objCommand = Mapped.Command(query, objConexao);
+
+        objCommand.Parameters.Add(Mapped.Parameter("?usu_id", usu_id));
+
+        dataAdapter = Mapped.Adapter(objCommand);
+
+        dataAdapter.Fill(ds);
+
+        objConexao.Close();
+        objConexao.Dispose();
+        objCommand.Dispose();
+
+        return ds.Tables[0].Rows[0]["usu_nome"].ToString();
+
+    }
+
     public static DataSet procurarUsuarioPorEmail(string usu_email)
     {
         DataSet ds = new DataSet();
@@ -230,46 +256,11 @@ public class UsuarioBD
             IDbCommand objCommand;
             objConexao = Mapped.Connection();
 
-            string query = "update usuario SET usu_statususuario = ?status WHERE usu_id = ?usu_id";
+            string query = "update usuario SET usu_statususuario = IF(usu_statususuario = 1, 2, 1) WHERE usu_id = ?usu_id";
 
             objCommand = Mapped.Command(query, objConexao);
 
             objCommand.Parameters.Add(Mapped.Parameter("?usu_id", usu_id));
-            objCommand.Parameters.Add(Mapped.Parameter("?status", 2));
-
-            objCommand.ExecuteNonQuery();
-
-            objConexao.Close();
-            objConexao.Dispose();
-            objCommand.Dispose();
-
-            ok = true;
-        }
-        catch (Exception ex)
-        {
-            Console.Write(ex.StackTrace);
-        }
-
-        return ok;
-
-    }
-
-    public static bool UpdateInativo2(int usu_id)
-    {
-        bool ok = false;
-        try
-        {
-            DataSet ds = new DataSet();
-            IDbConnection objConexao;
-            IDbCommand objCommand;
-            objConexao = Mapped.Connection();
-
-            string query = "update usuario SET usu_statususuario = ?status WHERE usu_id = ?usu_id";
-
-            objCommand = Mapped.Command(query, objConexao);
-
-            objCommand.Parameters.Add(Mapped.Parameter("?usu_id", usu_id));
-            objCommand.Parameters.Add(Mapped.Parameter("?status", 1));
 
             objCommand.ExecuteNonQuery();
 

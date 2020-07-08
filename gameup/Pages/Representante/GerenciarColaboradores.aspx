@@ -122,9 +122,12 @@
                 <div class="card-body text-center">
                     <div class="table-responsive">
                         <div class="col-md-12">
-                            <asp:GridView OnSelectedIndexChanged="gvColaboradores_SelectedIndexChanged" ID="gvColaboradores" runat="server" ClientIDMode="Static" CellPadding="3" GridLines="Vertical" AutoGenerateColumns="False" CssClass="table table-striped table-hover tabela" OnRowCommand="gvColaboradores_RowCommand">
+                            <asp:GridView OnSelectedIndexChanged="gvColaboradores_SelectedIndexChanged" ID="gvColaboradores" runat="server" ClientIDMode="Static" CellPadding="3" GridLines="Vertical" AutoGenerateColumns="False" CssClass="table table-striped table-hover tabela" OnRowCommand="gvColaboradores_RowCommand" OnRowDataBound="gvColaboradores_RowDataBound">
                                 <Columns>
                                     <asp:TemplateField>
+                                        <HeaderTemplate>
+                                            Detalhes
+                                        </HeaderTemplate>
                                         <ItemTemplate>
                                             <asp:LinkButton ID="btnColaborador" runat="server" CssClass="btn btn-default btn-sm btnDetalhes" CommandName="Editar" CommandArgument='<%# Bind("usu_id") %>'>
                                         <span class="fas fa-search-plus"></span>
@@ -132,10 +135,17 @@
                                         </ItemTemplate>
                                     </asp:TemplateField>
                                     <asp:BoundField DataField="usu_nome" HeaderText="Usuario" />
-                                    <asp:BoundField DataField="usu_email" HeaderText="E-mail" ItemStyle-CssClass="btnDetalhes" />
+                                    <asp:BoundField DataField="usu_email" HeaderText="E-mail" ItemStyle-CssClass="btnDetalhes" ItemStyle-Font-Size="Small" />
                                     <asp:BoundField DataField="tus_id" HeaderText="Cargo" />
                                     <asp:BoundField DataField="set_id" HeaderText="Setor" />
-                                    <asp:BoundField DataField="usu_statususuario" HeaderText="Status" />
+                                    <asp:TemplateField>
+                                        <HeaderTemplate>
+                                            Status
+                                        </HeaderTemplate>
+                                        <ItemTemplate>
+                                            <asp:LinkButton ID="btnInativo" runat="server" Text='<%# Bind("usu_statususuario") %>' CommandName="Inativar" CommandArgument='<%# Bind("usu_id") %>'></asp:LinkButton>
+                                        </ItemTemplate>
+                                    </asp:TemplateField>
                                 </Columns>
                                 <FooterStyle BackColor="#CCCCCC" />
                                 <HeaderStyle BackColor="#4e73df" Font-Bold="True" ForeColor="White" />

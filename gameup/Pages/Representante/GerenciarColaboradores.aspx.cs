@@ -79,67 +79,6 @@ public partial class Pages_Representante_GerenciarColaboradores : System.Web.UI.
         {
             gvColaboradores.HeaderRow.TableSection = TableRowSection.TableHeader;
         }
-
-        //DataSet colaboradoresDS = UsuarioBD.procurarUsuarioPorEmpresa(usuarioLogado.Emp_id);
-        //Usuario usuario;
-        //List<Usuario> listaDeColaboradores = new List<Usuario>();
-
-        //foreach (DataRow u in colaboradoresDS.Tables[0].Rows)
-        //{
-        //    usuario = new Usuario();
-        //    usuario.Usu_id = Convert.ToInt32(u["usu_id"].ToString());
-        //    usuario.Usu_nome = u["usu_nome"].ToString();
-        //    usuario.Tus_id = Convert.ToInt32(u["tus_id"].ToString());
-        //    usuario.Set_id = Convert.ToInt32(u["set_id"].ToString());
-        //    //usuario.Usu_statusUsuario = Convert.ToInt32(u["usu_statususuario"].ToString());
-
-        //    listaDeColaboradores.Add(usuario);
-        //}
-
-        //ListarColaboradores(listaDeColaboradores);
-    }
-
-    void ListarColaboradores(List<Usuario> listaDeColaboradores)
-    {
-        //TableRow tr;
-        //TableCell tcUsuario;
-        //TableCell tcCargo;
-        //TableCell tcSetor;
-        //TableCell tcStatus;
-
-        //foreach (Usuario usuario in listaDeColaboradores)
-        //{
-        //    tr = new TableRow();
-        //    tcUsuario = new TableCell();
-        //    tcCargo = new TableCell();
-        //    tcSetor = new TableCell();
-        //    tcStatus = new TableCell();
-
-        //    tcUsuario.Text = formatarNome(usuario.Usu_nome);
-
-        //    if (usuario.Tus_id == 1)
-        //    {
-        //        tcCargo.Text = TipoUsuarioEnum.COLABORADOR.ToString();
-        //    }
-        //    else if (usuario.Tus_id == 2)
-        //    {
-        //        tcCargo.Text = TipoUsuarioEnum.GERENTE.ToString();
-        //    }
-        //    else if (usuario.Tus_id == 3)
-        //    {
-        //        tcCargo.Text = TipoUsuarioEnum.REPRESENTANTE.ToString();
-        //    }
-
-        //    tcSetor.Text = SetorBD.procurarSetoresPorID(usuario.Set_id);
-        //    tcStatus.Text = StatusUsuarioEnum.CADASTRADO.ToString();
-
-        //    tr.Controls.Add(tcUsuario);
-        //    tr.Controls.Add(tcCargo);
-        //    tr.Controls.Add(tcSetor);
-        //    tr.Controls.Add(tcStatus);
-
-        //    tblColaboradores.Controls.Add(tr);
-        //}
     }
 
     string formatarNome(string nome)
@@ -333,82 +272,24 @@ public partial class Pages_Representante_GerenciarColaboradores : System.Web.UI.
             rptColaborador.DataBind();
 
         }
+
+        if (e.CommandName == "Inativar")
+        {
+            switch (UsuarioBD.UpdateInativo(Convert.ToInt32(e.CommandArgument)))
+            {
+                case true:
+                    Response.Write("<script> alert('Update realizado com sucesso!!!')</script>");
+                    break;
+                case false:
+                    Response.Write("<script> alert('Ocorreu algum erro, Tente novamente mais tarde')</script>");
+                    break;
+            }
+
+            CriaListaColaboradores();
+        }
+
+
     }
-
-    //void ExibeColaborador(int usu_id)
-    //{
-    //    LinkButton btnEditar = new LinkButton();
-    //    Literal lblUsu = new Literal();
-    //    Literal lblRodape = new Literal();
-
-    //    DataSet dsColaborador = UsuarioBD.procurarUsuarioPorId(Convert.ToInt32(usu_id));
-
-    //    lblNome.Text = $"<h6 class='m-0 font-weight-bold text-dark'>Colaborador: {formatarNome(dsColaborador.Tables[0].Rows[0]["usu_nome"].ToString())}</h6>";
-    //    lblUsu.Text = "<div class='col-md-12 m-0 font-weight-normal'>";
-    //    lblUsu.Text += "<div class='row'>";
-    //    lblUsu.Text += "<div class='col-md-5'>";
-    //    lblUsu.Text += " <div class='col-md-12'> ";
-    //    lblUsu.Text += "     <div class='card-custom border-left-success shadow'> ";
-    //    lblUsu.Text += "         <div class='card-custom-image'> ";
-    //    lblUsu.Text += "             <img src='http://localhost:62235/Assets/Imagens/astronautasentado.jpg' class='img-fluid'> ";
-    //    lblUsu.Text += "         </div> ";
-    //    lblUsu.Text += "     </div> ";
-    //    lblUsu.Text += " </div> ";
-    //    lblUsu.Text += "</div>";
-    //    lblUsu.Text += "<div class='col-md-7'>";
-    //    lblUsu.Text += "<div class='col-md-12'>";
-    //    lblUsu.Text += $"<b>Nome</b>: {dsColaborador.Tables[0].Rows[0]["usu_nome"].ToString()}";
-    //    lblUsu.Text += "</div>";
-    //    lblUsu.Text += "<div class='col-md-12'>";
-    //    lblUsu.Text += $"<b>Apelido</b>: {dsColaborador.Tables[0].Rows[0]["usu_apelido"].ToString()}";
-    //    lblUsu.Text += "</div>";
-    //    lblUsu.Text += "<div class='col-md-12'>";
-    //    lblUsu.Text += $"<b>Setor</b>: {SetorBD.procurarSetoresPorID(Convert.ToInt32(dsColaborador.Tables[0].Rows[0]["set_id"].ToString()))}";
-    //    lblUsu.Text += "</div>";
-
-    //    if (Convert.ToInt32(dsColaborador.Tables[0].Rows[0]["tus_id"].ToString()) == 1)
-    //    {
-    //        lblUsu.Text += "<div class='col-md-12'>";
-    //        lblUsu.Text += $"<b>Cargo</b>: {TipoUsuarioEnum.COLABORADOR.ToString()}";
-    //        lblUsu.Text += "</div>";
-    //    }
-    //    else if (Convert.ToInt32(dsColaborador.Tables[0].Rows[0]["tus_id"].ToString()) == 2)
-    //    {
-    //        lblUsu.Text += "<div class='col-md-12'>";
-    //        lblUsu.Text += $"<b>Cargo</b>: {TipoUsuarioEnum.GERENTE.ToString()}";
-    //        lblUsu.Text += "</div>";
-    //    }
-    //    else if (Convert.ToInt32(dsColaborador.Tables[0].Rows[0]["tus_id"].ToString()) == 3)
-    //    {
-    //        lblUsu.Text += "<div class='col-md-12'>";
-    //        lblUsu.Text += $"<b>Cargo</b>: {TipoUsuarioEnum.REPRESENTANTE.ToString()}";
-    //        lblUsu.Text += "</div>";
-    //    }
-    //    lblUsu.Text += "<div class='col-md-12'>";
-    //    lblUsu.Text += $"<b>E-mail</b>: {dsColaborador.Tables[0].Rows[0]["usu_email"].ToString()}";
-    //    lblUsu.Text += "</div>";
-    //    lblUsu.Text += "<div class='col-md-12'>";
-    //    lblUsu.Text += $"<b>Pontos</b>: {dsColaborador.Tables[0].Rows[0]["usu_qtdPontos"].ToString()}";
-    //    lblUsu.Text += "</div>";
-    //    lblUsu.Text += "<div class='col-md-12'>";
-    //    lblUsu.Text += $"<b>Experiência</b>: {dsColaborador.Tables[0].Rows[0]["usu_qtdXp"].ToString()}";
-    //    lblUsu.Text += "</div>";
-    //    lblUsu.Text += "<div class='col-md-12'>";
-    //    lblUsu.Text += $"<b>Status</b>: {dsColaborador.Tables[0].Rows[0]["usu_statusUsuario"].ToString()}";
-    //    lblUsu.Text += "</div>";
-    //    lblUsu.Text += "<div class='col-md-12'>";
-    //    lblUsu.Text += $"<b>Nivel</b>: {dsColaborador.Tables[0].Rows[0]["niv_id"].ToString()}";
-    //    lblUsu.Text += "</div>";
-    //    lblUsu.Text += "<div class='col-md-12'>";
-    //    lblRodape.Text += "</div>";
-    //    lblRodape.Text += "</div>";
-    //    lblRodape.Text += "</div>";
-    //    lblRodape.Text += "</div>";
-
-    //    pnlExibeColaborador.Controls.Add(lblUsu);
-    //    pnlExibeColaborador.Controls.Add(btnEditar);
-    //    pnlExibeColaborador.Controls.Add(lblRodape);
-    //}
 
     protected void rptColaborador_ItemCommand(object source, RepeaterCommandEventArgs e)
     {
@@ -466,36 +347,43 @@ public partial class Pages_Representante_GerenciarColaboradores : System.Web.UI.
                         Response.Write("<script> alert('Ocorreu algum erro, Tente novamente mais tarde')</script>");
                         break;
                 }
+
             }
         }
 
         if (cbInativoModal.Checked)
         {
-            switch (UsuarioBD.UpdateInativo(usu_id_editar))
-            {
-                case true:
-                    Response.Write("<script> alert('Update realizado com sucesso!!!')</script>");
-                    break;
-                case false:
-                    Response.Write("<script> alert('Ocorreu algum erro, Tente novamente mais tarde')</script>");
-                    break;
-            }
+            
         }
         else
         {
-            if (Convert.ToInt32(dsColab.Tables[0].Rows[0]["usu_statususuario"].ToString()) == 2)
+          
+        }
+
+    }
+
+    protected void gvColaboradores_RowDataBound(object sender, GridViewRowEventArgs e)
+    {
+        if ( e.Row.RowType == DataControlRowType.DataRow)
+        {
+            LinkButton lnk = (LinkButton) e.Row.FindControl("btnInativo");
+
+            if (lnk != null)
             {
-                switch (UsuarioBD.UpdateInativo2(usu_id_editar))
+                switch (lnk.Text)
                 {
-                    case true:
-                        Response.Write("<script> alert('Update realizado com sucesso!!!')</script>");
+                    case "ATIVO":
+                        lnk.Text = "<i class='fa fa-check' data-toggle='tooltip' title='Ativo'></i>";
                         break;
-                    case false:
-                        Response.Write("<script> alert('Ocorreu algum erro, Tente novamente mais tarde')</script>");
+                    case "INATIVO":
+                        lnk.Text = "<i class='fa fa-ban' data-toggle='tooltip' title='Inativo'></i>";
+                        break;
+                    case "CADASTRADO":
+                        lnk.Text = "<i class='fa fa-id-card' data-toggle='tooltip' title='Cadastrado'></i>";
+                        lnk.Enabled = false;
                         break;
                 }
             }
         }
-
     }
 }
