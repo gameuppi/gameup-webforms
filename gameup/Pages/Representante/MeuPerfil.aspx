@@ -1,8 +1,11 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MasterPageColaborador.master" AutoEventWireup="true" CodeFile="MeuPerfil.aspx.cs" Inherits="Pages_Colaborador_MeuPerfil" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MasterPageRepresentante.master" AutoEventWireup="true" CodeFile="MeuPerfil.aspx.cs" Inherits="Pages_Representante_MeuPerfil" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
+
+    <%--TELA DE MEU PERFIL DE REPRESENTANTE--%>
+
     <!-- Page Heading -->
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
         <h1 class="h3 mb-0 text-gray-800">Meu Perfil</h1>
@@ -32,9 +35,10 @@
                                         <asp:TextBox runat="server" ID="txtNome" CssClass="form-control" placeholder="Nome"></asp:TextBox>
                                     </div>
                                     <div class="form-group">
-                                        <asp:TextBox runat="server"  readonly="true" ID="txtNasc" CssClass="form-control" placeholder="Data de nascimento"></asp:TextBox>                                    </div>
+                                        <asp:TextBox runat="server" ReadOnly="true" ID="txtNasc" CssClass="form-control" placeholder="Data de nascimento"></asp:TextBox>
+                                    </div>
                                     <div class="form-group">
-                                        <asp:TextBox runat="server"  readonly="true" ID="txtEmail" CssClass="form-control" placeholder="E-mail"></asp:TextBox>
+                                        <asp:TextBox runat="server" ReadOnly="true" ID="txtEmail" CssClass="form-control" placeholder="E-mail"></asp:TextBox>
                                     </div>
                                     <a href="#" data-toggle="modal" data-target="#exampleModalCenter">Alterar senha</a>
 
@@ -82,66 +86,9 @@
                 </div>
                 <!-- Fim informacoes perfil -->
 
-                <!-- Moedas -->
-                <div class="col-12 col-md-6 mb-4">
-                    <div class="card border-left-success shadow h-100 py-2">
-                        <div class="card-body">
-                            <div class="row no-gutters align-items-center">
-                                <div class="col mr-2">
-                                    <div class="text-sm font-weight-bold text-success text-uppercase mb-1">Moedas de ouro</div>
-                                    <div class="h5 mb-0 font-weight-bold text-gray-800">
-                                        <asp:label runat="server" ID="lblMoedas" CssClass="h5 mb-0 font-weight-bold text-gray-800"></asp:label>
-                                    </div>
-                                </div>
-                                <div class="col-auto">
-                                    <i class="fas fa-coins fa-2x text-gray-300"></i>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                
 
-                <!-- Pontos de habilidade -->
-                <div class="col-12 col-md-6 mb-4">
-                    <div class="card border-left-warning shadow h-100 py-2">
-                        <div class="card-body">
-                            <div class="row no-gutters align-items-center">
-                                <div class="col mr-2">
-                                    <div class="text-sm font-weight-bold text-warning text-uppercase mb-1">Pontos de habilidade</div>
-                                    <asp:label runat="server" ID="lblPontos" CssClass="h5 mb-0 font-weight-bold text-gray-800"></asp:label>
-                                </div>
-                                <div class="col-auto">
-                                    <i class="fas fa-star fa-2x text-gray-300"></i>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Experiencia -->
-                <div class="col-12 mb-4">
-                    <div class="card border-left-info shadow h-100 py-2">
-                        <div class="card-body">
-                            <div class="row no-gutters align-items-center">
-                                <div class="col mr-2">
-                                    <div class="form-group col-md-8">
-                                        <select id="inputState" class="form-control">
-                                            <option selected>Jovem peregrino da alvorada</option>
-                                            <option>...</option>
-                                        </select>
-                                        <div class="progress mb-1 mt-4">
-                                            <div class="progress-bar bg-success" role="progressbar" style="width: 20%" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100"></div>
-                                        </div>
-                                        <asp:label runat="server" ID="lblExp" CssClass="text-xs font-weight-bold text-info text-uppercase"></asp:label>
-                                    </div>
-                                </div>
-                                <div class="col-auto">
-                                    <i class="fas fa-meteor fa-2x text-gray-300"></i>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                
             </div>
         </div>
 
@@ -214,30 +161,29 @@
         </div>--%>
         <!-- Fim avatar -->
 
-         <!-- Modal cadastra missao -->
-    <div class="modal fade" id="modalSucesso">
-        <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content">
+        <!-- Modal cadastra missao -->
+        <div class="modal fade" id="modalSucesso">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
 
-                <div class="modal-header">
-                    <h4 class="modal-title">
-                        <asp:Literal runat="server" ID="ltrTituloModal"></asp:Literal>
-                    </h4>
-                    <button type="button" class="close" data-dismiss="modal">&times;</button>
-                </div>
+                    <div class="modal-header">
+                        <h4 class="modal-title">
+                            <asp:Literal runat="server" ID="ltrTituloModal"></asp:Literal>
+                        </h4>
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    </div>
 
-                <div class="modal-body">
-                    <asp:Literal runat="server" ID="msgModalCadastraMissao"></asp:Literal>
-                </div>
+                    <div class="modal-body">
+                        <asp:Literal runat="server" ID="msgModalCadastraMissao"></asp:Literal>
+                    </div>
 
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-success" data-dismiss="modal">Pronto</button>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-success" data-dismiss="modal">Pronto</button>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-
-
+</div>
         <!-- /.container-fluid -->
 </asp:Content>
 

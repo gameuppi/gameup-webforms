@@ -15,7 +15,7 @@
                 <div class="col-12">
                     <div class="card mb-4 py-1 border-bottom-primary">
                         <div class="card-body py-1">
-                            As conquistas define seus pontos fortes como funcionário, conquiste-as e mostre que é capaz
+                           O Painel de Lideres é baseado nos pontos obtidos durante todos os dias que está na empresa, obtenha mais pontos para conquistar a melhor pontuação.
 
                         </div>
                     </div>

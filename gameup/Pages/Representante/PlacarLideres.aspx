@@ -1,8 +1,10 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MasterPageColaborador.master" AutoEventWireup="true" CodeFile="PlacarLideres.aspx.cs" Inherits="Pages_Colaborador_PlacarLideres" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MasterPageRepresentante.master" AutoEventWireup="true" CodeFile="PlacarLideres.aspx.cs" Inherits="Pages_Representante_PlacarLideres" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
+
+    <%--TELA DE PLACAR DE LIDERES REPRESENTANTE--%>
 
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
         <h1 class="h3 mb-0 text-gray-800">Placar de líderes</h1>

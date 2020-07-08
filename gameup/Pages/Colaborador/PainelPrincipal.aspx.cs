@@ -86,7 +86,7 @@ public partial class Pages_Colaborador_PainelPrincipal : System.Web.UI.Page
         {
             usuarioLogado = (Usuario)Session["USUARIO"];
 
-            if (usuarioLogado.Tus_id != 1) // Gerente
+            if (usuarioLogado.Tus_id != 1) // usu
             {
                 Response.Redirect("../Visitante/Login.aspx");
             }

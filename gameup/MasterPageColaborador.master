@@ -60,7 +60,7 @@
                 </li>
                 <br />
                 <!-- Divider -->
-                <hr class="sidebar-divider d-none d-md-block">
+               <%-- <hr class="sidebar-divider d-none d-md-block">--%>
 
                 <!-- Nav Item - Tables -->
                 <li class="nav-item">
@@ -77,12 +77,12 @@
                     </a>
                 </li>
 
-                <li class="nav-item">
+               <%-- <li class="nav-item">
                     <a class="nav-link" href="../../Pages/Colaborador/Conquistas.aspx">
                         <i class="fas fa-fw fa-medal"></i>
                         <span>Conquistas</span>
                     </a>
-                </li>
+                </li>--%>
 
                 <li class="nav-item">
                     <a class="nav-link" href="../../Pages/Colaborador/Desenvolvimento.aspx">
@@ -98,24 +98,24 @@
                     </a>
                 </li>
 
-                <li class="nav-item">
+                <%--<li class="nav-item">
                     <a class="nav-link" href="#">
                         <i class="fas fa-fw fa-newspaper"></i>
                         <span>Novidades</span>
                     </a>
-                </li>
+                </li>--%>
 
                 <!-- Divider -->
                 <hr class="sidebar-divider d-none d-md-block">
 
-                <div class="row text-center text-white p-2">
+                <%--<div class="row text-center text-white p-2">
                     <div class="col-6">
                         <i class="fas fa-cog fa-2x icon-change-white"></i>
                     </div>
                     <div class="col-6">
                         <asp:LinkButton runat="server" ID="btnSair" CssClass="text-white" OnClick="btnSair_Click"><i class="fas fa-power-off fa-2x icon-change-white"></i></asp:LinkButton>
                     </div>
-                </div>
+                </div>--%>
 
             </ul>
             <!-- End of Sidebar -->
@@ -141,13 +141,13 @@
                         <ul class="navbar-nav ml-auto">
                             <!-- Nav Item - Pontos -->
 
-                            <li class="nav-item no-arrow mx-1">
+                            <%--<li class="nav-item no-arrow mx-1">
                                 <asp:LinkButton runat="server" CssClass="nav-link" ID="btnModoContraste" OnClick="btnModoContraste_Click" aria-haspopup="true" aria-expanded="false">
                                     Modo monocromático &ensp;
                                      <i class="fas fa-low-vision fa-fw"></i>
                                 </asp:LinkButton>
-                            </li>
-                            <li class="nav-item dropdown no-arrow mx-1">
+                            </li>--%>
+                            <%--<li class="nav-item dropdown no-arrow mx-1">
                                 <a class="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     <i class="fas fa-star fa-fw"></i>
                                 </a>
@@ -190,10 +190,10 @@
                                     </a>
                                     <a class="dropdown-item text-center small text-gray-500" href="#">Ver Mais</a>
                                 </div>
-                            </li>
+                            </li>--%>
 
                             <!-- Nav Item - Moedas -->
-                            <li class="nav-item dropdown no-arrow mx-1">
+                            <%--<li class="nav-item dropdown no-arrow mx-1">
                                 <a class="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     <i class="fas fa-coins fa-fw"></i>
                                 </a>
@@ -236,10 +236,10 @@
                                     </a>
                                     <a class="dropdown-item text-center small text-gray-500" href="#">Ver Mais</a>
                                 </div>
-                            </li>
+                            </li>--%>
 
                             <!-- Nav Item - Alerts -->
-                            <li class="nav-item dropdown no-arrow mx-1">
+                            <%--<li class="nav-item dropdown no-arrow mx-1">
                                 <a class="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     <i class="fas fa-bell fa-fw"></i>
                                     <!-- Counter - Alerts -->
@@ -284,20 +284,31 @@
                                     </a>
                                     <a class="dropdown-item text-center small text-gray-500" href="#">Ver Mais</a>
                                 </div>
-                            </li>
+                            </li>--%>
 
 
 
-                            <div class="topbar-divider d-none d-sm-block"></div>
+                            <%--<div class="topbar-divider d-none d-sm-block"></div>--%>
 
                             <!-- Nav Item - User Information -->
                             <li class="nav-item dropdown no-arrow">
-                                <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <a class="nav-link dropdown-toggle" href="PainelPrincipal.aspx" >
                                     <i class="fas fa-rocket"></i>
                                 </a>
                             </li>
 
                         </ul>
+
+                        <!-- Logout and settings (Sidebar) -->
+                        <lu class="navbar-nav ml-auto">
+                            <li class="row text-center text-white p-2">
+                                <%--<div class="col-6">
+                                    <i class="fas fa-cog fa-2x icon-change-white"></i>
+                                </div>--%>
+                                    <asp:LinkButton runat="server" ID="LinkButton1" CssClass="text-black-50" OnClick="btnSair_Click"><i class="fas fa-power-off fa-2x icon-change-white" ></i></asp:LinkButton>
+                                
+                            </li>
+                        </lu>
 
                     </nav>
                     <!-- End of Topbar -->
