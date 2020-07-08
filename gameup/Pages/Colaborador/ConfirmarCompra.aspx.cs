@@ -97,12 +97,8 @@ public partial class Pages_Colaborador_ConfirmarCompra : System.Web.UI.Page
     {
         if (ProdutoDB.FazMovimentacaoFinanceira(produto, usuarioLogado))
         {
-            // Preenche modal
-            msgModalCadastraMissao.Text = "<h5 class='text-success'>Produto adquirido com sucesso!</h5>";
-            ltrTituloModal.Text = "Ótimo!";
-            // Abre modal de sucesso
-            Page.ClientScript.RegisterStartupScript(this.GetType(), "script", "<script>$('#modalCompra').modal('show');</script>");
-            //Response.Redirect("LojaVirtual.aspx");
+            Session["EXIBEMODAL"] = "Produto adquirido com sucesso!!!";
+            Response.Redirect("LojaVirtual.aspx");
         }
         else
         {
@@ -111,7 +107,6 @@ public partial class Pages_Colaborador_ConfirmarCompra : System.Web.UI.Page
             ltrTituloModal.Text = "Oops!";
             // Abre modal de sucesso
             Page.ClientScript.RegisterStartupScript(this.GetType(), "script", "<script>$('#modalCompra').modal('show');</script>");
-            //Response.Redirect("LojaVirtual.aspx");
         }
     }
 

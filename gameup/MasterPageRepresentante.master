@@ -260,7 +260,7 @@
             <script src="../../Assets/Custom/Js/demo/chart-pie-demo.js"></script>
             <script src="../../Assets/Custom/Js/demo/chart-pie-demo.js"></script>
             <script src="../../Assets/Vendor/datatables/jquery.dataTables.js"></script>
-            <script src="../../Assets/Vendor/datatables/dataTables.bootstrap4.min.js"></script>
+            <script src="../../Assets/Vendor/datatables/dataTables.bootstrap4.min.js"></script>            
             <link href="../../Assets/Vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet" />
 
 
@@ -294,6 +294,12 @@
                         }
                     });
                 });
+            </script>
+
+            <script>
+                $(function () {
+                    $('[data-toggle="tooltip"]').tooltip()
+                })
             </script>
 
             <asp:ScriptManager runat="server"></asp:ScriptManager>
