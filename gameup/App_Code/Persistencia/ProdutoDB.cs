@@ -17,7 +17,7 @@ public class ProdutoDB
         IDataAdapter dataAdapter;
         objConexao = Mapped.Connection();
 
-        string query = "select * from produtos where emp_id = ?emp_id";
+        string query = "select * from produtos p JOIN movestoque mes ON mes.pro_id = p.pro_id where p.emp_id = ?emp_id";
         objCommand = Mapped.Command(query, objConexao);
         objCommand.Parameters.Add(Mapped.Parameter("?emp_id", emp_id));
         dataAdapter = Mapped.Adapter(objCommand);
@@ -174,7 +174,7 @@ public class ProdutoDB
         IDataAdapter dataAdapter;
         objConexao = Mapped.Connection();
 
-        string query = "select pro.* from movfinanceira mov join produtos pro on pro.pro_id = mov.pro_id where mov.usu_id = ?usu_id limit 4";
+        string query = "select pro.* from movfinanceira mov join produtos pro on pro.pro_id = mov.pro_id where mov.usu_id = ?usu_id";
         objCommand = Mapped.Command(query, objConexao);
         objCommand.Parameters.Add(Mapped.Parameter("?usu_id", usu_id));
         dataAdapter = Mapped.Adapter(objCommand);

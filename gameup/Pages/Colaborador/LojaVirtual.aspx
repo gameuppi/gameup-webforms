@@ -11,13 +11,13 @@
     <!-- Content Row -->
     <div class="row">
 
-         <div class="col-xl-12 col-md-12 mb-4">
+        <div class="col-xl-12 col-md-12 mb-4">
             <div class="card border-left-warning shadow py-2">
                 <div class="card-body">
                     <div class="row">
                         <div class="col-12">
-                            <h6>Seja muito bem-vindo! Para saber mais como a loja virtual funciona, consulte o link ao lado. <a href="#"> Acessar o regulamento</a></h6>
-                            
+                            <h6>Seja muito bem-vindo! Para saber mais como a loja virtual funciona, consulte o link ao lado. <a href="#">Acessar o regulamento</a></h6>
+
                         </div>
                     </div>
                 </div>
@@ -33,8 +33,22 @@
                         </div>
                         <div class="col-12">
                             <div class="row">
-                                <asp:Literal runat="server" ID="ltrMeuProdutos">
-                                </asp:Literal>
+                                <asp:Repeater ID="rptMeusProdutos" runat="server">
+                                    <ItemTemplate>
+                                        <div class='col-md-3 mt-4'>
+                                            <div class='card-custom border-left-success shadow h-100'>
+                                                <div class='card-custom-image'>
+                                                    <img src='<%# Eval("pro_logo") %>'>
+                                                    <span class='card-custom-title font-weight-bold'><%# Eval("pro_nome") %>
+                                                    </span>
+                                                </div>
+                                                <div class='card-custom-content'>
+                                                    <p><%# Eval("pro_descricao") %></p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </ItemTemplate>
+                                </asp:Repeater>
                             </div>
                         </div>
                     </div>
@@ -50,16 +64,63 @@
                         <div class="col-12">
                             <h5>Para adquirir</h5>
                         </div>
-                        <div class="col-12">
-                            <asp:Panel ID="painel1" runat="server" CssClass="row"></asp:Panel>
+                        <div class="col-12 row">
+                            <asp:Repeater ID="rptProdutos" runat="server" OnItemCommand="rptProdutos_ItemCommand">
+                                <ItemTemplate>
+                                    <div class='col-md-3'>
+                                        <div class='card-custom border-left-success shadow h-100'>
+                                            <div class='card-custom-image'>
+                                                <img src='<%# Eval("pro_logo") %>'>
+                                                <span class='card-custom-title font-weight-bold'>
+                                                    <%# Eval("pro_nome") %>
+                                                    <br />
+                                                    <small><%# Eval("mes_saldo") %> disponíveis</small>
+                                                </span>
+                                                <div class='text-center'>
+                                                    <asp:LinkButton ID="btnComprar" runat="server" CssClass="btn-floating btn-large halfway-fab btn-success text-white" CommandName="Comprar" CommandArgument='<%# Bind("pro_id") %>'>
+                                                        <span class="fas fa-shopping-cart mt-3 ml-2 mr-2 mb-2" style="font-size: 21px"></span>
+                                                    </asp:LinkButton>
+                                                </div>
+                                            </div>
+                                            <br />
+                                            <div class='col-md-12 card-custom-content'>
+                                                <p><%# Eval("pro_subtitulo") %></p>
+                                                <p><%# Eval("pro_valorMoeda") %> Moedas</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </ItemTemplate>
+                            </asp:Repeater>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-       
+
         <div class="col-12 col-md-12">
-            
+        </div>
+
+        <!-- Modal compra -->
+        <div class="modal fade" id="modalCompra">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+
+                    <div class="modal-header">
+                        <h4 class="modal-title">
+                            <asp:Literal runat="server" ID="ltrTituloModal"></asp:Literal>
+                        </h4>
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    </div>
+
+                    <div class="modal-body">
+                        <asp:Literal runat="server" ID="msgModalCadastraMissao"></asp:Literal>
+                    </div>
+
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-success" data-dismiss="modal">Pronto</button>
+                    </div>
+                </div>
+            </div>
         </div>
 
         <!-- Card de item -  -->
