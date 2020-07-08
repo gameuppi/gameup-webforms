@@ -537,7 +537,43 @@ public class MissaoBD
 
         return ds;
     }
-        
+
+    public static DataSet procurarUsuariosEmpresaRepresentante(int emp_id, int usu_id)
+    {
+        DataSet ds = new DataSet();
+        IDbConnection objConexao;
+        IDbCommand objCommand;
+        IDataAdapter dataAdapter;
+
+        objConexao = Mapped.Connection();
+        string query = "";
+        query += " 	SELECT ";
+        query += " 	    USU_ID, ";
+        query += " 	    USU_NOME, ";
+        query += " 	    SET_ID, ";
+        query += " 	    USU_STATUSUSUARIO ";
+        query += " 	FROM ";
+        query += " 	    USUARIO ";
+        query += " 	WHERE ";
+        query += " 	    EMP_ID = ?emp_id ";
+        query += " 	    AND USU_ID <> ?usu_id ";
+        query += " 	    AND TUS_ID = 2; ";
+
+        objCommand = Mapped.Command(query, objConexao);
+        objCommand.Parameters.Add(Mapped.Parameter("?emp_id", emp_id));
+        objCommand.Parameters.Add(Mapped.Parameter("?usu_id", usu_id));
+
+        dataAdapter = Mapped.Adapter(objCommand);
+
+        dataAdapter.Fill(ds);
+
+        objConexao.Close();
+        objConexao.Dispose();
+        objCommand.Dispose();
+
+        return ds;
+    }
+
     public static DataSet procurarSetoresEmpresa(int emp_id)
     {
         DataSet ds = new DataSet();
