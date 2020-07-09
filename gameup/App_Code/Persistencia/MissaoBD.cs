@@ -629,4 +629,44 @@ public class MissaoBD
 
         return ds;
     }
+
+    public static DataSet ProcurarMissoesPorTitulo(string tituloMissao, int idUsuario)
+    {
+        DataSet ds = new DataSet();
+        IDbConnection objConexao;
+        IDbCommand objCommand;
+        IDataAdapter dataAdapter;
+
+        objConexao = Mapped.Connection();
+        string query = "";
+        query += " SELECT ";
+        query += "     MUS.MIS_ID, ";
+        query += "     MUS.MUS_ID, ";
+        query += "     MUS.MUS_DT_ATRIBUICAO, ";
+        query += "     MUS.MUS_DT_CONCLUSAO, ";
+        query += "     MUS.MUS_STATUS, ";
+        query += "     MUS.USU_ID, ";
+        query += "     MIS.EMP_ID ";
+        query += " FROM ";
+        query += "     MISSAO_USUARIO MUS ";
+        query += "     JOIN MISSAO MIS ON MUS.MIS_ID = MIS.MIS_ID ";
+        query += " WHERE ";
+        query += " 	UPPER(MIS.MIS_NOME) LIKE ?tituloMissao ";
+        query += "  AND MUS.USU_ID = ?idUsuario ";
+        
+        objCommand = Mapped.Command(query, objConexao);
+
+        objCommand.Parameters.Add(Mapped.Parameter("?tituloMissao", tituloMissao.ToUpper()));
+        objCommand.Parameters.Add(Mapped.Parameter("?idUsuario", idUsuario));
+
+        dataAdapter = Mapped.Adapter(objCommand);
+
+        dataAdapter.Fill(ds);
+
+        objConexao.Close();
+        objConexao.Dispose();
+        objCommand.Dispose();
+
+        return ds;
+    }
 }
