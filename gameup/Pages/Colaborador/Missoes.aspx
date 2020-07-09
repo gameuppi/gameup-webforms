@@ -32,11 +32,11 @@
 
                 <div class="col-12 col-md-4">
                     <div class="input-group">
-                        <input type="text" class="form-control bg-light border-0 small" placeholder="Procure suas missões" aria-label="Search" aria-describedby="basic-addon2">
+                        <asp:TextBox runat="server" ID="txtTituloMissao" CssClass="form-control bg-light border-0 small" placeholder="Procure pelo título da missão" aria-label="Search" aria-describedby="basic-addon2"></asp:TextBox>
                         <div class="input-group-append">
-                            <button class="btn btn-info" type="button">
+                            <asp:LinkButton runat="server" CssClass="btn btn-info" ID="btnPesquisarMissoes" OnClick="btnPesquisarMissoes_Click">
                                 <i class="fas fa-search fa-sm"></i>
-                            </button>
+                            </asp:LinkButton>
                         </div>
                     </div>
                 </div>
@@ -55,11 +55,11 @@
             <div class="row">
                 <div class="col-12 col-md-4 mb-3">
                     <div class="input-group">
-                        <input type="text" class="form-control bg-light border-0 small" placeholder="Procure suas concluídas ou aguardando validação" aria-label="Search" aria-describedby="basic-addon2">
+                        <asp:TextBox runat="server" ID="txtNomeMissaoEnviada" CssClass="form-control bg-light border-0 small" placeholder="Procure pelo título da missão" aria-label="Search" aria-describedby="basic-addon2"></asp:TextBox>
                         <div class="input-group-append">
-                            <button class="btn btn-info" type="button">
+                            <asp:LinkButton runat="server" CssClass="btn btn-info" ID="btnProcurarMissaoEnviada" OnClick="btnProcurarMissaoEnviada_Click">
                                 <i class="fas fa-search fa-sm"></i>
-                            </button>
+                            </asp:LinkButton>
                         </div>
                     </div>
                 </div>
@@ -129,7 +129,7 @@
                                 <asp:Label runat="server" ID="lblTextoAnexo"></asp:Label>
                                 &nbsp;
                                 <asp:Panel runat="server" ID="pnlAnexo">
-                                    <asp:LinkButton runat="server" ID="btnBaixarAnexo" OnClick="btnBaixarAnexo_Click" >
+                                    <asp:LinkButton runat="server" ID="btnBaixarAnexo" OnClick="btnBaixarAnexo_Click">
                                     </asp:LinkButton>
                                 </asp:Panel>
                             </p>

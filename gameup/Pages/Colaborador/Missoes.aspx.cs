@@ -599,4 +599,22 @@ public partial class Pages_Colaborador_Missoes : System.Web.UI.Page
             baixarAnexo(caminhoArquivo);
         }
     }
+
+    protected void btnPesquisarMissoes_Click(object sender, EventArgs e)
+    {
+        string tituloMissao = txtTituloMissao.Text;
+        DataSet missoesEncontradas = MissaoBD.ProcurarMissoesPorTitulo(tituloMissao, usuarioLogado.Usu_id);
+        List<MissaoUsuario> listaDeMissoesEncontradas = criarListaObjMissaoUsuario(missoesEncontradas);
+        pnlMissoesVisualizar.Controls.Clear();
+        carregarTodasAsMissoesUsuario(listaDeMissoesEncontradas);
+    }
+
+    protected void btnProcurarMissaoEnviada_Click(object sender, EventArgs e)
+    {
+        string tituloMissao = txtNomeMissaoEnviada.Text;
+        DataSet missoesEncontradas = MissaoBD.ProcurarMissoesPorTitulo(tituloMissao, usuarioLogado.Usu_id);
+        List<MissaoUsuario> listaDeMissoesEncontradas = criarListaObjMissaoUsuario(missoesEncontradas);
+        pnlMissoesEnviadas.Controls.Clear();
+        carregarTodasAsMissoesUsuario(listaDeMissoesEncontradas);
+    }
 }
