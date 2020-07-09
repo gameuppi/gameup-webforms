@@ -7,6 +7,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
+        //RELATORIOS DE GERENTE
 public partial class Pages_Gerente_Relatorios : System.Web.UI.Page
 {
     private static Usuario usuarioLogado;

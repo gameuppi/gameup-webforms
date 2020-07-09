@@ -232,8 +232,5 @@
             </div>
         </div>
     </div>
-
-
-        <!-- /.container-fluid -->
 </asp:Content>
 
