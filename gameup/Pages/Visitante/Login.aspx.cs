@@ -29,6 +29,7 @@ public partial class Pages_Visitante_Login : System.Web.UI.Page
         usu.Tus_id = Convert.ToInt32(usuario.Tables[0].Rows[0]["tus_id"].ToString());
         usu.Set_id = Convert.ToInt32(usuario.Tables[0].Rows[0]["set_id"].ToString());
         usu.Emp_id = Convert.ToInt32(usuario.Tables[0].Rows[0]["emp_id"].ToString());
+        usu.Usu_dataNascimento = Convert.ToDateTime(usuario.Tables[0].Rows[0]["usu_datanascimento"].ToString());
 
         return usu;
     }
