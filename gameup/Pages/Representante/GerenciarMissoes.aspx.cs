@@ -238,7 +238,7 @@ public partial class Pages_Representante_GerenciarMissoes : System.Web.UI.Page
         else if (rdbTipoSetor.Checked)
         {
 
-            DataSet listaDeSetores = MissaoBD.procurarSetoresEmpresaGerente(usuarioLogado.Set_id);
+            DataSet listaDeSetores = MissaoBD.procurarSetoresEmpresa(usuarioLogado.Emp_id);
 
             // Carrega informacoes no modal 
             lblTituloParticipantes.Text = "<h4> Setores </h4>";

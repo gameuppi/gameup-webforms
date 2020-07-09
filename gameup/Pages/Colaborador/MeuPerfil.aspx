@@ -23,11 +23,11 @@
                         </div>
                         <div class="card-body">
                             <div class="row">
-                                <div class="col-12 col-md-4">
+                                <div class="col-md-2">
                                     <img src="../../Assets/Imagens/perfil2.jpg" class="img-fluid mb-2 rounded" />
-                                    <asp:TextBox runat="server" ID="txtApelido" CssClass="form-control" placeholder="Nome de usuário"></asp:TextBox>
+                                    <asp:TextBox runat="server" ID="txtApelido" CssClass="form-control" placeholder="Apelido"></asp:TextBox>
                                 </div>
-                                <div class="col-12 col-md-8">
+                                <div class="col-md-10">
                                     <div class="form-group">
                                         <asp:TextBox runat="server" ID="txtNome" CssClass="form-control" placeholder="Nome"></asp:TextBox>
                                     </div>
@@ -118,17 +118,13 @@
                     </div>
                 </div>
 
-                <!-- Experiencia -->
+                <%--<!-- Experiencia -->
                 <div class="col-12 mb-4">
                     <div class="card border-left-info shadow h-100 py-2">
                         <div class="card-body">
                             <div class="row no-gutters align-items-center">
                                 <div class="col mr-2">
                                     <div class="form-group col-md-8">
-                                        <select id="inputState" class="form-control">
-                                            <option selected>Jovem peregrino da alvorada</option>
-                                            <option>...</option>
-                                        </select>
                                         <div class="progress mb-1 mt-4">
                                             <div class="progress-bar bg-success" role="progressbar" style="width: 20%" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100"></div>
                                         </div>
@@ -141,7 +137,7 @@
                             </div>
                         </div>
                     </div>
-                </div>
+                </div>--%>
             </div>
         </div>
 

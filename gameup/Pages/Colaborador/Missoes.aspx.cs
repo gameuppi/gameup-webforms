@@ -511,7 +511,7 @@ public partial class Pages_Colaborador_Missoes : System.Web.UI.Page
         {
             usuarioLogado = (Usuario)Session["USUARIO"];
 
-            if (usuarioLogado.Tus_id != 1 && usuarioLogado.Tus_id != 2) // Colaborador ou Gerente
+            if (usuarioLogado.Tus_id != 1) // Colaborador ou Gerente
             {
                 Response.Redirect("../Visitante/Login.aspx");
             }

@@ -14,7 +14,7 @@
 
         <!-- Placar Geral -->
         <div class="col-xl-4 col-lg-5 ">
-            <div class="card shadow mb-4">
+            <div class="card shadow h-100">
                 <!-- Card Header - Dropdown -->
                 <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
                     <h6 class="m-0 font-weight-bold text-dark">Placar Geral</h6>
@@ -109,7 +109,7 @@
 
         <!-- Desempenho -->
         <div class="col-xl-8 col-lg-7 ">
-            <div class="card shadow mb-4">
+            <div class="card shadow h-100">
                 <!-- Card Header - Dropdown -->
                 <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
                     <h6 class="m-0 font-weight-bold text-dark">Desenvolvimento </h6>
@@ -122,9 +122,10 @@
             </div>
         </div>
 
+
         <!-- Novidades -->
         <div class="col-xl-4 col-lg-5 d-flex align-items-stretch">
-            <div class="card shadow mb-4">
+            <div class="card shadow mb-4 mt-3">
                 <!-- Card Header - Dropdown -->
                 <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
                     <h6 class="m-0 font-weight-bold text-dark">Nossa Loja Virtual</h6>
@@ -139,7 +140,7 @@
         </div>
         <!-- Missoes -->
         <div class="col-xl-4 col-lg-5 d-flex align-items-stretch">
-            <div class="card shadow mb-4">
+            <div class="card shadow mb-4 mt-3">
                 <!-- Card Header - Dropdown -->
                 <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
                     <h6 class="m-0 font-weight-bold text-dark">Nosso Processo de Missões</h6>
@@ -160,7 +161,7 @@
 
         <!-- Avisos -->
         <div class="col-xl-4 col-lg-5 d-flex align-items-stretch">
-            <div class="card shadow mb-4">
+            <div class="card shadow mb-4 mt-3">
                 <!-- Card Header - Dropdown -->
                 <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
                     <h6 class="m-0 font-weight-bold text-dark">Nosso Placar de Líderes</h6>

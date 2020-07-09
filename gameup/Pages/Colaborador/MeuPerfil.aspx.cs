@@ -28,7 +28,7 @@ public partial class Pages_Colaborador_MeuPerfil : System.Web.UI.Page
 
         lblMoedas.Text = usuarioLogado.Usu_qtdMoeda.ToString();
         lblPontos.Text = usuarioLogado.Usu_qtdPontos.ToString();
-        lblExp.Text = usuarioLogado.Usu_qtdXp.ToString();
+        //lblExp.Text = usuarioLogado.Usu_qtdXp.ToString();
     }
 
     void validarSessao()

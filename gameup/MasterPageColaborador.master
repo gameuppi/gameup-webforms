@@ -34,7 +34,7 @@
                         <div class="sidebar-brand-icon">
                             <i class="fas fa-user-circle"></i>
                         </div>
-                        <asp:Label runat="server" ID="lblNome" CssClass="sidebar-brand-text mx-3"></asp:Label>                        
+                        <asp:Label runat="server" ID="lblNome" CssClass="sidebar-brand-text mx-3"></asp:Label>
                     </a>
                     <div class="card text-center p-2">
                         <asp:Label runat="server" ID="lblCargo" CssClass="sidebar-brand-text mx-3"></asp:Label>
@@ -60,7 +60,7 @@
                 </li>
                 <br />
                 <!-- Divider -->
-               <%-- <hr class="sidebar-divider d-none d-md-block">--%>
+                <%-- <hr class="sidebar-divider d-none d-md-block">--%>
 
                 <!-- Nav Item - Tables -->
                 <li class="nav-item">
@@ -77,7 +77,7 @@
                     </a>
                 </li>
 
-               <%-- <li class="nav-item">
+                <%-- <li class="nav-item">
                     <a class="nav-link" href="../../Pages/Colaborador/Conquistas.aspx">
                         <i class="fas fa-fw fa-medal"></i>
                         <span>Conquistas</span>
@@ -116,7 +116,6 @@
                         <asp:LinkButton runat="server" ID="btnSair" CssClass="text-white" OnClick="btnSair_Click"><i class="fas fa-power-off fa-2x icon-change-white"></i></asp:LinkButton>
                     </div>
                 </div>--%>
-
             </ul>
             <!-- End of Sidebar -->
 
@@ -292,7 +291,7 @@
 
                             <!-- Nav Item - User Information -->
                             <li class="nav-item dropdown no-arrow">
-                                <a class="nav-link dropdown-toggle" href="PainelPrincipal.aspx" >
+                                <a class="nav-link dropdown-toggle" href="PainelPrincipal.aspx">
                                     <i class="fas fa-rocket"></i>
                                 </a>
                             </li>
@@ -370,6 +369,44 @@
         <script src="../../Assets/Custom/Js/demo/chart-area-demo.js"></script>
         <script src="../../Assets/Custom/Js/demo/chart-pie-demo.js"></script>
         <script src="../../Assets/Custom/Js/demo/chart-pie-demo.js"></script>
+        <script src="../../Assets/Vendor/datatables/jquery.dataTables.js"></script>
+        <script src="../../Assets/Vendor/datatables/dataTables.bootstrap4.min.js"></script>
+        <link href="../../Assets/Vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet" />
+
+
+        <script>
+            $(document).ready(function () {
+                $('.tabela').DataTable({
+                    language: {
+                        sProcessing: "A processar...",
+                        sLengthMenu: "Mostrar _MENU_ registos",
+                        sZeroRecords: "N&atilde;o foram encontrados resultados",
+                        sInfo: "Mostrando de _START_ at&eacute; _END_ de _TOTAL_ registos",
+                        sInfoEmpty: "Mostrando de 0 at&eacute; 0 de 0 registos",
+                        sInfoFiltered: "(filtrado de _MAX_ registos no total)",
+                        sInfoPostFix: "",
+                        sSearch: "Procurar:",
+                        sUrl: "",
+                        oPaginate: {
+                            sFirst: "Primeiro",
+                            sPrevious: "Anterior",
+                            sNext: "Seguinte",
+                            sLast: "&Uacute;ltimo"
+                        }
+                        //buttons: {
+                        //    colvis: 'Exibir Colunas',
+                        //    copyTitle: 'Registros Copiados',
+                        //    copySuccess: {
+                        //        _: 'Copiados %d registros',
+                        //        1: 'Copiado 1 registro'
+                        //    }
+                        //}
+                    }
+                });
+            });
+        </script>
+
+
         <asp:ScriptManager runat="server"></asp:ScriptManager>
     </form>
 
