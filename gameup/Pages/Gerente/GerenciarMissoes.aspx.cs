@@ -122,8 +122,13 @@ public partial class Pages_Gerente_GerenciarMissoes : System.Web.UI.Page
         return missao;
     }
 
+    public void ValidarCampos()
+    {
+    }
+
     protected void cadastrarMissao_Click(object sender, EventArgs e)
     {
+        ValidarCampos();
 
         if (!idMissao.Text.Equals(""))
         {
@@ -749,6 +754,14 @@ public partial class Pages_Gerente_GerenciarMissoes : System.Web.UI.Page
 
     public void carregarTodasAsMissoesUsuario(List<MissaoUsuario> listaMissoesUsuario)
     {
+        if (TabName.Value.Equals("nav-validacao"))
+        {
+            pnlMissaoAgValidacao.Controls.Clear();
+        } else
+        {
+            pnlMissoesVisualizar.Controls.Clear();
+        }
+
         string resp = "";
 
         foreach (MissaoUsuario missao in listaMissoesUsuario)
@@ -1082,5 +1095,22 @@ public partial class Pages_Gerente_GerenciarMissoes : System.Web.UI.Page
         List<MissaoUsuario> listaDeMissoesUsuario = criarListaObjMissaoUsuario(missoesConcluidas);
 
         carregarTodasAsMissoesUsuario(listaDeMissoesUsuario);
+    }
+
+    protected void btnPesquisarMissoes_Click(object sender, EventArgs e)
+    {
+        string tituloMissao = txtTituloMissaoVisualizar.Text;
+        DataSet missoesEncontradas = MissaoBD.ProcurarMissoesPorTituloGerente(tituloMissao, usuarioLogado.Emp_id);
+        List<MissaoUsuario> listaDeMissoesEncontradas = criarListaObjMissaoUsuario(missoesEncontradas);
+        pnlMissoesVisualizar.Controls.Clear();
+        carregarTodasAsMissoesUsuario(listaDeMissoesEncontradas);
+    }
+
+    protected void btnProcurarMissaoAgValidacao_Click(object sender, EventArgs e)
+    {
+        string tituloMissao = txtTituloMissaoAgValidacao.Text;
+        DataSet missoesEncontradas = MissaoBD.ProcurarMissoesPorTituloEStatus(tituloMissao, usuarioLogado.Emp_id, StatusMissaoEnum.AG_VALIDACAO);
+        List<MissaoUsuario> listaDeMissoesEncontradas = criarListaObjMissaoUsuario(missoesEncontradas);
+        carregarTodasAsMissoesUsuario(listaDeMissoesEncontradas);
     }
 }

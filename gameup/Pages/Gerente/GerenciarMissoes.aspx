@@ -167,11 +167,11 @@
             <div class="row">
                 <div class="col-12 col-md-4">
                     <div class="input-group">
-                        <input type="text" class="form-control bg-light border-0 small" placeholder="Procure por colaborador ou setor" aria-label="Search" aria-describedby="basic-addon2">
+                        <asp:TextBox runat="server" ID="txtTituloMissaoVisualizar" CssClass="form-control bg-light border-0 small" placeholder="Procure pelo título da missão" aria-label="Search" aria-describedby="basic-addon2"></asp:TextBox>
                         <div class="input-group-append">
-                            <button class="btn btn-info" type="button">
+                            <asp:LinkButton runat="server" CssClass="btn btn-info" ID="btnPesquisarMissoes" OnClick="btnPesquisarMissoes_Click">
                                 <i class="fas fa-search fa-sm"></i>
-                            </button>
+                            </asp:LinkButton>
                         </div>
                     </div>
                 </div>
@@ -187,35 +187,24 @@
 
         <!-- PAINEL DE MISSOES EM CONSTRUCAO -->
         <div class="tab-pane fade p-4 mb-4" id="nav-construcao" role="tabpanel" aria-labelledby="nav-construcao-tab">
-            <div class="row">
-
-                <div class="col-12 col-md-4">
-                    <div class="input-group">
-                        <input type="text" class="form-control bg-light border-0 small" placeholder="Procure por missões" aria-label="Search" aria-describedby="basic-addon2">
-                        <div class="input-group-append">
-                            <button class="btn btn-info" type="button">
-                                <i class="fas fa-search fa-sm"></i>
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            </div>
             <asp:Panel runat="server" ID="pnlMissoesEmConstrucao" CssClass="row mt-4"></asp:Panel>
         </div>
 
         <!-- PAINEL DE MISSOES AGUARDANDO VALIDACAO -->
         <div class="tab-pane fade p-4" id="nav-validacao" role="tabpanel" aria-labelledby="nav-validacao-tab">
             <div class="row">
-
                 <div class="col-12 col-md-4">
                     <div class="input-group">
-                        <input type="text" class="form-control bg-light border-0 small" placeholder="Procure por missões" aria-label="Search" aria-describedby="basic-addon2">
+                        <asp:TextBox runat="server" ID="txtTituloMissaoAgValidacao" CssClass="form-control bg-light border-0 small" placeholder="Procure pelo título da missão" aria-label="Search" aria-describedby="basic-addon2"></asp:TextBox>
                         <div class="input-group-append">
-                            <button class="btn btn-info" type="button">
+                            <asp:LinkButton runat="server" CssClass="btn btn-info" ID="btnProcurarMissaoAgValidacao" OnClick="btnProcurarMissaoAgValidacao_Click">
                                 <i class="fas fa-search fa-sm"></i>
-                            </button>
+                            </asp:LinkButton>
                         </div>
                     </div>
+                </div>
+                <div class="col-12 col-md-8 text-right">
+                    <asp:Button runat="server" type="checkbox" class="btn btn-dark" Text="Todas" ID="Button1" OnClick="btnTodas_Click" />
                 </div>
             </div>
             <asp:Panel runat="server" ID="pnlMissaoAgValidacao" CssClass="row mt-4"></asp:Panel>
