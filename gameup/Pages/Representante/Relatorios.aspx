@@ -29,11 +29,11 @@
                 </div>
                 <!-- Card Body -->
                 <div class="card-body float-left text-left text-xl-left border-left left ">
-                    <h3>Selecione o tipo do gráfico</h3>
+                    <h4>Selecione o tipo do gráfico</h4>
                     <br />
                     <div class="row">
-                        <div class="col-6">
-                            <asp:DropDownList runat="server" class="btn btn-secondary dropdown-toggle" ID="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"  style=" float:left">
+                        <div class="col-8">
+                            <asp:DropDownList runat="server" class="form-control dropdown-toggle" ID="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"  style=" float:left">
 
                                 <asp:ListItem Selected="True" Value="sem"> Semestral </asp:ListItem>
                                 <asp:ListItem Value="tri"> Trimestral </asp:ListItem>
@@ -41,8 +41,8 @@
 
                             </asp:DropDownList>
                         </div>
-                        <div class="col ">
-                            <asp:Button runat="server" ID="btnGerarGrafico" CssClass="btn btn-dark" OnClick="btnGerarGrafico_Click" Text="Gerar Gráfico " style=" float:right"/>
+                        <div class="col-4">
+                            <asp:Button runat="server" ID="btnGerarGrafico" CssClass="btn btn-info" OnClick="btnGerarGrafico_Click" Text="Gerar Gráfico " style=" float:right"/>
                         </div>
                     </div>
                 </div>

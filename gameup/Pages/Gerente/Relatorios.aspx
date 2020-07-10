@@ -34,11 +34,11 @@
                 </div>
                 <!-- Card Body -->
                 <div class="card-body float-left text-left text-xl-left border-left left ">
-                    <h3>Selecione o tipo do gráfico</h3>
+                    <h4>Selecione o tipo do gráfico</h4>
                     <br />
                     <div class="row">
                         <div class="col-8">
-                            <asp:DropDownList runat="server" class="btn btn-light dropdown-toggle form-control" ID="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <asp:DropDownList runat="server" class="dropdown-toggle form-control" ID="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 
                                 <asp:ListItem Selected="True" Value="sem"> Semestral </asp:ListItem>
                                 <asp:ListItem Value="tri"> Trimestral </asp:ListItem>
@@ -182,16 +182,6 @@
                 chart.draw(data, options);
             }
         </script>
-
-        <div class="col-md-8 Col-lg-8">
-            <div class="card shadow mb-4">
-                <!-- Card Header - Accordion -->
-                <a href="#collapseCardExample7" class="d-block card-header py-3" data-toggle="collapse" role="button" aria-expanded="true" aria-controls="collapseCardExample">
-                    <h6 class="m-0 font-weight-bold text-center">GRÁFICO ATUAL DE MISSÕES DO SETOR</h6>
-                </a>
-                <!-- Card Content - Collapse -->
-                <div class="collapse show" id="collapseCardExample7">
-                    <div class="card-body">
 
     <!-- Gráfico semestral  -->
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
