@@ -81,7 +81,8 @@ public class SetorBD
         string query = "";
         query += " 	SELECT ";
         query += " 	    SET_ID, ";
-        query += " 	    SET_NOME ";
+        query += " 	    SET_NOME, ";
+        query += " 	    SET_STATUS ";
         query += " 	FROM ";
         query += " 	    SETOR ";
         query += " 	WHERE ";
@@ -112,7 +113,8 @@ public class SetorBD
         string query = "";
         query += " 	SELECT ";
         query += " 	    SET_ID, ";
-        query += " 	    SET_NOME ";
+        query += " 	    SET_NOME, ";
+        query += " 	    SET_STATUS ";
         query += " 	FROM ";
         query += " 	    SETOR ";
         query += " 	WHERE ";
@@ -132,6 +134,70 @@ public class SetorBD
         return ds.Tables[0].Rows[0]["SET_NOME"].ToString();
     }
 
+    public static DataSet procurarSetoresID(int set_id)
+    {
+        DataSet ds = new DataSet();
+        IDbConnection objConexao;
+        IDbCommand objCommand;
+        IDataAdapter dataAdapter;
+
+        objConexao = Mapped.Connection();
+        string query = "";
+        query += " 	SELECT ";
+        query += " 	    SET_ID, ";
+        query += " 	    SET_NOME, ";
+        query += " 	    SET_STATUS ";
+        query += " 	FROM ";
+        query += " 	    SETOR ";
+        query += " 	WHERE ";
+        query += " 	    SET_ID = ?SET_ID; ";
+
+        objCommand = Mapped.Command(query, objConexao);
+        objCommand.Parameters.Add(Mapped.Parameter("?SET_ID", set_id));
+
+        dataAdapter = Mapped.Adapter(objCommand);
+
+        dataAdapter.Fill(ds);
+
+        objConexao.Close();
+        objConexao.Dispose();
+        objCommand.Dispose();
+
+        return ds;
+    }
+
+    public static bool InativaSetor(int set_id)
+    {
+        bool ok = false;
+        try
+        {
+            DataSet ds = new DataSet();
+            IDbConnection objConexao;
+            IDbCommand objCommand;
+            objConexao = Mapped.Connection();
+
+            string query = "update setor SET set_status = IF(set_status = 1, 2, 1) WHERE set_id = ?set_id";
+
+            objCommand = Mapped.Command(query, objConexao);
+
+            objCommand.Parameters.Add(Mapped.Parameter("?set_id", set_id));
+
+            objCommand.ExecuteNonQuery();
+
+            objConexao.Close();
+            objConexao.Dispose();
+            objCommand.Dispose();
+
+            ok = true;
+        }
+        catch (Exception ex)
+        {
+            Console.Write(ex.StackTrace);
+        }
+
+        return ok;
+
+    }
 
     public static bool InsertSetor(Setor setor)
     {

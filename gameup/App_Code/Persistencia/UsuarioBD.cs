@@ -95,7 +95,7 @@ public class UsuarioBD
         IDataAdapter dataAdapter;
 
         objConexao = Mapped.Connection();
-        string query = "SELECT usu_id, usu_nome, usu_email, tus_id, set_id, usu_statususuario from usuario WHERE emp_id = ?emp_id order by usu_nome";
+        string query = "SELECT usu_id, usu_nome, usu_email, tus_id, set_id, usu_statususuario from usuario WHERE emp_id = ?emp_id and tus_id <> '3' order by usu_nome";
 
         objCommand = Mapped.Command(query, objConexao);
 
@@ -188,46 +188,11 @@ public class UsuarioBD
             IDbCommand objCommand;
             objConexao = Mapped.Connection();
 
-            string query = "update usuario SET tus_id = ?tus_id WHERE usu_id = ?usu_id";
+            string query = "update usuario SET tus_id = IF(tus_id = 1, 2, 1) WHERE usu_id = ?usu_id";
 
             objCommand = Mapped.Command(query, objConexao);
 
             objCommand.Parameters.Add(Mapped.Parameter("?usu_id", usu_id));
-            objCommand.Parameters.Add(Mapped.Parameter("?tus_id", 2));
-
-            objCommand.ExecuteNonQuery();
-
-            objConexao.Close();
-            objConexao.Dispose();
-            objCommand.Dispose();
-
-            ok = true;
-        }
-        catch (Exception ex)
-        {
-            Console.Write(ex.StackTrace);
-        }
-
-        return ok;
-
-    }
-
-    public static bool UpdateGerente2(int usu_id)
-    {
-        bool ok = false;
-        try
-        {
-            DataSet ds = new DataSet();
-            IDbConnection objConexao;
-            IDbCommand objCommand;
-            objConexao = Mapped.Connection();
-
-            string query = "update usuario SET tus_id = ?tus_id WHERE usu_id = ?usu_id";
-
-            objCommand = Mapped.Command(query, objConexao);
-
-            objCommand.Parameters.Add(Mapped.Parameter("?usu_id", usu_id));
-            objCommand.Parameters.Add(Mapped.Parameter("?tus_id", 1));
 
             objCommand.ExecuteNonQuery();
 
