@@ -81,7 +81,7 @@
             <div class="card shadow mb-4 ">
                 <!-- Card Header - Accordion -->
                 <a href="#collapseCardExample5" class="d-block card-header py-3" data-toggle="collapse" role="button" aria-expanded="true" aria-controls="collapseCardExample">
-                    <h6 class="m-0 font-weight-bold text-center">GRÁFICO DE DESEMPENHO DO SETOR</h6>
+                    <h6 class="m-0 font-weight-bold text-center">GRÁFICO DE DESEMPENHO DO SETOR <asp:Label runat="server" ID="lblNomeSetor"></asp:Label></h6>
                 </a>
                 <!-- Card Content - Collapse -->
                 <div class="collapse show" id="collapseCardExample5">
@@ -104,8 +104,8 @@
                     <h3>Selecione o tipo do gráfico</h3>
                     <br />
                     <div class="row">
-                        <div class="col-6">
-                            <asp:DropDownList runat="server" class="btn btn-secondary dropdown-toggle" ID="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <div class="col-8">
+                            <asp:DropDownList runat="server" class="btn btn-light dropdown-toggle form-control" ID="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 
                                 <asp:ListItem Selected="True" Value="sem"> Semestre </asp:ListItem>
                                 <asp:ListItem Value="tri"> trimestre </asp:ListItem>
@@ -113,8 +113,8 @@
 
                             </asp:DropDownList>
                         </div>
-                        <div class="col ">
-                            <asp:Button runat="server" ID="btnGerarGrafico" CssClass="btn btn-dark" OnClick="btn1_Click" Text="Gerar Gráfico " />
+                        <div class="col-4">
+                            <asp:Button runat="server" ID="btnGerarGrafico" CssClass="btn btn-info form-control" OnClick="btn1_Click" Text="Gerar Gráfico " />
                         </div>
                     </div>
                 </div>
@@ -125,7 +125,7 @@
         </div>
 
 
-         <div class="col-md-4 Col-lg-4">
+        <div class="col-md-4 Col-lg-4">
             <!-- Informacoes basicas de missoes -->
 
             <!-- Collapsable Card Example -->
@@ -231,16 +231,16 @@
                 chart.draw(data, options);
             }
         </script>
-        
+
         <div class="col-md-8 Col-lg-8">
             <div class="card shadow mb-4">
-                    <!-- Card Header - Accordion -->
-                    <a href="#collapseCardExample7" class="d-block card-header py-3" data-toggle="collapse" role="button" aria-expanded="true" aria-controls="collapseCardExample">
-                        <h6 class="m-0 font-weight-bold text-center">GRÁFICO ATUAL DE MISSÕES DO SETOR</h6>
-                    </a>
-                    <!-- Card Content - Collapse -->
-                    <div class="collapse show" id="collapseCardExample7">
-                        <div class="card-body">
+                <!-- Card Header - Accordion -->
+                <a href="#collapseCardExample7" class="d-block card-header py-3" data-toggle="collapse" role="button" aria-expanded="true" aria-controls="collapseCardExample">
+                    <h6 class="m-0 font-weight-bold text-center">GRÁFICO ATUAL DE MISSÕES DO SETOR</h6>
+                </a>
+                <!-- Card Content - Collapse -->
+                <div class="collapse show" id="collapseCardExample7">
+                    <div class="card-body">
 
                         <div id="piechart" style="min-height: 360px;"></div>
 
