@@ -89,14 +89,14 @@ public partial class Pages_Gerente_GerenciarMissoes : System.Web.UI.Page
     {
         List<int> listaDeParticipantes = new List<int>();
 
-        if (rdbTipoSetor.Checked)
-        {
-            int idGerente = usuarioLogado.Usu_id;
+        //if (rdbTipoSetor.Checked)
+        //{
+        //    int idGerente = usuarioLogado.Usu_id;
 
-            listaDeParticipantes.Add(idGerente);
+        //    listaDeParticipantes.Add(idGerente);
 
-        }
-        else if (rdbTipoIndividual.Checked)
+        //}
+        if (rdbTipoIndividual.Checked)
         {
             foreach (ListItem item in ltbParticipantes.Items)
             {
@@ -268,22 +268,22 @@ public partial class Pages_Gerente_GerenciarMissoes : System.Web.UI.Page
             }
 
         }
-        else if (rdbTipoSetor.Checked)
-        {
+        //else if (rdbTipoSetor.Checked)
+        //{
 
-            DataSet listaDeSetores = MissaoBD.procurarSetoresEmpresaGerente(usuarioLogado.Set_id);
+        //    DataSet listaDeSetores = MissaoBD.procurarSetoresEmpresaGerente(usuarioLogado.Set_id);
 
-            // Carrega informacoes no modal 
-            lblTituloParticipantes.Text = "<h4> Setores </h4>";
-            Page.ClientScript.RegisterStartupScript(this.GetType(), "script", "<script>$('#modalParticipantes').modal('show');</script>");
+        //    // Carrega informacoes no modal 
+        //    lblTituloParticipantes.Text = "<h4> Setores </h4>";
+        //    Page.ClientScript.RegisterStartupScript(this.GetType(), "script", "<script>$('#modalParticipantes').modal('show');</script>");
 
-            // Carrega os setores
-            foreach (DataRow set in listaDeSetores.Tables[0].Rows)
-            {
-                ltbParticipantes.Items.Add(new ListItem(set["set_nome"].ToString(), set["set_id"].ToString()));
-            }
+        //    // Carrega os setores
+        //    foreach (DataRow set in listaDeSetores.Tables[0].Rows)
+        //    {
+        //        ltbParticipantes.Items.Add(new ListItem(set["set_nome"].ToString(), set["set_id"].ToString()));
+        //    }
 
-        }
+        //}
         else if (rdbTipoGrupo.Checked)
         {
             ltbParticipantes.SelectionMode = ListSelectionMode.Multiple;
@@ -708,10 +708,10 @@ public partial class Pages_Gerente_GerenciarMissoes : System.Web.UI.Page
         {
             rdbTipoGrupo.Checked = true;
         }
-        else if (tipoMissao.Equals(TipoMissaoEnum.SETOR))
-        {
-            rdbTipoSetor.Checked = true;
-        }
+        //else if (tipoMissao.Equals(TipoMissaoEnum.SETOR))
+        //{
+        //    rdbTipoSetor.Checked = true;
+        //}
 
         navCadastroTab.CssClass = "nav-item nav-link active";
     }

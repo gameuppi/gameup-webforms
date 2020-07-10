@@ -45,10 +45,10 @@
                                 <i class="fas fa-users"></i>&nbsp;                        
                                 <asp:RadioButton runat="server" ID="rdbTipoGrupo" GroupName="tipo" Text="Grupo" />
                             </div>
-                            <div class="form-check form-check-inline btn btn-info">
+                            <%--<div class="form-check form-check-inline btn btn-info">
                                 <i class="fas fa-users-cog"></i>&nbsp;                                                
                                 <asp:RadioButton runat="server" ID="rdbTipoSetor" GroupName="tipo" Text="Setor" />
-                            </div>
+                            </div>--%>
                         </div>
                         <div class="col-5">
                             <!-- <asp:Literal runat="server" ID="ltrInfo"></asp:Literal> -->
