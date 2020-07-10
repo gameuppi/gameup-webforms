@@ -19,7 +19,6 @@
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
         <h1 class="h3 mb-0 text-gray-800">Placar de líderes</h1>
     </div>
-
     <div class="row">
         <!-- Card - noticia de placar -->
         <div class="col-12 col-md-5 ">
@@ -27,11 +26,9 @@
                 <div class="col-12">
                     <div class="card mb-4 py-1 border-bottom-primary">
                         <div class="card-body py-1">
-                            O Painel de Lideres é baseado nos pontos obtidos durante todos os dias que está na empresa, obtenha mais pontos para conquistar a melhor pontuação.
-
+                            <p>O Painel de Lideres é baseado nos pontos obtidos durante todos os dias que está na empresa, obtenha mais pontos para conquistar a melhor pontuação.</p>
                         </div>
                     </div>
-
                     <!-- Card podium -->
                     <div class="row">
                         <div class="col-12">
@@ -88,18 +85,10 @@
                             </div>
                         </div>
                     </div>
-
-
-
-
                 </div>
-
-
-
             </div>
         </div>
         <!-- Fim card noticia -->
-
         <div class=" col-12 col-md-7">
             <div class="col-12">
                 <div class="card shadow ml-2">
@@ -110,23 +99,10 @@
                             <asp:ListItem Text="Geral" Value="1" Selected="True"></asp:ListItem>
                             <asp:ListItem Text="Mensal" Value="2"></asp:ListItem>
                         </asp:DropDownList>
-                        <asp:Button ID="btnAlteraGv" runat="server" CssClass="btn btn-primary form-control col-md-2 ml-2" Text="Gerar" OnClick="btnAlteraGv_Click"/>
+                        <asp:Button ID="btnAlteraGv" runat="server" CssClass="btn btn-primary form-control col-md-2 ml-2" Text="Gerar" OnClick="btnAlteraGv_Click" />
                     </div>
                     <!--Card Corpo -->
                     <div class="card-body text-center">
-                        <%--<asp:Table runat="server" ID="tblPlacarGeral" class="table">
-                            <asp:TableHeaderRow runat="server" CssClass="thead-dark">
-                                <asp:TableHeaderCell>
-                                    Posição
-                                </asp:TableHeaderCell>
-                                <asp:TableHeaderCell>
-                                    Nome
-                                </asp:TableHeaderCell>
-                                <asp:TableHeaderCell>
-                                    Pontos
-                                </asp:TableHeaderCell>
-                            </asp:TableHeaderRow>
-                        </asp:Table>--%>
                         <asp:GridView ID="gvPlacarLideres" runat="server" ClientIDMode="Static" CellPadding="3" GridLines="Vertical" AutoGenerateColumns="False" CssClass="table table-striped table-hover tabela">
                             <Columns>
                                 <asp:BoundField DataField="posicao" HeaderText="Posição" />
