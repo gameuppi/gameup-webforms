@@ -45,10 +45,10 @@
                                 <i class="fas fa-users"></i>&nbsp;                        
                                 <asp:RadioButton runat="server" ID="rdbTipoGrupo" GroupName="tipo" Text="Grupo" />
                             </div>
-                            <div class="form-check form-check-inline btn btn-info">
+                            <%--<div class="form-check form-check-inline btn btn-info">
                                 <i class="fas fa-users-cog"></i>&nbsp;                                                
                                 <asp:RadioButton runat="server" ID="rdbTipoSetor" GroupName="tipo" Text="Setor" />
-                            </div>
+                            </div>--%>
                         </div>
                         <div class="col-5">
                             <!-- <asp:Literal runat="server" ID="ltrInfo"></asp:Literal> -->
@@ -92,11 +92,11 @@
                             <div class="form-row">
                                 <div class="form-group col-12 col-md-6">
                                     <label for="inputEmail4">Início</label>
-                                    <asp:TextBox type="date" CssClass="form-control" ID="dtInicio" runat="server" placeholder="Data de início" />
+                                    <asp:TextBox type="date" CssClass="form-control"  onkeydown="return false"  ID="dtInicio" runat="server" placeholder="Data de início" />
                                 </div>
                                 <div class="form-group col-12 col-md-6">
                                     <label for="inputPassword4">Fim</label>
-                                    <asp:TextBox type="date" CssClass="form-control" ID="dtFim" runat="server" placeholder="Data de fim" />
+                                    <asp:TextBox type="date" CssClass="form-control" onkeydown="return false" ID="dtFim" runat="server" placeholder="Data de fim" />
                                 </div>
                                 <div class="form-group col-12">
                                     <label for="inputPassword4">Descrição</label>
@@ -119,7 +119,7 @@
                                     <i class="fas fa-coins fa-2x text-success"></i>
                                 </div>
                                 <div class="col-12 col-md-6">
-                                    <asp:TextBox type="number" CssClass="form-control" ID="txtQtdMoedas" runat="server" />
+                                    <asp:TextBox type="number" min="0" oninput="validity.valid||(value='');"  CssClass="form-control" ID="txtQtdMoedas" runat="server" />
                                 </div>
                             </div>
                         </div>
@@ -130,7 +130,7 @@
                                     <i class="fas fa-star fa-2x text-warning"></i>
                                 </div>
                                 <div class="col-12 col-md-6">
-                                    <asp:TextBox type="number" CssClass="form-control" ID="txtQtdExp" runat="server" />
+                                    <asp:TextBox type="number" min="0" oninput="validity.valid||(value='');"  CssClass="form-control" ID="txtQtdExp" runat="server" />
                                 </div>
                             </div>
                         </div>
@@ -141,7 +141,7 @@
                                     <i class="fas fa-meteor fa-2x text-danger"></i>
                                 </div>
                                 <div class="col-12 col-md-6">
-                                    <asp:TextBox type="number" CssClass="form-control" ID="txtQtdPontos" runat="server" />
+                                    <asp:TextBox type="number" min="0" oninput="validity.valid||(value='');"  CssClass="form-control" ID="txtQtdPontos" runat="server" />
                                 </div>
                             </div>
                         </div>
@@ -167,11 +167,11 @@
             <div class="row">
                 <div class="col-12 col-md-4">
                     <div class="input-group">
-                        <input type="text" class="form-control bg-light border-0 small" placeholder="Procure por colaborador ou setor" aria-label="Search" aria-describedby="basic-addon2">
+                        <asp:TextBox runat="server" ID="txtTituloMissaoVisualizar" CssClass="form-control bg-light border-0 small" placeholder="Procure pelo título da missão" aria-label="Search" aria-describedby="basic-addon2"></asp:TextBox>
                         <div class="input-group-append">
-                            <button class="btn btn-info" type="button">
+                            <asp:LinkButton runat="server" CssClass="btn btn-info" ID="btnPesquisarMissoes" OnClick="btnPesquisarMissoes_Click">
                                 <i class="fas fa-search fa-sm"></i>
-                            </button>
+                            </asp:LinkButton>
                         </div>
                     </div>
                 </div>
@@ -187,35 +187,24 @@
 
         <!-- PAINEL DE MISSOES EM CONSTRUCAO -->
         <div class="tab-pane fade p-4 mb-4" id="nav-construcao" role="tabpanel" aria-labelledby="nav-construcao-tab">
-            <div class="row">
-
-                <div class="col-12 col-md-4">
-                    <div class="input-group">
-                        <input type="text" class="form-control bg-light border-0 small" placeholder="Procure por missões" aria-label="Search" aria-describedby="basic-addon2">
-                        <div class="input-group-append">
-                            <button class="btn btn-info" type="button">
-                                <i class="fas fa-search fa-sm"></i>
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            </div>
             <asp:Panel runat="server" ID="pnlMissoesEmConstrucao" CssClass="row mt-4"></asp:Panel>
         </div>
 
         <!-- PAINEL DE MISSOES AGUARDANDO VALIDACAO -->
         <div class="tab-pane fade p-4" id="nav-validacao" role="tabpanel" aria-labelledby="nav-validacao-tab">
             <div class="row">
-
                 <div class="col-12 col-md-4">
                     <div class="input-group">
-                        <input type="text" class="form-control bg-light border-0 small" placeholder="Procure por missões" aria-label="Search" aria-describedby="basic-addon2">
+                        <asp:TextBox runat="server" ID="txtTituloMissaoAgValidacao" CssClass="form-control bg-light border-0 small" placeholder="Procure pelo título da missão" aria-label="Search" aria-describedby="basic-addon2"></asp:TextBox>
                         <div class="input-group-append">
-                            <button class="btn btn-info" type="button">
+                            <asp:LinkButton runat="server" CssClass="btn btn-info" ID="btnProcurarMissaoAgValidacao" OnClick="btnProcurarMissaoAgValidacao_Click">
                                 <i class="fas fa-search fa-sm"></i>
-                            </button>
+                            </asp:LinkButton>
                         </div>
                     </div>
+                </div>
+                <div class="col-12 col-md-8 text-right">
+                    <asp:Button runat="server" type="checkbox" class="btn btn-dark" Text="Todas" ID="Button1" OnClick="btnTodas_Click" />
                 </div>
             </div>
             <asp:Panel runat="server" ID="pnlMissaoAgValidacao" CssClass="row mt-4"></asp:Panel>
@@ -270,7 +259,18 @@
                                 </asp:Literal>
                             </p>
                         </div>
-
+                        <div class="row mt-4">
+                            <p>
+                                <i class="fas fa-paperclip text-gray-600"></i>
+                                <asp:HiddenField runat="server" ID="hfIdMissaoUsuario" />
+                                <asp:Label runat="server" ID="lblTextoAnexo"></asp:Label>
+                                &nbsp;
+                                <asp:Panel runat="server" ID="pnlAnexo">
+                                    <asp:LinkButton runat="server" ID="btnBaixarAnexo" OnClick="btnBaixarAnexo_Click">
+                                    </asp:LinkButton>
+                                </asp:Panel>
+                            </p>
+                        </div>
                         <div class="row mt-4">
                             <h6>
                                 <i class="fas fa-calendar-check"></i>

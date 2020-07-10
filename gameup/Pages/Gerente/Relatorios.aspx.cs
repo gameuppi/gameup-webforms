@@ -14,6 +14,9 @@ public partial class Pages_Gerente_Relatorios : System.Web.UI.Page
     protected void Page_Load(object sender, EventArgs e)
     {
         validarSessao();
+
+        lblNomeSetor.Text = SetorBD.procurarSetoresPorID(usuarioLogado.Set_id).ToUpper();
+
         ltlGerarGrafico.Text = "<div id='curve_chart_Sema' style=' min-height:400px; '></div>";
         if (!IsPostBack)
         {
@@ -97,37 +100,37 @@ public partial class Pages_Gerente_Relatorios : System.Web.UI.Page
             pontos1 = "0";
             experiencia1 = "0";
         }
-         if (moeda2 == "" || pontos2 == "" || experiencia2 == "")
+        if (moeda2 == "" || pontos2 == "" || experiencia2 == "")
         {
             moeda2 = "0";
             pontos2 = "0";
             experiencia2 = "0";
         }
-         if (moeda3 == "" || pontos3 == "" || experiencia3 == "")
+        if (moeda3 == "" || pontos3 == "" || experiencia3 == "")
         {
             moeda3 = "0";
             pontos3 = "0";
             experiencia3 = "0";
         }
-         if (moeda4 == "" || pontos4 == "" || experiencia4 == "")
+        if (moeda4 == "" || pontos4 == "" || experiencia4 == "")
         {
             moeda4 = "0";
             pontos4 = "0";
             experiencia4 = "0";
         }
-         if (moeda5 == "" || pontos5 == "" || experiencia5 == "")
+        if (moeda5 == "" || pontos5 == "" || experiencia5 == "")
         {
             moeda5 = "0";
             pontos5 = "0";
             experiencia5 = "0";
         }
-         if (moeda6 == "" || pontos6 == "" || experiencia6 == "")
+        if (moeda6 == "" || pontos6 == "" || experiencia6 == "")
         {
             moeda6 = "0";
             pontos6 = "0";
             experiencia6 = "0";
         }
-         if (moeda7 == "" || pontos7 == "" || experiencia7 == "")
+        if (moeda7 == "" || pontos7 == "" || experiencia7 == "")
         {
             moeda7 = "0";
             pontos7 = "0";
@@ -199,13 +202,13 @@ public partial class Pages_Gerente_Relatorios : System.Web.UI.Page
             pontos1 = "0";
             experiencia1 = "0";
         }
-         if (moeda2 == "" || pontos2 == "" || experiencia2 == "")
+        if (moeda2 == "" || pontos2 == "" || experiencia2 == "")
         {
             moeda2 = "0";
             pontos2 = "0";
             experiencia2 = "0";
         }
-         if (moeda3 == "" || pontos3 == "" || experiencia3 == "")
+        if (moeda3 == "" || pontos3 == "" || experiencia3 == "")
         {
             moeda3 = "0";
             pontos3 = "0";
@@ -218,7 +221,7 @@ public partial class Pages_Gerente_Relatorios : System.Web.UI.Page
         dados.Columns.Add(new DataColumn("Pontos", typeof(string)));
         dados.Columns.Add(new DataColumn("Experiencia", typeof(string)));
         // Os dados que serão mostrados no charts
-        
+
         dados.Rows.Add(new object[] { mes3s, moeda3, pontos3, experiencia3 });
         dados.Rows.Add(new object[] { mes2s, moeda2, pontos2, experiencia2 });
         dados.Rows.Add(new object[] { mes1s, moeda1, pontos1, experiencia1 });
@@ -302,31 +305,32 @@ public partial class Pages_Gerente_Relatorios : System.Web.UI.Page
             moeda1 = "0";
             pontos1 = "0";
             experiencia1 = "0";
-        } if (moeda2 == "" || pontos2 == "" || experiencia2 == "")
+        }
+        if (moeda2 == "" || pontos2 == "" || experiencia2 == "")
         {
             moeda2 = "0";
             pontos2 = "0";
             experiencia2 = "0";
         }
-         if (moeda3 == "" || pontos3 == "" || experiencia3 == "")
+        if (moeda3 == "" || pontos3 == "" || experiencia3 == "")
         {
             moeda3 = "0";
             pontos3 = "0";
             experiencia3 = "0";
         }
-         if (moeda4 == "" || pontos4 == "" || experiencia4 == "")
+        if (moeda4 == "" || pontos4 == "" || experiencia4 == "")
         {
             moeda4 = "0";
             pontos4 = "0";
             experiencia4 = "0";
         }
-         if (moeda5 == "" || pontos5 == "" || experiencia5 == "")
+        if (moeda5 == "" || pontos5 == "" || experiencia5 == "")
         {
             moeda5 = "0";
             pontos5 = "0";
             experiencia5 = "0";
         }
-         if (moeda6 == "" || pontos6 == "" || experiencia6 == "")
+        if (moeda6 == "" || pontos6 == "" || experiencia6 == "")
         {
             moeda6 = "0";
             pontos6 = "0";
@@ -361,7 +365,7 @@ public partial class Pages_Gerente_Relatorios : System.Web.UI.Page
         return strDados;
     }
 
-    
+
     void validarSessao()
     {
         if (Session["USUARIO"] == null)
@@ -443,7 +447,7 @@ public partial class Pages_Gerente_Relatorios : System.Web.UI.Page
     //metodo que faz a verificação e contagem dos tipos de missao
     public void carregarMissoes()
     {
-        
+
         DataSet listaDeMissoesUsu = MissaoBD.procurarTodasMissaoUsuarioColaboradorSetor(usuarioLogado.Set_id);
         int contAg = 0;
         int contEm = 0;
@@ -494,11 +498,13 @@ public partial class Pages_Gerente_Relatorios : System.Web.UI.Page
         {
             ltlGerarGrafico.Text = "<div id='curve_chart_Sem' style=' min-height: 380px; '></div>";
 
-        }else if(dropdownMenuButton.SelectedValue.ToString().Equals("tri"))
+        }
+        else if (dropdownMenuButton.SelectedValue.ToString().Equals("tri"))
         {
             ltlGerarGrafico.Text = "<div id='curve_chart_Tri' style=' min-height: 380px; '></div>";
 
-        }else if (dropdownMenuButton.SelectedValue.ToString().Equals("sema"))
+        }
+        else if (dropdownMenuButton.SelectedValue.ToString().Equals("sema"))
         {
             ltlGerarGrafico.Text = "<div id='curve_chart_Sema' style=' min-height: 380px; '></div>";
         }

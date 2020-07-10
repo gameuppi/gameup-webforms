@@ -12,6 +12,7 @@ public partial class Pages_Gerente_GerenciarMissoes : System.Web.UI.Page
 
     protected void Page_Load(object sender, EventArgs e)
     {
+        ValidarEntradas();
 
         validarSessao();
 
@@ -24,6 +25,34 @@ public partial class Pages_Gerente_GerenciarMissoes : System.Web.UI.Page
         
     }
 
+    void ValidarEntradas()
+    {
+        DateTime hoje = DateTime.Now;
+        string mes;
+        string dia;
+        if (hoje.Month <= 10)
+        {
+            mes = "0" + hoje.Month;
+        }
+        else
+        {
+            mes = hoje.Month.ToString();
+        }
+
+        if (hoje.Day <= 10)
+        {
+            dia = "0" + hoje.AddDays(-5).Day.ToString();
+        }
+        else
+        {
+            dia = hoje.AddDays(-5).ToString();
+        }
+
+
+        dtInicio.Attributes.Add("min", hoje.Year + "-" + mes + "-" + dia);
+        dtFim.Attributes.Add("min", hoje.Year + "-" + mes + "-" + hoje.Day);
+
+    }
     void validarSessao()
     {
 
@@ -60,14 +89,14 @@ public partial class Pages_Gerente_GerenciarMissoes : System.Web.UI.Page
     {
         List<int> listaDeParticipantes = new List<int>();
 
-        if (rdbTipoSetor.Checked)
-        {
-            int idGerente = usuarioLogado.Usu_id;
+        //if (rdbTipoSetor.Checked)
+        //{
+        //    int idGerente = usuarioLogado.Usu_id;
 
-            listaDeParticipantes.Add(idGerente);
+        //    listaDeParticipantes.Add(idGerente);
 
-        }
-        else if (rdbTipoIndividual.Checked)
+        //}
+        if (rdbTipoIndividual.Checked)
         {
             foreach (ListItem item in ltbParticipantes.Items)
             {
@@ -122,8 +151,13 @@ public partial class Pages_Gerente_GerenciarMissoes : System.Web.UI.Page
         return missao;
     }
 
+    public void ValidarCampos()
+    {
+    }
+
     protected void cadastrarMissao_Click(object sender, EventArgs e)
     {
+        ValidarCampos();
 
         if (!idMissao.Text.Equals(""))
         {
@@ -234,22 +268,22 @@ public partial class Pages_Gerente_GerenciarMissoes : System.Web.UI.Page
             }
 
         }
-        else if (rdbTipoSetor.Checked)
-        {
+        //else if (rdbTipoSetor.Checked)
+        //{
 
-            DataSet listaDeSetores = MissaoBD.procurarSetoresEmpresaGerente(usuarioLogado.Set_id);
+        //    DataSet listaDeSetores = MissaoBD.procurarSetoresEmpresaGerente(usuarioLogado.Set_id);
 
-            // Carrega informacoes no modal 
-            lblTituloParticipantes.Text = "<h4> Setores </h4>";
-            Page.ClientScript.RegisterStartupScript(this.GetType(), "script", "<script>$('#modalParticipantes').modal('show');</script>");
+        //    // Carrega informacoes no modal 
+        //    lblTituloParticipantes.Text = "<h4> Setores </h4>";
+        //    Page.ClientScript.RegisterStartupScript(this.GetType(), "script", "<script>$('#modalParticipantes').modal('show');</script>");
 
-            // Carrega os setores
-            foreach (DataRow set in listaDeSetores.Tables[0].Rows)
-            {
-                ltbParticipantes.Items.Add(new ListItem(set["set_nome"].ToString(), set["set_id"].ToString()));
-            }
+        //    // Carrega os setores
+        //    foreach (DataRow set in listaDeSetores.Tables[0].Rows)
+        //    {
+        //        ltbParticipantes.Items.Add(new ListItem(set["set_nome"].ToString(), set["set_id"].ToString()));
+        //    }
 
-        }
+        //}
         else if (rdbTipoGrupo.Checked)
         {
             ltbParticipantes.SelectionMode = ListSelectionMode.Multiple;
@@ -674,10 +708,10 @@ public partial class Pages_Gerente_GerenciarMissoes : System.Web.UI.Page
         {
             rdbTipoGrupo.Checked = true;
         }
-        else if (tipoMissao.Equals(TipoMissaoEnum.SETOR))
-        {
-            rdbTipoSetor.Checked = true;
-        }
+        //else if (tipoMissao.Equals(TipoMissaoEnum.SETOR))
+        //{
+        //    rdbTipoSetor.Checked = true;
+        //}
 
         navCadastroTab.CssClass = "nav-item nav-link active";
     }
@@ -700,8 +734,33 @@ public partial class Pages_Gerente_GerenciarMissoes : System.Web.UI.Page
 
 
         //ltrDataConclusao.Text = missao.dt;
+        DataSet caminhoArquivoDs = ArquivoBD.BuscarNomeDoArquivoPorIdDaMissaoUsuario(mus_id);
+        string caminhoArquivo = caminhoArquivoDs.Tables[0].Rows[0]["mus_arquivo"].ToString();
 
-        
+        if (!caminhoArquivo.Equals(""))
+        {
+            lblTextoAnexo.Text = "";
+
+            string[] caminhoSeparado = caminhoArquivo.Split('\\');
+            string nomeArquivo = caminhoSeparado[caminhoSeparado.Length - 1];
+
+            //LinkButton btnBaixarAnexo = new LinkButton();
+            //btnBaixarAnexo.Click += new EventHandler(baixarAnexo);
+            //nBaixarAnexo.Text = nomeArquivo;
+
+            //pnlAnexo.Controls.Add(btnBaixarAnexo);
+
+            btnBaixarAnexo.Text = nomeArquivo;
+
+            pnlAnexo.Controls.Add(btnBaixarAnexo);
+
+            hfIdMissaoUsuario.Value = mus_id.ToString();
+        }
+        else
+        {
+            lblTextoAnexo.Text = "Não há anexos";
+        }
+
 
         Page.ClientScript.RegisterStartupScript(this.GetType(), "script", "<script>$('#modalDetalhesMissao').modal('show');</script>");
     }
@@ -749,6 +808,14 @@ public partial class Pages_Gerente_GerenciarMissoes : System.Web.UI.Page
 
     public void carregarTodasAsMissoesUsuario(List<MissaoUsuario> listaMissoesUsuario)
     {
+        if (TabName.Value.Equals("nav-validacao"))
+        {
+            pnlMissaoAgValidacao.Controls.Clear();
+        } else
+        {
+            pnlMissoesVisualizar.Controls.Clear();
+        }
+
         string resp = "";
 
         foreach (MissaoUsuario missao in listaMissoesUsuario)
@@ -1082,5 +1149,47 @@ public partial class Pages_Gerente_GerenciarMissoes : System.Web.UI.Page
         List<MissaoUsuario> listaDeMissoesUsuario = criarListaObjMissaoUsuario(missoesConcluidas);
 
         carregarTodasAsMissoesUsuario(listaDeMissoesUsuario);
+    }
+
+    protected void btnPesquisarMissoes_Click(object sender, EventArgs e)
+    {
+        string tituloMissao = txtTituloMissaoVisualizar.Text;
+        DataSet missoesEncontradas = MissaoBD.ProcurarMissoesPorTituloGerente(tituloMissao, usuarioLogado.Emp_id);
+        List<MissaoUsuario> listaDeMissoesEncontradas = criarListaObjMissaoUsuario(missoesEncontradas);
+        pnlMissoesVisualizar.Controls.Clear();
+        carregarTodasAsMissoesUsuario(listaDeMissoesEncontradas);
+    }
+
+    protected void btnProcurarMissaoAgValidacao_Click(object sender, EventArgs e)
+    {
+        string tituloMissao = txtTituloMissaoAgValidacao.Text;
+        DataSet missoesEncontradas = MissaoBD.ProcurarMissoesPorTituloEStatus(tituloMissao, usuarioLogado.Emp_id, StatusMissaoEnum.AG_VALIDACAO);
+        List<MissaoUsuario> listaDeMissoesEncontradas = criarListaObjMissaoUsuario(missoesEncontradas);
+        carregarTodasAsMissoesUsuario(listaDeMissoesEncontradas);
+    }
+
+    protected void btnBaixarAnexo_Click(object sender, EventArgs e)
+    {
+        int idMissao = Convert.ToInt32(hfIdMissaoUsuario.Value);
+
+        DataSet caminhoArquivoDs = ArquivoBD.BuscarNomeDoArquivoPorIdDaMissaoUsuario(idMissao);
+        string caminhoArquivo = caminhoArquivoDs.Tables[0].Rows[0]["mus_arquivo"].ToString();
+
+        if (!caminhoArquivo.Equals(""))
+        {
+            baixarAnexo(caminhoArquivo);
+        }
+    }
+
+    void baixarAnexo(string caminho)
+    {
+        string caminhoFormatado = caminho.Substring(caminho.LastIndexOf("gameup"));
+        string[] caminhoSeparado = caminhoFormatado.Split('\\');
+        string nomeArquivo = caminhoSeparado[caminhoSeparado.Length - 1];
+
+        //Response.ContentType = "Application/any";
+        Response.AppendHeader("Content-Disposition", "attachment; filename=" + nomeArquivo);
+        Response.TransmitFile(caminho);
+        Response.End();
     }
 }

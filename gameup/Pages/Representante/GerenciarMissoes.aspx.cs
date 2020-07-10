@@ -12,7 +12,8 @@ public partial class Pages_Representante_GerenciarMissoes : System.Web.UI.Page
 
     protected void Page_Load(object sender, EventArgs e)
     {
-
+        ValidarEntradas();
+        
         validarSessao();
 
         if (!IsPostBack)
@@ -21,6 +22,35 @@ public partial class Pages_Representante_GerenciarMissoes : System.Web.UI.Page
             carregarListaParticipantes();
         }
         carregarMissoes();
+
+    }
+
+    void ValidarEntradas()
+    {
+        DateTime hoje = DateTime.Now;
+        string mes;
+        string dia;
+        if (hoje.Month <= 10)
+        {
+            mes = "0" + hoje.Month;
+        }
+        else
+        {
+            mes = hoje.Month.ToString();
+        }
+
+        if (hoje.Day <= 10)
+        {
+            dia = "0" + hoje.AddDays(-5).Day.ToString();
+        }
+        else
+        {
+            dia = hoje.AddDays(-5).ToString();
+        }
+
+
+        dtInicio.Attributes.Add("min", hoje.Year + "-" + mes + "-" + dia);
+        dtFim.Attributes.Add("min", hoje.Year + "-" + mes + "-" + hoje.Day);
 
     }
 
@@ -704,7 +734,32 @@ public partial class Pages_Representante_GerenciarMissoes : System.Web.UI.Page
 
         //ltrDataConclusao.Text = missao.dt;
 
+        DataSet caminhoArquivoDs = ArquivoBD.BuscarNomeDoArquivoPorIdDaMissaoUsuario(mus_id);
+        string caminhoArquivo = caminhoArquivoDs.Tables[0].Rows[0]["mus_arquivo"].ToString();
 
+        if (!caminhoArquivo.Equals(""))
+        {
+            lblTextoAnexo.Text = "";
+
+            string[] caminhoSeparado = caminhoArquivo.Split('\\');
+            string nomeArquivo = caminhoSeparado[caminhoSeparado.Length - 1];
+
+            //LinkButton btnBaixarAnexo = new LinkButton();
+            //btnBaixarAnexo.Click += new EventHandler(baixarAnexo);
+            //nBaixarAnexo.Text = nomeArquivo;
+
+            //pnlAnexo.Controls.Add(btnBaixarAnexo);
+
+            btnBaixarAnexo.Text = nomeArquivo;
+
+            pnlAnexo.Controls.Add(btnBaixarAnexo);
+
+            hfIdMissaoUsuario.Value = mus_id.ToString();
+        }
+        else
+        {
+            lblTextoAnexo.Text = "Não há anexos";
+        }
 
         Page.ClientScript.RegisterStartupScript(this.GetType(), "script", "<script>$('#modalDetalhesMissao').modal('show');</script>");
     }
@@ -1083,4 +1138,46 @@ public partial class Pages_Representante_GerenciarMissoes : System.Web.UI.Page
 
         carregarTodasAsMissoesUsuario(listaDeMissoesUsuario);
     }
+
+    protected void btnPesquisarMissoes_Click(object sender, EventArgs e)
+    {
+        string tituloMissao = txtTituloMissaoVisualizar.Text;
+        DataSet missoesEncontradas = MissaoBD.ProcurarMissoesPorTituloGerente(tituloMissao, usuarioLogado.Emp_id);
+        List<MissaoUsuario> listaDeMissoesEncontradas = criarListaObjMissaoUsuario(missoesEncontradas);
+        pnlMissoesVisualizar.Controls.Clear();
+        carregarTodasAsMissoesUsuario(listaDeMissoesEncontradas);
+    }
+
+    protected void btnProcurarMissaoAgValidacao_Click(object sender, EventArgs e)
+    {
+        string tituloMissao = txtTituloMissaoAgValidacao.Text;
+        DataSet missoesEncontradas = MissaoBD.ProcurarMissoesPorTituloEStatus(tituloMissao, usuarioLogado.Emp_id, StatusMissaoEnum.AG_VALIDACAO);
+        List<MissaoUsuario> listaDeMissoesEncontradas = criarListaObjMissaoUsuario(missoesEncontradas);
+        carregarTodasAsMissoesUsuario(listaDeMissoesEncontradas);
+    }
+    protected void btnBaixarAnexo_Click(object sender, EventArgs e)
+    {
+        int idMissao = Convert.ToInt32(hfIdMissaoUsuario.Value);
+
+        DataSet caminhoArquivoDs = ArquivoBD.BuscarNomeDoArquivoPorIdDaMissaoUsuario(idMissao);
+        string caminhoArquivo = caminhoArquivoDs.Tables[0].Rows[0]["mus_arquivo"].ToString();
+
+        if (!caminhoArquivo.Equals(""))
+        {
+            baixarAnexo(caminhoArquivo);
+        }
+    }
+
+    void baixarAnexo(string caminho)
+    {
+        string caminhoFormatado = caminho.Substring(caminho.LastIndexOf("gameup"));
+        string[] caminhoSeparado = caminhoFormatado.Split('\\');
+        string nomeArquivo = caminhoSeparado[caminhoSeparado.Length - 1];
+
+        //Response.ContentType = "Application/any";
+        Response.AppendHeader("Content-Disposition", "attachment; filename=" + nomeArquivo);
+        Response.TransmitFile(caminho);
+        Response.End();
+    }
+
 }
