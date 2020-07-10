@@ -135,7 +135,7 @@ public partial class Pages_Representante_PlacarLideres : System.Web.UI.Page
         {
             usuarioLogado = (Usuario)Session["USUARIO"];
 
-            if (usuarioLogado.Tus_id != 3) // Gerente
+            if (usuarioLogado.Tus_id != 3) // Representante
             {
                 Response.Redirect("../Visitante/Login.aspx");
             }

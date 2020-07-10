@@ -15,7 +15,7 @@
     <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
 
     <!-- Estilos customizados do template -->
-   <asp:Literal runat="server" ID="ltrCss">
+    <asp:Literal runat="server" ID="ltrCss">
     
     </asp:Literal>
 
@@ -71,13 +71,13 @@
                     </a>
                     <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordionSidebar">
                         <div class="bg-primary py-2 collapse-inner rounded">
-                                <a class="collapse-item text-white" href="Missoes.aspx"><i class="fas fa-fw fa-check"></i>
-                                    <span>Missões</span></a>
-                                <a class="collapse-item text-white" href="Desempenho.aspx"><i class="fas fa-fw fa-chart-line"></i>
-                                    <span>Desempenho</span></a>
-                                <a class="collapse-item text-white" href="PlacarLideres.aspx"><i class="fas fa-fw fa-flag-checkered"></i>
-                                    <span>Placar de líderes</span></a>
-                                
+                            <a class="collapse-item text-white" href="Missoes.aspx"><i class="fas fa-fw fa-check"></i>
+                                <span>Missões</span></a>
+                            <a class="collapse-item text-white" href="Desempenho.aspx"><i class="fas fa-fw fa-chart-line"></i>
+                                <span>Desempenho</span></a>
+                            <a class="collapse-item text-white" href="PlacarLideres.aspx"><i class="fas fa-fw fa-flag-checkered"></i>
+                                <span>Placar de líderes</span></a>
+
                         </div>
                     </div>
                 </li>
@@ -108,10 +108,6 @@
 
                 <!-- Divider -->
                 <hr class="sidebar-divider d-none d-md-block">
-
-                
-                
-
             </ul>
             <!-- End of Sidebar -->
 
@@ -123,7 +119,7 @@
 
                     <!-- Topbar -->
                     <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
-                       
+
                         <!-- Sidebar Toggle (Topbar) -->
                         <button type="button" id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
                             <i class="fa fa-bars"></i>
@@ -232,7 +228,7 @@
                             </li>--%>
 
                             <!-- Nav Item - Alerts -->
-                           <%-- <li class="nav-item dropdown no-arrow mx-1">
+                            <%-- <li class="nav-item dropdown no-arrow mx-1">
                                 <a class="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     <i class="fas fa-bell fa-fw"></i>
                                     <!-- Counter - Alerts -->
@@ -281,7 +277,7 @@
 
 
 
-                            
+
 
                             <!-- Nav Item - User Information -->
                             <li class="nav-item dropdown no-arrow">
@@ -320,7 +316,7 @@
             <a class="scroll-to-top rounded" href="#page-top">
                 <i class="fas fa-angle-up"></i>
             </a>
-            
+
             <!-- Logout Modal-->
             <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div class="modal-dialog" role="document">
@@ -361,6 +357,42 @@
         <script src="../../Assets/Custom/Js/demo/chart-area-demo.js"></script>
         <script src="../../Assets/Custom/Js/demo/chart-pie-demo.js"></script>
         <script src="../../Assets/Custom/Js/demo/chart-pie-demo.js"></script>
+        <script src="../../Assets/Vendor/datatables/jquery.dataTables.js"></script>
+        <script src="../../Assets/Vendor/datatables/dataTables.bootstrap4.min.js"></script>
+        <link href="../../Assets/Vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet" />
+
+
+        <script>
+            $(document).ready(function () {
+                $('.tabela').DataTable({
+                    language: {
+                        sProcessing: "A processar...",
+                        sLengthMenu: "Mostrar _MENU_ registos",
+                        sZeroRecords: "N&atilde;o foram encontrados resultados",
+                        sInfo: "Mostrando de _START_ at&eacute; _END_ de _TOTAL_ registos",
+                        sInfoEmpty: "Mostrando de 0 at&eacute; 0 de 0 registos",
+                        sInfoFiltered: "(filtrado de _MAX_ registos no total)",
+                        sInfoPostFix: "",
+                        sSearch: "Procurar:",
+                        sUrl: "",
+                        oPaginate: {
+                            sFirst: "Primeiro",
+                            sPrevious: "Anterior",
+                            sNext: "Seguinte",
+                            sLast: "&Uacute;ltimo"
+                        }
+                        //buttons: {
+                        //    colvis: 'Exibir Colunas',
+                        //    copyTitle: 'Registros Copiados',
+                        //    copySuccess: {
+                        //        _: 'Copiados %d registros',
+                        //        1: 'Copiado 1 registro'
+                        //    }
+                        //}
+                    }
+                });
+            });
+        </script>
 
         <asp:ScriptManager runat="server"></asp:ScriptManager>
     </form>
