@@ -9,18 +9,15 @@ using System.Web.UI.WebControls;
 public partial class Pages_Representante_PlacarLideres : System.Web.UI.Page
 {
     //TELA DE PLACAR DE LIDERES REPRESENTANTE
-
-
     private static Usuario usuarioLogado;
     protected void Page_Load(object sender, EventArgs e)
     {
         validarSessao();
 
-        TableRow tr;
-        TableCell tcPosicao;
-        TableCell tcNome;
-        TableCell tcPontos;
-
+        if (gvPlacarLideres.Rows.Count > 0)
+        {
+            gvPlacarLideres.HeaderRow.TableSection = TableRowSection.TableHeader;
+        }
 
         DataSet listaDeUsuariosDs = PlacarLideresBD.procurarUsuariosPlacarGeral(usuarioLogado.Emp_id);
         List<Usuario> listaDeUsuarios = new List<Usuario>();
@@ -54,25 +51,64 @@ public partial class Pages_Representante_PlacarLideres : System.Web.UI.Page
                 lbl3Posicao.Text = formatarNome(usu.Usu_nome);
                 lblPontos3Posicao.Text = usu.Usu_qtdPontos.ToString();
             }
-
-            // Preenche placar geral
-            tcPosicao = new TableCell();
-            tcNome = new TableCell();
-            tcPontos = new TableCell();
-            tr = new TableRow();
-
-            tcPosicao.Text = pos.ToString();
-            tcNome.Text = formatarNome(usu.Usu_nome);
-            tcPontos.Text = usu.Usu_qtdPontos.ToString();
-            tr.Controls.Add(tcPosicao);
-            tr.Controls.Add(tcNome);
-            tr.Controls.Add(tcPontos);
-
             pos++;
-
-            tblPlacarGeral.Controls.Add(tr);
         }
 
+        CriaGvPlacarLideresGeral();
+        
+
+    }
+
+    void CriaGvPlacarLideresGeral()
+    {
+
+        ltlPlacar.Text = "<h5 class='m-0 font-weight-bold text-dark col-md-6'>Placar geral</h5>";
+
+        DataTable dt = new DataTable();
+        dt.Columns.Add(new DataColumn("posicao", typeof(int)));
+        dt.Columns.Add(new DataColumn("usu_nome", typeof(string)));
+        dt.Columns.Add(new DataColumn("usu_qtdPontos", typeof(int)));
+
+        int i = 1;
+
+        foreach (DataRow cds in PlacarLideresBD.procurarUsuariosPlacarGeral(usuarioLogado.Emp_id).Tables[0].Rows)
+        {
+            dt.Rows.Add(i++, cds["usu_nome"].ToString(), Convert.ToInt32(cds["usu_qtdPontos"].ToString()));
+        }
+
+        gvPlacarLideres.DataSource = dt;
+        gvPlacarLideres.DataBind();
+
+        if (gvPlacarLideres.Rows.Count > 0)
+        {
+            gvPlacarLideres.HeaderRow.TableSection = TableRowSection.TableHeader;
+        }
+    }
+
+    void CriaGvPlacarLideresMensal()
+    {
+
+        ltlPlacar.Text = "<h5 class='m-0 font-weight-bold text-dark col-md-6'>Placar Mensal</h5>";
+
+        DataTable dt = new DataTable();
+        dt.Columns.Add(new DataColumn("posicao", typeof(int)));
+        dt.Columns.Add(new DataColumn("usu_nome", typeof(string)));
+        dt.Columns.Add(new DataColumn("usu_qtdPontos", typeof(int)));
+
+        int i = 1;
+
+        foreach (DataRow cds in PlacarLideresBD.procurarUsuariosPlacarMensal(usuarioLogado.Emp_id).Tables[0].Rows)
+        {
+            dt.Rows.Add(i++, cds["usu_nome"].ToString(), Convert.ToInt32(cds["usu_qtdPontos"].ToString()));
+        }
+
+        gvPlacarLideres.DataSource = dt;
+        gvPlacarLideres.DataBind();
+
+        if (gvPlacarLideres.Rows.Count > 0)
+        {
+            gvPlacarLideres.HeaderRow.TableSection = TableRowSection.TableHeader;
+        }
     }
 
     string formatarNome(string nome)
@@ -99,10 +135,22 @@ public partial class Pages_Representante_PlacarLideres : System.Web.UI.Page
         {
             usuarioLogado = (Usuario)Session["USUARIO"];
 
-            if (usuarioLogado.Tus_id != 3) // Colaborador ou Gerente
+            if (usuarioLogado.Tus_id != 3) // Gerente
             {
                 Response.Redirect("../Visitante/Login.aspx");
             }
+        }
+    }
+
+    protected void btnAlteraGv_Click(object sender, EventArgs e)
+    {
+        if (ddlPlacar.SelectedValue.Equals("1"))
+        {
+            CriaGvPlacarLideresGeral();
+        }
+        else if (ddlPlacar.SelectedValue.Equals("2"))
+        {
+            CriaGvPlacarLideresMensal();
         }
     }
 }
