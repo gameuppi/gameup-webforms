@@ -1083,4 +1083,21 @@ public partial class Pages_Representante_GerenciarMissoes : System.Web.UI.Page
 
         carregarTodasAsMissoesUsuario(listaDeMissoesUsuario);
     }
+
+    protected void btnPesquisarMissoes_Click(object sender, EventArgs e)
+    {
+        string tituloMissao = txtTituloMissaoVisualizar.Text;
+        DataSet missoesEncontradas = MissaoBD.ProcurarMissoesPorTituloGerente(tituloMissao, usuarioLogado.Emp_id);
+        List<MissaoUsuario> listaDeMissoesEncontradas = criarListaObjMissaoUsuario(missoesEncontradas);
+        pnlMissoesVisualizar.Controls.Clear();
+        carregarTodasAsMissoesUsuario(listaDeMissoesEncontradas);
+    }
+
+    protected void btnProcurarMissaoAgValidacao_Click(object sender, EventArgs e)
+    {
+        string tituloMissao = txtTituloMissaoAgValidacao.Text;
+        DataSet missoesEncontradas = MissaoBD.ProcurarMissoesPorTituloEStatus(tituloMissao, usuarioLogado.Emp_id, StatusMissaoEnum.AG_VALIDACAO);
+        List<MissaoUsuario> listaDeMissoesEncontradas = criarListaObjMissaoUsuario(missoesEncontradas);
+        carregarTodasAsMissoesUsuario(listaDeMissoesEncontradas);
+    }
 }

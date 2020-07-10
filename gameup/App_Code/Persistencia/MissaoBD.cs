@@ -687,12 +687,13 @@ public class MissaoBD
         query += "     MISSAO_USUARIO MUS ";
         query += "     JOIN MISSAO MIS ON MUS.MIS_ID = MIS.MIS_ID ";
         query += " WHERE ";
-        query += " 	UPPER(MIS.MIS_NOME) LIKE ?tituloMissao ";
+        query += " 	UPPER(MIS.MIS_NOME) LIKE '%tituloMissao%' ";
         query += "  AND MUS.USU_ID = ?idUsuario ";
-        
+
+        query = query.Replace("tituloMissao", tituloMissao.ToUpper());
+
         objCommand = Mapped.Command(query, objConexao);
 
-        objCommand.Parameters.Add(Mapped.Parameter("?tituloMissao", tituloMissao.ToUpper()));
         objCommand.Parameters.Add(Mapped.Parameter("?idUsuario", idUsuario));
 
         dataAdapter = Mapped.Adapter(objCommand);
@@ -728,12 +729,13 @@ public class MissaoBD
         query += "     JOIN MISSAO MIS ON MUS.MIS_ID = MIS.MIS_ID ";
         query += "     JOIN USUARIO USU ON USU.USU_ID = MUS.USU_ID ";
         query += " WHERE ";
-        query += " 	UPPER(MIS.MIS_NOME) LIKE ?tituloMissao ";
+        query += " 	UPPER(MIS.MIS_NOME) LIKE '%tituloMissao%' ";
         query += "  AND USU.EMP_ID = ?idEmpresa ";
+
+        query = query.Replace("tituloMissao", tituloMissao.ToUpper());
 
         objCommand = Mapped.Command(query, objConexao);
 
-        objCommand.Parameters.Add(Mapped.Parameter("?tituloMissao", tituloMissao.ToUpper()));
         objCommand.Parameters.Add(Mapped.Parameter("?idEmpresa", idEmpresa));
 
         dataAdapter = Mapped.Adapter(objCommand);
@@ -769,13 +771,14 @@ public class MissaoBD
         query += "     JOIN MISSAO MIS ON MUS.MIS_ID = MIS.MIS_ID ";
         query += "     JOIN USUARIO USU ON USU.USU_ID = MUS.USU_ID ";
         query += " WHERE ";
-        query += " 	UPPER(MIS.MIS_NOME) LIKE ?tituloMissao ";
+        query += " 	UPPER(MIS.MIS_NOME) LIKE '%tituloMissao%' ";
         query += "  AND USU.EMP_ID = ?idEmpresa ";
         query += "  AND MUS.MUS_STATUS = ?status ";
 
+        query = query.Replace("tituloMissao", tituloMissao.ToUpper());
+
         objCommand = Mapped.Command(query, objConexao);
 
-        objCommand.Parameters.Add(Mapped.Parameter("?tituloMissao", tituloMissao.ToUpper()));
         objCommand.Parameters.Add(Mapped.Parameter("?idEmpresa", idEmpresa));
         objCommand.Parameters.Add(Mapped.Parameter("?status", status.ToString()));
 
