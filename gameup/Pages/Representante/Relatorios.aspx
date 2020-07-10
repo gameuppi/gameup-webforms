@@ -4,99 +4,28 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
     
-
-    <!-- Gráfico semestral  -->
-    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-    <script type="text/javascript">
-        google.charts.load('current', { 'packages': ['corechart'] });
-        google.charts.setOnLoadCallback(drawChart);
-
-        function drawChart() {
-            var data = google.visualization.arrayToDataTable(<%=ObterDadosDoUsuarioSem()%>);
-
-
-            var options = {
-                title: 'Grafico de desempenho semestral',
-                curveType: 'function',
-                legend: { position: 'bottom' }
-            };
-
-            var chart = new google.visualization.LineChart(document.getElementById('curve_chart_Sem'));
-
-
-            chart.draw(data, options);
-        }
-    </script>
-    <!-- Gráfico trimestral  -->
-    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-    <script type="text/javascript">
-        google.charts.load('current', { 'packages': ['corechart'] });
-        google.charts.setOnLoadCallback(drawChart);
-
-        function drawChart() {
-            var data = google.visualization.arrayToDataTable(<%=ObterDadosDoUsuarioTri()%>);
-
-
-            var options = {
-                title: 'Grafico de desempenho trimestral',
-                curveType: 'function',
-                legend: { position: 'bottom' }
-            };
-
-            var chart = new google.visualization.LineChart(document.getElementById('curve_chart_Tri'));
-
-
-            chart.draw(data, options);
-        }
-    </script>
-
-    <!-- Gráfico semanal  -->
-    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-    <script type="text/javascript">
-        google.charts.load('current', { 'packages': ['corechart'] });
-        google.charts.setOnLoadCallback(drawChart);
-
-        function drawChart() {
-            var data = google.visualization.arrayToDataTable(<%=ObterDadosDoUsuarioSema()%>);
-
-
-            var options = {
-                title: 'Grafico de desempenho semanal',
-                curveType: 'function',
-                legend: { position: 'bottom' }
-            };
-
-            var chart = new google.visualization.LineChart(document.getElementById('curve_chart_Sema'));
-
-
-            chart.draw(data, options);
-        }
-    </script>
-
-
+<%--    RELATORIOS DE REPRESENTANTE--%>
+    
 
     <div class="row">
         <div class="col-xl-8 col-lg-7 ">
-            <div class="card shadow mb-4 ">
+            <div class="card shadow h-100 ">
                 <!-- Card Header - Accordion -->
-                <a href="#collapseCardExample5" class="d-block card-header py-3" data-toggle="collapse" role="button" aria-expanded="true" aria-controls="collapseCardExample">
+                <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
                     <h6 class="m-0 font-weight-bold text-center">GRÁFICO DE DESEMPENHO DA EMPRESA</h6>
-                </a>
+                </div>
                 <!-- Card Content - Collapse -->
-                <div class="collapse show" id="collapseCardExample5">
-
+                <div class="card-body float-left text-left text-xl-left border-left left ">
                     <asp:Literal runat="server" ID="ltlGerarGrafico"> </asp:Literal>
-
                 </div>
             </div>
         </div>
 
         <div class="col-xl-4 col-lg-5 ">
-            <div class="card shadow mb-4 ">
+            <div class="card shadow h-100 ">
                 <!-- Card Header - Dropdown -->
                 <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
                     <h6 class="m-0 font-weight-bold text-center">Opções de Relatórios </h6>
-
                 </div>
                 <!-- Card Body -->
                 <div class="card-body float-left text-left text-xl-left border-left left ">
@@ -104,7 +33,7 @@
                     <br />
                     <div class="row">
                         <div class="col-6">
-                            <asp:DropDownList runat="server" class="btn btn-secondary dropdown-toggle" ID="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <asp:DropDownList runat="server" class="btn btn-secondary dropdown-toggle" ID="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"  style=" float:left">
 
                                 <asp:ListItem Selected="True" Value="sem"> Semestral </asp:ListItem>
                                 <asp:ListItem Value="tri"> Trimestral </asp:ListItem>
@@ -113,10 +42,12 @@
                             </asp:DropDownList>
                         </div>
                         <div class="col ">
-                            <asp:Button runat="server" ID="btnGerarGrafico" CssClass="btn btn-dark" OnClick="btnGerarGrafico_Click" Text="Gerar Gráfico " />
+                            <asp:Button runat="server" ID="btnGerarGrafico" CssClass="btn btn-dark" OnClick="btnGerarGrafico_Click" Text="Gerar Gráfico " style=" float:right"/>
                         </div>
                     </div>
                 </div>
+
+                <img src="https://cdn.pixabay.com/photo/2016/12/22/13/35/analytics-1925495_960_720.png" class="img-fluid" alt="Responsive image" style="min-height: 50px;">
             </div>
         </div>
 
@@ -125,7 +56,7 @@
             <!-- Informacoes basicas de missoes -->
 
             <!-- Collapsable Card Example -->
-            <div class="card shadow mb-4">
+            <div class="card shadow mb-4 mt-4">
                 <!-- Card Header - Accordion -->
                 <a href="#collapseCardExample2" class="d-block card-header py-3" data-toggle="collapse" role="button" aria-expanded="true" aria-controls="collapseCardExample">
                     <h6 class="m-0 font-weight-bold text-center">MISSÕES DA EMPRESA</h6>
@@ -229,7 +160,7 @@
         </script>
         
         <div class="col-md-8 Col-lg-8">
-            <div class="card shadow mb-4">
+            <div class="card shadow mb-4 mt-4">
                     <!-- Card Header - Accordion -->
                     <a href="#collapseCardExample7" class="d-block card-header py-3" data-toggle="collapse" role="button" aria-expanded="true" aria-controls="collapseCardExample">
                         <h6 class="m-0 font-weight-bold text-center">GRÁFICO ATUAL DE MISSÕES DA EMPRESA</h6>
@@ -245,6 +176,75 @@
             </div>
         </div>
     </div>
+    <!-- Gráfico semestral  -->
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+        google.charts.load('current', { 'packages': ['corechart'] });
+        google.charts.setOnLoadCallback(drawChart);
+
+        function drawChart() {
+            var data = google.visualization.arrayToDataTable(<%=ObterDadosDoUsuarioSem()%>);
+
+
+            var options = {
+                title: 'Grafico de desempenho semestral',
+                curveType: 'function',
+                legend: { position: 'bottom' }
+            };
+
+            var chart = new google.visualization.LineChart(document.getElementById('curve_chart_Sem'));
+
+
+            chart.draw(data, options);
+        }
+    </script>
+    <!-- Gráfico trimestral  -->
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+        google.charts.load('current', { 'packages': ['corechart'] });
+        google.charts.setOnLoadCallback(drawChart);
+
+        function drawChart() {
+            var data = google.visualization.arrayToDataTable(<%=ObterDadosDoUsuarioTri()%>);
+
+
+            var options = {
+                title: 'Grafico de desempenho trimestral',
+                curveType: 'function',
+                legend: { position: 'bottom' }
+            };
+
+            var chart = new google.visualization.LineChart(document.getElementById('curve_chart_Tri'));
+
+
+            chart.draw(data, options);
+        }
+    </script>
+
+    <!-- Gráfico semanal  -->
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+        google.charts.load('current', { 'packages': ['corechart'] });
+        google.charts.setOnLoadCallback(drawChart);
+
+        function drawChart() {
+            var data = google.visualization.arrayToDataTable(<%=ObterDadosDoUsuarioSema()%>);
+
+
+            var options = {
+                title: 'Grafico de desempenho semanal',
+                curveType: 'function',
+                legend: { position: 'bottom' }
+            };
+
+            var chart = new google.visualization.LineChart(document.getElementById('curve_chart_Sema'));
+
+
+            chart.draw(data, options);
+        }
+    </script>
+
+
     
 </asp:Content>
 

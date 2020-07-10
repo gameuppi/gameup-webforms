@@ -43,17 +43,19 @@ public partial class Pages_Representante_PainelPrincipal : System.Web.UI.Page
             {
                 lbl1Posicao.Text = formatarNome(usu.Usu_nome);
                 lblPontos1Posicao.Text = usu.Usu_qtdPontos.ToString();
-                txtApelido1.Text = usuarioLogado.Usu_apelido;
+                txtApelido1.Text = usu.Usu_apelido;
             }
             else if (pos == 2)
             {
                 lbl2Posicao.Text = formatarNome(usu.Usu_nome);
                 lblPontos2Posicao.Text = usu.Usu_qtdPontos.ToString();
+                txtApelido2.Text = usu.Usu_apelido;
             }
             else if (pos == 3)
             {
                 lbl3Posicao.Text = formatarNome(usu.Usu_nome);
                 lblPontos3Posicao.Text = usu.Usu_qtdPontos.ToString();
+                txtApelido3.Text = usu.Usu_apelido;
             }
             pos++;
 
