@@ -219,17 +219,11 @@ public partial class Pages_Representante_GerenciarColaboradores : System.Web.UI.
             throw ex;
         }
     }
-    protected void gvColaboradores_SelectedIndexChanged(object sender, EventArgs e)
-    {
-        Console.WriteLine("sfsd");
-    }
 
     protected void gvColaboradores_RowCommand(object sender, GridViewCommandEventArgs e)
     {
         if (e.CommandName == "Editar")
         {
-            //Response.Write($"<script> alert({ e.CommandArgument}) </script>");
-
             lblUsuario.Visible = false;
             rptColaborador.Visible = true;
 
@@ -278,10 +272,37 @@ public partial class Pages_Representante_GerenciarColaboradores : System.Web.UI.
             switch (UsuarioBD.UpdateInativo(Convert.ToInt32(e.CommandArgument)))
             {
                 case true:
-                    Response.Write("<script> alert('Update realizado com sucesso!!!')</script>");
+                    lblUpdateColabText.Text = "<h5 class='text-success'>Update realizado com sucesso!</h5>";
+                    lblUpdateColabTitle.Text = "Ótimo!";
+                    // Abre modal de sucesso
+                    Page.ClientScript.RegisterStartupScript(this.GetType(), "script", "<script>$('#modalUpdateColaborador').modal('show');</script>");
                     break;
                 case false:
-                    Response.Write("<script> alert('Ocorreu algum erro, Tente novamente mais tarde')</script>");
+                    lblUpdateColabText.Text = "<h5 class='text-danger'>O colaborador não pode ser alterado, tente novamente mais tarde!!!</h5>";
+                    lblUpdateColabTitle.Text = "Vish, Que pena!";
+                    // Abre modal de sucesso
+                    Page.ClientScript.RegisterStartupScript(this.GetType(), "script", "<script>$('#modalUpdateColaborador').modal('show');</script>");
+                    break;
+            }
+
+            CriaListaColaboradores();
+        }
+
+        if (e.CommandName == "AlterarCargo")
+        {
+            switch (UsuarioBD.UpdateGerente(Convert.ToInt32(e.CommandArgument)))
+            {
+                case true:
+                    lblUpdateColabText.Text = "<h5 class='text-success'>Update realizado com sucesso!!!</h5>";
+                    lblUpdateColabTitle.Text = "Ótimo!";
+                    // Abre modal de sucesso
+                    Page.ClientScript.RegisterStartupScript(this.GetType(), "script", "<script>$('#modalUpdateColaborador').modal('show');</script>");
+                    break;
+                case false:
+                    lblUpdateColabText.Text = "<h5 class='text-danger'>O colaborador não pode ser alterado, tente novamente mais tarde!</h5>";
+                    lblUpdateColabTitle.Text = "Vish, Que pena!";
+                    // Abre modal de sucesso
+                    Page.ClientScript.RegisterStartupScript(this.GetType(), "script", "<script>$('#modalUpdateColaborador').modal('show');</script>");
                     break;
             }
 
@@ -289,98 +310,45 @@ public partial class Pages_Representante_GerenciarColaboradores : System.Web.UI.
         }
 
 
-    }
-
-    protected void rptColaborador_ItemCommand(object source, RepeaterCommandEventArgs e)
-    {
-        if (e.CommandName == "Edite")
-        {
-            DataSet dsColaborador = UsuarioBD.procurarUsuarioPorId(Convert.ToInt32(e.CommandArgument.ToString()));
-            Session["USU_ID_EDITAR"] = e.CommandArgument.ToString();
-
-            if (dsColaborador.Tables[0].Rows[0]["tus_id"].Equals("2"))
-            {
-                cbGerenteModal.Checked = true;
-            }
-
-            if (dsColaborador.Tables[0].Rows[0]["usu_statususuario"].Equals("2"))
-            {
-                cbInativoModal.Checked = true;
-            }
-                       
-            lblTitulo.Text = $"<h6 class='m-0 font-weight-bold text-dark'>Colaborador: {formatarNome(dsColaborador.Tables[0].Rows[0]["usu_nome"].ToString())}</h6>"; ;
-            // Abre modal de sucesso
-            Page.ClientScript.RegisterStartupScript(this.GetType(), "script", "<script>$('#modalEditaColaborador').modal('show');</script>");
-        }
-    }
-
-
-
-    protected void btnSalve_Click(object sender, EventArgs e)
-    {
-        int usu_id_editar = Convert.ToInt32(Session["USU_ID_EDITAR"].ToString());
-
-        DataSet dsColab = UsuarioBD.procurarUsuarioPorId(usu_id_editar);
-
-        if (cbGerenteModal.Checked)
-        {
-            switch (UsuarioBD.UpdateGerente(usu_id_editar))
-            {
-                case true:
-                    Response.Write("<script> alert('Update realizado com sucesso!!!')</script>");
-                    break;
-                case false:
-                    Response.Write("<script> alert('Ocorreu algum erro, Tente novamente mais tarde')</script>");
-                    break;
-            }
-        }
-        else
-        {
-            if (dsColab.Tables[0].Rows[0]["tus_id"].Equals("2"))
-            {
-                switch (UsuarioBD.UpdateGerente2(usu_id_editar))
-                {
-                    case true:
-                        Response.Write("<script> alert('Update realizado com sucesso!!!')</script>");
-                        break;
-                    case false:
-                        Response.Write("<script> alert('Ocorreu algum erro, Tente novamente mais tarde')</script>");
-                        break;
-                }
-
-            }
-        }
-
-        if (cbInativoModal.Checked)
-        {
-            
-        }
-        else
-        {
-          
-        }
-
-    }
+    }  
 
     protected void gvColaboradores_RowDataBound(object sender, GridViewRowEventArgs e)
     {
-        if ( e.Row.RowType == DataControlRowType.DataRow)
+        if (e.Row.RowType == DataControlRowType.DataRow)
         {
-            LinkButton lnk = (LinkButton) e.Row.FindControl("btnInativo");
+            LinkButton lnk = (LinkButton)e.Row.FindControl("btnCargo");
 
             if (lnk != null)
             {
                 switch (lnk.Text)
                 {
+                    case "COLABORADOR":
+                        lnk.Text = "<i class='fa fa-user' data-toggle='tooltip' title='Colaborador'></i>";
+                        break;
+                    case "GERENTE":
+                        lnk.Text = "<i class='fa fa-user-astronaut' data-toggle='tooltip' title='Gerente'></i>";
+                        break;
+                }
+            }
+        }
+
+        if ( e.Row.RowType == DataControlRowType.DataRow)
+        {
+            LinkButton lnk2 = (LinkButton) e.Row.FindControl("btnInativo");
+
+            if (lnk2 != null)
+            {
+                switch (lnk2.Text)
+                {
                     case "ATIVO":
-                        lnk.Text = "<i class='fa fa-check' data-toggle='tooltip' title='Ativo'></i>";
+                        lnk2.Text = "<i class='fa fa-check' data-toggle='tooltip' title='Ativo'></i>";
                         break;
                     case "INATIVO":
-                        lnk.Text = "<i class='fa fa-ban' data-toggle='tooltip' title='Inativo'></i>";
+                        lnk2.Text = "<i class='fa fa-ban' data-toggle='tooltip' title='Inativo'></i>";
                         break;
                     case "CADASTRADO":
-                        lnk.Text = "<i class='fa fa-id-card' data-toggle='tooltip' title='Cadastrado'></i>";
-                        lnk.Enabled = false;
+                        lnk2.Text = "<i class='fa fa-id-card' data-toggle='tooltip' title='Cadastrado'></i>";
+                        lnk2.Enabled = false;
                         break;
                 }
             }

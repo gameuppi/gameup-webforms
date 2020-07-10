@@ -31,7 +31,7 @@
                 </div>
                 <div class="card-body">
                     <asp:Literal ID="lblUsuario" runat="server"></asp:Literal>
-                    <asp:Repeater runat="server" ID="rptColaborador" OnItemCommand="rptColaborador_ItemCommand">
+                    <asp:Repeater runat="server" ID="rptColaborador">
                         <ItemTemplate>
                             <div class='col-md-12 m-0 font-weight-normal'>
                                 <div class='row'>
@@ -39,45 +39,38 @@
                                         <div class='col-md-12'>
                                             <div class='card-custom border-left-success shadow'>
                                                 <div class='card-custom-image'>
-                                                    <img src='http://localhost:62235/Assets/Imagens/astronautasentado.jpg' class='img-fluid'>
+                                                    <img src='../../Assets/Imagens/astronautasentado.jpg' class='img-fluid'>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
-                                    <div class='col-md-6'>
+                                    <div class='col-md-6 mt-4 mb-5'>
                                         <div class='col-md-12'>
-                                            <b>Nome</b>: <%# Eval("usu_nome") %>
+                                            <i class="fa fa-address-card" data-toggle="tooltip" title="Nome"></i>&nbsp;: <%# Eval("usu_nome") %>
                                         </div>
                                         <div class='col-md-12'>
-                                            <b>Apelido</b>: <%# Eval("usu_apelido") %>
+                                            <i class="fa fa-signature" data-toggle="tooltip" title="Apelido"></i>&nbsp;: <%# Eval("usu_apelido") %>
                                         </div>
                                         <div class='col-md-12'>
-                                            <b>Setor</b>: <%# Eval("set_id") %>
+                                            <i class="fa fa-building" data-toggle="tooltip" title="Setor"></i>&nbsp;: <%# Eval("set_id") %>
                                         </div>
                                         <div class='col-md-12'>
-                                            <b>Cargo</b>: <%# Eval("tus_id") %>
+                                            <i class="fa fa-briefcase" data-toggle="tooltip" title="Cargo"></i>&nbsp;: <%# Eval("tus_id") %>
                                         </div>
                                         <div class='col-md-12'>
-                                            <b>E-mail</b>: <%# Eval("usu_email") %>
+                                            <i class="fa fa-envelope-open-text" data-toggle="tooltip" title="E-mail"></i>&nbsp;: <%# Eval("usu_email") %>
                                         </div>
                                         <div class='col-md-12'>
-                                            <b>Pontos</b>: <%# Eval("usu_qtdPontos") %>
+                                            <i class="fa fa-meteor" data-toggle="tooltip" title="Pontos"></i>&nbsp;: <%# Eval("usu_qtdPontos") %>
                                         </div>
                                         <div class='col-md-12'>
-                                            <b>Experiência</b>: <%# Eval("usu_qtdXp") %>
+                                            <i class="fa fa-star" data-toggle="tooltip" title="Experiência"></i>&nbsp;: <%# Eval("usu_qtdXp") %>
                                         </div>
                                         <div class='col-md-12'>
-                                            <b>Status</b>: <%# Eval("usu_statusUsuario") %>
+                                            <i class="fa fa-toggle-on" data-toggle="tooltip" title="Status"></i>&nbsp;: <%# Eval("usu_statusUsuario") %>
                                         </div>
                                         <div class='col-md-12'>
-                                            <b>Nivel</b>: <%# Eval("niv_id") %>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-md-4 mt-4"></div>
-                                            <div class="col-md-4 mt-4"></div>
-                                            <div class="col-md-4 mt-4">
-                                                <asp:LinkButton ID="btnEditar" runat="server" CommandName="Edite" CommandArgument='<%# Bind("usu_id") %>' Text="Editar" CssClass="btn btn-block btn-primary"></asp:LinkButton>
-                                            </div>
+                                            <i class="fa fa-level-up-alt" data-toggle="tooltip" title="Nivel"></i>&nbsp;: <%# Eval("niv_id") %>
                                         </div>
                                     </div>
                                 </div>
@@ -122,21 +115,28 @@
                 <div class="card-body text-center">
                     <div class="table-responsive">
                         <div class="col-md-12">
-                            <asp:GridView OnSelectedIndexChanged="gvColaboradores_SelectedIndexChanged" ID="gvColaboradores" runat="server" ClientIDMode="Static" CellPadding="3" GridLines="Vertical" AutoGenerateColumns="False" CssClass="table table-striped table-hover tabela" OnRowCommand="gvColaboradores_RowCommand" OnRowDataBound="gvColaboradores_RowDataBound">
+                            <asp:GridView ID="gvColaboradores" runat="server" ClientIDMode="Static" CellPadding="3" GridLines="Vertical" AutoGenerateColumns="False" CssClass="table table-striped table-hover tabela" OnRowCommand="gvColaboradores_RowCommand" OnRowDataBound="gvColaboradores_RowDataBound">
                                 <Columns>
                                     <asp:TemplateField>
                                         <HeaderTemplate>
                                             Detalhes
                                         </HeaderTemplate>
                                         <ItemTemplate>
-                                            <asp:LinkButton ID="btnColaborador" runat="server" CssClass="btn btn-default btn-sm btnDetalhes" CommandName="Editar" CommandArgument='<%# Bind("usu_id") %>'>
+                                            <asp:LinkButton ID="btnColaborador" runat="server" CssClass="btn btn-default btn-sm" CommandName="Editar" CommandArgument='<%# Bind("usu_id") %>'>
                                         <span class="fas fa-search-plus"></span>
                                             </asp:LinkButton>
                                         </ItemTemplate>
                                     </asp:TemplateField>
                                     <asp:BoundField DataField="usu_nome" HeaderText="Usuario" />
                                     <asp:BoundField DataField="usu_email" HeaderText="E-mail" ItemStyle-CssClass="btnDetalhes" ItemStyle-Font-Size="Small" />
-                                    <asp:BoundField DataField="tus_id" HeaderText="Cargo" />
+                                    <asp:TemplateField>
+                                        <HeaderTemplate>
+                                            Cargo
+                                        </HeaderTemplate>
+                                        <ItemTemplate>
+                                            <asp:LinkButton ID="btnCargo" runat="server" Text='<%# Bind("tus_id") %>' CommandName="AlterarCargo" CommandArgument='<%# Bind("usu_id") %>'></asp:LinkButton>
+                                        </ItemTemplate>
+                                    </asp:TemplateField>
                                     <asp:BoundField DataField="set_id" HeaderText="Setor" />
                                     <asp:TemplateField>
                                         <HeaderTemplate>
@@ -186,23 +186,21 @@
         </div>
     </div>
 
-    <!-- Modal Editar colaborador -->
-    <div class="modal fade" id="modalEditaColaborador">
+    <!-- Modal Update colaborador -->
+    <div class="modal fade" id="modalUpdateColaborador">
         <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content">
+            <div class="modal-content">                
                 <div class="modal-header">
                     <h4 class="modal-title">
-                        <asp:Literal runat="server" ID="lblTitulo"></asp:Literal>
+                        <asp:Literal runat="server" ID="lblUpdateColabTitle"></asp:Literal>
                     </h4>
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
                 </div>
                 <div class="modal-body">
-                    <asp:CheckBox ID="cbGerenteModal" runat="server" Text="&nbsp; Gerente" /><br />
-                    <asp:CheckBox ID="cbInativoModal" runat="server" Text="&nbsp; Inativo" />
+                    <asp:Literal runat="server" ID="lblUpdateColabText"></asp:Literal>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-success" data-dismiss="modal">Cancelar</button>
-                    <asp:Button ID="btnSalve" runat="server" CssClass="btn btn-success" OnClick="btnSalve_Click" Text="Salvar"/>
+                    <button type="button" class="btn btn-success" data-dismiss="modal">Pronto</button>
                 </div>
             </div>
         </div>
@@ -234,32 +232,5 @@
             </div>
         </div>
     </div>
-
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-    <script type="text/javascript">
-        $(document).ready(function () {
-            $('.btnDetalhes').click(function () {
-                var email = $('.btnDetalhes').html();
-                $.ajax({
-                    type: 'POST',
-                    contentType: "application/json; charset=utf-8",
-                    url: 'GerenciarColaboradores.aspx/ExibirDetalhesColaborador',
-                    data: "{'email':'" + email + "'}",
-                    async: false,
-                    success: function (response) {
-                        if (response) {
-
-                        } else {
-                            alert("erro")
-                        }
-                    },
-                    error: function (response) {
-                        alert("Erro");
-                        console.log(response);
-                    }
-                });
-            })
-        });
-    </script>
 
 </asp:Content>

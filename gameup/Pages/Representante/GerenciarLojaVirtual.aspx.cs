@@ -226,7 +226,8 @@ public partial class Pages_Representante_GerenciarLojaVirtual : System.Web.UI.Pa
         {
             usuarioComprador = criarObjetoUsuarioComprador(
                     usu["usu_nome"].ToString(),
-                    usu["set_nome"].ToString()
+                    usu["set_nome"].ToString(),
+                    Convert.ToDateTime(usu["mfi_data"].ToString())
             );
 
             listaDeUsuarioComprador.Add(usuarioComprador);
@@ -235,18 +236,24 @@ public partial class Pages_Representante_GerenciarLojaVirtual : System.Web.UI.Pa
         // Carrega o modal 
         Page.ClientScript.RegisterStartupScript(this.GetType(), "script", "<script>$('#modalParticipantes').modal('show');</script>");
 
+        ltbCompradores.Items.Clear();
+
+        string usuListBox;
+
         // Carrega os colaboradores no modal
         foreach(UsuarioComprador usuario in listaDeUsuarioComprador)
         {
-            ltbCompradores.Items.Add(new ListItem(usuario.NomeUsuario, usuario.NomeSetor));
+            usuListBox = $"{usuario.NomeUsuario} do Setor {usuario.NomeSetor} na data {usuario.DataCompra}";
+            ltbCompradores.Items.Add(new ListItem(usuListBox, "Usuário"));
         }
     }
 
-    protected UsuarioComprador criarObjetoUsuarioComprador(string nomeUsuario, string nomeSetor)
+    protected UsuarioComprador criarObjetoUsuarioComprador(string nomeUsuario, string nomeSetor, DateTime dataCompra)
     {
         UsuarioComprador usuario = new UsuarioComprador();
         usuario.NomeUsuario = nomeUsuario;
         usuario.NomeSetor = nomeSetor;
+        usuario.DataCompra = dataCompra;
 
         return usuario;
     }

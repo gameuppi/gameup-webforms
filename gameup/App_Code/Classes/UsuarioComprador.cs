@@ -10,6 +10,7 @@ public class UsuarioComprador
 {
     private string nomeUsuario;
     private string nomeSetor;
+    private DateTime dataCompra;
 
     public string NomeUsuario
     {
@@ -34,6 +35,19 @@ public class UsuarioComprador
         set
         {
             nomeSetor = value;
+        }
+    }
+
+    public DateTime DataCompra
+    {
+        get
+        {
+            return dataCompra;
+        }
+
+        set
+        {
+            dataCompra = value;
         }
     }
 }
