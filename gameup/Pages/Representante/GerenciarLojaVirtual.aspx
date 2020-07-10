@@ -224,7 +224,7 @@
                     </div>
 
                     <div class="modal-body">
-                        <asp:ListBox runat="server" ID="ltbCompradores" CssClass="form-control"></asp:ListBox>
+                        <asp:ListBox runat="server" ID="ltbCompradores" CssClass="form-control table-responsive"></asp:ListBox>
                     </div>
 
                     <div class="modal-footer">

@@ -627,7 +627,8 @@ public class ProdutoDB
         string query = "";
         query += " SELECT  ";
         query += " 	usu.usu_nome usu_nome, ";
-        query += " 	seto.set_nome set_nome";
+        query += " 	seto.set_nome set_nome,";
+        query += " 	mov.mfi_dhCompra mfi_data";
         query += " FROM ";
         query += " 	movfinanceira mov ";
         query += " 	JOIN usuario usu ON usu.usu_id = mov.usu_id ";
