@@ -9,6 +9,7 @@
     </div>
 
     <script src="../../Assets/Vendor/jquery/jquery.min.js"></script>
+    <script src="../../Assets/Custom/Js/main.js"></script>
 
     <asp:HiddenField ID="TabName" runat="server" />
     <script type="text/javascript">
@@ -91,11 +92,11 @@
                             <div class="form-row">
                                 <div class="form-group col-12 col-md-6">
                                     <label for="inputEmail4">Início</label>
-                                    <asp:TextBox type="date" CssClass="form-control" ID="dtInicio" runat="server" placeholder="Data de início" />
+                                    <asp:TextBox type="date" onkeydown="return false" CssClass="form-control" ID="dtInicio" runat="server" placeholder="Data de início" />
                                 </div>
                                 <div class="form-group col-12 col-md-6">
                                     <label for="inputPassword4">Fim</label>
-                                    <asp:TextBox type="date" CssClass="form-control" ID="dtFim" runat="server" placeholder="Data de fim" />
+                                    <asp:TextBox type="date" onkeydown="return false" CssClass="form-control" ID="dtFim" runat="server" placeholder="Data de fim" />
                                 </div>
                                 <div class="form-group col-12">
                                     <label for="inputPassword4">Descrição</label>
@@ -118,7 +119,7 @@
                                     <i class="fas fa-coins fa-2x text-success"></i>
                                 </div>
                                 <div class="col-12 col-md-6">
-                                    <asp:TextBox type="number" CssClass="form-control" ID="txtQtdMoedas" runat="server" />
+                                    <asp:TextBox type="number" min="0" oninput="validity.valid||(value='');" CssClass="form-control" ID="txtQtdMoedas" runat="server" />
                                 </div>
                             </div>
                         </div>
@@ -129,7 +130,7 @@
                                     <i class="fas fa-star fa-2x text-warning"></i>
                                 </div>
                                 <div class="col-12 col-md-6">
-                                    <asp:TextBox type="number" CssClass="form-control" ID="txtQtdExp" runat="server" />
+                                    <asp:TextBox type="number" min="0" oninput="validity.valid||(value='');" CssClass="form-control" ID="txtQtdExp" runat="server" />
                                 </div>
                             </div>
                         </div>
@@ -140,7 +141,7 @@
                                     <i class="fas fa-meteor fa-2x text-danger"></i>
                                 </div>
                                 <div class="col-12 col-md-6">
-                                    <asp:TextBox type="number" CssClass="form-control" ID="txtQtdPontos" runat="server" />
+                                    <asp:TextBox type="number" min="0" oninput="validity.valid||(value='');" CssClass="form-control" ID="txtQtdPontos" runat="server" />
                                 </div>
                             </div>
                         </div>
@@ -341,6 +342,9 @@
                 </div>
             </div>
         </div>
+        <script>
+            
+        </script>
         <!--
     <script>
         window.addEventListener('keydown', function (e) {

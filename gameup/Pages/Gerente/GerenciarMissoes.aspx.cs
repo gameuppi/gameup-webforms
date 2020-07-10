@@ -12,6 +12,7 @@ public partial class Pages_Gerente_GerenciarMissoes : System.Web.UI.Page
 
     protected void Page_Load(object sender, EventArgs e)
     {
+        ValidarEntradas();
 
         validarSessao();
 
@@ -24,6 +25,34 @@ public partial class Pages_Gerente_GerenciarMissoes : System.Web.UI.Page
         
     }
 
+    void ValidarEntradas()
+    {
+        DateTime hoje = DateTime.Now;
+        string mes;
+        string dia;
+        if (hoje.Month <= 10)
+        {
+            mes = "0" + hoje.Month;
+        }
+        else
+        {
+            mes = hoje.Month.ToString();
+        }
+
+        if (hoje.Day <= 10)
+        {
+            dia = "0" + hoje.AddDays(-5).Day.ToString();
+        }
+        else
+        {
+            dia = hoje.AddDays(-5).ToString();
+        }
+
+
+        dtInicio.Attributes.Add("min", hoje.Year + "-" + mes + "-" + dia);
+        dtFim.Attributes.Add("min", hoje.Year + "-" + mes + "-" + hoje.Day);
+
+    }
     void validarSessao()
     {
 
