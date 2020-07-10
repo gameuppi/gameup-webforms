@@ -17,8 +17,10 @@ public partial class Pages_Gerente_Relatorios : System.Web.UI.Page
         validarSessao();
 
         lblNomeSetor.Text = SetorBD.procurarSetoresPorID(usuarioLogado.Set_id).ToUpper();
+        lblSetor2.Text = lblNomeSetor.Text;
+        lblSetor3.Text = lblNomeSetor.Text;
 
-        ltlGerarGrafico.Text = "<div id='curve_chart_Sema' style=' min-height:400px; '></div>";
+        ltlGerarGrafico.Text = "<div id='curve_chart_Sema' style=' min-height:380px; '></div>";
         if (!IsPostBack)
         {
             carregarMissoes();

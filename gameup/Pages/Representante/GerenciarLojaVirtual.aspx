@@ -130,7 +130,7 @@
                                                     <i class="fas fa-coins fa-2x text-success"></i>
                                                 </div>
                                                 <div class="col-12 col-md-6">
-                                                    <asp:TextBox type="number" runat="server" CssClass="form-control" placeholder="Preço" ID="txtValorMoeda"></asp:TextBox>
+                                                    <asp:TextBox type="number" runat="server" min="0" oninput="validity.valid||(value='');" CssClass="form-control" placeholder="Preço" ID="txtValorMoeda"></asp:TextBox>
                                                 </div>
                                             </div>
                                         </div>
@@ -141,7 +141,7 @@
                                                     <i class="fas fa-cart-plus fa-2x text-warning"></i>
                                                 </div>
                                                 <div class="col-12 col-md-6">
-                                                    <asp:TextBox type="number" runat="server" CssClass="form-control" placeholder="Quantidade" ID="txtQuantidade"></asp:TextBox>
+                                                    <asp:TextBox type="number" runat="server" min="0" oninput="validity.valid||(value='');" CssClass="form-control" placeholder="Quantidade" ID="txtQuantidade"></asp:TextBox>
                                                 </div>
                                             </div>
                                         </div>

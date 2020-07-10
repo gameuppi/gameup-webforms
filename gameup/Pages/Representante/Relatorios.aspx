@@ -12,10 +12,10 @@
             <div class="card shadow h-100 ">
                 <!-- Card Header - Accordion -->
                 <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                    <h6 class="m-0 font-weight-bold text-center">GRÁFICO DE DESEMPENHO DA EMPRESA</h6>
+                    <h6 class="m-0 font-weight-bold text-center text-primary">GRÁFICO DE DESEMPENHO DA EMPRESA</h6>
                 </div>
                 <!-- Card Content - Collapse -->
-                <div class="card-body float-left text-left text-xl-left border-left left ">
+                <div class="card-body p-0">
                     <asp:Literal runat="server" ID="ltlGerarGrafico"> </asp:Literal>
                 </div>
             </div>
@@ -25,14 +25,14 @@
             <div class="card shadow h-100 ">
                 <!-- Card Header - Dropdown -->
                 <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                    <h6 class="m-0 font-weight-bold text-center">Opções de Relatórios </h6>
+                    <h6 class="m-0 font-weight-bold text-center text-primary">OPÇÕES DE RELATÓRIOS </h6>
                 </div>
                 <!-- Card Body -->
                 <div class="card-body float-left text-left text-xl-left border-left left ">
                     <h4>Selecione o tipo do gráfico</h4>
                     <br />
                     <div class="row">
-                        <div class="col-8">
+                        <div class="col-md-7">
                             <asp:DropDownList runat="server" class="form-control dropdown-toggle" ID="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"  style=" float:left">
 
                                 <asp:ListItem Selected="True" Value="sem"> Semestral </asp:ListItem>
@@ -41,7 +41,7 @@
 
                             </asp:DropDownList>
                         </div>
-                        <div class="col-4">
+                        <div class="col-md-5">
                             <asp:Button runat="server" ID="btnGerarGrafico" CssClass="btn btn-info" OnClick="btnGerarGrafico_Click" Text="Gerar Gráfico " style=" float:right"/>
                         </div>
                     </div>
@@ -52,14 +52,14 @@
         </div>
 
 
-         <div class="col-md-4 Col-lg-4">
+         <div class="col-md-4 col-lg-4">
             <!-- Informacoes basicas de missoes -->
 
             <!-- Collapsable Card Example -->
             <div class="card shadow mb-4 mt-4">
                 <!-- Card Header - Accordion -->
                 <a href="#collapseCardExample2" class="d-block card-header py-3" data-toggle="collapse" role="button" aria-expanded="true" aria-controls="collapseCardExample">
-                    <h6 class="m-0 font-weight-bold text-center">MISSÕES DA EMPRESA</h6>
+                    <h6 class="m-0 font-weight-bold">MISSÕES DA EMPRESA</h6>
                 </a>
                 <!-- Card Content - Collapse -->
                 <div class="collapse show" id="collapseCardExample2">
@@ -163,7 +163,7 @@
             <div class="card shadow mb-4 mt-4">
                     <!-- Card Header - Accordion -->
                     <a href="#collapseCardExample7" class="d-block card-header py-3" data-toggle="collapse" role="button" aria-expanded="true" aria-controls="collapseCardExample">
-                        <h6 class="m-0 font-weight-bold text-center">GRÁFICO ATUAL DE MISSÕES DA EMPRESA</h6>
+                        <h6 class="m-0 font-weight-bold">GRÁFICO ATUAL DE MISSÕES DA EMPRESA</h6>
                     </a>
                     <!-- Card Content - Collapse -->
                     <div class="collapse show" id="collapseCardExample7">

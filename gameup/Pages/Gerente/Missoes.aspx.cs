@@ -581,7 +581,7 @@ public partial class Pages_Gerente_Missoes : System.Web.UI.Page
         }
         finally
         {
-            Response.Redirect("../Colaborador/Missoes.aspx");
+            Response.Redirect("../Gerente/Missoes.aspx");
             carregarMissoes();
         }
     }

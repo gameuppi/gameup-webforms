@@ -11,13 +11,13 @@
 
 
     <div class="row">
-        <div class="col-xl-8 col-lg-7 ">
+        <div class="col-xl-8 col-lg-7 col-md-7">
             <div class="card shadow h-100">
                 <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                    <h6 class="m-0 font-weight-bold text-center">GRÁFICO DE DESEMPENHO DO SETOR <asp:Label runat="server" ID="lblNomeSetor"></asp:Label></h6>
+                    <h6 class="m-0 font-weight-bold text-center text-primary">GRÁFICO DE DESEMPENHO DO SETOR <asp:Label runat="server" ID="lblNomeSetor"></asp:Label></h6>
                 </div>
                 <!-- Card Content - Collapse -->
-                <div class="card-body float-left text-left text-xl-left border-left left ">
+                <div class="card-body p-0">
 
                     <asp:Literal runat="server" ID="ltlGerarGrafico"> </asp:Literal>
 
@@ -29,7 +29,7 @@
             <div class="card shadow h-100">
                 <!-- Card Header - Dropdown -->
                 <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                    <h6 class="m-0 font-weight-bold text-center">Opções de Relatórios </h6>
+                    <h6 class="m-0 font-weight-bold text-center text-primary">OPÇÕES DE RELATÓRIOS </h6>
 
                 </div>
                 <!-- Card Body -->
@@ -37,7 +37,7 @@
                     <h4>Selecione o tipo do gráfico</h4>
                     <br />
                     <div class="row">
-                        <div class="col-8">
+                        <div class="col-md-7">
                             <asp:DropDownList runat="server" class="dropdown-toggle form-control" ID="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 
                                 <asp:ListItem Selected="True" Value="sem"> Semestral </asp:ListItem>
@@ -46,12 +46,12 @@
 
                             </asp:DropDownList>
                         </div>
-                        <div class="col-4">
+                        <div class="col-md-5">
                             <asp:Button runat="server" ID="btnGerarGrafico" CssClass="btn btn-info form-control" OnClick="btn1_Click" Text="Gerar gráfico " />
                         </div>
 
                     </div>
-                    <img src="https://cdn.pixabay.com/photo/2016/12/22/13/35/analytics-1925495_960_720.png" class="img-fluid" alt="Responsive image" style="min-height: 50px;">
+                    <img src="https://cdn.pixabay.com/photo/2016/12/22/13/35/analytics-1925495_960_720.png" class="img-fluid mt-3" alt="Responsive image" style="min-height: 50px;">
                 </div>
             </div>
         </div>
@@ -64,7 +64,7 @@
             <div class="card shadow mb-4 mt-4">
                 <!-- Card Header - Accordion -->
                 <a href="#collapseCardExample2" class="d-block card-header py-3" data-toggle="collapse" role="button" aria-expanded="true" aria-controls="collapseCardExample">
-                    <h6 class="m-0 font-weight-bold text-center">MISSÕES DO SETOR</h6>
+                    <h6 class="m-0 font-weight-bold">MISSÕES DO SETOR <asp:Label runat="server" ID="lblSetor2"></asp:Label></h6>
                 </a>
                 <!-- Card Content - Collapse -->
                 <div class="collapse show" id="collapseCardExample2">
@@ -148,7 +148,7 @@
             <div class="card shadow mb-4 mt-4">
                     <!-- Card Header - Accordion -->
                     <a href="#collapseCardExample7" class="d-block card-header py-3" data-toggle="collapse" role="button" aria-expanded="true" aria-controls="collapseCardExample">
-                        <h6 class="m-0 font-weight-bold text-center">GRÁFICO ATUAL DE MISSÕES DO SETOR</h6>
+                        <h6 class="m-0 font-weight-bold">GRÁFICO ATUAL DE MISSÕES DO SETOR <asp:Label runat="server" ID="lblSetor3"></asp:Label></h6>
                     </a>
                     <!-- Card Content - Collapse -->
                     <div class="collapse show" id="collapseCardExample7">

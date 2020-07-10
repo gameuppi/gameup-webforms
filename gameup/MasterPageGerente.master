@@ -95,8 +95,6 @@
                         <div class="bg-primary py-2 collapse-inner rounded">
                             <a class="collapse-item text-white" href="PainelPrincipal.aspx"><i class="fas fa-fw fa-table"></i>
                                 <span>Painel Principal</span>
-                                <a class="collapse-item text-white" href="#"><i class="fas fa-fw fa-users"></i>
-                                    <span>Colaboradores</span></a>
                                 <a class="collapse-item text-white" href="../../Pages/Gerente/Relatorios.aspx"><i class="fas fa-fw fa-chart-line"></i>
                                     <span>Relatórios</span></a>
                                 <a class="collapse-item text-white" href="../../Pages/Gerente/GerenciarMissoes.aspx"><i class="fas fa-fw fa-check"></i>
