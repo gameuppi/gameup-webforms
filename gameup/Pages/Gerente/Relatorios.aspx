@@ -107,14 +107,14 @@
                         <div class="col-8">
                             <asp:DropDownList runat="server" class="btn btn-light dropdown-toggle form-control" ID="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 
-                                <asp:ListItem Selected="True" Value="sem"> Semestre </asp:ListItem>
-                                <asp:ListItem Value="tri"> trimestre </asp:ListItem>
-                                <asp:ListItem Value="sema"> semanal </asp:ListItem>
+                                <asp:ListItem Selected="True" Value="sem"> Semestral </asp:ListItem>
+                                <asp:ListItem Value="tri"> Trimestral </asp:ListItem>
+                                <asp:ListItem Value="sema"> Semanal </asp:ListItem>
 
                             </asp:DropDownList>
                         </div>
                         <div class="col-4">
-                            <asp:Button runat="server" ID="btnGerarGrafico" CssClass="btn btn-info form-control" OnClick="btn1_Click" Text="Gerar Gráfico " />
+                            <asp:Button runat="server" ID="btnGerarGrafico" CssClass="btn btn-info form-control" OnClick="btn1_Click" Text="Gerar gráfico " />
                         </div>
                     </div>
                 </div>
