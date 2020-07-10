@@ -169,6 +169,7 @@
                             <asp:Label runat="server" ID="lblUploadArquivo" CssClass="col-12">
                                 <asp:FileUpload runat="server" ID="fuAnexo" CssClass="form-control-file" />
                             </asp:Label>
+                            <asp:Label runat="server" ID="txtMsgAnexo" CssClass="text-danger"></asp:Label>
                             <br />
                             <br />
                             <div class="col-12 mt-2">
@@ -180,7 +181,6 @@
                 </div>
             </div>
         </div>
-
 
     </div>
 </asp:Content>

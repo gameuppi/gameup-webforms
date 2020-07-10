@@ -260,7 +260,18 @@
                                 </asp:Literal>
                             </p>
                         </div>
-
+                        <div class="row mt-4">
+                            <p>
+                                <i class="fas fa-paperclip text-gray-600"></i>
+                                <asp:HiddenField runat="server" ID="hfIdMissaoUsuario" />
+                                <asp:Label runat="server" ID="lblTextoAnexo"></asp:Label>
+                                &nbsp;
+                                <asp:Panel runat="server" ID="pnlAnexo">
+                                    <asp:LinkButton runat="server" ID="btnBaixarAnexo" OnClick="btnBaixarAnexo_Click">
+                                    </asp:LinkButton>
+                                </asp:Panel>
+                            </p>
+                        </div>
                         <div class="row mt-4">
                             <h6>
                                 <i class="fas fa-calendar-check"></i>

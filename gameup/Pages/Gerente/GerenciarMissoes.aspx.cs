@@ -734,8 +734,33 @@ public partial class Pages_Gerente_GerenciarMissoes : System.Web.UI.Page
 
 
         //ltrDataConclusao.Text = missao.dt;
+        DataSet caminhoArquivoDs = ArquivoBD.BuscarNomeDoArquivoPorIdDaMissaoUsuario(mus_id);
+        string caminhoArquivo = caminhoArquivoDs.Tables[0].Rows[0]["mus_arquivo"].ToString();
 
-        
+        if (!caminhoArquivo.Equals(""))
+        {
+            lblTextoAnexo.Text = "";
+
+            string[] caminhoSeparado = caminhoArquivo.Split('\\');
+            string nomeArquivo = caminhoSeparado[caminhoSeparado.Length - 1];
+
+            //LinkButton btnBaixarAnexo = new LinkButton();
+            //btnBaixarAnexo.Click += new EventHandler(baixarAnexo);
+            //nBaixarAnexo.Text = nomeArquivo;
+
+            //pnlAnexo.Controls.Add(btnBaixarAnexo);
+
+            btnBaixarAnexo.Text = nomeArquivo;
+
+            pnlAnexo.Controls.Add(btnBaixarAnexo);
+
+            hfIdMissaoUsuario.Value = mus_id.ToString();
+        }
+        else
+        {
+            lblTextoAnexo.Text = "Não há anexos";
+        }
+
 
         Page.ClientScript.RegisterStartupScript(this.GetType(), "script", "<script>$('#modalDetalhesMissao').modal('show');</script>");
     }
@@ -1141,5 +1166,30 @@ public partial class Pages_Gerente_GerenciarMissoes : System.Web.UI.Page
         DataSet missoesEncontradas = MissaoBD.ProcurarMissoesPorTituloEStatus(tituloMissao, usuarioLogado.Emp_id, StatusMissaoEnum.AG_VALIDACAO);
         List<MissaoUsuario> listaDeMissoesEncontradas = criarListaObjMissaoUsuario(missoesEncontradas);
         carregarTodasAsMissoesUsuario(listaDeMissoesEncontradas);
+    }
+
+    protected void btnBaixarAnexo_Click(object sender, EventArgs e)
+    {
+        int idMissao = Convert.ToInt32(hfIdMissaoUsuario.Value);
+
+        DataSet caminhoArquivoDs = ArquivoBD.BuscarNomeDoArquivoPorIdDaMissaoUsuario(idMissao);
+        string caminhoArquivo = caminhoArquivoDs.Tables[0].Rows[0]["mus_arquivo"].ToString();
+
+        if (!caminhoArquivo.Equals(""))
+        {
+            baixarAnexo(caminhoArquivo);
+        }
+    }
+
+    void baixarAnexo(string caminho)
+    {
+        string caminhoFormatado = caminho.Substring(caminho.LastIndexOf("gameup"));
+        string[] caminhoSeparado = caminhoFormatado.Split('\\');
+        string nomeArquivo = caminhoSeparado[caminhoSeparado.Length - 1];
+
+        //Response.ContentType = "Application/any";
+        Response.AppendHeader("Content-Disposition", "attachment; filename=" + nomeArquivo);
+        Response.TransmitFile(caminho);
+        Response.End();
     }
 }
