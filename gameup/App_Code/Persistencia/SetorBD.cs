@@ -86,7 +86,9 @@ public class SetorBD
         query += " 	FROM ";
         query += " 	    SETOR ";
         query += " 	WHERE ";
-        query += " 	    EMP_ID = ?EMP_ID; ";
+        query += " 	    EMP_ID = ?EMP_ID";
+        query += " 	AND ";
+        query += " 	    SET_STATUS <> '2'; ";
 
         objCommand = Mapped.Command(query, objConexao);
         objCommand.Parameters.Add(Mapped.Parameter("?EMP_ID", emp_id));
@@ -214,11 +216,13 @@ public class SetorBD
             query += "INSERT  ";
             query += "	INTO SETOR( ";
             query += "		SET_NOME,";
-            query += "		EMP_ID";
+            query += "		EMP_ID,";
+            query += "		SET_STATUS";
             query += "	) ";
             query += "VALUES ( ";
             query += "		?SET_NOME,";
-            query += "		?EMP_ID";
+            query += "		?EMP_ID,";
+            query += "		1";
             query += "	); ";
 
             objComando = Mapped.Command(query, objConexao);

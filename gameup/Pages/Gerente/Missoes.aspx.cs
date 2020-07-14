@@ -553,37 +553,72 @@ public partial class Pages_Gerente_Missoes : System.Web.UI.Page
 
         if (fuAnexo.HasFile)
         {
-            string caminhoArquivo = AppDomain.CurrentDomain.BaseDirectory + System.Configuration.ConfigurationManager.AppSettings["caminhoArquivos"] + @"\";
+            if (fuAnexo.PostedFile.ContentLength <= 150000)
+            {
+                string caminhoArquivo = AppDomain.CurrentDomain.BaseDirectory + System.Configuration.ConfigurationManager.AppSettings["caminhoArquivos"] + @"\";
 
-            string nomeArquivo = usuarioLogado.Usu_id + "-" + missaoUsuarioId + "-" + fuAnexo.FileName.ToString();
-            fuAnexo.SaveAs(caminhoArquivo + nomeArquivo);
+                string nomeArquivo = usuarioLogado.Usu_id + "-" + missaoUsuarioId + "-" + fuAnexo.FileName.ToString();
+                fuAnexo.SaveAs(caminhoArquivo + nomeArquivo);
 
-            InserirArquivo(caminhoArquivo, nomeArquivo, missaoUsuarioId);
+                InserirArquivo(caminhoArquivo, nomeArquivo, missaoUsuarioId);
+
+                try
+                {
+                    int mus_id = Convert.ToInt32(hfIdMissao.Value);
+
+                    MissaoUsuario missaoUsuario = new MissaoUsuario();
+                    missaoUsuario = criarObjMissaoUsuario(MissaoUsuarioBD.procurarMissaoUsuarioPorId(mus_id));
+
+                    missaoUsuario.Status = StatusMissaoEnum.AG_VALIDACAO;
+                    missaoUsuario.DtConclusao = DateTime.Now;
+
+                    //atribuirRecompensas(missaoUsuario);
+
+                    MissaoUsuarioBD.concluirMissao(missaoUsuario);
+                }
+                catch (Exception ex)
+                {
+                    Console.Write(ex);
+                }
+                finally
+                {
+                    Response.Redirect("../Gerente/Missoes.aspx");
+                    carregarMissoes();
+                }
+            }
+            else
+            {
+                ScriptManager.RegisterStartupScript(this.Page, this.Page.GetType(), "Ops!", "alert('Esse arquivo é grande demais, o máximo é 15mb');", true);
+            }
         }
-
-        try
+        else
         {
-            int mus_id = Convert.ToInt32(hfIdMissao.Value);
+            try
+            {
+                int mus_id = Convert.ToInt32(hfIdMissao.Value);
 
-            MissaoUsuario missaoUsuario = new MissaoUsuario();
-            missaoUsuario = criarObjMissaoUsuario(MissaoUsuarioBD.procurarMissaoUsuarioPorId(mus_id));
+                MissaoUsuario missaoUsuario = new MissaoUsuario();
+                missaoUsuario = criarObjMissaoUsuario(MissaoUsuarioBD.procurarMissaoUsuarioPorId(mus_id));
 
-            missaoUsuario.Status = StatusMissaoEnum.AG_VALIDACAO;
-            missaoUsuario.DtConclusao = DateTime.Now;
+                missaoUsuario.Status = StatusMissaoEnum.AG_VALIDACAO;
+                missaoUsuario.DtConclusao = DateTime.Now;
 
-            //atribuirRecompensas(missaoUsuario);
+                //atribuirRecompensas(missaoUsuario);
 
-            MissaoUsuarioBD.concluirMissao(missaoUsuario);
+                MissaoUsuarioBD.concluirMissao(missaoUsuario);
+            }
+            catch (Exception ex)
+            {
+                Console.Write(ex);
+            }
+            finally
+            {
+                Response.Redirect("../Gerente/Missoes.aspx");
+                carregarMissoes();
+            }
         }
-        catch (Exception ex)
-        {
-            Console.Write(ex);
-        }
-        finally
-        {
-            Response.Redirect("../Gerente/Missoes.aspx");
-            carregarMissoes();
-        }
+
+
     }
 
     protected void btnBaixarAnexo_Click(object sender, EventArgs e)

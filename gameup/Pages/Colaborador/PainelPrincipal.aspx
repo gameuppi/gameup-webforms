@@ -25,7 +25,7 @@
                         <li class="list-group-item">
                             <div class="row">
                                 <div class="col-3 text-center">
-                                    <i class="fas fa-user-circle fa-3x"></i>&nbsp;
+                                    <i class="fas fa-user-circle fa-3x text-success"></i>&nbsp;
                                 </div>
                                 <div class="col-6 text-left">
                                     <div class="mt-1 font-weight-bold">
@@ -45,7 +45,7 @@
                         <li class="list-group-item">
                             <div class="row">
                                 <div class="col-3 text-center">
-                                    <i class="fas fa-user-circle fa-3x"></i>&nbsp;
+                                    <i class="fas fa-user-circle fa-3x text-primary"></i>&nbsp;
                                 </div>
                                 <div class="col-6 text-left">
                                     <div class="mt-1 font-weight-bold">
@@ -63,7 +63,7 @@
                         <li class="list-group-item">
                             <div class="row">
                                 <div class="col-3 text-center">
-                                    <i class="fas fa-user-circle fa-3x"></i>&nbsp;
+                                    <i class="fas fa-user-circle fa-3x text-dark"></i>&nbsp;
                                 </div>
                                 <div class="col-6 text-left">
                                     <div class="mt-1 font-weight-bold">

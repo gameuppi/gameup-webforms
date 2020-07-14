@@ -129,7 +129,9 @@ public partial class Pages_Representante_GerenciarSetores : System.Web.UI.Page
                 // Abre modal de sucesso
                 Page.ClientScript.RegisterStartupScript(this.GetType(), "script", "<script>$('#modalCadastraSetor').modal('show');</script>");
                 LimpaTudo();
-                
+
+                CriaListaSetores();
+
                 break;
             case false:
                 msgModalCadastraSetor.Text = "<h5 class='text-warning'> Seu setor não pode ser cadastrado. Algum erro aconteceu. Verifique na lista abaixo se ele já não está cadastrado</h5>";

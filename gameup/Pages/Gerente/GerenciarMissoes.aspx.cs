@@ -45,7 +45,12 @@ public partial class Pages_Gerente_GerenciarMissoes : System.Web.UI.Page
         }
         else
         {
-            dia = hoje.AddDays(-5).ToString();
+            dia = hoje.AddDays(-5).Day.ToString();
+
+            if (Convert.ToInt32(dia.ToString()) <= 10)
+            {
+                dia = "0" + dia;
+            }
         }
 
 

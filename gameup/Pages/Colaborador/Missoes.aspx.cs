@@ -592,6 +592,32 @@ public partial class Pages_Colaborador_Missoes : System.Web.UI.Page
                 ScriptManager.RegisterStartupScript(this.Page, this.Page.GetType(), "Ops!", "alert('Esse arquivo é grande demais, o máximo é 15mb');", true);
             }
         }
+        else
+        {
+            try
+            {
+                int mus_id = Convert.ToInt32(hfIdMissao.Value);
+
+                MissaoUsuario missaoUsuario = new MissaoUsuario();
+                missaoUsuario = criarObjMissaoUsuario(MissaoUsuarioBD.procurarMissaoUsuarioPorId(mus_id));
+
+                missaoUsuario.Status = StatusMissaoEnum.AG_VALIDACAO;
+                missaoUsuario.DtConclusao = DateTime.Now;
+
+                //atribuirRecompensas(missaoUsuario);
+
+                MissaoUsuarioBD.concluirMissao(missaoUsuario);
+            }
+            catch (Exception ex)
+            {
+                Console.Write(ex);
+            }
+            finally
+            {
+                Response.Redirect("../Colaborador/Missoes.aspx");
+                carregarMissoes();
+            }
+        }
 
 
     }

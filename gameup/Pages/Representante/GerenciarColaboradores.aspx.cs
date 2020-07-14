@@ -151,6 +151,7 @@ public partial class Pages_Representante_GerenciarColaboradores : System.Web.UI.
 
                     EnviarEmail(usu.Usu_email, usu.Usu_nome, hash);
 
+
                 }
                 catch (Exception)
                 {
@@ -164,6 +165,7 @@ public partial class Pages_Representante_GerenciarColaboradores : System.Web.UI.
                 // Abre modal de sucesso
                 Page.ClientScript.RegisterStartupScript(this.GetType(), "script", "<script>$('#modalCadastraColaborador').modal('show');</script>");
                 LimpaTudo();
+                CriaListaColaboradores();
 
                 break;
             case false:
@@ -272,7 +274,7 @@ public partial class Pages_Representante_GerenciarColaboradores : System.Web.UI.
             switch (UsuarioBD.UpdateInativo(Convert.ToInt32(e.CommandArgument)))
             {
                 case true:
-                    lblUpdateColabText.Text = "<h5 class='text-success'>Update realizado com sucesso!</h5>";
+                    lblUpdateColabText.Text = "<h5 class='text-success'>Status atualizado com Sucesso!!!</h5>";
                     lblUpdateColabTitle.Text = "Ótimo!";
                     // Abre modal de sucesso
                     Page.ClientScript.RegisterStartupScript(this.GetType(), "script", "<script>$('#modalUpdateColaborador').modal('show');</script>");
@@ -293,7 +295,7 @@ public partial class Pages_Representante_GerenciarColaboradores : System.Web.UI.
             switch (UsuarioBD.UpdateGerente(Convert.ToInt32(e.CommandArgument)))
             {
                 case true:
-                    lblUpdateColabText.Text = "<h5 class='text-success'>Update realizado com sucesso!!!</h5>";
+                    lblUpdateColabText.Text = "<h5 class='text-success'>Cargo alterado com sucesso!!!</h5>";
                     lblUpdateColabTitle.Text = "Ótimo!";
                     // Abre modal de sucesso
                     Page.ClientScript.RegisterStartupScript(this.GetType(), "script", "<script>$('#modalUpdateColaborador').modal('show');</script>");

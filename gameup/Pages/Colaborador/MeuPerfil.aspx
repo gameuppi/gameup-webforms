@@ -29,14 +29,14 @@
                                 </div>
                                 <div class="col-md-10">
                                     <div class="form-group">
-                                        <asp:TextBox runat="server" ID="txtNome" CssClass="form-control" placeholder="Nome"></asp:TextBox>
+                                        <asp:TextBox runat="server" ID="txtNome" CssClass="form-control" placeholder="Nome" Enabled="false"></asp:TextBox>
                                     </div>
                                     <div class="form-group">
                                         <asp:TextBox runat="server"  readonly="true" ID="txtNasc" CssClass="form-control" placeholder="Data de nascimento"></asp:TextBox>                                    </div>
                                     <div class="form-group">
                                         <asp:TextBox runat="server"  readonly="true" ID="txtEmail" CssClass="form-control" placeholder="E-mail"></asp:TextBox>
                                     </div>
-                                    <a href="#" data-toggle="modal" data-target="#exampleModalCenter">Alterar senha</a>
+                                    <%--<a href="#" data-toggle="modal" data-target="#exampleModalCenter">Alterar senha</a>--%>
 
                                     <!-- Modal -->
                                     <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">

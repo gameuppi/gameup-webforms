@@ -103,13 +103,13 @@ public partial class Pages_Representante_PainelPrincipal : System.Web.UI.Page
     {
         DataTable dados = new DataTable();
 
-        DataSet gerargraficosetor1 = MissaoUsuarioBD.ContarXpPontoMoedaPorSemanaEmpresa(usuarioLogado.Usu_id, 0);
-        DataSet gerargraficosetor2 = MissaoUsuarioBD.ContarXpPontoMoedaPorSemanaEmpresa(usuarioLogado.Usu_id, 1);
-        DataSet gerargraficosetor3 = MissaoUsuarioBD.ContarXpPontoMoedaPorSemanaEmpresa(usuarioLogado.Usu_id, 2);
-        DataSet gerargraficosetor4 = MissaoUsuarioBD.ContarXpPontoMoedaPorSemanaEmpresa(usuarioLogado.Usu_id, 3);
-        DataSet gerargraficosetor5 = MissaoUsuarioBD.ContarXpPontoMoedaPorSemanaEmpresa(usuarioLogado.Usu_id, 4);
-        DataSet gerargraficosetor6 = MissaoUsuarioBD.ContarXpPontoMoedaPorSemanaEmpresa(usuarioLogado.Usu_id, 5);
-        DataSet gerargraficosetor7 = MissaoUsuarioBD.ContarXpPontoMoedaPorSemanaEmpresa(usuarioLogado.Usu_id, 6);
+        DataSet gerargraficosetor1 = MissaoUsuarioBD.ContarXpPontoMoedaPorSemanaEmpresa(usuarioLogado.Emp_id, 0);
+        DataSet gerargraficosetor2 = MissaoUsuarioBD.ContarXpPontoMoedaPorSemanaEmpresa(usuarioLogado.Emp_id, 1);
+        DataSet gerargraficosetor3 = MissaoUsuarioBD.ContarXpPontoMoedaPorSemanaEmpresa(usuarioLogado.Emp_id, 2);
+        DataSet gerargraficosetor4 = MissaoUsuarioBD.ContarXpPontoMoedaPorSemanaEmpresa(usuarioLogado.Emp_id, 3);
+        DataSet gerargraficosetor5 = MissaoUsuarioBD.ContarXpPontoMoedaPorSemanaEmpresa(usuarioLogado.Emp_id, 4);
+        DataSet gerargraficosetor6 = MissaoUsuarioBD.ContarXpPontoMoedaPorSemanaEmpresa(usuarioLogado.Emp_id, 5);
+        DataSet gerargraficosetor7 = MissaoUsuarioBD.ContarXpPontoMoedaPorSemanaEmpresa(usuarioLogado.Emp_id, 6);
 
         string pontos1 = gerargraficosetor1.Tables[0].Rows[0]["qtd_pontos"].ToString();
         string experiencia1 = gerargraficosetor1.Tables[0].Rows[0]["qtd_exp"].ToString();
