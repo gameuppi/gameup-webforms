@@ -16,6 +16,19 @@ public partial class Pages_Representante_GerenciarLojaVirtual : System.Web.UI.Pa
         popularVisualizacaoDeProdutos();
     }
 
+    string formatarNome(string nome)
+    {
+        string nomeFormatado = nome;
+
+        if (nome.Count() > 8)
+        {
+            string[] nomes = nome.Split(' ');
+            nomeFormatado = nomes[0] + " " + nomes[1].Substring(0, 1) + ".";
+        }
+
+        return nomeFormatado;
+    }
+
     void popularResumo()
     {
         int qtdItensAtivos = ProdutoDB.BuscarQtdItensAtivos(usuarioLogado);
@@ -243,7 +256,7 @@ public partial class Pages_Representante_GerenciarLojaVirtual : System.Web.UI.Pa
         // Carrega os colaboradores no modal
         foreach(UsuarioComprador usuario in listaDeUsuarioComprador)
         {
-            usuListBox = $"{usuario.NomeUsuario} do Setor {usuario.NomeSetor} na data {usuario.DataCompra}";
+            usuListBox = $"{formatarNome(usuario.NomeUsuario)} do Setor {usuario.NomeSetor} na data {usuario.DataCompra}";
             ltbCompradores.Items.Add(new ListItem(usuListBox, "Usuário"));
         }
     }

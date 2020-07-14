@@ -1,12 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Data;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
-public partial class Pages_Colaborador_LojaVirtual : System.Web.UI.Page
+public partial class Pages_Gerente_LojaVirtual : System.Web.UI.Page
 {
     private static Usuario usuarioLogado;
 
@@ -18,7 +17,7 @@ public partial class Pages_Colaborador_LojaVirtual : System.Web.UI.Page
 
         string exibeModal;
 
-        if ( Session["EXIBEMODAL"] != null)
+        if (Session["EXIBEMODAL"] != null)
         {
             exibeModal = (string)Session["EXIBEMODAL"].ToString();
 
@@ -33,7 +32,7 @@ public partial class Pages_Colaborador_LojaVirtual : System.Web.UI.Page
                 Session["EXIBEMODAL"] = null;
             }
         }
-        
+
     }
 
     void CarregaMeusProdutos()
@@ -55,7 +54,7 @@ public partial class Pages_Colaborador_LojaVirtual : System.Web.UI.Page
         {
             usuarioLogado = (Usuario)Session["USUARIO"];
 
-            if (usuarioLogado.Tus_id != 1) // Colaborador
+            if (usuarioLogado.Tus_id != 2) // Gerente
             {
                 Response.Redirect("../Visitante/Login.aspx");
             }
@@ -69,12 +68,11 @@ public partial class Pages_Colaborador_LojaVirtual : System.Web.UI.Page
 
         rptProdutos.DataSource = ProdutoDB.FindAllEmpresa(usuarioLogado.Emp_id);
         rptProdutos.DataBind();
-
     }
 
     protected void rptProdutos_ItemCommand(object source, RepeaterCommandEventArgs e)
     {
-        if ( e.CommandName == "Comprar")
+        if (e.CommandName == "Comprar")
         {
             string url = $"ConfirmarCompra.aspx?pro_id={Convert.ToInt32(e.CommandArgument.ToString())}";
 

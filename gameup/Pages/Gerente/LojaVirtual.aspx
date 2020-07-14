@@ -1,8 +1,9 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MasterPageColaborador.master" AutoEventWireup="true" CodeFile="LojaVirtual.aspx.cs" Inherits="Pages_Colaborador_LojaVirtual" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MasterPageGerente.master" AutoEventWireup="true" CodeFile="LojaVirtual.aspx.cs" Inherits="Pages_Gerente_LojaVirtual" %>
 
-<asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
+<asp:Content ID="Content1" ContentPlaceHolderID="head" Runat="Server">
 </asp:Content>
-<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
+<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
+
     <!-- Page Heading -->
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
         <h1 class="h3 mb-0 text-gray-800">Loja Virtual</h1>
@@ -123,72 +124,5 @@
             </div>
         </div>
 
-        <!-- Card de item -  -->
-        <%--<div class="col-12 col-md-3">
-            <div class="card-custom border-left-success shadow h-100">
-                <div class="card-custom-image">
-                    <img src="../../Assets/Imagens/jantar.jpg">
-                    <span class="card-custom-title font-weight-bold">Bon appétit!
-                        <br />
-                        <small>1 disponíveis</small>
-                    </span>
-                    <a class="btn-floating btn-large halfway-fab btn-success">
-                        <center>
-                            <i class="fas fa-shopping-cart text-white"></i>
-                        </center>
-                    </a>
-                </div>
-                <div class="card-custom-content">
-
-                    <p>Uma reserva de jantar para um ótimo fim de semana.</p>
-                </div>
-            </div>
-        </div>
-
-        <!-- Card de item -  -->
-        <div class="col-12 col-md-3">
-            <div class="card-custom border-left-success shadow h-100">
-                <div class="card-custom-image">
-                    <img src="../../Assets/Imagens/tempo.jpg">
-                    <span class="card-custom-title font-weight-bold">O tempo voa
-                        <br />
-                        <small>2 disponíveis</small>
-                    </span>
-                    <a class="btn-floating btn-large halfway-fab btn-success">
-                        <center>
-                            <i class="fas fa-shopping-cart text-white"></i>
-                        </center>
-                    </a>
-                </div>
-                <div class="card-custom-content">
-
-                    <p>Acrescente +30 minutos na sua pausa de almoço</p>
-                </div>
-            </div>
-        </div>
-
-        <!-- Card de item -  -->
-        <div class="col-12 col-md-3">
-            <div class="card-custom border-left-success shadow h-100">
-                <div class="card-custom-image">
-                    <img src="../../Assets/Imagens/piscina.jpg">
-                    <span class="card-custom-title font-weight-bold">Descanso merecido
-                        <br />
-                        <small>3 disponíveis</small>
-                    </span>
-                    <a class="btn-floating btn-large halfway-fab btn-success">
-                        <center>
-                            <i class="fas fa-shopping-cart text-white"></i>
-                        </center>
-                    </a>
-                </div>
-                <div class="card-custom-content">
-
-                    <p>Consiga uma folga em um dia de sua escolha</p>
-                </div>
-            </div>
-        </div>--%>
-
-        <!-- /.container-fluid -->
 </asp:Content>
 

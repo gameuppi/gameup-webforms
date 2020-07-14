@@ -554,7 +554,11 @@ public partial class Pages_Colaborador_Missoes : System.Web.UI.Page
 
         if (fuAnexo.HasFile)
         {
-            if (fuAnexo.PostedFile.ContentLength <= 150000)
+            if (fuAnexo.PostedFile.ContentLength <= 150000 && fuAnexo.PostedFile.ContentType == "application/vnd.ms-excel" ||
+            fuAnexo.PostedFile.ContentType == "application/excel" ||
+            fuAnexo.PostedFile.ContentType == "application/x-msexcel" ||
+            fuAnexo.PostedFile.ContentType == "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" ||
+            fuAnexo.PostedFile.ContentType == "application/pdf")
             {
                 string caminhoArquivo = AppDomain.CurrentDomain.BaseDirectory + System.Configuration.ConfigurationManager.AppSettings["caminhoArquivos"] + @"\";
 
@@ -589,7 +593,7 @@ public partial class Pages_Colaborador_Missoes : System.Web.UI.Page
             }
             else
             {
-                ScriptManager.RegisterStartupScript(this.Page, this.Page.GetType(), "Ops!", "alert('Esse arquivo é grande demais, o máximo é 15mb');", true);
+                ScriptManager.RegisterStartupScript(this.Page, this.Page.GetType(), "Ops!", "alert('Arquivo Inválido!! o tamanho máximo do arquivo é 15mb e nas extensões .xlsx, .xls, .csv, .pdf e .zip');", true);
             }
         }
         else

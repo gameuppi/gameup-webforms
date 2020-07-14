@@ -52,7 +52,7 @@
 
                 <li class="nav-item">
                     <center>
-                        <button class="btn btn-outline-light" type="button">
+                        <a href="../Gerente/LojaVirtual.aspx"><button class="btn btn-outline-light" type="button">
                             LOJA VIRTUAL &nbsp
                             <i class="fas fa-shopping-basket fa-sm"></i>
                         </button>

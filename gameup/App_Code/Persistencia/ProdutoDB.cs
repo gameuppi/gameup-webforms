@@ -17,7 +17,7 @@ public class ProdutoDB
         IDataAdapter dataAdapter;
         objConexao = Mapped.Connection();
 
-        string query = "select * from produtos p JOIN movestoque mes ON mes.pro_id = p.pro_id where p.emp_id = ?emp_id";
+        string query = "select * from produtos p JOIN movestoque mes ON mes.pro_id = p.pro_id where p.emp_id = ?emp_id and p.pro_status <> '2' ";
         objCommand = Mapped.Command(query, objConexao);
         objCommand.Parameters.Add(Mapped.Parameter("?emp_id", emp_id));
         dataAdapter = Mapped.Adapter(objCommand);

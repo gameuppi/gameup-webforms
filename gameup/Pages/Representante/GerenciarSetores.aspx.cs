@@ -40,7 +40,7 @@ public partial class Pages_Representante_GerenciarSetores : System.Web.UI.Page
         dt.Columns.Add(new DataColumn("set_nome", typeof(string)));
         dt.Columns.Add(new DataColumn("set_status", typeof(string)));
 
-        foreach (DataRow cds in SetorBD.procurarSetoresEmpresa(usuarioLogado.Emp_id).Tables[0].Rows)
+        foreach (DataRow cds in SetorBD.procurarSetoresEmp(usuarioLogado.Emp_id).Tables[0].Rows)
         {
             dt.Rows.Add(Convert.ToInt32(cds["set_id"].ToString()), cds["set_nome"].ToString(), cds["set_status"].Equals(1) ? StatusSetorEnum.ATIVO.ToString() : StatusSetorEnum.INATIVO.ToString());
         }

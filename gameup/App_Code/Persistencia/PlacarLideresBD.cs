@@ -43,7 +43,7 @@ public class PlacarLideresBD
         IDataAdapter dataAdapter;
 
         objConexao = Mapped.Connection();
-        string query = "SELECT SUM(mis.mis_qtd_pontos) as usu_qtdPontos, usu.usu_nome as usu_nome FROM missao_usuario mus JOIN missao mis ON mis.mis_id = mus.mis_id JOIN usuario usu ON usu.usu_id = mus.usu_id WHERE usu.emp_id = ?emp_id AND MONTH(mus.mus_dt_conclusao) = MONTH(SYSDATE()) ORDER BY usu_qtdPontos desc";
+        string query = "SELECT SUM(mis.mis_qtd_pontos) as usu_qtdPontos, usu.usu_nome as usu_nome FROM missao_usuario mus JOIN missao mis ON mis.mis_id = mus.mis_id JOIN usuario usu ON usu.usu_id = mus.usu_id WHERE usu.emp_id = ?emp_id AND MONTH(mus.mus_dt_conclusao) = MONTH(SYSDATE()) GROUP BY usu.usu_id ORDER BY usu_qtdPontos desc";
 
         objCommand = Mapped.Command(query, objConexao);
 
