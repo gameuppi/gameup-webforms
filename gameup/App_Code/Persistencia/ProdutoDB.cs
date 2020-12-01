@@ -194,9 +194,10 @@ public class ProdutoDB
 
         if (usu.Usu_qtdMoeda >= pro.Preco)
         {
-            ok = UsuarioDB.UpdateMoedaUsuario(pro.Preco, usu);
-            ok = UpdateMovEstoque(pro.Id, qtd);
-            ok = InsertMovFinanceira(pro, usu, qtd);
+            //ok = UsuarioDB.UpdateMoedaUsuario(pro.Preco, usu);
+            //ok = UpdateMovEstoque(pro.Id, qtd);
+            //ok = InsertMovFinanceira(pro, usu, qtd);
+            ok = Cur_FinalizaCompra(pro, usu, qtd);
         }
         else
         {
@@ -205,6 +206,44 @@ public class ProdutoDB
 
 
         return ok;
+    }
+
+    public static bool Cur_FinalizaCompra(Produto pro, Usuario usu, int qtd)
+    {
+        bool ok = false;
+
+        try
+        {
+            IDbConnection objConexao;
+            IDbCommand objComando;
+
+            objConexao = Mapped.Connection();
+
+            string query = "";
+            query += "CALL CUR_FINALIZACOMPRA(?pro_id, ?usu_id, ?qtd, ?qtdMoedas, ?dhCompra, ?emp_id)";
+
+            objComando = Mapped.Command(query, objConexao);
+            objComando.Parameters.Add(Mapped.Parameter("?pro_id", pro.Id));
+            objComando.Parameters.Add(Mapped.Parameter("?usu_id", usu.Usu_id));
+            objComando.Parameters.Add(Mapped.Parameter("?qtd", qtd));
+            objComando.Parameters.Add(Mapped.Parameter("?qtdMoedas", pro.Preco));
+            objComando.Parameters.Add(Mapped.Parameter("?dhCompra", DateTime.Now));
+            objComando.Parameters.Add(Mapped.Parameter("?emp_id", usu.Emp_id));
+
+            objComando.ExecuteNonQuery();
+
+            objConexao.Dispose();
+            objComando.Dispose();
+
+            ok = true;
+        }
+        catch (Exception ex)
+        {
+            ok = false;
+        }
+
+        return ok;
+
     }
 
     public static bool InsertMovimentacaoEstoque(Produto produto, int quantidade)
